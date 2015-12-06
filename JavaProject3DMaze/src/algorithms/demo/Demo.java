@@ -32,7 +32,7 @@ public class Demo {
 
 		//generating maze
 		Maze3dGenerator mg = new MyMaze3dGenerator();
-		Maze3d maze = mg.generate(100,100,100);
+		Maze3d maze = mg.generate(100,125,100);
 		
 		//printing the maze
 		maze.print();
