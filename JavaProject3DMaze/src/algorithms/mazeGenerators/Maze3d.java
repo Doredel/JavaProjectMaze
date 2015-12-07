@@ -262,7 +262,7 @@ public class Maze3d {
 	 * @exception IndexOutOfBoundsException
 	 */
 	public int[][] getCrossSectionByY(int y){
-		if((y<0)||(y>this.maze3d.length-1))
+		if((y<0)||(y>this.maze3d[0].length-1))
 		{
 			throw new IndexOutOfBoundsException();
 		}
@@ -292,7 +292,7 @@ public class Maze3d {
 	 * @exception IndexOutOfBoundsException
 	 */
 	public int[][] getCrossSectionByZ(int z){
-		if((z<0)||(z>this.maze3d.length-1))
+		if((z<0)||(z>this.maze3d[0][0].length-1))
 		{
 			throw new IndexOutOfBoundsException();
 		}
