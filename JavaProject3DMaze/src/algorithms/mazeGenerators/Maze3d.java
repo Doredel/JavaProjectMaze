@@ -1,6 +1,7 @@
 package algorithms.mazeGenerators;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * The <b>Maze3d</b> class represents a 3 dimensional maze
@@ -335,7 +336,7 @@ public class Maze3d {
 		
 	}
 	
-	public Byte[] toByteArray(){
+	public byte[] toByteArray(){
 		ArrayList<Byte> mazeInByte=new ArrayList<Byte>();  
 		
 		mazeInByte.add((new Integer(this.getStartPosition().getX()).byteValue()));
@@ -348,13 +349,20 @@ public class Maze3d {
 		mazeInByte.add((new Integer(this.maze3d[0].length).byteValue()));
 		mazeInByte.add((new Integer(this.maze3d[0][0].length).byteValue()));
 		
-		for (int[][] byte1 : this.maze3d) {
-			for (int[] byte2 : byte1) {
-				for (int i : byte2) {
-					mazeInByte.add((new Integer(i).byteValue()));
+		for (int[][] crossX : this.maze3d) {
+			for (int[] row : crossX) {
+				for (int val : row) {
+					mazeInByte.add((new Integer(val).byteValue()));
 				}
 			}
 		}
-		return mazeInByte.toArray(new Byte[mazeInByte.size()]);
+		
+		byte[] maze3DCommpressed = new byte[mazeInByte.size()];
+		
+		for (int i = 0; i < mazeInByte.size(); i++) {
+			maze3DCommpressed[i] = mazeInByte.get(i);
+		}
+		
+		return maze3DCommpressed;
 	}
 }
