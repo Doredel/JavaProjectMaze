@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * with a start position, an end position and the content of the maze
  * 
  * @author Dor Edelstein
- * @since 29/11/20152
+ * @since 29/11/2015
  * @see Position
  */
 public class Maze3d {
@@ -333,5 +333,28 @@ public class Maze3d {
 			System.out.println();
 		}
 		
+	}
+	
+	public Byte[] toByteArray(){
+		ArrayList<Byte> mazeInByte=new ArrayList<Byte>();  
+		
+		mazeInByte.add((new Integer(this.getStartPosition().getX()).byteValue()));
+		mazeInByte.add((new Integer(this.getStartPosition().getY()).byteValue()));
+		mazeInByte.add((new Integer(this.getStartPosition().getZ()).byteValue()));
+		mazeInByte.add((new Integer(this.getGoalPosition().getX()).byteValue()));
+		mazeInByte.add((new Integer(this.getGoalPosition().getY()).byteValue()));
+		mazeInByte.add((new Integer(this.getGoalPosition().getZ()).byteValue()));
+		mazeInByte.add((new Integer(this.maze3d.length).byteValue()));
+		mazeInByte.add((new Integer(this.maze3d[0].length).byteValue()));
+		mazeInByte.add((new Integer(this.maze3d[0][0].length).byteValue()));
+		
+		for (int[][] byte1 : this.maze3d) {
+			for (int[] byte2 : byte1) {
+				for (int i : byte2) {
+					mazeInByte.add((new Integer(i).byteValue()));
+				}
+			}
+		}
+		return mazeInByte.toArray(new Byte[mazeInByte.size()]);
 	}
 }
