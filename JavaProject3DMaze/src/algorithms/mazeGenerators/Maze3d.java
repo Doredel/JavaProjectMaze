@@ -1,7 +1,6 @@
 package algorithms.mazeGenerators;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * The <b>Maze3d</b> class represents a 3 dimensional maze
