@@ -27,6 +27,33 @@ public class Maze3d {
 	 */
 	private Position goalPosition;
 	
+	public Maze3d() {
+	}
+	
+	public Maze3d(byte[] compresedMaze){
+		int width,height,depth;
+		
+		this.setStartPosition(new Position(new Integer(compresedMaze[0]), new Integer(compresedMaze[1]), new Integer(compresedMaze[2])));
+		this.setGoalPosition(new Position(new Integer(compresedMaze[3]), new Integer(compresedMaze[4]), new Integer(compresedMaze[5])));
+		
+		width = new Integer(compresedMaze[6]);
+		height = new Integer(compresedMaze[7]);
+		depth = new Integer(compresedMaze[8]);
+		
+		int[][][] maze= new int[width][height][depth];
+		
+		for (int i = 0; i < width; i++) {
+			for (int j = 0; j < height; j++) {
+				for (int k = 0; k < depth; k++) {
+					maze[i][j][k] = new Integer(compresedMaze[9+i*height*depth+j*depth+k]);
+				}
+			}
+		}
+		
+		this.setMaze3d(maze);
+	}
+	
+	
 	/**
 	 * <strong>getMaze3d</strong>
 	 * <p>
@@ -341,9 +368,11 @@ public class Maze3d {
 		mazeInByte.add((new Integer(this.getStartPosition().getX()).byteValue()));
 		mazeInByte.add((new Integer(this.getStartPosition().getY()).byteValue()));
 		mazeInByte.add((new Integer(this.getStartPosition().getZ()).byteValue()));
+		
 		mazeInByte.add((new Integer(this.getGoalPosition().getX()).byteValue()));
 		mazeInByte.add((new Integer(this.getGoalPosition().getY()).byteValue()));
 		mazeInByte.add((new Integer(this.getGoalPosition().getZ()).byteValue()));
+		
 		mazeInByte.add((new Integer(this.maze3d.length).byteValue()));
 		mazeInByte.add((new Integer(this.maze3d[0].length).byteValue()));
 		mazeInByte.add((new Integer(this.maze3d[0][0].length).byteValue()));
@@ -356,12 +385,12 @@ public class Maze3d {
 			}
 		}
 		
-		byte[] maze3DCommpressed = new byte[mazeInByte.size()];
+		byte[] CommpressedMaze = new byte[mazeInByte.size()];
 		
 		for (int i = 0; i < mazeInByte.size(); i++) {
-			maze3DCommpressed[i] = mazeInByte.get(i);
+			CommpressedMaze[i] = mazeInByte.get(i);
 		}
 		
-		return maze3DCommpressed;
+		return CommpressedMaze;
 	}
 }

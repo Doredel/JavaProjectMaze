@@ -32,12 +32,20 @@ public class Demo {
 
 		//generating maze
 		Maze3dGenerator mg = new MyMaze3dGenerator();
-		Maze3d maze = mg.generate(100,125,100);
+		Maze3d maze = mg.generate(2,5,6);
 		
 		//printing the maze
 		maze.print();
 
-		//solving using BFS
+		System.out.println("===========================");
+		
+		byte[] array = maze.toByteArray();
+		
+		Maze3d newMaze = new Maze3d(array);
+		
+		newMaze.print();
+		
+		/*//solving using BFS
 		Searcher<Position> searcher = new BFS<Position>();
 		searcher.search(new Maze3dAdaptor(maze));
 		
@@ -53,7 +61,7 @@ public class Demo {
 		searcher = new AStar<Position>(new MazeAirDistance());
 		searcher.search(new Maze3dAdaptor(maze));
 		
-		System.out.println("A* Air: "+searcher.getNumberOfNodesEvaluated());
+		System.out.println("A* Air: "+searcher.getNumberOfNodesEvaluated());*/
 	}
 	
 	/**
@@ -70,4 +78,7 @@ public class Demo {
 		run();
 	}
 }
+
+
+
  
