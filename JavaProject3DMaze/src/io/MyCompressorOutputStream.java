@@ -27,12 +27,11 @@ public class MyCompressorOutputStream extends OutputStream {
 				counter=1;
 			} else {
 				counter++;
-				if (i == b.length-1) {
-					this.write(b[i]);
-					this.write(counter); 
-				}
+			
 			}
 		}
+		this.write(b[b.length-1]);
+		this.write(counter); 
 	}
 
 }

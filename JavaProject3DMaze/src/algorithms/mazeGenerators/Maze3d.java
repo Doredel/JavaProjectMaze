@@ -399,7 +399,6 @@ public class Maze3d {
 	
 	
 	public boolean equals(Maze3d maze) {
-		//TODO
-		return false;
+		return Arrays.equals(this.toByteArray(), maze.toByteArray());
 	}
 }

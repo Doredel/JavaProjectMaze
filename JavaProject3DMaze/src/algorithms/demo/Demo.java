@@ -39,7 +39,7 @@ public class Demo {
 
 		//generating maze
 		Maze3dGenerator mg = new MyMaze3dGenerator();
-		Maze3d maze = mg.generate(2,2,2);
+		Maze3d maze = mg.generate(7,8,9);
 		
 		try{
 			// save it to a file
@@ -48,20 +48,22 @@ public class Demo {
 			out.flush();
 			out.close();
 
-			for (byte b1 : maze.toByteArray()) {
+			/*for (byte b1 : maze.toByteArray()) {
 				System.out.print(b1+" ");
 			}
 			System.out.println();
+			*/
 			
 			InputStream in=new MyDecompressorInputStream(new FileInputStream("1.maz"));
 			byte b[]=new byte[maze.toByteArray().length];
 			in.read(b);
 			in.close();
 			
-			for (byte b1 : b) {
+			/*for (byte b1 : b) {
 				System.out.print(b1+" ");
 			}
 			System.out.println();
+			*/
 			
 			Maze3d loaded=new Maze3d(b);
 			System.out.println(loaded.equals(maze));
