@@ -21,7 +21,7 @@ public class CLI implements Runnable{
 
 	public void start(){
 		try {
-			String str;
+			String str = null;
 			while(!(str=this.in.readLine()).equals("exit")){
 				String[] dim=str.split(" ");
 				if(!this.txtCommand.containsKey(dim[0])){
