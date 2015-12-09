@@ -1,7 +1,14 @@
 package algorithms.demo;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 import algorithms.mazeGenerators.*;
 import algorithms.search.*;
+import io.MyCompressorOutputStream;
+import io.MyDecompressorInputStream;
 
 /**
  * The Program Generate a 3d maze using DFS iterative algorithm
@@ -32,18 +39,36 @@ public class Demo {
 
 		//generating maze
 		Maze3dGenerator mg = new MyMaze3dGenerator();
-		Maze3d maze = mg.generate(100,2,127);
+		Maze3d maze = mg.generate(2,2,2);
 		
-		//printing the maze
-		maze.print();
+		try{
+			// save it to a file
+			OutputStream out = new MyCompressorOutputStream(new FileOutputStream("1.maz"));
+			out.write(maze.toByteArray());
+			out.flush();
+			out.close();
 
-		System.out.println("===========================");
+			for (byte b1 : maze.toByteArray()) {
+				System.out.print(b1+" ");
+			}
+			System.out.println();
+			
+			InputStream in=new MyDecompressorInputStream(new FileInputStream("1.maz"));
+			byte b[]=new byte[maze.toByteArray().length];
+			in.read(b);
+			in.close();
+			
+			for (byte b1 : b) {
+				System.out.print(b1+" ");
+			}
+			System.out.println();
+			
+			Maze3d loaded=new Maze3d(b);
+			System.out.println(loaded.equals(maze));
 		
-		byte[] array = maze.toByteArray();
-		
-		Maze3d newMaze = new Maze3d(array);
-		
-		newMaze.print();
+		}catch(Exception e){
+			e.printStackTrace(System.out);
+		}
 		
 		/*//solving using BFS
 		Searcher<Position> searcher = new BFS<Position>();

@@ -1,6 +1,9 @@
 package algorithms.mazeGenerators;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
+import com.sun.org.apache.regexp.internal.recompile;
 
 /**
  * The <b>Maze3d</b> class represents a 3 dimensional maze
@@ -392,5 +395,11 @@ public class Maze3d {
 		}
 		
 		return CommpressedMaze;
+	}
+	
+	
+	public boolean equals(Maze3d maze) {
+		//TODO
+		return false;
 	}
 }

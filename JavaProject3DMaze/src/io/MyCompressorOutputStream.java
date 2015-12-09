@@ -18,12 +18,13 @@ public class MyCompressorOutputStream extends OutputStream {
 	
 	@Override
 	public void write(byte[] b) throws IOException {
-		int counter = 0;
+		int counter = 1;
 		
-		for (int i = 1; i < b.length; i++) {
-			if (b[i-1] != b[i]) {
-				this.write(b[i-1]);
-				this.write(counter); 
+		for (int i = 0; i < b.length-1; i++) {
+			if (b[i] != b[i+1]) {
+				this.write(b[i]);
+				this.write(counter);
+				counter=1;
 			} else {
 				counter++;
 				if (i == b.length-1) {

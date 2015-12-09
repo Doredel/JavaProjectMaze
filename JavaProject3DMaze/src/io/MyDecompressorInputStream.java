@@ -19,13 +19,13 @@ public class MyDecompressorInputStream extends InputStream {
 	@Override
 	public int read(byte[] b) throws IOException {
 		int val,num;
-		
-		for (int i = 0; i < b.length; i+=2) {
-			val = this.read();
-			num = this.read();
-			
-			b[i] = (byte)val;
-			b[i+1] = (byte)num;
+		int index=0;		
+		while((val=in.read()) != -1) {
+			num = in.read();
+			for (int i = 0; i < num; i++) {
+				b[index] = (byte)val;
+				index++;
+			}
 		}
 		return 0;
 	}
