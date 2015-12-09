@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 import controller.Command;
 
-public class CLI {
+public class CLI implements Runnable{
 	
 	private BufferedReader in;
 	private PrintWriter out;
@@ -23,16 +23,24 @@ public class CLI {
 		try {
 			String str;
 			while(!(str=this.in.readLine()).equals("exit")){
-				if(!this.txtCommand.containsKey(str)){
-					this.out.println(str+" is invalid input");
+				String[] dim=str.split(" ");
+				if(!this.txtCommand.containsKey(dim[0])){
+					this.out.println(dim[0]+" is invalid input");
+
 				}
 				else{
 					this.txtCommand.get(str).doCommand();	
 				}
+				str.contains("dir");
 				
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void run() {
+		this.start();
 	}
 }
