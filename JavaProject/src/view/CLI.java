@@ -25,7 +25,7 @@ public class CLI implements Runnable{
 			while(!(str=this.in.readLine()).equals("exit")){
 				String[] dim=str.split(" ");
 				if(!this.txtCommand.containsKey(dim[0])){
-					this.out.println(dim[0]+" is invalid input");
+					this.out.println(dim[0]+" is invalid input!!!!!");
 
 				}
 				else{
