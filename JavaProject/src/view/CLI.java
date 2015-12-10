@@ -22,16 +22,20 @@ public class CLI implements Runnable{
 	public void start(){
 		try {
 			String str;
+			String[] param;
+			Command cmd;
+			
 			while(!(str=this.in.readLine()).equals("exit")){
-				String[] dim=str.split(" ");
-				if(!this.txtCommand.containsKey(dim[0])){
-					this.out.println(dim[0]+" is invalid input!!!!!");
+				param = str.split(" ");
+				if(!this.txtCommand.containsKey(param[0])){
+					this.out.println(param[0]+" is invalid input!!!!!");
 
 				}
 				else{
-					this.txtCommand.get(str).doCommand();	
+					cmd = this.txtCommand.get(param[0]);	
+					cmd.setInput(param[1]);
+					cmd.doCommand();
 				}
-				str.contains("dir");
 				
 			}
 		} catch (IOException e) {

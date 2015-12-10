@@ -19,6 +19,9 @@ public class MyController implements Controller {
 	 
 	public HashMap<String,Command> CreateCommandMap(){
 		HashMap<String,Command> hm = new HashMap<String,Command>();
+		
+		hm.put("dir", new DirCommand());
+		
 		return hm;
 	}
 }
