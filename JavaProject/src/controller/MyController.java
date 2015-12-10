@@ -2,6 +2,7 @@ package controller;
 
 import java.util.HashMap;
 
+import algorithms.search.Solution;
 import model.Model;
 import view.View;
 
@@ -23,5 +24,16 @@ public class MyController implements Controller {
 		hm.put("dir", new DirCommand());
 		
 		return hm;
+	}
+
+	@Override
+	public void setSolution(Solution<T> s) {
+		v.displaySolution(s);
+	}
+
+	@Override
+	public void notifySolutionReady(String name) {
+		v.display("solution for"+name+" is ready.");
+		
 	}
 }

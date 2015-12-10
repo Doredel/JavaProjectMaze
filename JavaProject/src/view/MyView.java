@@ -4,7 +4,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
+import algorithms.search.Solution;
+import algorithms.search.State;
 import controller.Controller;
 
 public class MyView implements View {
@@ -22,6 +25,20 @@ public class MyView implements View {
 		cli = new CLI(new BufferedReader(new InputStreamReader(System.in)),new PrintWriter(new OutputStreamWriter(System.out)), c.CreateCommandMap());
 		
 		cli.start();
+	}
+
+	@Override
+	public void displaySolution(Solution<T> s) {
+		ArrayList<State<T>> sol=s.getSolution();
+		
+		for (State<T> state : sol) {
+			System.out.println(state);
+		}
+	}
+
+	@Override
+	public void display(String string) {
+		System.out.println(string);
 	}
 		 
 }
