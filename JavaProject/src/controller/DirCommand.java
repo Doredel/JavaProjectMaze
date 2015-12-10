@@ -10,11 +10,16 @@ public class DirCommand extends CommonCommand {
 	}
 
 	public static void findDir(String path){
-		File folder = new File(path);
-		File[] listOfFiles = folder.listFiles();
-
-		for (File file : listOfFiles) {
-			System.out.println(file);
+		try{
+			File folder = new File(path);
+			File[] listOfFiles = folder.listFiles();
+	
+			for (File file : listOfFiles) {
+				System.out.println(file);
+			}
+		}
+		catch(NullPointerException e){
+			System.out.println("there is no \""+path+"\"");
 		}
 		
 	}
