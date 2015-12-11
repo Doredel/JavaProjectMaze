@@ -1,7 +1,5 @@
 package model;
 
-
-
-public interface Model<T> {
+public interface Model {
 	public void search(String name);
 }

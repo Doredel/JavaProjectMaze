@@ -22,12 +22,13 @@ public class MyController implements Controller {
 		HashMap<String,Command> hm = new HashMap<String,Command>();
 		
 		hm.put("dir", new DirCommand());
+		hm.put("generate 3d maze", new Generate3DMazeCommand());
 		
 		return hm;
 	}
 
 	@Override
-	public void setSolution(Solution<T> s) {
+	public void setSolution(Solution s) {
 		v.displaySolution(s);
 	}
 

@@ -4,6 +4,6 @@ import algorithms.search.Solution;
 
 public interface View {
 	public void start();
-	public void displaySolution(Solution<T> s);
+	public void displaySolution(Solution s);
 	public void display(String string);
 }

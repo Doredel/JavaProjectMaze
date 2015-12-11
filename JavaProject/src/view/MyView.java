@@ -28,10 +28,10 @@ public class MyView implements View {
 	}
 
 	@Override
-	public void displaySolution(Solution<T> s) {
-		ArrayList<State<T>> sol=s.getSolution();
+	public void displaySolution(Solution s) {
+		ArrayList<State> sol=s.getSolution();
 		
-		for (State<T> state : sol) {
+		for (State state : sol) {
 			System.out.println(state);
 		}
 	}
