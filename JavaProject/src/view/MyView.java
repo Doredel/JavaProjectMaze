@@ -27,14 +27,7 @@ public class MyView implements View {
 		cli.start();
 	}
 
-	@Override
-	public void displaySolution(Solution s) {
-		ArrayList<State> sol=s.getSolution();
-		
-		for (State state : sol) {
-			System.out.println(state);
-		}
-	}
+	
 
 	@Override
 	public void display(String string) {

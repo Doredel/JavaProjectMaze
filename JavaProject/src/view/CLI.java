@@ -31,12 +31,13 @@ public class CLI{
 				ArrayList<String> param = new ArrayList<String>();
 				Command cmd;
 				try {
-					while(!(str=in.readLine()).equals("exit")){
+					while(!(str=(in.readLine().trim().replaceAll("\\s+", " "))).equals("exit")){
+						
 						for (String string : txtCommand.keySet()) {
-							if(str.startsWith(string))
+							if(str.startsWith(string+" "))
 							{
 								param.add(string);
-								param.add(str.split(string+"\\s", 2)[1]);
+								param.add(str.split(string+" ", 2)[1]);
 							}
 						}
 						
