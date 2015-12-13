@@ -42,11 +42,11 @@ public class CLI{
 						}
 						
 						if(param.size() == 0){
-							out.println("\""+str+"\" is invalid input");
+							display("\""+str+"\" is invalid input");
 						}
 						else{
 							cmd = txtCommand.get(param.get(0));	
-							cmd.doCommand(param.get(1));
+							cmd.doCommand(param.get(1).split(" "));
 							param.clear();
 						}
 					}
@@ -57,5 +57,10 @@ public class CLI{
 				
 			}
 		}).start();
+	}
+	
+	public void display(String str){
+		out.println(str);
+		out.flush();
 	}
 }

@@ -11,6 +11,7 @@ public class DisplayCommand<T> extends CommonCommand<T> {
 
 	@Override
 	public void doCommand(String[] param) {
+		m.getMaze(param[0]);
 	}
 
 }

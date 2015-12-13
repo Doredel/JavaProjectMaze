@@ -25,8 +25,8 @@ public class MyController<T> implements Controller<T> {
 		hm.put("dir", new DirCommand(this.v,this.m));
 		hm.put("generate 3d maze", new Generate3DMazeCommand(this.v,this.m));
 		hm.put("save maze",new SaveMazeCommand(this.v,this.m));
-		hm.put("display", new DisplayCommand(this.v, this.m));
 		hm.put("display solution", new DispalySolutionCommand(this.v, this.m));
+		hm.put("display", new DisplayCommand(this.v, this.m));
 		
 		return hm;
 	}
@@ -37,21 +37,21 @@ public class MyController<T> implements Controller<T> {
 	
 	public void setSolutionByString(Solution<T> s)
 	{
-		//v.display();
+		v.display("m");
 	}
 	@Override
 	public void notifySolutionReady(String name) {
-		v.display("solution for"+name+" is ready.");
-		
-	}
-
-	@Override
-	public void setSolution(Solution<T> s) {
+		v.display("solution for "+name+" is ready");
 		
 	}
 	
 	@Override
-	public void playDir(String path){
+	public void passDir(String path){
 		v.display(path);
+	}
+
+	@Override
+	public void notifyMazeReady(String name) {
+		v.display("maze "+name+" is ready");
 	}
 }

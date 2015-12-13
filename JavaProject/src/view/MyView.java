@@ -19,14 +19,14 @@ public class MyView<T> implements View<T> {
 
 	@Override
 	public void start() {
-		cli = new CLI(new BufferedReader(new InputStreamReader(System.in)),new PrintWriter(new OutputStreamWriter(System.out)), c.CreateCommandMap());
+		cli = new CLI(new BufferedReader(new InputStreamReader(System.in)),new PrintWriter(System.out), c.CreateCommandMap());
 		
 		cli.start();
 	}
 
 	@Override
 	public void display(String string) {
-		System.out.println(string);
+		cli.display(string);
 	}
 		 
 }
