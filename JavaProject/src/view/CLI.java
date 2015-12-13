@@ -3,11 +3,12 @@ package view;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import controller.Command;
 
-public class CLI implements Runnable{
+public class CLI{
 	
 	private BufferedReader in;
 	private PrintWriter out;
@@ -20,27 +21,41 @@ public class CLI implements Runnable{
 	}
 
 	public void start(){
-		try {
-			String str;
-			while(!(str=this.in.readLine()).equals("exit")){
-				String[] dim=str.split(" ");
-				if(!this.txtCommand.containsKey(dim[0])){
-					this.out.println(dim[0]+" is invalid input!!!!!");
-
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				
+				//Scanner s = new Scanner(in);
+				String str;
+				ArrayList<String> param = new ArrayList<String>();
+				Command cmd;
+				try {
+					while(!(str=(in.readLine().trim().replaceAll("\\s+", " "))).equals("exit")){
+						
+						for (String string : txtCommand.keySet()) {
+							if(str.startsWith(string+" "))
+							{
+								param.add(string);
+								param.add(str.split(string+" ", 2)[1]);
+							}
+						}
+						
+						if(param.size() == 0){
+							out.println("\""+str+"\" is invalid input");
+						}
+						else{
+							cmd = txtCommand.get(param.get(0));	
+							cmd.doCommand(param.get(1));
+							param.clear();
+						}
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
 				}
-				else{
-					this.txtCommand.get(str).doCommand();	
-				}
-				str.contains("dir");
+				
 				
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	@Override
-	public void run() {
-		this.start();
+		}).start();
 	}
 }
