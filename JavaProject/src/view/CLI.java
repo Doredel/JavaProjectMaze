@@ -21,11 +21,11 @@ public class CLI implements Runnable{
 
 	public void start(){
 		try {
-			String str = null;
+			String str;
 			while(!(str=this.in.readLine()).equals("exit")){
 				String[] dim=str.split(" ");
 				if(!this.txtCommand.containsKey(dim[0])){
-					this.out.println(dim[0]+" is invalid input!!!!!11");
+					this.out.println(dim[0]+" is invalid input!!!!!");
 
 				}
 				else{
