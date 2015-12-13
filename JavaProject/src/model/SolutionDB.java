@@ -2,7 +2,6 @@ package model;
 
 import java.util.HashMap;
 
-import algorithms.search.Searchable;
 import algorithms.search.Solution;
 
 public class SolutionDB<T> {

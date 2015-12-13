@@ -4,10 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
-import algorithms.search.Solution;
-import algorithms.search.State;
 import controller.Controller;
 
 public class MyView<T> implements View<T> {
@@ -26,8 +23,6 @@ public class MyView<T> implements View<T> {
 		
 		cli.start();
 	}
-
-	
 
 	@Override
 	public void display(String string) {

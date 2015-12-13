@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
 import controller.Command;
 
@@ -27,7 +26,7 @@ public class CLI{
 			@Override
 			public void run() {
 				
-				Scanner s = new Scanner(in);
+				//Scanner s = new Scanner(in);
 				String str;
 				ArrayList<String> param = new ArrayList<String>();
 				Command cmd;
@@ -43,7 +42,7 @@ public class CLI{
 						}
 						
 						if(param.size() == 0){
-							System.out.println("\""+str+"\" is invalid input");
+							out.println("\""+str+"\" is invalid input");
 						}
 						else{
 							cmd = txtCommand.get(param.get(0));	

@@ -4,16 +4,16 @@ import view.View;
 
 import model.Model;
 
-public abstract class CommonCommand implements Command {
+public abstract class CommonCommand<T> implements Command {
 
 	protected String input;
-	protected View v;
-	protected Model m;
-	public CommonCommand(view.View v,Model m) {
+	protected View<T> v;
+	protected Model<T> m;
+	public CommonCommand(View<T> v,Model<T> m) {
 		this.v=v;
 		this.m=m;
 	}
 	
-	public abstract void doCommand(String param);
+	public abstract void doCommand(String[] param);
 	
 }

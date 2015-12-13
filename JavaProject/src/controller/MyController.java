@@ -8,14 +8,14 @@ import model.Model;
 import view.View;
 
 public class MyController<T> implements Controller<T> {
-	private Model m;
-	private View v;
+	private Model<T> m;
+	private View<T> v;
 	 
-	public void setModel(Model m){
+	public void setModel(Model<T> m){
 		this.m=m;
 	}
 	
-	public void setView(View v){
+	public void setView(View<T> v){
 		this.v=v;
 	}
 	 
@@ -25,6 +25,8 @@ public class MyController<T> implements Controller<T> {
 		hm.put("dir", new DirCommand(this.v,this.m));
 		hm.put("generate 3d maze", new Generate3DMazeCommand(this.v,this.m));
 		hm.put("save maze",new SaveMazeCommand(this.v,this.m));
+		hm.put("display", new DisplayCommand(this.v, this.m));
+		hm.put("display solution", new DispalySolutionCommand(this.v, this.m));
 		
 		return hm;
 	}
@@ -33,14 +35,9 @@ public class MyController<T> implements Controller<T> {
 		v.display(str);
 	}
 	
-	public void setSolutionByString(Solution<Position> s)
+	public void setSolutionByString(Solution<T> s)
 	{
-		String str = "";
-		for (int i = 0; i < s.getSolution().size(); i++) {
-			str+=s.getSolution().get(i).getState().toString()+"->";
-		}
-		
-		v.display(str);
+		//v.display();
 	}
 	@Override
 	public void notifySolutionReady(String name) {
@@ -50,7 +47,11 @@ public class MyController<T> implements Controller<T> {
 
 	@Override
 	public void setSolution(Solution<T> s) {
-		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public void playDir(String path){
+		v.display(path);
 	}
 }

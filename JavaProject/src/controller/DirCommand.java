@@ -3,26 +3,15 @@ package controller;
 import view.View;
 import model.Model;
 
-public class DirCommand extends CommonCommand {
+public class DirCommand<T> extends CommonCommand<T> {
 	
-	public DirCommand(View v, Model m) {
+	public DirCommand(View<T> v, Model<T> m) {
 		super(v, m);
 	}
 
 	@Override
-	public void doCommand(String param) {
-		//this.m.dir
+	public void doCommand(String[] param) {
+		this.m.MakeDir(param[1]);
 	}
-		/*try{
-			File folder = new File(path);
-			File[] listOfFiles = folder.listFiles();
-	
-			for (File file : listOfFiles) {
-				System.out.println(file);
-			}
-		}
-		catch(NullPointerException e){
-			System.out.println("there is no \""+path+"\"");
-		}*/
-
+		
 }

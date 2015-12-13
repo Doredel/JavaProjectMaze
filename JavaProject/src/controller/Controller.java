@@ -14,4 +14,5 @@ public interface Controller<T> {
 	
 	public void notifySolutionReady(String name);
 	public void setSolution(Solution<T> s);
+	public void playDir(String path);
 }
