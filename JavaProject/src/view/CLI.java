@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 import controller.Command;
 
@@ -26,7 +27,7 @@ public class CLI{
 			@Override
 			public void run() {
 				
-				
+				Scanner s = new Scanner(in);
 				String str;
 				ArrayList<String> param = new ArrayList<String>();
 				Command cmd;
@@ -46,8 +47,7 @@ public class CLI{
 						}
 						else{
 							cmd = txtCommand.get(param.get(0));	
-							cmd.setInput(param.get(1));
-							cmd.doCommand();
+							cmd.doCommand(param.get(1));
 							param.clear();
 						}
 					}

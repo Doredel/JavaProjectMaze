@@ -4,11 +4,10 @@ import java.util.HashMap;
 
 import algorithms.mazeGenerators.Position;
 import algorithms.search.Solution;
-import algorithms.search.State;
 import model.Model;
 import view.View;
 
-public class MyController implements Controller {
+public class MyController<T> implements Controller<T> {
 	private Model m;
 	private View v;
 	 
@@ -23,9 +22,9 @@ public class MyController implements Controller {
 	public HashMap<String,Command> CreateCommandMap(){
 		HashMap<String,Command> hm = new HashMap<String,Command>();
 		
-		hm.put("dir", new DirCommand());
-		hm.put("generate 3d maze", new Generate3DMazeCommand());
-		hm.put("save maze",new SaveMazeCommand());
+		hm.put("dir", new DirCommand(this.v,this.m));
+		hm.put("generate 3d maze", new Generate3DMazeCommand(this.v,this.m));
+		hm.put("save maze",new SaveMazeCommand(this.v,this.m));
 		
 		return hm;
 	}
@@ -50,7 +49,7 @@ public class MyController implements Controller {
 	}
 
 	@Override
-	public void setSolution(Solution s) {
+	public void setSolution(Solution<T> s) {
 		// TODO Auto-generated method stub
 		
 	}

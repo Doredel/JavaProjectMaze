@@ -1,16 +1,19 @@
 package controller;
 
-import java.io.File;
+import view.View;
+import model.Model;
 
 public class DirCommand extends CommonCommand {
 	
-	@Override
-	public void doCommand() {
-		findDir(input);
+	public DirCommand(View v, Model m) {
+		super(v, m);
 	}
 
-	public static void findDir(String path){
-		try{
+	@Override
+	public void doCommand(String param) {
+		//this.m.dir
+	}
+		/*try{
 			File folder = new File(path);
 			File[] listOfFiles = folder.listFiles();
 	
@@ -20,7 +23,6 @@ public class DirCommand extends CommonCommand {
 		}
 		catch(NullPointerException e){
 			System.out.println("there is no \""+path+"\"");
-		}
-		
-	}
+		}*/
+
 }

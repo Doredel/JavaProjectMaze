@@ -1,15 +1,16 @@
 package controller;
 
+import model.Model;
+import view.View;
+
 public class DisplayCommand extends CommonCommand {
 
-	@Override
-	public void doCommand() {
-		// TODO Auto-generated method stub
-		displayMaze(input);
+	public DisplayCommand(View v, Model m) {
+		super(v, m);
 	}
 
-	private void displayMaze(String input) {
-		
+	@Override
+	public void doCommand(String param) {
 	}
 
 }

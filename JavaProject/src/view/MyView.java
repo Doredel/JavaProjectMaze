@@ -10,13 +10,13 @@ import algorithms.search.Solution;
 import algorithms.search.State;
 import controller.Controller;
 
-public class MyView implements View {
+public class MyView<T> implements View<T> {
 	
-	private Controller c;
+	private Controller<T> c;
 	
 	private CLI cli;
 	
-	public MyView(Controller c){
+	public MyView(Controller<T> c){
 		this.c=c;
 	}
 

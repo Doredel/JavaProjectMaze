@@ -1,18 +1,19 @@
 package controller;
 
+import view.View;
+
+import model.Model;
+
 public abstract class CommonCommand implements Command {
 
 	protected String input;
-	protected Controller c;
-	
-	public CommonCommand(Controller c) {
-		this.c = c;
+	protected View v;
+	protected Model m;
+	public CommonCommand(view.View v,Model m) {
+		this.v=v;
+		this.m=m;
 	}
 	
-	public abstract void doCommand();
-
-	public void setInput(String input) {
-		this.input = input;
-	}
+	public abstract void doCommand(String param);
 	
 }
