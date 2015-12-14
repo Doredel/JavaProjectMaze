@@ -1,8 +1,10 @@
 package model;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import algorithms.demo.Maze3dAdaptor;
 import algorithms.mazeGenerators.Maze3d;
@@ -16,6 +18,7 @@ import algorithms.search.Searcher;
 import algorithms.search.Solution;
 import controller.Controller;
 import io.MyCompressorOutputStream;
+import io.MyDecompressorInputStream;
 
 public class MyModel<T> implements Model<T> {
 	private Controller<Position> c;
@@ -26,11 +29,6 @@ public class MyModel<T> implements Model<T> {
 		this.c=c;
 		mazeDB = new MazeDB();
 		solutionDB = new SolutionDB<Position>();
-	}
-	
-	@Override
-	public void search(String name){
-		
 	}
 	
 	@Override
@@ -65,7 +63,7 @@ public class MyModel<T> implements Model<T> {
 		Maze3d maze = mazeDB.getMaze(mazeName);
 		
 		try {
-			MyCompressorOutputStream out  = new MyCompressorOutputStream(new FileOutputStream(fileName+".txt"));
+			MyCompressorOutputStream out  = new MyCompressorOutputStream(new FileOutputStream(fileName));
 			out.write(maze.toByteArray());
 			out.flush();
 			out.close();
@@ -82,6 +80,33 @@ public class MyModel<T> implements Model<T> {
 	@Override
 	public void loadMaze(String mazeName, String fileName) {
 		
+		ArrayList<Byte> content = new ArrayList<Byte>();
+		byte[] temp = new byte[256];
+		
+		try {
+			
+			MyDecompressorInputStream in= new MyDecompressorInputStream(new FileInputStream(fileName));
+			while(in.read(temp) != -1){
+				for (byte b : temp) {
+					content.add(b);
+				}
+			}
+			byte[] mazeInByte = new byte[content.size()];
+			
+			for (int i = 0; i < content.size(); i++) {
+				mazeInByte[i] = content.get(i);
+			}
+			
+			Maze3d maze = new Maze3d(mazeInByte);
+			mazeDB.addMaze(mazeName, maze);
+			
+			c.passForDisplay("Maze has been loaded");
+			
+		} catch (FileNotFoundException e) {
+			c.passForDisplay(fileName+" is inaccessible");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
