@@ -7,7 +7,6 @@ public class SolveCommand<T> extends CommonCommand<T> {
 
 	public SolveCommand(View<T> v, Model<T> m) {
 		super(v, m);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

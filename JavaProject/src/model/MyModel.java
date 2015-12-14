@@ -1,6 +1,5 @@
 package model;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -13,12 +12,10 @@ import algorithms.search.AStar;
 import algorithms.search.BFS;
 import algorithms.search.MazeAirDistance;
 import algorithms.search.MazeManhattanDistance;
-import algorithms.search.Searchable;
 import algorithms.search.Searcher;
 import algorithms.search.Solution;
 import controller.Controller;
 import io.MyCompressorOutputStream;
-import io.MyDecompressorInputStream;
 
 public class MyModel<T> implements Model<T> {
 	private Controller<Position> c;
@@ -85,13 +82,6 @@ public class MyModel<T> implements Model<T> {
 	@Override
 	public void loadMaze(String mazeName, String fileName) {
 		
-		try {
-			MyDecompressorInputStream in= new MyDecompressorInputStream(new FileInputStream(fileName+".txt"));
-			/*byte[] mazeInByte = new byte[];
-			in.read(b)*/
-		} catch (FileNotFoundException e) {
-			c.passForDisplay(fileName+" is inaccessible");
-		}
 		
 	}
 
