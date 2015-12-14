@@ -26,7 +26,6 @@ public class CLI{
 			@Override
 			public void run() {
 				
-				//Scanner s = new Scanner(in);
 				String str;
 				ArrayList<String> param = new ArrayList<String>();
 				Command cmd;

@@ -1,12 +1,11 @@
 package controller;
 
-import algorithms.mazeGenerators.Position;
 import model.Model;
 import view.View;
 
-public class Generate3DMazeCommand extends CommonCommand<Position> {
+public class Generate3DMazeCommand<T> extends CommonCommand<T> {
 
-	public Generate3DMazeCommand(View v, Model m) {
+	public Generate3DMazeCommand(View<T> v, Model<T> m) {
 		super(v, m);
 	}
 

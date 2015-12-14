@@ -5,4 +5,5 @@ public interface Model<T> {
 	public void makeDir(String path);
 	public void makeMaze(String name, int x,int y,int z);
 	public void getMaze(String name);
+	public void getSolution(String name);
 }
