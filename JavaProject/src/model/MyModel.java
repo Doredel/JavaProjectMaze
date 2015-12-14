@@ -91,6 +91,8 @@ public class MyModel<T> implements Model<T> {
 					content.add(b);
 				}
 			}
+			in.close();
+			
 			byte[] mazeInByte = new byte[content.size()];
 			
 			for (int i = 0; i < content.size(); i++) {
