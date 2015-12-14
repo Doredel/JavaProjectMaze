@@ -21,14 +21,14 @@ import io.MyCompressorOutputStream;
 import io.MyDecompressorInputStream;
 
 public class MyModel<T> implements Model<T> {
-	private Controller<T> c;
+	private Controller<Position> c;
 	private MazeDB mazeDB;//weird
 	private SolutionDB<Position> solutionDB;// Need to talk about it...
 	
-	public MyModel(Controller<T> c){
+	public MyModel(Controller<Position> c){
 		this.c=c;
 		mazeDB = new MazeDB();
-		solutionDB = new SolutionDB<T>();
+		solutionDB = new SolutionDB<Position>();
 	}
 	
 	@Override
@@ -59,7 +59,7 @@ public class MyModel<T> implements Model<T> {
 	
 	@Override
 	public void getSolution(String name){
-		Solution<T> solution = solutionDB.getSolution(name);
+		Solution<Position> solution = solutionDB.getSolution(name);
 		c.setSolution(solution);
 	}
 
