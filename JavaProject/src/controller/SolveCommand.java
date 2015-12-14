@@ -12,8 +12,9 @@ public class SolveCommand<T> extends CommonCommand<T> {
 
 	@Override
 	public void doCommand(String[] param) {
-		
-		
+		String name = param[0];
+		String algorithm = param[1];
+		this.m.solveMaze(name,algorithm);
 	}
 
 }

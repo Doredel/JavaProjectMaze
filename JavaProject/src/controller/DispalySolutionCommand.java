@@ -11,7 +11,8 @@ public class DispalySolutionCommand<T> extends CommonCommand<T> {
 
 	@Override
 	public void doCommand(String[] param) {
-		
+		String name=param[0];
+		this.m.displaySolution(name);
 	}
 
 }
