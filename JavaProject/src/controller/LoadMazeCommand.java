@@ -10,7 +10,10 @@ public class LoadMazeCommand<T> extends CommonCommand<T> {
 	}
 
 	@Override
-	public void doCommand(String[] param) {		
+	public void doCommand(String[] param) {
+		String fileName= param[0];
+		String mazeName = param[1];
+		this.m.loadMaze(mazeName,fileName);
 	}
 
 }

@@ -12,7 +12,7 @@ public class SolveCommand<T> extends CommonCommand<T> {
 
 	@Override
 	public void doCommand(String[] param) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

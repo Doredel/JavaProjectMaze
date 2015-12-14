@@ -32,8 +32,7 @@ public class MyController<T> implements Controller<T> {
 		hm.put("file size", new FileSizeCommand<T>(this.v, this.m));
 		hm.put("solve", new SolveCommand<T>(this.v, this.m));
 		hm.put("display solution", new DispalySolutionCommand<T>(this.v, this.m));
-		
-		
+			
 		return hm;
 	}
 	
@@ -54,12 +53,13 @@ public class MyController<T> implements Controller<T> {
 	}
 	
 	@Override
-	public void passDir(String path){
-		v.display(path);
+	public void notifyMazeReady(String name) {
+		v.display("maze "+name+" is ready");
 	}
 
 	@Override
-	public void notifyMazeReady(String name) {
-		v.display("maze "+name+" is ready");
+	public void passForDisplay(String string) {
+		v.display(string);
+		
 	}
 }

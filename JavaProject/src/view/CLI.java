@@ -21,6 +21,7 @@ public class CLI{
 	}
 
 	public void start(){
+		display("start");
 		new Thread(new Runnable() {
 			
 			@Override
