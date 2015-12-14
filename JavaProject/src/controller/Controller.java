@@ -13,6 +13,7 @@ public interface Controller<T> {
 	public HashMap<String, Command> CreateCommandMap();
 	
 	public void notifySolutionReady(String name);
-	public void setSolution(Solution<T> s);
-	public void playDir(String path);
+	public void notifyMazeReady(String name);
+	public void setSolution(Solution<T> solution);
+	public void passForDisplay(String string);
 }

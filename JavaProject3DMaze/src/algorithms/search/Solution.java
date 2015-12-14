@@ -64,4 +64,14 @@ public class Solution<T> {
 	public void setSolution(ArrayList<State<T>> solution) {
 		this.solution = solution;
 	}
+
+	@Override
+	public String toString() {
+		String str=" ";
+		for (State<T> string : solution) {
+			str+= string.getState().toString()+"\n";
+			}
+		return str;
+	}
+	
 }

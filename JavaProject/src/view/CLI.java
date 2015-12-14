@@ -21,12 +21,12 @@ public class CLI{
 	}
 
 	public void start(){
+		display("start");
 		new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
 				
-				//Scanner s = new Scanner(in);
 				String str;
 				ArrayList<String> param = new ArrayList<String>();
 				Command cmd;
@@ -42,11 +42,24 @@ public class CLI{
 						}
 						
 						if(param.size() == 0){
-							out.println("\""+str+"\" is invalid input");
+							display("\""+str+"\" is invalid input");
 						}
 						else{
-							cmd = txtCommand.get(param.get(0));	
-							cmd.doCommand(param.get(1));
+							if (param.get(0)== "display") {
+								if (param.get(1).startsWith("cross section by")) {
+									cmd = txtCommand.get("display cross section by");
+								}
+								else if (param.get(1).startsWith("solution")) {
+									cmd = txtCommand.get("display solution");
+								}
+								else {
+									cmd = txtCommand.get("display");
+								}
+							}
+							else{
+								cmd = txtCommand.get(param.get(0));	
+							}
+							cmd.doCommand(param.get(1).split(" "));
 							param.clear();
 						}
 					}
@@ -57,5 +70,10 @@ public class CLI{
 				
 			}
 		}).start();
+	}
+	
+	public void display(String str){
+		out.println(str);
+		out.flush();
 	}
 }

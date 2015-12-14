@@ -2,8 +2,8 @@ package controller;
 
 import java.util.HashMap;
 
-import algorithms.mazeGenerators.Position;
 import algorithms.search.Solution;
+import algorithms.search.State;
 import model.Model;
 import view.View;
 
@@ -22,36 +22,44 @@ public class MyController<T> implements Controller<T> {
 	public HashMap<String,Command> CreateCommandMap(){
 		HashMap<String,Command> hm = new HashMap<String,Command>();
 		
-		hm.put("dir", new DirCommand(this.v,this.m));
-		hm.put("generate 3d maze", new Generate3DMazeCommand(this.v,this.m));
-		hm.put("save maze",new SaveMazeCommand(this.v,this.m));
-		hm.put("display", new DisplayCommand(this.v, this.m));
-		hm.put("display solution", new DispalySolutionCommand(this.v, this.m));
-		
+		hm.put("dir", new DirCommand<T>(this.v,this.m));
+		hm.put("generate 3d maze", new Generate3DMazeCommand<T>(this.v,this.m));
+		hm.put("display", new DisplayCommand<T>(this.v, this.m));
+		hm.put("display cross section by", new DisplayCrossSectionCommand<T>(this.v, this.m));
+		hm.put("save maze",new SaveMazeCommand<T>(this.v,this.m));
+		hm.put("load maze", new LoadMazeCommand<T>(this.v, this.m));
+		hm.put("maze size", new MazeSizeCommand<T>(this.v, this.m));
+		hm.put("file size", new FileSizeCommand<T>(this.v, this.m));
+		hm.put("solve", new SolveCommand<T>(this.v, this.m));
+		hm.put("display solution", new DispalySolutionCommand<T>(this.v, this.m));
+			
 		return hm;
 	}
-
-	public void setSolutionByString(String str) {
-		v.display(str);
-	}
 	
-	public void setSolutionByString(Solution<T> s)
+	public void setSolution(Solution<T> solution)
 	{
-		//v.display();
+		String s = "";
+		
+		for (State<T> state : solution.getSolution()) {
+			s += state.getState().toString()+"->";
+		}
+		
+		v.display(s);
 	}
 	@Override
 	public void notifySolutionReady(String name) {
-		v.display("solution for"+name+" is ready.");
-		
-	}
-
-	@Override
-	public void setSolution(Solution<T> s) {
+		v.display("solution for "+name+" is ready");
 		
 	}
 	
 	@Override
-	public void playDir(String path){
-		v.display(path);
+	public void notifyMazeReady(String name) {
+		v.display("maze "+name+" is ready");
+	}
+
+	@Override
+	public void passForDisplay(String string) {
+		v.display(string);
+		
 	}
 }
