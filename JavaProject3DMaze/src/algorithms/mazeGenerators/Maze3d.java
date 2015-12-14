@@ -400,4 +400,23 @@ public class Maze3d {
 	public boolean equals(Maze3d maze) {
 		return Arrays.equals(this.toByteArray(), maze.toByteArray());
 	}
+
+	@Override
+	public String toString() {
+		String str="";
+		for (int j = 0; j < maze3d[0].length; j++) {
+			int[][] temp = this.getCrossSectionByY(j);
+			for (int i = 0; i < temp.length; i++) {
+				for (int k = 0; k < temp[0].length; k++) {
+					
+					str+=temp[i][k]+" ";
+					
+				}
+				str+="\n";
+			}
+			str+="\n";
+		}
+		return str;
+	}
+	
 }

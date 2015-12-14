@@ -116,14 +116,15 @@ public class MyModel<T> implements Model<T> {
 		default:
 			c.passForDisplay(algorithm+" doesn't exist");
 			break;
-		}  
+		}
+		c.passForDisplay("solution for "+name+" is ready");
 		this.solutionDB.addSolution(name, sol);
 	}
 
 	@Override
 	public void displaySolution(String name) {
 		Solution<Position> sol = this.solutionDB.getSolution(name);
-		c.passForDisplay(sol.getSolution().toString());
+		c.passForDisplay(sol.toString());
 		
 	}
 }

@@ -45,7 +45,20 @@ public class CLI{
 							display("\""+str+"\" is invalid input");
 						}
 						else{
-							cmd = txtCommand.get(param.get(0));	
+							if (param.get(0)== "display") {
+								if (param.get(1).startsWith("cross section by")) {
+									cmd = txtCommand.get("display cross section by");
+								}
+								else if (param.get(1).startsWith("solution")) {
+									cmd = txtCommand.get("display solution");
+								}
+								else {
+									cmd = txtCommand.get("display");
+								}
+							}
+							else{
+								cmd = txtCommand.get(param.get(0));	
+							}
 							cmd.doCommand(param.get(1).split(" "));
 							param.clear();
 						}
