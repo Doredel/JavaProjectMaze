@@ -19,7 +19,7 @@ public class Generate3DMazeCommand<T> extends CommonCommand<T> {
 			int y= Integer.parseInt(xyz[1]);
 			int z= Integer.parseInt(xyz[2]);
 			
-			m.makeMaze(name,x,y,z);
+			m.generateMaze(name,x,y,z);
 			
 		}catch(ArrayIndexOutOfBoundsException e){
 			System.out.println("Invalid format \'generate 3d maze <name> <x,y,z>\'");

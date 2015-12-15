@@ -11,7 +11,7 @@ public class DirCommand<T> extends CommonCommand<T> {
 
 	@Override
 	public void doCommand(String[] param) {
-		this.m.makeDir(param[0]);
+		this.m.getDir(param[0]);
 	}
 		
 }

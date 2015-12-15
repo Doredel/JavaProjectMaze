@@ -14,7 +14,6 @@ public class MazeSizeCommand<T> extends CommonCommand<T> {
 	public void doCommand(String[] param) {
 		String name = param[0];
 		this.m.mazeSize(name);
-		
 	}
 
 }

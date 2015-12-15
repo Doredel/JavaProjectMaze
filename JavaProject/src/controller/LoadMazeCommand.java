@@ -11,9 +11,13 @@ public class LoadMazeCommand<T> extends CommonCommand<T> {
 
 	@Override
 	public void doCommand(String[] param) {
-		String fileName= param[0];
-		String mazeName = param[1];
-		this.m.loadMaze(mazeName,fileName);
+		try{
+			String fileName= param[0];
+			String mazeName = param[1];
+			this.m.loadMaze(mazeName,fileName);
+		}catch(ArrayIndexOutOfBoundsException e){
+			v.display("missing params");
+		}
 	}
 
 }

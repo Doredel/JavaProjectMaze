@@ -2,6 +2,7 @@ package controller;
 
 import java.util.HashMap;
 
+import algorithms.mazeGenerators.Maze3d;
 import algorithms.search.Solution;
 import algorithms.search.State;
 import model.Model;
@@ -36,7 +37,8 @@ public class MyController<T> implements Controller<T> {
 		return hm;
 	}
 	
-	public void setSolution(Solution<T> solution)
+	@Override
+	public void passSolution(Solution<T> solution)
 	{
 		String s = "";
 		
@@ -46,20 +48,30 @@ public class MyController<T> implements Controller<T> {
 		
 		v.display(s);
 	}
-	@Override
-	public void notifySolutionReady(String name) {
-		v.display("solution for "+name+" is ready");
-		
-	}
-	
-	@Override
-	public void notifyMazeReady(String name) {
-		v.display("maze "+name+" is ready");
-	}
 
 	@Override
 	public void passForDisplay(String string) {
 		v.display(string);
 		
+	}
+
+	@Override
+	public void passCrossSection(int[][] cross) {
+		String str="";
+		
+		for (int i = 0; i < cross.length; i++) {
+			for (int j = 0; j < cross[0].length; j++) {
+				str+= cross[i][j]+" ";
+			}
+			str+="\n";
+		}
+		str+="\n";
+		
+		v.display(str);
+	}
+
+	@Override
+	public void passMaze(Maze3d maze) {
+		v.display(maze.toString());
 	}
 }

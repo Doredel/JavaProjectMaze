@@ -1,146 +1,118 @@
 package model;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
 
-import algorithms.demo.Maze3dAdaptor;
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.MyMaze3dGenerator;
 import algorithms.mazeGenerators.Position;
-import algorithms.search.AStar;
-import algorithms.search.BFS;
-import algorithms.search.MazeAirDistance;
-import algorithms.search.MazeManhattanDistance;
-import algorithms.search.Searcher;
 import algorithms.search.Solution;
 import controller.Controller;
-import io.MyCompressorOutputStream;
-import io.MyDecompressorInputStream;
 
 public class MyModel<T> implements Model<T> {
 	private Controller<Position> c;
-	private MazeDB mazeDB;//weird
-	private SolutionDB<Position> solutionDB;// Need to talk about it...
+	private HashMap<String, Maze3d> mazeDB;//weird
+	private HashMap<String, Solution<Position>> solutionDB;// Need to talk about it...
 	
 	public MyModel(Controller<Position> c){
 		this.c=c;
-		mazeDB = new MazeDB();
-		solutionDB = new SolutionDB<Position>();
+		mazeDB = new HashMap<String, Maze3d>();
+		solutionDB = new HashMap<String, Solution<Position>>();
 	}
 	
 	@Override
-	public void makeDir(String path){
+	public void getDir(String path){
 		c.passForDisplay(DirFinder.FindDir(path));
 	}
 
 	@Override
-	public void makeMaze(String name, int x, int y, int z) {
-		
-		Maze3d maze = (new MyMaze3dGenerator()).generate(x, y, z);
-		
-		mazeDB.addMaze(name, maze);
-		
-		c.notifyMazeReady(name);
+	public void generateMaze(String name, int x, int y, int z) {
+		new Thread(new Runnable() {
+			public void run() {
+				if(solutionDB.containsKey(name)) {
+					solutionDB.remove(name);
+				}
+				Maze3d maze = (new MyMaze3dGenerator()).generate(x, y, z);
+				
+				mazeDB.put(name, maze);
+				
+				c.passForDisplay("maze "+name+" is ready");
+			}
+		}).start();	
 	}
 
 	@Override
 	public void getMaze(String name) {
-		Maze3d maze = mazeDB.getMaze(name);//weird
-		c.passForDisplay(maze.toString()); //weird
+		try{
+			Maze3d maze = mazeDB.get(name);
+			c.passMaze(maze);
+		}catch(NullPointerException e){
+			c.passForDisplay("maze doesn't exist");
+		}
 	}
 	
 	@Override
 	public void getSolution(String name){
-		Solution<Position> solution = solutionDB.getSolution(name);
-		c.setSolution(solution);
+		Solution<Position> solution = solutionDB.get(name);
+		c.passSolution(solution);
 	}
 
 	@Override
 	public void saveMaze(String mazeName, String fileName) {
-		Maze3d maze = mazeDB.getMaze(mazeName);
+		Maze3d maze = mazeDB.get(mazeName);
 		
 		try {
-			MyCompressorOutputStream out  = new MyCompressorOutputStream(new FileOutputStream(fileName));
-			out.write(maze.toByteArray());
-			out.flush();
-			out.close();
-		} catch (FileNotFoundException e) {
-			c.passForDisplay(fileName+" is inaccessible");
+			MazeSaver.save(maze, fileName);
+			
+			c.passForDisplay(mazeName+" has been saved in "+fileName);
 		} catch (IOException e) {
 			c.passForDisplay(mazeName+" can't be comprassed to a file");
 		}
-		c.passForDisplay(mazeName+" has been saved in "+fileName);
-		
 		
 	}
 
 	@Override
 	public void loadMaze(String mazeName, String fileName) {
 		
-		ArrayList<Byte> content = new ArrayList<Byte>();
-		byte[] temp = new byte[256];
-		
+		Maze3d maze;
 		try {
-			
-			MyDecompressorInputStream in= new MyDecompressorInputStream(new FileInputStream(fileName));
-			while(in.read(temp) != -1){
-				for (byte b : temp) {
-					content.add(b);
-				}
-			}
-			in.close();
-			
-			byte[] mazeInByte = new byte[content.size()];
-			
-			for (int i = 0; i < content.size(); i++) {
-				mazeInByte[i] = content.get(i);
-			}
-			
-			Maze3d maze = new Maze3d(mazeInByte);
-			mazeDB.addMaze(mazeName, maze);
+			maze = new Maze3d(MazeLoader.load(fileName));
+			mazeDB.put(mazeName, maze);
 			
 			c.passForDisplay("Maze has been loaded");
-			
-		} catch (FileNotFoundException e) {
-			c.passForDisplay(fileName+" is inaccessible");
 		} catch (IOException e) {
-			e.printStackTrace();
+			c.passForDisplay(fileName+" can't be read");
 		}
 		
 	}
 
 	@Override
 	public void solveMaze(String name, String algorithm) {
-		Maze3d maze= this.mazeDB.getMaze(name);
-		Searcher<Position> searcher;
-		Solution<Position> sol=null;
-		switch (algorithm) {
-		case "AStarMazeAirDistance":
-			searcher = new AStar<Position>(new MazeAirDistance());
-			sol=searcher.search(new Maze3dAdaptor(maze));
-			break;
-		case "AStarMazeManhattanDistance":
-			searcher = new AStar<Position>(new MazeManhattanDistance());
-			sol=searcher.search(new Maze3dAdaptor(maze));
-			break;
-		case "BFS":
-			searcher = new BFS<Position>();
-			sol=searcher.search(new Maze3dAdaptor(maze));
-			break;
-		default:
-			c.passForDisplay(algorithm+" doesn't exist");
-			break;
-		}
-		c.passForDisplay("solution for "+name+" is ready");
-		this.solutionDB.addSolution(name, sol);
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				Maze3d maze = mazeDB.get(name);
+				
+				Solution<Position> sol;
+				try {
+					
+					sol = MazeSolver.solve(maze, algorithm);
+					c.passForDisplay("Solution for "+name+" is ready");
+					solutionDB.put(name, sol);
+					
+				} catch (Exception e) {
+					c.passForDisplay(e.getMessage());
+				}
+			}
+		}).start();
+		
 	}
 
 	@Override
 	public void displaySolution(String name) {
-		Solution<Position> sol = this.solutionDB.getSolution(name);
+		Solution<Position> sol = this.solutionDB.get(name);
 		c.passForDisplay(sol.toString());
 		
 	}
@@ -148,41 +120,52 @@ public class MyModel<T> implements Model<T> {
 	@Override
 	public void displayCrossSection(String coordinate, String index, String mazeName) {
 		
-		Maze3d maze= this.mazeDB.getMaze(mazeName);
+		Maze3d maze= this.mazeDB.get(mazeName);
 		int[][] arr =null;
-		String str="";
 		
 		switch (coordinate) {
+		
 		case "X":
+			
 			arr = maze.getCrossSectionByX(Integer.parseInt(index));
 			break;
+			
 		case "Y":
+			
 			arr = maze.getCrossSectionByY(Integer.parseInt(index));
 			break;
+			
 		case "Z":
+			
 			arr = maze.getCrossSectionByZ(Integer.parseInt(index));
 			break;
+			
 		default:
+			
 			c.passForDisplay(coordinate+" doesn't exist");
-			break;
+			return;
 		}
-		for (int i = 0; i < arr.length; i++) {
-			for (int j = 0; j < arr[0].length; j++) {
-				str+= arr[i][j]+" ";
-			}
-			str+="\n";
-		}
-		str+="\n";
-		c.passForDisplay(str);
+		
+		
+		c.passCrossSection(arr);
 		
 	}
 
 	@Override
 	public void mazeSize(String name) {
 		
-		Maze3d maze = this.mazeDB.getMaze(name);
-		// Have problem with the getObjectSize need to fix that...
-		String size = String.valueOf(ObjectSizeFetcher.getObjectSize(maze.getMaze3d())); 
-		c.passForDisplay(size);
+		Maze3d maze = this.mazeDB.get(name);
+		c.passForDisplay(MazeSizeFetcher.sizeOfMaze(maze)+"");
+	}
+	
+	@Override
+	public void fileSize(String fileName){
+		
+		File f = new File(fileName);
+		if (f.exists()) {
+			c.passForDisplay("The size of "+fileName+" is "+f.length()+"B");
+		}else {
+			c.passForDisplay(fileName+" isnt exist can't calculate size");
+		}
 	}
 }
