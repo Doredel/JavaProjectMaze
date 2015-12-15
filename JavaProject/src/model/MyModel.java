@@ -144,4 +144,45 @@ public class MyModel<T> implements Model<T> {
 		c.passForDisplay(sol.toString());
 		
 	}
+
+	@Override
+	public void displayCrossSection(String coordinate, String index, String mazeName) {
+		
+		Maze3d maze= this.mazeDB.getMaze(mazeName);
+		int[][] arr =null;
+		String str="";
+		
+		switch (coordinate) {
+		case "X":
+			arr = maze.getCrossSectionByX(Integer.parseInt(index));
+			break;
+		case "Y":
+			arr = maze.getCrossSectionByY(Integer.parseInt(index));
+			break;
+		case "Z":
+			arr = maze.getCrossSectionByZ(Integer.parseInt(index));
+			break;
+		default:
+			c.passForDisplay(coordinate+" doesn't exist");
+			break;
+		}
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = 0; j < arr[0].length; j++) {
+				str+= arr[i][j]+" ";
+			}
+			str+="\n";
+		}
+		str+="\n";
+		c.passForDisplay(str);
+		
+	}
+
+	@Override
+	public void mazeSize(String name) {
+		
+		Maze3d maze = this.mazeDB.getMaze(name);
+		// Have problem with the getObjectSize need to fix that...
+		String size = String.valueOf(ObjectSizeFetcher.getObjectSize(maze.getMaze3d())); 
+		c.passForDisplay(size);
+	}
 }

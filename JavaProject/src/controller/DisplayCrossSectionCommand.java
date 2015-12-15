@@ -11,7 +11,10 @@ public class DisplayCrossSectionCommand<T> extends CommonCommand<T> {
 
 	@Override
 	public void doCommand(String[] param) {
-		
+		String coordinate = param[3];
+		String index = param[4];
+		String mazeName = param[6];
+		this.m.displayCrossSection(coordinate,index,mazeName);
 	}
 	
 }

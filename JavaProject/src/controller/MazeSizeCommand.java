@@ -12,7 +12,8 @@ public class MazeSizeCommand<T> extends CommonCommand<T> {
 
 	@Override
 	public void doCommand(String[] param) {
-		// TODO Auto-generated method stub
+		String name = param[0];
+		this.m.mazeSize(name);
 		
 	}
 
