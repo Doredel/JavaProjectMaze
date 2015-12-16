@@ -35,12 +35,12 @@ public class Maze3d {
 	public Maze3d(byte[] compresedMaze){
 		int width,height,depth;
 		
-		this.setStartPosition(new Position(new Integer(compresedMaze[0]), new Integer(compresedMaze[1]), new Integer(compresedMaze[2])));
-		this.setGoalPosition(new Position(new Integer(compresedMaze[3]), new Integer(compresedMaze[4]), new Integer(compresedMaze[5])));
+		this.setStartPosition(new Position((int)compresedMaze[0] & 0xff, (int)compresedMaze[1] & 0xff, (int)compresedMaze[2] % 0xff));
+		this.setGoalPosition(new Position((int)compresedMaze[3] % 0xff, (int)compresedMaze[4] % 0xff, (int)compresedMaze[5] % 0xff));
 		
-		width = new Integer(compresedMaze[6]);
-		height = new Integer(compresedMaze[7]);
-		depth = new Integer(compresedMaze[8]);
+		width = new Integer((int)compresedMaze[6] % 0xff);
+		height = new Integer((int)compresedMaze[7] % 0xff);
+		depth = new Integer((int)compresedMaze[8] % 0xff);
 		
 		int[][][] maze= new int[width][height][depth];
 		
@@ -403,20 +403,20 @@ public class Maze3d {
 
 	@Override
 	public String toString() {
-		String str="";
+		StringBuilder str = new StringBuilder();
 		for (int j = 0; j < maze3d[0].length; j++) {
 			int[][] temp = this.getCrossSectionByY(j);
 			for (int i = 0; i < temp.length; i++) {
 				for (int k = 0; k < temp[0].length; k++) {
 					
-					str+=temp[i][k]+" ";
+					str.append(temp[i][k]+" ");
 					
 				}
-				str+="\n";
+				str.append("\n");
 			}
-			str+="\n";
+			str.append("\n");
 		}
-		return str;
+		return str.toString();
 	}
 	
 }

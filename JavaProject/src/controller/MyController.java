@@ -72,6 +72,7 @@ public class MyController<T> implements Controller<T> {
 
 	@Override
 	public void passMaze(Maze3d maze) {
-		v.display(maze.toString());
+		String str = maze.toString();
+		v.display(str);
 	}
 }

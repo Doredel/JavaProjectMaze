@@ -30,14 +30,21 @@ public class MyModel<T> implements Model<T> {
 	public void generateMaze(String name, int x, int y, int z) {
 		new Thread(new Runnable() {
 			public void run() {
-				if(solutionDB.containsKey(name)) {
-					solutionDB.remove(name);
+				if (!(mazeDB.containsKey(name))) {
+					mazeDB.put(name, null);
+					
+					Maze3d maze = (new MyMaze3dGenerator()).generate(x, y, z);
+					
+					mazeDB.put(name, maze);
+					
+					c.passForDisplay("maze "+name+" is ready");	
 				}
-				Maze3d maze = (new MyMaze3dGenerator()).generate(x, y, z);
+				else {
+					c.passForDisplay("The maze "+name+" is already exist");
+					return;
+					
+				}
 				
-				mazeDB.put(name, maze);
-				
-				c.passForDisplay("maze "+name+" is ready");
 			}
 		}).start();	
 	}
