@@ -35,12 +35,12 @@ public class Maze3d {
 	public Maze3d(byte[] compresedMaze){
 		int width,height,depth;
 		
-		this.setStartPosition(new Position((int)compresedMaze[0] & 0xff, (int)compresedMaze[1] & 0xff, (int)compresedMaze[2] % 0xff));
-		this.setGoalPosition(new Position((int)compresedMaze[3] % 0xff, (int)compresedMaze[4] % 0xff, (int)compresedMaze[5] % 0xff));
+		this.setStartPosition(new Position((int)compresedMaze[0] & 0xff, (int)compresedMaze[1] & 0xff, (int)compresedMaze[2] & 0xff));
+		this.setGoalPosition(new Position((int)compresedMaze[3] & 0xff, (int)compresedMaze[4] & 0xff, (int)compresedMaze[5] & 0xff));
 		
-		width = new Integer((int)compresedMaze[6] % 0xff);
-		height = new Integer((int)compresedMaze[7] % 0xff);
-		depth = new Integer((int)compresedMaze[8] % 0xff);
+		width = new Integer((int)compresedMaze[6] & 0xff);
+		height = new Integer((int)compresedMaze[7] & 0xff);
+		depth = new Integer((int)compresedMaze[8] & 0xff);
 		
 		int[][][] maze= new int[width][height][depth];
 		

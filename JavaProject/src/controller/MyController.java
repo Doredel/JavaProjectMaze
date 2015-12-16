@@ -40,13 +40,13 @@ public class MyController<T> implements Controller<T> {
 	@Override
 	public void passSolution(Solution<T> solution)
 	{
-		String s = "";
+		StringBuilder str = new StringBuilder();
 		
 		for (State<T> state : solution.getSolution()) {
-			s += state.getState().toString()+"->";
+			str.append(state.getState().toString()+"->");
 		}
 		
-		v.display(s);
+		v.display(str.toString());
 	}
 
 	@Override
@@ -57,17 +57,17 @@ public class MyController<T> implements Controller<T> {
 
 	@Override
 	public void passCrossSection(int[][] cross) {
-		String str="";
+		StringBuilder str = new StringBuilder();
 		
 		for (int i = 0; i < cross.length; i++) {
 			for (int j = 0; j < cross[0].length; j++) {
-				str+= cross[i][j]+" ";
+				str.append(cross[i][j]+" ");
 			}
-			str+="\n";
+			str.append("\n");
 		}
-		str+="\n";
+		str.append("\n");
 		
-		v.display(str);
+		v.display(str.toString());
 	}
 
 	@Override

@@ -10,9 +10,10 @@ public class MazeLoader {
 	public static byte[] load(String fileName) throws IOException{
 		ArrayList<Byte> content = new ArrayList<Byte>();
 		byte[] temp = new byte[256];
-			
+		int num;	
+		
 		MyDecompressorInputStream in= new MyDecompressorInputStream(new FileInputStream(fileName));
-		while(in.read(temp) != -1){
+		while((num=in.read(temp)) != -1){
 			for (byte b : temp) {
 				content.add(b);
 			}

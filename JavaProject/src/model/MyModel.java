@@ -128,34 +128,14 @@ public class MyModel<T> implements Model<T> {
 	public void displayCrossSection(String coordinate, String index, String mazeName) {
 		
 		Maze3d maze= this.mazeDB.get(mazeName);
-		int[][] arr =null;
 		
-		switch (coordinate) {
-		
-		case "X":
-			
-			arr = maze.getCrossSectionByX(Integer.parseInt(index));
-			break;
-			
-		case "Y":
-			
-			arr = maze.getCrossSectionByY(Integer.parseInt(index));
-			break;
-			
-		case "Z":
-			
-			arr = maze.getCrossSectionByZ(Integer.parseInt(index));
-			break;
-			
-		default:
-			
-			c.passForDisplay(coordinate+" doesn't exist");
-			return;
-		}
-		
-		
-		c.passCrossSection(arr);
-		
+		int[][] arr;
+		try {
+			arr = CrossSectionGetter.crossSection(coordinate, index, maze);
+			c.passCrossSection(arr);
+		} catch (Exception e) {
+			c.passForDisplay(e.getMessage());
+		}	
 	}
 
 	@Override
