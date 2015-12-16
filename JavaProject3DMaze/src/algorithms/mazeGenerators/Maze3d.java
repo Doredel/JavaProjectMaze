@@ -31,7 +31,16 @@ public class Maze3d {
 	
 	public Maze3d() {
 	}
-	
+	/**
+	 * <strong>Maze3d</strong>
+	 * <p>
+	 * <code>public Maze3d(byte[] compresedMaze)</code>
+	 * <p>
+	 * Constructor that converts from a compressed maze of byte array to a 3d maze
+	 * 
+	 * @param byte[] compresedMaze - The content of the compressed maze
+	 * @return nothing
+	 */
 	public Maze3d(byte[] compresedMaze){
 		int width,height,depth;
 		

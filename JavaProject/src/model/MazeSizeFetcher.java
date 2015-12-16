@@ -3,6 +3,16 @@ package model;
 import algorithms.mazeGenerators.Maze3d;
 
 public class MazeSizeFetcher {
+	/**
+	 * <strong>sizeOfMaze</strong>
+	 * <p>
+	 * <code>public static int sizeOfMaze(Maze3d maze)</code>
+	 * <p>
+	 * The sizeOfMaze method gives the size on memory of any maze that saved
+	 * 
+	 * @param maze The content of the maze that will be sized
+	 * @return int The final size of the maze
+	 */
 	public static int sizeOfMaze(Maze3d maze){
 		int width = maze.getMaze3d().length;
 		int height = maze.getMaze3d()[0].length;

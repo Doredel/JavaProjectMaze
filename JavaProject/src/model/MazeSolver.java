@@ -11,6 +11,17 @@ import algorithms.search.Searcher;
 import algorithms.search.Solution;
 
 public class MazeSolver {
+	/**
+	 * <strong>solve</strong>
+	 * <p>
+	 * <code>public static Solution<Position> solve(Maze3d maze,String algorithm) throws Exception</code>
+	 * <p>
+	 * The solve method solves the maze that given as a parameter with an algorithm( parameter too)
+	 * 
+	 * @param maze The content of the maze that will be solved
+	 * @param algorithm The type of the algorithm( like BFS)
+	 * @return Solution<Position> An object of Solution( that includes an arrayList of positions)
+	 */
 	public static Solution<Position> solve(Maze3d maze,String algorithm) throws Exception{
 		
 		Searcher<Position> searcher = null;

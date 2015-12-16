@@ -11,15 +11,42 @@ import view.View;
 public class MyController<T> implements Controller<T> {
 	private Model<T> m;
 	private View<T> v;
-	 
+	/**
+	 * <strong>setModel</strong>
+	 * <p>
+	 * <code>public void setModel(Model<T> m)</code>
+	 * <p>
+	 * Sets the model facade that myController will work with
+	 * 
+	 * @param Model<T> m - The facade of model to talk with
+	 * @return nothing
+	 */
 	public void setModel(Model<T> m){
 		this.m=m;
 	}
-	
+	/**
+	 * <strong>setView</strong>
+	 * <p>
+	 * <code>public void setView(View<T> v)</code>
+	 * <p>
+	 * Sets the view facade that myController will work with
+	 * 
+	 * @param View<T> v - The facade of view to talk with
+	 * @return nothing
+	 */
 	public void setView(View<T> v){
 		this.v=v;
 	}
-	 
+	/**
+	 * <strong>CreateCommandMap</strong>
+	 * <p>
+	 * <code>public HashMap<String,Command> CreateCommandMap()</code>
+	 * <p>
+	 * Creates the command map by a hash map of String&Command
+	 * 
+	 * @param nothing
+	 * @return HashMap<String,Command> - The content of the hash map that been created
+	 */
 	public HashMap<String,Command> CreateCommandMap(){
 		HashMap<String,Command> hm = new HashMap<String,Command>();
 		
@@ -36,7 +63,15 @@ public class MyController<T> implements Controller<T> {
 			
 		return hm;
 	}
-	
+	/**
+	 * <strong>passSolution</strong>
+	 * <p>
+	 * <code>public void passSolution(Solution<T> solution)</code>
+	 * <p>
+	 * The function passSolution passes the solution to the view 
+	 * @param Solution<T> solution - The content of the solution that will be sent to the view 
+	 * @return nothing
+	 */
 	@Override
 	public void passSolution(Solution<T> solution)
 	{
@@ -48,13 +83,29 @@ public class MyController<T> implements Controller<T> {
 		
 		v.display(str.toString());
 	}
-
+	/**
+	 * <strong>passForDisplay</strong>
+	 * <p>
+	 * <code>public void passForDisplay(String string)</code>
+	 * <p>
+	 * The function passForDisplay passes the string(message) to the view 
+	 * @param String string - The content of the string(message) that will be sent to the view 
+	 * @return nothing
+	 */
 	@Override
 	public void passForDisplay(String string) {
 		v.display(string);
 		
 	}
-
+	/**
+	 * <strong>passCrossSection</strong>
+	 * <p>
+	 * <code>public void passCrossSection(int[][] cross)</code>
+	 * <p>
+	 * The function passCrossSection passes the cross section that made to the view 
+	 * @param int[][] cross - The content of the cross (that made by the model method) that will be sent to the view 
+	 * @return nothing
+	 */
 	@Override
 	public void passCrossSection(int[][] cross) {
 		StringBuilder str = new StringBuilder();
@@ -69,7 +120,15 @@ public class MyController<T> implements Controller<T> {
 		
 		v.display(str.toString());
 	}
-
+	/**
+	 * <strong>passMaze</strong>
+	 * <p>
+	 * <code>public void passMaze(Maze3d maze)</code>
+	 * <p>
+	 * The function passMaze passes the 3d maze to the view 
+	 * @param Maze3d maze - The content of the 3d maze that will be sent to the view 
+	 * @return nothing
+	 */
 	@Override
 	public void passMaze(Maze3d maze) {
 		String str = maze.toString();
