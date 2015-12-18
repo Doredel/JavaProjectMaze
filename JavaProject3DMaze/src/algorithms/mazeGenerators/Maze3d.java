@@ -29,8 +29,19 @@ public class Maze3d {
 	 */
 	private Position goalPosition;
 	
+	
+	/**
+	 * <strong>Maze3d</strong>
+	 * <p>
+	 * <code>public Maze3d()</code>
+	 * <p>
+	 * Constructor that creats a 3d maze
+	 * 
+	 * @param nothing
+	 */
 	public Maze3d() {
 	}
+	
 	/**
 	 * <strong>Maze3d</strong>
 	 * <p>
@@ -39,7 +50,6 @@ public class Maze3d {
 	 * Constructor that converts from a compressed maze of byte array to a 3d maze
 	 * 
 	 * @param byte[] compresedMaze - The content of the compressed maze
-	 * @return nothing
 	 */
 	public Maze3d(byte[] compresedMaze){
 		int width,height,depth;
@@ -373,6 +383,15 @@ public class Maze3d {
 		
 	}
 	
+	/**
+	 * <strong>toByteArray</strong>
+	 * <p>
+	 * <code>public byte[] toByteArray()</code>
+	 * <p>
+	 * A method that convert from maze to byte array
+	 * 
+	 * @return <b>byte[]</b> - the maze and its content represented as array of bytes
+	 */
 	public byte[] toByteArray(){
 		ArrayList<Byte> mazeInByte=new ArrayList<Byte>();  
 		
@@ -405,7 +424,16 @@ public class Maze3d {
 		return CommpressedMaze;
 	}
 	
-	
+	/**
+	 * <strong>equals</strong>
+	 * <p>
+	 * <code>public boolean equals(Maze3d maze)</code>
+	 * <p>
+	 * Compare 2 mazes and returns whether they are the same
+	 * 
+	 * @param maze
+	 * @return <b>boolen</b> - whether the mazes are the same
+	 */
 	public boolean equals(Maze3d maze) {
 		return Arrays.equals(this.toByteArray(), maze.toByteArray());
 	}

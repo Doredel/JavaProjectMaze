@@ -1,11 +1,12 @@
 package io;
 
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
 /**
  * The <b>MyDecompressorInputStream</b> class represents a type of input stream
- * With an InputStream content 
+ * With a compression
  * 
  * @authors Dor Edelstein, Lior Mantin
  * @since 16/12/2015
@@ -13,9 +14,10 @@ import java.io.InputStream;
  */
 public class MyDecompressorInputStream extends InputStream {
 	/**
-	 * The in content
+	 * The input content
 	 */
 	private InputStream in;
+	
 	/**
 	 * <strong>MyDecompressorInputStream</strong>
 	 * <p>
@@ -27,18 +29,9 @@ public class MyDecompressorInputStream extends InputStream {
 	 * @return nothing
 	 */
 	public MyDecompressorInputStream(InputStream in) {
-		this.in = in;
+		this.in = new BufferedInputStream(in);
 	}
-	/**
-	 * <strong>read</strong>
-	 * <p>
-	 * <code>public int read() throws IOException</code>
-	 * <p>
-	 * Reads info from the in file
-	 * 
-	 * @param  nothing
-	 * @return <b>int</b> - the value of the byte that has been read
-	 */
+	
 	@Override
 	public int read() throws IOException {
 		return this.in.read();
@@ -48,12 +41,21 @@ public class MyDecompressorInputStream extends InputStream {
 	public int read(byte[] b) throws IOException {
 		int val,num;
 		int index=0;		
-		while(((val=in.read()) != -1)&&(index< b.length)) {
+		while(index< b.length) {
+			in.mark(2);
+			val=in.read();
 			num = in.read();
-			for (int i = 0; i < num; i++) {
-				b[index] = (byte)val;
-				index++;
+			if(num+index >= b.length){
+				in.reset();
+				return index;
 			}
+			else {
+				for (int i = 0; i < num; i++) {
+					b[index] = (byte)val;
+					index++;
+				}
+			}	
+			
 		}
 		if (index != 0) {
 			return index;
