@@ -56,11 +56,11 @@ public class CLI{
 	 * 
 	 */
 	public void start(){
-		display("start");
 		new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
+				isractions();
 				
 				String str = null;
 				ArrayList<String> param = new ArrayList<String>();
@@ -124,6 +124,25 @@ public class CLI{
 	 */
 	public void display(String str){
 		out.println(str);
+		out.flush();
+	}
+	
+	public void isractions(){
+		out.println("======================================================");
+		out.println("Available commands:");
+		out.println("======================================================");
+		out.println("dir <path>");
+		out.println("generate 3d maze <name> <other params>");
+		out.println("display <name>");
+		out.println("display cross section by {X,Y,Z} <index> for <name>");
+		out.println("save maze <name> <file name>");
+		out.println("load maze <file name> <name>");
+		out.println("maze size <name>");
+		out.println("file size <name>");
+		out.println("solve <name> <algorithm>");
+		out.println("display solution <name>");
+		out.println("exit");
+		out.println("======================================================");
 		out.flush();
 	}
 }
