@@ -19,12 +19,13 @@ public class MazeLoader {
 	 */
 	public static byte[] load(String fileName) throws IOException{
 		ArrayList<Byte> content = new ArrayList<Byte>();
-		byte[] temp = new byte[256];	
+		byte[] temp = new byte[1024];
+		int numOfByte;
 		
 		MyDecompressorInputStream in= new MyDecompressorInputStream(new FileInputStream(fileName));
-		while(in.read(temp) != -1){
-			for (byte b : temp) {
-				content.add(b);
+		while((numOfByte = in.read(temp)) != -1){
+			for (int i = 0; i < numOfByte; i++) {
+				content.add(temp[i]);
 			}
 		}
 		in.close();

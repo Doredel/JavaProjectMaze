@@ -1,6 +1,13 @@
 package model;
 
-public interface Model<T> {
+/**
+ * <strong>Model facade</strong>
+ * <p>
+ * This interface of the whole model 
+ * 
+ * @author Dor Edelstein, Lior Mantin
+ */
+public interface Model {
 	
 	public void getDir(String path);
 	public void generateMaze(String name, int x,int y,int z);

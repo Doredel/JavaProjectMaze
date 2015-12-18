@@ -45,9 +45,11 @@ public class MyDecompressorInputStream extends InputStream {
 			in.mark(2);
 			val=in.read();
 			num = in.read();
-			if(num+index >= b.length){
+			if(val == -1){
+				break;
+			}else if(num+index >= b.length){
 				in.reset();
-				return index;
+				break;
 			}
 			else {
 				for (int i = 0; i < num; i++) {

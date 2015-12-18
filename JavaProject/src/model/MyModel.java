@@ -10,10 +10,10 @@ import algorithms.mazeGenerators.Position;
 import algorithms.search.Solution;
 import controller.Controller;
 
-public class MyModel<T> implements Model<T> {
+public class MyModel implements Model {
 	private Controller<Position> c;
-	private HashMap<String, Maze3d> mazeDB;//weird
-	private HashMap<String, Solution<Position>> solutionDB;// Need to talk about it...
+	private HashMap<String, Maze3d> mazeDB;
+	private HashMap<String, Solution<Position>> solutionDB;
 	
 	public MyModel(Controller<Position> c){
 		this.c=c;
@@ -61,20 +61,25 @@ public class MyModel<T> implements Model<T> {
 	
 	@Override
 	public void getSolution(String name){
-		Solution<Position> solution = solutionDB.get(name);
-		c.passSolution(solution);
+		try{
+			Solution<Position> solution = solutionDB.get(name);
+			c.passSolution(solution);
+		}catch(NullPointerException e){
+			c.passForDisplay("Solution doesn't exist");
+		}
 	}
 
 	@Override
 	public void saveMaze(String mazeName, String fileName) {
-		Maze3d maze = mazeDB.get(mazeName);
-		
-		try {
+		try{
+			Maze3d maze = mazeDB.get(mazeName);
 			MazeSaver.save(maze, fileName);
 			
 			c.passForDisplay(mazeName+" has been saved in "+fileName);
 		} catch (IOException e) {
 			c.passForDisplay(mazeName+" can't be comprassed to a file");
+		}catch(NullPointerException e){
+			c.passForDisplay("maze doesn't exist");
 		}
 		
 	}
@@ -100,16 +105,15 @@ public class MyModel<T> implements Model<T> {
 			
 			@Override
 			public void run() {
-				Maze3d maze = mazeDB.get(name);
-				
-				Solution<Position> sol;
 				try {
-					
-					sol = MazeSolver.solve(maze, algorithm);
+					Maze3d maze = mazeDB.get(name);
+							
+					Solution<Position> sol = MazeSolver.solve(maze, algorithm);
 					c.passForDisplay("Solution for "+name+" is ready");
 					solutionDB.put(name, sol);
-					
-				} catch (Exception e) {
+				}catch(NullPointerException e){
+						c.passForDisplay("maze doesn't exist");
+				}catch (Exception e) {
 					c.passForDisplay(e.getMessage());
 				}
 			}
@@ -119,30 +123,43 @@ public class MyModel<T> implements Model<T> {
 
 	@Override
 	public void displaySolution(String name) {
-		Solution<Position> sol = this.solutionDB.get(name);
-		c.passForDisplay(sol.toString());
+		try{
+			Solution<Position> sol = this.solutionDB.get(name);
+			c.passForDisplay(sol.toString());
+		}catch(NullPointerException e){
+			c.passForDisplay("Solution doesn't exist");
+		}
 		
 	}
 
 	@Override
 	public void displayCrossSection(String coordinate, String index, String mazeName) {
 		
-		Maze3d maze= this.mazeDB.get(mazeName);
+		
 		
 		int[][] arr;
 		try {
+			Maze3d maze= this.mazeDB.get(mazeName);
 			arr = CrossSectionGetter.crossSection(coordinate, index, maze);
 			c.passCrossSection(arr);
-		} catch (Exception e) {
+			
+		}catch(NullPointerException e){
+			c.passForDisplay("maze doesn't exist");
+		}catch(IndexOutOfBoundsException e){
+			c.passForDisplay("the index of the cross section isn't in the maze");
+		}catch (Exception e) {
 			c.passForDisplay(e.getMessage());
 		}	
 	}
 
 	@Override
 	public void mazeSize(String name) {
-		
-		Maze3d maze = this.mazeDB.get(name);
-		c.passForDisplay(MazeSizeFetcher.sizeOfMaze(maze)+"");
+		try{
+			Maze3d maze = this.mazeDB.get(name);
+			c.passForDisplay(MazeSizeFetcher.sizeOfMaze(maze)+"");
+		}catch(NullPointerException e){
+			c.passForDisplay("maze doesn't exist");
+		}
 	}
 	
 	@Override

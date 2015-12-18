@@ -1,6 +1,5 @@
 package boot;
 
-
 import algorithms.mazeGenerators.Position;
 import controller.Controller;
 import controller.MyController;
@@ -14,7 +13,7 @@ public class Run {
 		
 		Controller<Position> controller = new MyController<Position>();
 		View<Position> view = new MyView<Position>(controller); 
-		Model<Position> model = new MyModel<Position>(controller);
+		Model model = new MyModel(controller);
 		
 		controller.setModel(model);
 		controller.setView(view);

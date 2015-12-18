@@ -8,26 +8,29 @@ import model.Model;
 import view.View;
 
 public interface Controller<T> {
+	
 	/**
 	 * <strong>setModel</strong>
 	 * <p>
-	 * <code>public void setModel(Model<T> m)</code>
+	 * <code>public void setModel(Model m)</code>
 	 * <p>
 	 * The function setModel sets the model that decided to work with him 
-	 * @param Model<T> m - The content of the model that decided to work with
+	 * @param Model m - The content of the model that decided to work with
 	 * @return nothing
 	 */
-	public void setModel(Model<T> m);
+	public void setModel(Model m);
+	
 	/**
 	 * <strong>setView</strong>
 	 * <p>
 	 * <code>public void setView(View<T> m)</code>
 	 * <p>
 	 * The function setView sets the view that decided to work with him 
-	 * @paramView<T> m - The content of the view that decided to work with
+	 * @param View<T> v - The content of the view that decided to work with
 	 * @return nothing
 	 */
-	public void setView(View<T> m);
+	public void setView(View<T> v);
+	
 	/**
 	 * <strong>CreateCommandMap</strong>
 	 * <p>
@@ -38,6 +41,7 @@ public interface Controller<T> {
 	 * @return HashMap<String, Command> - The content of the HashMap of the string to the matched command 
 	 */
 	public HashMap<String, Command> CreateCommandMap();
+	
 	/**
 	 * <strong>passSolution</strong>
 	 * <p>
@@ -48,6 +52,7 @@ public interface Controller<T> {
 	 * @return nothing
 	 */
 	public void passSolution(Solution<T> solution);
+	
 	/**
 	 * <strong>passForDisplay</strong>
 	 * <p>
@@ -58,6 +63,7 @@ public interface Controller<T> {
 	 * @return nothing
 	 */
 	public void passForDisplay(String string);
+	
 	/**
 	 * <strong>passCrossSection</strong>
 	 * <p>
@@ -68,6 +74,7 @@ public interface Controller<T> {
 	 * @return nothing
 	 */
 	public void passCrossSection(int[][] cross);
+	
 	/**
 	 * <strong>passMaze</strong>
 	 * <p>
