@@ -36,7 +36,8 @@ public class LoadMazeCommand<T> extends CommonCommand<T> {
 			String mazeName = param[1];
 			this.m.loadMaze(mazeName,fileName);
 		}catch(ArrayIndexOutOfBoundsException e){
-			v.display("missing params");
+			//v.display("missing params");
+			e.printStackTrace();
 		}
 	}
 

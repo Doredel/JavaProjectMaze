@@ -34,25 +34,16 @@ public class MyDecompressorInputStream extends InputStream {
 	 * <p>
 	 * <code>public int read() throws IOException</code>
 	 * <p>
-	 * Reads info from the in field
+	 * Reads info from the in file
 	 * 
 	 * @param  nothing
-	 * @return <b>int</b> - The content of one line in the input stream field
+	 * @return <b>int</b> - the value of the byte that has been read
 	 */
 	@Override
 	public int read() throws IOException {
 		return this.in.read();
 	}
-	/**
-	 * <strong>read</strong>
-	 * <p>
-	 * <code>public int read() throws IOException</code>
-	 * <p>
-	 * Reads the whole info from the in field
-	 * 
-	 * @param  byte[] b
-	 * @return <b>int</b> - The content of whole file of the input stream field
-	 */
+	
 	@Override
 	public int read(byte[] b) throws IOException {
 		int val,num;

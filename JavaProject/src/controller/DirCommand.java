@@ -1,7 +1,6 @@
 package controller;
 
 import view.View;
-import algorithms.mazeGenerators.Position;
 import model.Model;
 /**
  * Commit the command of find the dir
