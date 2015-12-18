@@ -3,6 +3,13 @@ package controller;
 import model.Model;
 import view.View;
 
+/**
+ * class of the command to display the solution for a maze
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ *
+ * see CommonCommand<T>
+ */
 public class DispalySolutionCommand<T> extends CommonCommand<T> {
 	/**
 	 * <strong>DispalySolutionCommand</strong>
@@ -21,8 +28,13 @@ public class DispalySolutionCommand<T> extends CommonCommand<T> {
 
 	@Override
 	public void doCommand(String[] param) {
-		String name=param[1];
-		this.m.displaySolution(name);
+		if (param.length == 1) {
+			String name=param[0];
+			this.m.displaySolution(name);
+		}else {
+			v.display("Invalid format \'display solution <maze name>\'");
+		}
+		
 	}
 
 }

@@ -3,7 +3,15 @@ package controller;
 import model.Model;
 import view.View;
 
+/**
+ * class of the command to display the size of a maze in the memory
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ *
+ * see CommonCommand<T>
+ */
 public class MazeSizeCommand<T> extends CommonCommand<T> {
+	
 	/**
 	 * <strong>MazeSizeCommand</strong>
 	 * <p>
@@ -21,8 +29,13 @@ public class MazeSizeCommand<T> extends CommonCommand<T> {
 	
 	@Override
 	public void doCommand(String[] param) {
-		String name = param[0];
-		this.m.mazeSize(name);
+		if (param.length == 1) {
+			String name = param[0];
+			this.m.mazeSize(name);
+		} else {
+			v.display("Invalid format \'maze size <name>\'");
+		}
+		
 	}
 
 }

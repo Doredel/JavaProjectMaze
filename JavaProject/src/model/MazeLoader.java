@@ -1,6 +1,7 @@
 package model;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -17,7 +18,7 @@ public class MazeLoader {
 	 * @param fileName The content of the file that from him the information about the compressed maze is taken
 	 * @return byte[] An array of byte that includes the full and decompressed maze
 	 */
-	public static byte[] load(String fileName) throws IOException{
+	public static byte[] load(String fileName) throws IOException, SecurityException{
 		ArrayList<Byte> content = new ArrayList<Byte>();
 		byte[] temp = new byte[1024];
 		int numOfByte;

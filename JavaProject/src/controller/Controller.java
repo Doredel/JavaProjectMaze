@@ -7,6 +7,11 @@ import algorithms.search.Solution;
 import model.Model;
 import view.View;
 
+/**
+ * <strong>Controller</strong>  is a controller interface for the project
+ * 
+ * @author Dor Edelstein, Lior Mantin
+ */
 public interface Controller<T> {
 	
 	/**

@@ -8,8 +8,33 @@ import algorithms.search.State;
 import model.Model;
 import view.View;
 
+/**
+ * <strong>MyController</strong>  is a controller class for the project it holds
+ * some commands 
+ * 
+ * @author Dor Edelstein, Lior Mantin
+ *
+ * @param <T> - the leading type in the project
+ * @see DisplayCrossSectionCommand
+ * @see DispalySolutionCommand
+ * @see DirCommand
+ * @see DisplayCommand
+ * @see FileSizeCommand
+ * @see Generate3DMazeCommand
+ * @see LoadMazeCommand
+ * @see MazeSizeCommand
+ * @see SaveMazeCommand
+ * @see SolveCommand
+ */
 public class MyController<T> implements Controller<T> {
+	/**
+	 * model instance
+	 */
 	private Model m;
+	
+	/**
+	 * view instance
+	 */
 	private View<T> v;
 	
 	@Override

@@ -4,6 +4,13 @@ package controller;
 import model.Model;
 import view.View;
 
+/**
+ * class of the command to save a maze to a file
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ *
+ * see CommonCommand<T>
+ */
 public class SaveMazeCommand<T> extends CommonCommand<T> {
 	/**
 	 * <strong>SaveMazeCommand</strong>
@@ -22,9 +29,13 @@ public class SaveMazeCommand<T> extends CommonCommand<T> {
 	
 	@Override
 	public void doCommand(String[] param) {
-		String mazeName = param[0];
-		String fileName= param[1];
-		this.m.saveMaze(mazeName,fileName);
+		if (param.length == 2) {
+			String mazeName = param[0];
+			String fileName= param[1];
+			this.m.saveMaze(mazeName,fileName);
+		} else {
+			v.display("Invalid format \'save maze <name> <file name>\'");
+		}
 	}
 
 }

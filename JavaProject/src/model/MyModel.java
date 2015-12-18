@@ -10,11 +10,36 @@ import algorithms.mazeGenerators.Position;
 import algorithms.search.Solution;
 import controller.Controller;
 
+/**
+ * <strong>MyModel</strong>  is a model class for the project
+ * 
+ * @author Dor Edelstein, Lior Mantin
+ */
 public class MyModel implements Model {
+	/**
+	 * controller instance
+	 */
 	private Controller<Position> c;
+	
+	/**
+	 * the mazes database
+	 */
 	private HashMap<String, Maze3d> mazeDB;
+	
+	/**
+	 * the solutions database
+	 */
 	private HashMap<String, Solution<Position>> solutionDB;
 	
+	/**
+	 * <strong>MyModel</strong>
+	 * <p>
+	 * <code>public MyModel(Controller<Position> c)</code>
+	 * <p>
+	 * construct MyModel instance
+	 * 
+	 * @param c - the controller instance
+	 */
 	public MyModel(Controller<Position> c){
 		this.c=c;
 		mazeDB = new HashMap<String, Maze3d>();
@@ -27,13 +52,13 @@ public class MyModel implements Model {
 	}
 
 	@Override
-	public void generateMaze(String name, int x, int y, int z) {
+	public void generateMaze(String name, int width,int height,int depth) {
 		new Thread(new Runnable() {
 			public void run() {
 				if (!(mazeDB.containsKey(name))) {
 					mazeDB.put(name, null);
 					
-					Maze3d maze = (new MyMaze3dGenerator()).generate(x, y, z);
+					Maze3d maze = (new MyMaze3dGenerator()).generate(width, height, depth);
 					
 					mazeDB.put(name, maze);
 					
@@ -50,7 +75,7 @@ public class MyModel implements Model {
 	}
 
 	@Override
-	public void getMaze(String name) {
+	public void displayMaze(String name) {
 		try{
 			Maze3d maze = mazeDB.get(name);
 			c.passMaze(maze);
@@ -60,7 +85,7 @@ public class MyModel implements Model {
 	}
 	
 	@Override
-	public void getSolution(String name){
+	public void displaySolution(String name){
 		try{
 			Solution<Position> solution = solutionDB.get(name);
 			c.passSolution(solution);
@@ -68,7 +93,7 @@ public class MyModel implements Model {
 			c.passForDisplay("Solution doesn't exist");
 		}
 	}
-
+	
 	@Override
 	public void saveMaze(String mazeName, String fileName) {
 		try{
@@ -93,8 +118,10 @@ public class MyModel implements Model {
 			mazeDB.put(mazeName, maze);
 			
 			c.passForDisplay("Maze has been loaded");
-		} catch (IOException e) {
+		} catch(IOException e) {
 			c.passForDisplay(fileName+" can't be read");
+		}catch(SecurityException e){
+			c.passForDisplay(fileName+" can't be read because of security issue");
 		}
 		
 	}
@@ -121,21 +148,10 @@ public class MyModel implements Model {
 		
 	}
 
-	@Override
-	public void displaySolution(String name) {
-		try{
-			Solution<Position> sol = this.solutionDB.get(name);
-			c.passForDisplay(sol.toString());
-		}catch(NullPointerException e){
-			c.passForDisplay("Solution doesn't exist");
-		}
-		
-	}
+	
 
 	@Override
 	public void displayCrossSection(String coordinate, String index, String mazeName) {
-		
-		
 		
 		int[][] arr;
 		try {

@@ -3,7 +3,15 @@ package controller;
 import model.Model;
 import view.View;
 
+/**
+ * class of the command to load a maze from a file
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ *
+ * see CommonCommand<T>
+ */
 public class LoadMazeCommand<T> extends CommonCommand<T> {
+	
 	/**
 	 * <strong>LoadMazeCommand</strong>
 	 * <p>
@@ -21,13 +29,12 @@ public class LoadMazeCommand<T> extends CommonCommand<T> {
 	
 	@Override
 	public void doCommand(String[] param) {
-		try{
+		if(param.length == 2){
 			String fileName= param[0];
 			String mazeName = param[1];
 			this.m.loadMaze(mazeName,fileName);
-		}catch(ArrayIndexOutOfBoundsException e){
-			//v.display("missing params");
-			e.printStackTrace();
+		}else{
+			v.display("Invalid format \'load maze <File name> <Maze name>\'");
 		}
 	}
 

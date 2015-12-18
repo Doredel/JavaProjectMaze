@@ -2,8 +2,9 @@ package controller;
 
 import view.View;
 import model.Model;
+
 /**
- * Commit the command of find the dir
+ * class of the command to find the dir's content
  * 
  * @authors Dor Edelstein, Lior Mantin
  *
@@ -27,7 +28,11 @@ public class DirCommand<T> extends CommonCommand<T> {
 	
 	@Override
 	public void doCommand(String[] param) {
-		this.m.getDir(param[0]);
+		if(param.length == 1){
+			this.m.getDir(param[0]);
+		}else{
+			v.display("Invalid format \'dir <Directory name>\'");
+		}
 	}
 		
 }

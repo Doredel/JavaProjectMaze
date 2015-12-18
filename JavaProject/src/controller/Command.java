@@ -3,7 +3,7 @@ package controller;
 /**
  * A interface that represent the most generic command there is in command design pattern
  * 
- * @author Dor-New
+ * @author Dor Edelstein, Lior Mantin
  *
  */
 public interface Command {
@@ -15,7 +15,7 @@ public interface Command {
 	 * <p>
 	 * The function doCommand is using different algorithms 
 	 * 
-	 * @param String[] param - The content of the parameters that the command will
+	 * @param param - The content of the parameters that the command will
 	 *  need to make his mission
 	 * @return nothing
 	 */

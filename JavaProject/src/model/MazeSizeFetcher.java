@@ -18,6 +18,7 @@ public class MazeSizeFetcher {
 		int height = maze.getMaze3d()[0].length;
 		int depth = maze.getMaze3d()[0][0].length;
 		
+		//summing up all the in in the maze and the 3 ints in each positions (Start & goal)
 		return width*height*depth*4+(4+4+4)+(4+4+4);	
 	}
 }
