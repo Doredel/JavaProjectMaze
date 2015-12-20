@@ -6,12 +6,32 @@ import java.io.PrintWriter;
 
 import controller.Controller;
 
+/**
+ * <strong>MyView</strong>  is a view class for the project
+ * 
+ * @author Dor Edelstein, Lior Mantin
+ */
 public class MyView<T> implements View<T> {
 	
+	/**
+	 * The controller instance
+	 */
 	private Controller<T> c;
 	
+	/**
+	 * The CLI instance
+	 */
 	private CLI cli;
 	
+	/**
+	 * <strong>MyView</strong>
+	 * <p>
+	 * <code>public MyView(Controller<T> c)</code>
+	 * <p>
+	 * construct MyView instance
+	 * 
+	 * @param c - the controller instance
+	 */
 	public MyView(Controller<T> c){
 		this.c=c;
 		

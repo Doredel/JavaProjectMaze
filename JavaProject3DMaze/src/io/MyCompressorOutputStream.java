@@ -2,11 +2,31 @@ package io;
 
 import java.io.IOException;
 import java.io.OutputStream;
-
+/**
+ * The <b>MyCompressorOutputStream</b> class represents a type of outputStream
+ * with a compression 
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ * @since 16/12/2015
+ * @see OutputStream
+ */
 public class MyCompressorOutputStream extends OutputStream {
 
+	/**
+	 * The out content
+	 */
 	private OutputStream out;
-	
+	/**
+	 * <strong>MyCompressorOutputStream</strong>
+	 * <p>
+	 * <code>public MyCompressorOutputStream(OutputStream out)</code>
+	 * <p>
+	 * Constructor of <b>MyCompressorOutputStream</b> that gets an OutputStream variable
+	 * and initialize the out data member
+	 * 
+	 * @param OutputStream out 
+	 * @return nothing
+	 */
 	public MyCompressorOutputStream(OutputStream out) {
 		this.out = out;
 	}

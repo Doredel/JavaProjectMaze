@@ -67,11 +67,11 @@ public class Solution<T> {
 
 	@Override
 	public String toString() {
-		String str=" ";
+		StringBuilder str = new StringBuilder();
 		for (State<T> string : solution) {
-			str+= string.getState().toString()+"\n";
+			str.append(string.getState().toString()+"\n");
 			}
-		return str;
+		return str.toString();
 	}
 	
 }

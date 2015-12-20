@@ -2,23 +2,52 @@ package controller;
 
 import java.util.HashMap;
 
+import algorithms.mazeGenerators.Maze3d;
 import algorithms.search.Solution;
 import algorithms.search.State;
 import model.Model;
 import view.View;
 
+/**
+ * <strong>MyController</strong>  is a controller class for the project it holds
+ * some commands 
+ * 
+ * @author Dor Edelstein, Lior Mantin
+ *
+ * @param <T> - the leading type in the project
+ * @see DisplayCrossSectionCommand
+ * @see DispalySolutionCommand
+ * @see DirCommand
+ * @see DisplayCommand
+ * @see FileSizeCommand
+ * @see Generate3DMazeCommand
+ * @see LoadMazeCommand
+ * @see MazeSizeCommand
+ * @see SaveMazeCommand
+ * @see SolveCommand
+ */
 public class MyController<T> implements Controller<T> {
-	private Model<T> m;
+	/**
+	 * model instance
+	 */
+	private Model m;
+	
+	/**
+	 * view instance
+	 */
 	private View<T> v;
-	 
-	public void setModel(Model<T> m){
+	
+	@Override
+	public void setModel(Model m){
 		this.m=m;
 	}
 	
+	@Override
 	public void setView(View<T> v){
 		this.v=v;
 	}
-	 
+	
+	@Override
 	public HashMap<String,Command> CreateCommandMap(){
 		HashMap<String,Command> hm = new HashMap<String,Command>();
 		
@@ -36,30 +65,42 @@ public class MyController<T> implements Controller<T> {
 		return hm;
 	}
 	
-	public void setSolution(Solution<T> solution)
+	@Override
+	public void passSolution(Solution<T> solution)
 	{
-		String s = "";
+		StringBuilder str = new StringBuilder();
 		
 		for (State<T> state : solution.getSolution()) {
-			s += state.getState().toString()+"->";
+			str.append(state.getState().toString()+"->");
 		}
 		
-		v.display(s);
-	}
-	@Override
-	public void notifySolutionReady(String name) {
-		v.display("solution for "+name+" is ready");
-		
+		v.display(str.toString());
 	}
 	
-	@Override
-	public void notifyMazeReady(String name) {
-		v.display("maze "+name+" is ready");
-	}
-
 	@Override
 	public void passForDisplay(String string) {
 		v.display(string);
 		
+	}
+	
+	@Override
+	public void passCrossSection(int[][] cross) {
+		StringBuilder str = new StringBuilder();
+		
+		for (int i = 0; i < cross.length; i++) {
+			for (int j = 0; j < cross[0].length; j++) {
+				str.append(cross[i][j]+" ");
+			}
+			str.append("\n");
+		}
+		str.append("\n");
+		
+		v.display(str.toString());
+	}
+	
+	@Override
+	public void passMaze(Maze3d maze) {
+		String str = maze.toString();
+		v.display(str);
 	}
 }
