@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 import controller.Command;
 
 /**
@@ -61,7 +62,7 @@ public class CLI{
 			@Override
 			public void run() {
 				isractions();
-				
+ 
 				String str = null;
 				ArrayList<String> param = new ArrayList<String>();
 				Command cmd = null;
@@ -82,7 +83,7 @@ public class CLI{
 						}
 						else{
 							if (param.get(0)== "display") {
-								
+
 								if (param.get(1).startsWith("cross section by")) {
 									cmd = txtCommand.get("display cross section by");
 									param.add(str.split("display cross section by ", 2)[1]);

@@ -3,23 +3,20 @@ package model;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Observable;
 
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.MyMaze3dGenerator;
 import algorithms.mazeGenerators.Position;
 import algorithms.search.Solution;
-import controller.Controller;
+
 
 /**
  * <strong>MyModel</strong>  is a model class for the project
  * 
  * @author Dor Edelstein, Lior Mantin
  */
-public class MyModel implements Model {
-	/**
-	 * controller instance
-	 */
-	private Controller<Position> c;
+public class MyModel extends Observable implements Model {
 	
 	/**
 	 * the mazes database
@@ -40,15 +37,15 @@ public class MyModel implements Model {
 	 * 
 	 * @param c - the controller instance
 	 */
-	public MyModel(Controller<Position> c){
-		this.c=c;
+	public MyModel(){
 		mazeDB = new HashMap<String, Maze3d>();
 		solutionDB = new HashMap<String, Solution<Position>>();
 	}
 	
 	@Override
 	public void getDir(String path){
-		c.passForDisplay(DirFinder.FindDir(path));
+		notifyObservers(DirFinder.FindDir(path));
+		
 	}
 
 	@Override
@@ -61,11 +58,11 @@ public class MyModel implements Model {
 					Maze3d maze = (new MyMaze3dGenerator()).generate(width, height, depth);
 					
 					mazeDB.put(name, maze);
-					
-					c.passForDisplay("maze "+name+" is ready");	
+
+					notifyObservers("maze "+name+" is ready");
 				}
 				else {
-					c.passForDisplay("The maze "+name+" is already exist");
+					notifyObservers("The maze "+name+" is already exist");
 					return;
 					
 				}
@@ -78,9 +75,9 @@ public class MyModel implements Model {
 	public void displayMaze(String name) {
 		try{
 			Maze3d maze = mazeDB.get(name);
-			c.passMaze(maze);
+			notifyObservers(maze);
 		}catch(NullPointerException e){
-			c.passForDisplay("maze doesn't exist");
+			notifyObservers("maze doesn't exist");
 		}
 	}
 	
@@ -88,9 +85,9 @@ public class MyModel implements Model {
 	public void displaySolution(String name){
 		try{
 			Solution<Position> solution = solutionDB.get(name);
-			c.passSolution(solution);
+			notifyObservers(solution);
 		}catch(NullPointerException e){
-			c.passForDisplay("Solution doesn't exist");
+			notifyObservers("Solution doesn't exist");
 		}
 	}
 	
@@ -100,11 +97,11 @@ public class MyModel implements Model {
 			Maze3d maze = mazeDB.get(mazeName);
 			MazeSaver.save(maze, fileName);
 			
-			c.passForDisplay(mazeName+" has been saved in "+fileName);
+			notifyObservers(mazeName+" has been saved in "+fileName);
 		} catch (IOException e) {
-			c.passForDisplay(mazeName+" can't be comprassed to a file");
+			notifyObservers(mazeName+" can't be comprassed to a file");
 		}catch(NullPointerException e){
-			c.passForDisplay("maze doesn't exist");
+			notifyObservers("maze doesn't exist");
 		}
 		
 	}
@@ -117,11 +114,11 @@ public class MyModel implements Model {
 			maze = new Maze3d(MazeLoader.load(fileName));
 			mazeDB.put(mazeName, maze);
 			
-			c.passForDisplay("Maze has been loaded");
+			notifyObservers("Maze has been loaded");
 		} catch(IOException e) {
-			c.passForDisplay(fileName+" can't be read");
+			notifyObservers(fileName+" can't be read");
 		}catch(SecurityException e){
-			c.passForDisplay(fileName+" can't be read because of security issue");
+			notifyObservers(fileName+" can't be read because of security issue");
 		}
 		
 	}
@@ -136,12 +133,12 @@ public class MyModel implements Model {
 					Maze3d maze = mazeDB.get(name);
 							
 					Solution<Position> sol = MazeSolver.solve(maze, algorithm);
-					c.passForDisplay("Solution for "+name+" is ready");
+					notifyObservers("Solution for "+name+" is ready");
 					solutionDB.put(name, sol);
 				}catch(NullPointerException e){
-						c.passForDisplay("maze doesn't exist");
+						notifyObservers("maze doesn't exist");
 				}catch (Exception e) {
-					c.passForDisplay(e.getMessage());
+					notifyObservers(e.getMessage());
 				}
 			}
 		}).start();
@@ -157,14 +154,14 @@ public class MyModel implements Model {
 		try {
 			Maze3d maze= this.mazeDB.get(mazeName);
 			arr = CrossSectionGetter.crossSection(coordinate, index, maze);
-			c.passCrossSection(arr);
+			notifyObservers(arr);
 			
 		}catch(NullPointerException e){
-			c.passForDisplay("maze doesn't exist");
+			notifyObservers("maze doesn't exist");
 		}catch(IndexOutOfBoundsException e){
-			c.passForDisplay("the index of the cross section isn't in the maze");
+			notifyObservers("the index of the cross section isn't in the maze");
 		}catch (Exception e) {
-			c.passForDisplay(e.getMessage());
+			notifyObservers(e.getMessage());
 		}	
 	}
 
@@ -172,9 +169,9 @@ public class MyModel implements Model {
 	public void mazeSize(String name) {
 		try{
 			Maze3d maze = this.mazeDB.get(name);
-			c.passForDisplay(MazeSizeFetcher.sizeOfMaze(maze)+"");
+			notifyObservers(MazeSizeFetcher.sizeOfMaze(maze)+"");
 		}catch(NullPointerException e){
-			c.passForDisplay("maze doesn't exist");
+			notifyObservers("maze doesn't exist");
 		}
 	}
 	
@@ -183,9 +180,9 @@ public class MyModel implements Model {
 		
 		File f = new File(fileName);
 		if (f.exists()) {
-			c.passForDisplay("The size of "+fileName+" is "+f.length()+"B");
+			notifyObservers("The size of "+fileName+" is "+f.length()+"B");
 		}else {
-			c.passForDisplay(fileName+" isnt exist can't calculate size");
+			notifyObservers(fileName+" isnt exist can't calculate size");
 		}
 	}
 }

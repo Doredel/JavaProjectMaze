@@ -3,20 +3,15 @@ package view;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.Observable;
 
-import controller.Controller;
 
 /**
  * <strong>MyView</strong>  is a view class for the project
  * 
  * @author Dor Edelstein, Lior Mantin
  */
-public class MyView<T> implements View<T> {
-	
-	/**
-	 * The controller instance
-	 */
-	private Controller<T> c;
+public class MyView<T> extends Observable implements View<T> {
 	
 	/**
 	 * The CLI instance
@@ -32,10 +27,6 @@ public class MyView<T> implements View<T> {
 	 * 
 	 * @param c - the controller instance
 	 */
-	public MyView(Controller<T> c){
-		this.c=c;
-		
-	}
 
 	@Override
 	public void start() {
