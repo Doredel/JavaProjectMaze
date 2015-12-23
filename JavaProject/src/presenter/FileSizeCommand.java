@@ -1,7 +1,8 @@
 package presenter;
 
 import model.Model;
-import view.View;
+import view.MyView;
+
 
 /**
  * class of the command to display the size of a file
@@ -22,7 +23,7 @@ public class FileSizeCommand<T> extends CommonCommand<T> {
 	 * @param Model m - The facade of model to talk with
 	 * @return nothing
 	 */
-	public FileSizeCommand(View<T> v, Model m) {
+	public FileSizeCommand(MyView<T> v, Model m) {
 		super(v, m);
 	}
 
@@ -30,8 +31,7 @@ public class FileSizeCommand<T> extends CommonCommand<T> {
 	public void doCommand(String[] param) {
 		if (param.length == 1) {
 			v.setCommand(5);
-			String fileName = param[0];
-			this.m.fileSize(fileName);
+			v.notifyObservers(param);
 		} else {
 			v.display("Invalid format \'file size <name>\'");
 		}

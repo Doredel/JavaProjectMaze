@@ -1,7 +1,7 @@
 package presenter;
 
 import model.Model;
-import view.View;
+import view.MyView;
 
 /**
  * class of the command to solve a maze by variety of algorithms
@@ -22,7 +22,7 @@ public class SolveCommand<T> extends CommonCommand<T> {
 	 * @param Model m - The facade of model to talk with
 	 * @return nothing
 	 */
-	public SolveCommand(View<T> v, Model m) {
+	public SolveCommand(MyView<T> v, Model m) {
 		super(v, m);
 	}
 	
@@ -30,9 +30,7 @@ public class SolveCommand<T> extends CommonCommand<T> {
 	public void doCommand(String[] param) {
 		if (param.length == 2) {
 			v.setCommand(10);
-			String name = param[0];
-			String algorithm = param[1];
-			this.m.solveMaze(name,algorithm);
+			v.notifyObservers(param);
 		} else {
 			v.display("Invalid format \'solve <name> <algorithm>\'");
 		} 

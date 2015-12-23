@@ -2,7 +2,8 @@ package presenter;
 
 
 import model.Model;
-import view.View;
+import view.MyView;
+
 
 /**
  * class of the command to save a maze to a file
@@ -23,7 +24,7 @@ public class SaveMazeCommand<T> extends CommonCommand<T> {
 	 * @param Model m - The facade of model to talk with
 	 * @return nothing
 	 */
-	public SaveMazeCommand(View<T> v, Model m) {
+	public SaveMazeCommand(MyView<T> v, Model m) {
 		super(v, m);
 	}
 	
@@ -31,9 +32,7 @@ public class SaveMazeCommand<T> extends CommonCommand<T> {
 	public void doCommand(String[] param) {
 		if (param.length == 2) {
 			v.setCommand(9);
-			String mazeName = param[0];
-			String fileName= param[1];
-			this.m.saveMaze(mazeName,fileName);
+			v.notifyObservers(param);
 		} else {
 			v.display("Invalid format \'save maze <name> <file name>\'");
 		}

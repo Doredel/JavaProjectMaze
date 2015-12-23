@@ -1,7 +1,7 @@
 package presenter;
 
 import model.Model;
-import view.View;
+import view.MyView;
 
 /**
  * class of the command to load a maze from a file
@@ -23,7 +23,7 @@ public class LoadMazeCommand<T> extends CommonCommand<T> {
 	 * @param Model m - The facade of model to talk with
 	 * @return nothing
 	 */
-	public LoadMazeCommand(View<T> v, Model m) {
+	public LoadMazeCommand(MyView<T> v, Model m) {
 		super(v, m);
 	}
 	
@@ -31,9 +31,7 @@ public class LoadMazeCommand<T> extends CommonCommand<T> {
 	public void doCommand(String[] param) {
 		if(param.length == 2){
 			v.setCommand(7);
-			String fileName= param[0];
-			String mazeName = param[1];
-			this.m.loadMaze(mazeName,fileName);
+			v.notifyObservers(param);
 		}else{
 			v.display("Invalid format \'load maze <File name> <Maze name>\'");
 		}

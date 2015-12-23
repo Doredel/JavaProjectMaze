@@ -1,6 +1,6 @@
 package presenter;
 
-import view.View;
+import view.MyView;
 import model.Model;
 
 /**
@@ -15,7 +15,7 @@ public abstract class CommonCommand<T> implements Command {
 	/**
 	 * The v content 
 	 */
-	protected View<T> v;
+	protected MyView<T> v;
 	
 	/**
 	 * The m content 
@@ -32,7 +32,7 @@ public abstract class CommonCommand<T> implements Command {
 	 * @param v - ref to the view
 	 * @param m - ref to the model
 	 */
-	public CommonCommand(View<T> v,Model m) {
+	public CommonCommand(MyView<T> v,Model m) {
 		this.v=v;
 		this.m=m;
 	}

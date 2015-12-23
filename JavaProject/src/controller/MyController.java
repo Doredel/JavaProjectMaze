@@ -37,18 +37,18 @@ import view.View;
  * @see SaveMazeCommand
  * @see SolveCommand
  */
-public class MyController<T> implements Controller<T> {
+//public class MyController<T> implements Controller<T> {
 	/**
 	 * model instance
 	 */
-	private Model m;
+	//private Model m;
 	
 	/**
 	 * view instance
 	 */
-	private View<T> v;
+	//private View<T> v;
 	
-	@Override
+	/*@Override
 	public void setModel(Model m){
 		this.m=m;
 	}
@@ -114,4 +114,4 @@ public class MyController<T> implements Controller<T> {
 		String str = maze.toString();
 		v.display(str);
 	}
-}
+}*/

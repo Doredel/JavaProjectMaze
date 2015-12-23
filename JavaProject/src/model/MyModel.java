@@ -44,8 +44,8 @@ public class MyModel extends Observable implements Model {
 	
 	@Override
 	public void getDir(String path){
+		setChanged();
 		notifyObservers(DirFinder.FindDir(path));
-		
 	}
 
 	@Override
@@ -59,10 +59,14 @@ public class MyModel extends Observable implements Model {
 					
 					mazeDB.put(name, maze);
 
+					setChanged();
 					notifyObservers("maze "+name+" is ready");
+					
 				}
 				else {
+					setChanged();
 					notifyObservers("The maze "+name+" is already exist");
+					
 					return;
 					
 				}
@@ -73,6 +77,7 @@ public class MyModel extends Observable implements Model {
 
 	@Override
 	public void displayMaze(String name) {
+		setChanged();
 		try{
 			Maze3d maze = mazeDB.get(name);
 			notifyObservers(maze);
@@ -83,16 +88,19 @@ public class MyModel extends Observable implements Model {
 	
 	@Override
 	public void displaySolution(String name){
+		setChanged();
 		try{
 			Solution<Position> solution = solutionDB.get(name);
 			notifyObservers(solution);
 		}catch(NullPointerException e){
 			notifyObservers("Solution doesn't exist");
 		}
+	
 	}
 	
 	@Override
 	public void saveMaze(String mazeName, String fileName) {
+		setChanged();
 		try{
 			Maze3d maze = mazeDB.get(mazeName);
 			MazeSaver.save(maze, fileName);
@@ -110,6 +118,7 @@ public class MyModel extends Observable implements Model {
 	public void loadMaze(String mazeName, String fileName) {
 		
 		Maze3d maze;
+		setChanged();
 		try {
 			maze = new Maze3d(MazeLoader.load(fileName));
 			mazeDB.put(mazeName, maze);
@@ -120,7 +129,6 @@ public class MyModel extends Observable implements Model {
 		}catch(SecurityException e){
 			notifyObservers(fileName+" can't be read because of security issue");
 		}
-		
 	}
 
 	@Override
@@ -129,6 +137,7 @@ public class MyModel extends Observable implements Model {
 			
 			@Override
 			public void run() {
+				setChanged();
 				try {
 					Maze3d maze = mazeDB.get(name);
 							
@@ -151,6 +160,7 @@ public class MyModel extends Observable implements Model {
 	public void displayCrossSection(String coordinate, int index, String mazeName) {
 		
 		int[][] arr;
+		setChanged();
 		try {
 			Maze3d maze= this.mazeDB.get(mazeName);
 			arr = CrossSectionGetter.crossSection(coordinate, index, maze);
@@ -162,11 +172,12 @@ public class MyModel extends Observable implements Model {
 			notifyObservers("the index of the cross section isn't in the maze");
 		}catch (Exception e) {
 			notifyObservers(e.getMessage());
-		}	
+		}
 	}
 
 	@Override
 	public void mazeSize(String name) {
+		setChanged();
 		try{
 			Maze3d maze = this.mazeDB.get(name);
 			notifyObservers(MazeSizeFetcher.sizeOfMaze(maze)+"");
@@ -177,7 +188,7 @@ public class MyModel extends Observable implements Model {
 	
 	@Override
 	public void fileSize(String fileName){
-		
+		setChanged();
 		File f = new File(fileName);
 		if (f.exists()) {
 			notifyObservers("The size of "+fileName+" is "+f.length()+"B");

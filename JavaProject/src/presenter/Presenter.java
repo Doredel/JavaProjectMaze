@@ -1,28 +1,48 @@
 package presenter;
 
+import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.search.Solution;
 import algorithms.search.State;
-import model.Model;
-import view.View;
+import model.MyModel;
+import view.MyView;
+
 
 public class Presenter<T> implements Observer {
 
-	private Model m;
-	private View<T> v;
+	private MyModel m;
+	private MyView<T> v;
 	
-	public Presenter(Model m, View<T> v) {
+	public Presenter(MyModel m, MyView<T> v) {
 		super();
 		this.m = m;
 		this.v = v;
+		CreateCommandMap();
+	}
+	
+	public void CreateCommandMap(){
+		HashMap<String,Command> hm = new HashMap<String,Command>();
+		
+		hm.put("dir", new DirCommand<T>(this.v,this.m));
+		hm.put("generate 3d maze", new Generate3DMazeCommand<T>(this.v,this.m));
+		hm.put("display", new DisplayCommand<T>(this.v, this.m));
+		hm.put("display cross section by", new DisplayCrossSectionCommand<T>(this.v, this.m));
+		hm.put("save maze",new SaveMazeCommand<T>(this.v,this.m));
+		hm.put("load maze", new LoadMazeCommand<T>(this.v, this.m));
+		hm.put("maze size", new MazeSizeCommand<T>(this.v, this.m));
+		hm.put("file size", new FileSizeCommand<T>(this.v, this.m));
+		hm.put("solve", new SolveCommand<T>(this.v, this.m));
+		hm.put("display solution", new DispalySolutionCommand<T>(this.v, this.m));
+			
+		v.setCommandMap(hm);
 	}
 	
 	@Override
 	public void update(Observable obs, Object arg) {
-	    	    
+		   
 	    if (obs == m) {
 	    	if(arg instanceof String){
 	    		
@@ -63,7 +83,8 @@ public class Presenter<T> implements Observer {
 	    		
 			}
 	    	
-		}else if (obs == v) {
+		}
+	    if (obs == v) {
 			String[] params= (String[])arg;
 			switch (v.getCommand()) {
 			case 1:
