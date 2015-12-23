@@ -26,4 +26,7 @@ public interface View<T> {
 	 * @param string - the string to be printed
 	 */
 	public void display(String string);
+	
+	public int getCommand();
+	public void setCommand(int numCommand);
 }

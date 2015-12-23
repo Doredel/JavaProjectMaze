@@ -6,6 +6,17 @@ import algorithms.mazeGenerators.Maze3d;
 import algorithms.search.Solution;
 import algorithms.search.State;
 import model.Model;
+import presenter.Command;
+import presenter.DirCommand;
+import presenter.DispalySolutionCommand;
+import presenter.DisplayCommand;
+import presenter.DisplayCrossSectionCommand;
+import presenter.FileSizeCommand;
+import presenter.Generate3DMazeCommand;
+import presenter.LoadMazeCommand;
+import presenter.MazeSizeCommand;
+import presenter.SaveMazeCommand;
+import presenter.SolveCommand;
 import view.View;
 
 /**

@@ -108,7 +108,7 @@ public interface Model {
 	 * @param index - the index of the cross section
 	 * @param mazeName - the name of the maze
 	 */
-	public void displayCrossSection(String coordinate, String index, String mazeName);
+	public void displayCrossSection(String coordinate, int index, String mazeName);
 	
 	/**
 	 * <strong>mazeSize</strong>

@@ -1,4 +1,4 @@
-package controller;
+package presenter;
 
 import model.Model;
 import view.View;
@@ -34,6 +34,7 @@ public class Generate3DMazeCommand<T> extends CommonCommand<T> {
 				String name=param[0];
 				String[] xyz=param[1].split(",");
 				if (xyz.length == 3) {
+					v.setCommand(6);
 					int x= Integer.parseInt(xyz[0]);
 					int y= Integer.parseInt(xyz[1]);
 					int z= Integer.parseInt(xyz[2]);

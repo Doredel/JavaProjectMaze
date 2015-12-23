@@ -1,4 +1,4 @@
-package controller;
+package presenter;
 
 import model.Model;
 import view.View;
@@ -30,6 +30,7 @@ public class LoadMazeCommand<T> extends CommonCommand<T> {
 	@Override
 	public void doCommand(String[] param) {
 		if(param.length == 2){
+			v.setCommand(7);
 			String fileName= param[0];
 			String mazeName = param[1];
 			this.m.loadMaze(mazeName,fileName);

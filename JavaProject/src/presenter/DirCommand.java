@@ -1,4 +1,4 @@
-package controller;
+package presenter;
 
 import view.View;
 import model.Model;
@@ -29,6 +29,7 @@ public class DirCommand<T> extends CommonCommand<T> {
 	@Override
 	public void doCommand(String[] param) {
 		if(param.length == 1){
+			v.setCommand(1);
 			this.m.getDir(param[0]);
 		}else{
 			v.display("Invalid format \'dir <Directory name>\'");

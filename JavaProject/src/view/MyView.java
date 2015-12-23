@@ -18,15 +18,7 @@ public class MyView<T> extends Observable implements View<T> {
 	 */
 	private CLI cli;
 	
-	/**
-	 * <strong>MyView</strong>
-	 * <p>
-	 * <code>public MyView(Controller<T> c)</code>
-	 * <p>
-	 * construct MyView instance
-	 * 
-	 * @param c - the controller instance
-	 */
+	private int commandNum;
 
 	@Override
 	public void start() {
@@ -38,5 +30,16 @@ public class MyView<T> extends Observable implements View<T> {
 	public void display(String string) {
 		cli.display(string);
 	}
-		 
+
+	@Override
+	public int getCommand() {
+		return commandNum;
+	}
+
+	@Override
+	public void setCommand(int numCommand) {
+		commandNum = numCommand;
+	}
+		
+	
 }

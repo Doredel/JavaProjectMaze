@@ -1,4 +1,4 @@
-package controller;
+package presenter;
 
 import model.Model;
 import view.View;
@@ -32,8 +32,9 @@ public class DisplayCrossSectionCommand<T> extends CommonCommand<T> {
 			if (param[2] != "for") {
 				v.display("display cross section by {X,Y,Z} <index> for <name>\'");
 			} else {
+				v.setCommand(4);
 				String coordinate = param[0];
-				String index = param[1];
+				int index = Integer.parseInt(param[1]);
 				String mazeName = param[3];
 				this.m.displayCrossSection(coordinate,index,mazeName);
 			}

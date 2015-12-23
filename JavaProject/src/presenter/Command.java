@@ -1,4 +1,4 @@
-package controller;
+package presenter;
 
 /**
  * A interface that represent the most generic command there is in command design pattern

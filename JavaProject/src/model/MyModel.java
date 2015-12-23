@@ -148,7 +148,7 @@ public class MyModel extends Observable implements Model {
 	
 
 	@Override
-	public void displayCrossSection(String coordinate, String index, String mazeName) {
+	public void displayCrossSection(String coordinate, int index, String mazeName) {
 		
 		int[][] arr;
 		try {

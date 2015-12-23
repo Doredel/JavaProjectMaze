@@ -1,4 +1,4 @@
-package controller;
+package presenter;
 
 import model.Model;
 import view.View;
@@ -29,6 +29,7 @@ public class SolveCommand<T> extends CommonCommand<T> {
 	@Override
 	public void doCommand(String[] param) {
 		if (param.length == 2) {
+			v.setCommand(10);
 			String name = param[0];
 			String algorithm = param[1];
 			this.m.solveMaze(name,algorithm);

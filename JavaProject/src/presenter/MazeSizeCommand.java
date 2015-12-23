@@ -1,4 +1,4 @@
-package controller;
+package presenter;
 
 import model.Model;
 import view.View;
@@ -30,6 +30,7 @@ public class MazeSizeCommand<T> extends CommonCommand<T> {
 	@Override
 	public void doCommand(String[] param) {
 		if (param.length == 1) {
+			v.setCommand(8);
 			String name = param[0];
 			this.m.mazeSize(name);
 		} else {

@@ -1,4 +1,4 @@
-package controller;
+package presenter;
 
 import model.Model;
 import view.View;
@@ -29,6 +29,7 @@ public class FileSizeCommand<T> extends CommonCommand<T> {
 	@Override
 	public void doCommand(String[] param) {
 		if (param.length == 1) {
+			v.setCommand(5);
 			String fileName = param[0];
 			this.m.fileSize(fileName);
 		} else {
