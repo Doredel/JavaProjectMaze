@@ -108,7 +108,7 @@ public class CLI{
 					display("Error while reading data");
 				}
 				
-				
+				txtCommand.get("exit").doCommand(null);
 			}
 		}).start();
 	}

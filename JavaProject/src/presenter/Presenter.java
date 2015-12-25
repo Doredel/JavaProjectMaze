@@ -36,7 +36,8 @@ public class Presenter<T> implements Observer {
 		hm.put("file size", new FileSizeCommand<T>(this.v, this.m));
 		hm.put("solve", new SolveCommand<T>(this.v, this.m));
 		hm.put("display solution", new DispalySolutionCommand<T>(this.v, this.m));
-			
+		hm.put("exit", new ExitCommand<T>(this.v, this.m));	
+		
 		v.setCommandMap(hm);
 	}
 	
@@ -87,6 +88,9 @@ public class Presenter<T> implements Observer {
 	    if (obs == v) {
 			String[] params= (String[])arg;
 			switch (v.getCommand()) {
+			case 0:
+				m.exit();
+				break;
 			case 1:
 				m.getDir(params[0]);
 				break;
@@ -106,7 +110,7 @@ public class Presenter<T> implements Observer {
 				m.generateMaze(params[0], Integer.parseInt(params[1]), Integer.parseInt(params[2]), Integer.parseInt(params[3]));
 				break;
 			case 7:
-				m.loadMaze(params[0], params[1]);		
+				m.loadMaze(params[1], params[0]);		
 				break;
 			case 8:
 				m.mazeSize(params[0]);

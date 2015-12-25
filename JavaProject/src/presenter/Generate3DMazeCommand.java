@@ -34,8 +34,9 @@ public class Generate3DMazeCommand<T> extends CommonCommand<T> {
 			if (param.length == 2) {
 				String[] xyz=param[1].split(",");
 				if (xyz.length == 3) {
+					String[] str = {param[0],xyz[0],xyz[1],xyz[2]};
 					v.setCommand(6);
-					v.notifyObservers(param);
+					v.notifyObservers(str);
 				} else {
 					v.display("Invalid format \'generate 3d maze <name> <x,y,z>\'");
 				}
