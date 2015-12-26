@@ -1,6 +1,6 @@
 package controller;
 
-import java.util.HashMap;
+/*import java.util.HashMap;
 
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.search.Solution;

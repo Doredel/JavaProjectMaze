@@ -75,7 +75,7 @@ public class MyModel extends Observable implements Model {
 		if (!(mazeDB.containsKey(name))) {
 			mazeDB.put(name, null);
 					
-			 Future<Maze3d> f_maze = executor.submit(new MazeGenerator());
+			 Future<Maze3d> f_maze = executor.submit(new MazeGenerator(width,height,depth));
 				
 			try {
 				mazeDB.put(name, f_maze.get());

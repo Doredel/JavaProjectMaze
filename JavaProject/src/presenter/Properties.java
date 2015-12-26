@@ -2,12 +2,6 @@ package presenter;
 
 import java.io.Serializable;
 
-import algorithms.mazeGenerators.Maze3dGenerator;
-import algorithms.mazeGenerators.MyMaze3dGenerator;
-import algorithms.mazeGenerators.Position;
-import algorithms.search.BFS;
-import algorithms.search.Searcher;
-
 public class Properties implements Serializable {
 
 	int numberOfThread;
