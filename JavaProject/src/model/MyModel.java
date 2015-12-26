@@ -1,26 +1,15 @@
 package model;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInput;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.zip.GZIPInputStream;
-import java.util.zip.GZIPOutputStream;
 
 import algorithms.mazeGenerators.Maze3d;
-import algorithms.mazeGenerators.MyMaze3dGenerator;
 import algorithms.mazeGenerators.Position;
 import algorithms.search.Solution;
 
@@ -75,8 +64,8 @@ public class MyModel extends Observable implements Model {
 		if (!(mazeDB.containsKey(name))) {
 			mazeDB.put(name, null);
 					
-			 Future<Maze3d> f_maze = executor.submit(new MazeGenerator(width,height,depth));
-				
+			Future<Maze3d> f_maze = executor.submit(new MazeGenerator(width,height,depth));
+			while (!f_maze.isDone()) {}//busy waiting because need to think about solution
 			try {
 				mazeDB.put(name, f_maze.get());
 			} catch (InterruptedException | ExecutionException e) {
@@ -86,11 +75,11 @@ public class MyModel extends Observable implements Model {
 
 			notifyObservers("maze "+name+" is ready");
 					
-			}
-			else {
-				notifyObservers("The maze "+name+" is already exist");
-				return;	
-			}
+		}
+		else {
+			notifyObservers("The maze "+name+" is already exist");
+			return;	
+		}
 	}
 
 	@Override
@@ -232,13 +221,14 @@ public class MyModel extends Observable implements Model {
 
 	@Override
 	public void start() {
-		try {
+		/*try {
 			ObjectInputStream zipo = new ObjectInputStream(new GZIPInputStream(new FileInputStream("cache.zip")));
 			cache = (HashMap<Maze3d, Solution<Position>>)zipo.readObject();
 			zipo.close();
 		} catch (IOException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
+		
 	}
 }
