@@ -221,6 +221,7 @@ public class MyModel extends Observable implements Model {
 		}		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void start() {
 		try {
