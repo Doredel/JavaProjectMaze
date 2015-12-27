@@ -456,4 +456,9 @@ public class Maze3d {
 		return str.toString();
 	}
 	
+	@Override
+	public int hashCode() {
+		return Arrays.hashCode(this.toByteArray());
+	}
+	
 }

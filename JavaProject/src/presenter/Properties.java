@@ -4,11 +4,23 @@ import java.io.Serializable;
 
 public class Properties implements Serializable {
 
-	int numberOfThread;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1677586283266085771L;
 	
-	public Properties(){
-		numberOfThread = 3;
-	}
+	/**
+	 * 
+	 */
+	private int numberOfThread;
+	
+	/**
+	 * 
+	 */
+	private String algorithms;
+	
+	
+	public Properties(){}
 
 	/**
 	 * @return the numberOfThread
@@ -22,6 +34,20 @@ public class Properties implements Serializable {
 	 */
 	public void setNumberOfThread(int numberOfThread) {
 		this.numberOfThread = numberOfThread;
+	}
+
+	/**
+	 * @return the algorithms
+	 */
+	public String getAlgorithms() {
+		return algorithms;
+	}
+
+	/**
+	 * @param algorithms the algorithms to set
+	 */
+	public void setAlgorithms(String algorithms) {
+		this.algorithms = algorithms;
 	}
 	
 	

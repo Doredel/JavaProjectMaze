@@ -1,2 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE Root SYSTEM "RootElement.dtd">
-<NumberOfThreads>3</NumberOfThreads>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_65" class="java.beans.XMLDecoder">
+ <object class="presenter.Properties">
+  <void property="algorithms">
+   <string>BFS</string>
+  </void>
+  <void property="numberOfThread">
+   <int>3</int>
+  </void>
+ </object>
+</java>

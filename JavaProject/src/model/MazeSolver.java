@@ -1,5 +1,7 @@
 package model;
 
+import java.util.concurrent.Callable;
+
 import algorithms.demo.Maze3dAdaptor;
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
@@ -10,7 +12,23 @@ import algorithms.search.MazeManhattanDistance;
 import algorithms.search.Searcher;
 import algorithms.search.Solution;
 
-public class MazeSolver {
+public class MazeSolver implements Callable<Solution<Position>>{
+	
+	
+	private Maze3d maze;
+	private String algorithm;
+	
+
+	/**
+	 * @param maze
+	 * @param algorithm
+	 */
+	public MazeSolver(Maze3d maze, String algorithm) {
+		super();
+		this.maze = maze;
+		this.algorithm = algorithm;
+	}
+
 	/**
 	 * <strong>solve</strong>
 	 * <p>
@@ -51,5 +69,10 @@ public class MazeSolver {
 			
 		}
 		return sol; 
+	}
+
+	@Override
+	public Solution<Position> call() throws Exception {
+		return solve(maze,algorithm);
 	}
 }

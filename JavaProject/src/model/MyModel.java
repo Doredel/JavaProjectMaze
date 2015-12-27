@@ -1,13 +1,19 @@
 package model;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
@@ -31,9 +37,9 @@ public class MyModel extends Observable implements Model {
 	 */
 	private HashMap<String, Solution<Position>> solutionDB; 
 	
-	private HashMap< Maze3d, Solution<Position>> cache;
-	
-	ExecutorService executor;
+	private HashMap<Maze3d, Solution<Position>> cache;
+
+	private ExecutorService executor;
 
 	/**
 	 * <strong>MyModel</strong>
@@ -49,7 +55,7 @@ public class MyModel extends Observable implements Model {
 		solutionDB = new HashMap<String, Solution<Position>>();
 		cache = new HashMap<Maze3d, Solution<Position>>();
 		executor = Executors.newFixedThreadPool(3);
-		//start();
+		this.start();
 	}
 	
 	@Override
@@ -140,26 +146,21 @@ public class MyModel extends Observable implements Model {
 
 	@Override
 	public void solveMaze(String name, String algorithm) {
-		executor.submit(new Runnable() {
-			
-			@Override
-			public void run() {
-				setChanged();
-				try {
-					Maze3d maze = mazeDB.get(name);
-							
-					Solution<Position> sol = MazeSolver.solve(maze, algorithm);
-					notifyObservers("Solution for "+name+" is ready");
-					solutionDB.put(name, sol);
-					cache.put(mazeDB.get(name), sol);
+		setChanged();
+		try {
+			Maze3d maze = mazeDB.get(name);
+						
+			Future<Solution<Position>> f_sol = executor.submit(new MazeSolver(maze, algorithm));
+			notifyObservers("Solution for "+name+" is ready");
+			solutionDB.put(name, f_sol.get());
+			cache.put(mazeDB.get(name), f_sol.get());
 					
-				}catch(NullPointerException e){
-						notifyObservers("maze doesn't exist");
-				}catch (Exception e) {
-					notifyObservers(e.getMessage());
-				}
-			}
-		});
+		}catch(NullPointerException e){
+			notifyObservers("maze doesn't exist");
+		}catch (Exception e) {
+			notifyObservers(e.getMessage());
+		}
+
 		
 	}
 
@@ -208,27 +209,28 @@ public class MyModel extends Observable implements Model {
 
 	@Override
 	public void exit() {
-		/*try {
+		try {
 			ObjectOutputStream zipo = new ObjectOutputStream(new GZIPOutputStream(new FileOutputStream("cache.zip")));
 			zipo.writeObject(cache);
 			zipo.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} */
-		
-		executor.shutdownNow();
+		} 
+		finally {
+			executor.shutdownNow();
+		}		
 	}
 
 	@Override
 	public void start() {
-		/*try {
+		try {
 			ObjectInputStream zipo = new ObjectInputStream(new GZIPInputStream(new FileInputStream("cache.zip")));
 			cache = (HashMap<Maze3d, Solution<Position>>)zipo.readObject();
 			zipo.close();
 		} catch (IOException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 		
 	}
 }

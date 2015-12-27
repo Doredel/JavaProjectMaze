@@ -1,8 +1,14 @@
 package presenter;
 
+import java.beans.XMLDecoder;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.search.Solution;
@@ -15,12 +21,27 @@ public class Presenter<T> implements Observer {
 
 	private MyModel m;
 	private MyView<T> v;
+	private Properties properties;
+	
+	private ExecutorService executor;
 	
 	public Presenter(MyModel m, MyView<T> v) {
 		super();
 		this.m = m;
 		this.v = v;
 		CreateCommandMap();
+	
+		try {
+			XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream("Properties.xml")));
+			properties = (Properties)decoder.readObject();
+			decoder.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		executor = Executors.newFixedThreadPool(properties.getNumberOfThread());
+		executor.shutdown();
 	}
 	
 	public void CreateCommandMap(){
@@ -41,6 +62,7 @@ public class Presenter<T> implements Observer {
 		v.setCommandMap(hm);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void update(Observable obs, Object arg) {
 		   
