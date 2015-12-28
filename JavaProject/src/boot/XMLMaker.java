@@ -18,6 +18,7 @@ public class XMLMaker {
 		Properties mb = new Properties();
 		mb.setNumberOfThread(3);
 		mb.setAlgorithms("BFS");
+		mb.setInterfaceType("CLI");
 
 		FileOutputStream fos = new FileOutputStream("Properties.xml");
 		BufferedOutputStream bos = new BufferedOutputStream(fos);
@@ -30,6 +31,7 @@ public class XMLMaker {
 		properties = (Properties)decoder.readObject();
 		System.out.println(properties.getNumberOfThread());
 		System.out.println(properties.getAlgorithms());
+		System.out.println(properties.getInterfaceType());
 		decoder.close();
 
 	}

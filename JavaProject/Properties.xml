@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.8.0_65" class="java.beans.XMLDecoder">
+<java version="1.8.0_60" class="java.beans.XMLDecoder">
  <object class="presenter.Properties">
   <void property="algorithms">
    <string>BFS</string>
+  </void>
+  <void property="interfaceType">
+   <string>CLI</string>
   </void>
   <void property="numberOfThread">
    <int>3</int>

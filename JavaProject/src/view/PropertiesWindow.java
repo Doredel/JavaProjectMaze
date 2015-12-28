@@ -23,11 +23,20 @@ public class PropertiesWindow extends BasicWindow {
 		Text numThreadInfo = new Text(shell, SWT.BORDER);
 		numThreadInfo.setLayoutData(new GridData(SWT.FILL ,SWT.TOP ,true ,false ,1 ,1));
 		
+		Text algoLabel = new Text(shell, SWT.READ_ONLY);
+		algoLabel.setText("Algorithm in use:");
+		algoLabel.setLayoutData(new GridData(SWT.FILL ,SWT.TOP ,false ,false ,1 ,1));
+		
+		Text algoInfo = new Text(shell, SWT.BORDER);
+		algoInfo.setLayoutData(new GridData(SWT.FILL ,SWT.TOP ,true ,false ,1 ,1));
+		
 		/*TODO*/
 		
 		Button SaveChanges = new Button(shell, SWT.BORDER);
 		SaveChanges.setText("Save Changes");
 		SaveChanges.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,true ,false ,1 ,1));
+		
+		
 	}
 
 }

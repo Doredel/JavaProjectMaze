@@ -1,7 +1,7 @@
 package presenter;
 
 import java.io.Serializable;
-
+// missed the type of view(GUI or CLI)
 public class Properties implements Serializable {
 
 	/**
@@ -19,6 +19,7 @@ public class Properties implements Serializable {
 	 */
 	private String algorithms;
 	
+	private String interfaceType;
 	
 	public Properties(){}
 
@@ -48,6 +49,20 @@ public class Properties implements Serializable {
 	 */
 	public void setAlgorithms(String algorithms) {
 		this.algorithms = algorithms;
+	}
+
+	/**
+	 * @return the interfaceType
+	 */
+	public String getInterfaceType() {
+		return interfaceType;
+	}
+
+	/**
+	 * @param interfaceType the interfaceType to set
+	 */
+	public void setInterfaceType(String interfaceType) {
+		this.interfaceType = interfaceType;
 	}
 	
 	

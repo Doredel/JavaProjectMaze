@@ -36,7 +36,6 @@ public class Presenter<T> implements Observer {
 			properties = (Properties)decoder.readObject();
 			decoder.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
