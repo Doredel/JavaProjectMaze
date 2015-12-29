@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Observable;
 
 import presenter.Command;
 
@@ -13,7 +14,7 @@ import presenter.Command;
  * @author Dor-New
  *
  */
-public class CLI{
+public class CLI extends Observable{
 	
 	/**
 	 * The input instance
@@ -100,15 +101,17 @@ public class CLI{
 							else{
 								cmd = txtCommand.get(param.get(0));	
 							}
-							cmd.doCommand(param.get(1).split(" "));
+							cmd.setParams(param.get(1).split(" "));
+							setChanged();
+							notifyObservers(cmd);
 							param.clear();
 						}
 					}
 				} catch (IOException e) {
 					display("Error while reading data");
 				}
-				
-				txtCommand.get("exit").doCommand(null);
+				setChanged();
+				notifyObservers(txtCommand.get("exit"));
 			}
 		}).start();
 	}

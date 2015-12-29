@@ -1,6 +1,6 @@
 package presenter;
 
-import view.MyView;
+import view.View;
 import model.Model;
 
 /**
@@ -22,16 +22,14 @@ public class DirCommand<T> extends CommonCommand<T> {
 	 * @param Model m - The facade of model to talk with
 	 * @return nothing
 	 */
-	public DirCommand(MyView<T> v, Model m) {
+	public DirCommand(View<T> v, Model m) {
 		super(v, m);
 	}
 	
 	@Override
-	public void doCommand(String[] param) {
+	public void doCommand() {
 		if(param.length == 1){
-			v.setCommand(1);
-			v.notifyObservers(param);
-			
+			m.getDir(param[0]);
 		}else{
 			v.display("Invalid format \'dir <Directory name>\'");
 		}

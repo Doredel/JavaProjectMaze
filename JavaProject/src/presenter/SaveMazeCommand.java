@@ -2,7 +2,7 @@ package presenter;
 
 
 import model.Model;
-import view.MyView;
+import view.View;
 
 
 /**
@@ -24,15 +24,14 @@ public class SaveMazeCommand<T> extends CommonCommand<T> {
 	 * @param Model m - The facade of model to talk with
 	 * @return nothing
 	 */
-	public SaveMazeCommand(MyView<T> v, Model m) {
+	public SaveMazeCommand(View<T> v, Model m) {
 		super(v, m);
 	}
 	
 	@Override
-	public void doCommand(String[] param) {
+	public void doCommand() {
 		if (param.length == 2) {
-			v.setCommand(9);
-			v.notifyObservers(param);
+			m.saveMaze(param[0], param[1]);
 		} else {
 			v.display("Invalid format \'save maze <name> <file name>\'");
 		}

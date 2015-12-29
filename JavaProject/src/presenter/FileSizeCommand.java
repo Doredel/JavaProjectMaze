@@ -1,7 +1,7 @@
 package presenter;
 
 import model.Model;
-import view.MyView;
+import view.View;
 
 
 /**
@@ -23,15 +23,14 @@ public class FileSizeCommand<T> extends CommonCommand<T> {
 	 * @param Model m - The facade of model to talk with
 	 * @return nothing
 	 */
-	public FileSizeCommand(MyView<T> v, Model m) {
+	public FileSizeCommand(View<T> v, Model m) {
 		super(v, m);
 	}
 
 	@Override
-	public void doCommand(String[] param) {
+	public void doCommand() {
 		if (param.length == 1) {
-			v.setCommand(5);
-			v.notifyObservers(param);
+			m.fileSize(param[0]);
 		} else {
 			v.display("Invalid format \'file size <name>\'");
 		}

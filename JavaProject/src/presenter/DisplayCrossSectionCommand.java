@@ -1,7 +1,7 @@
 package presenter;
 
 import model.Model;
-import view.MyView;
+import view.View;
 
 
 /**
@@ -23,18 +23,17 @@ public class DisplayCrossSectionCommand<T> extends CommonCommand<T> {
 	 * @param Model m - The facade of model to talk with
 	 * @return nothing
 	 */
-	public DisplayCrossSectionCommand(MyView<T> v, Model m) {
+	public DisplayCrossSectionCommand(View<T> v, Model m) {
 		super(v, m);
 	}
 	
 	@Override
-	public void doCommand(String[] param) {
+	public void doCommand() {
 		if (param.length == 4) {
 			if (!param[2].equals("for")) {
 				v.display("display cross section by {X,Y,Z} <index> for <name>\'");
 			} else {
-				v.setCommand(4);
-				v.notifyObservers(param);
+				m.displayCrossSection(param[0],Integer.parseInt(param[1]), param[3]);
 			}
 		} else {
 			v.display("Invalid format \'display cross section by {X,Y,Z} <index> for <name>\'");

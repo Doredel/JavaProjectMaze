@@ -1,7 +1,7 @@
 package presenter;
 
 import model.Model;
-import view.MyView;
+import view.View;
 
 /**
  * class of the command to display a maze
@@ -22,15 +22,14 @@ public class DisplayCommand<T> extends CommonCommand<T> {
 	 * @param Model m - The facade of Model to talk with
 	 * @return nothing
 	 */
-	public DisplayCommand(MyView<T> v, Model m) {
+	public DisplayCommand(View<T> v, Model m) {
 		super(v, m);
 	}
 	
 	@Override
-	public void doCommand(String[] param) {
+	public void doCommand() {
 		if (param.length == 1) {
-			v.setCommand(3);
-			v.notifyObservers(param);
+			m.displayMaze(param[0]);
 		}else {
 			v.display("Invalid format \'display <maze name>\'");
 		}

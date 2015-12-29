@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Observable;
+import java.util.Observer;
 
 import presenter.Command;
 
@@ -14,18 +15,18 @@ import presenter.Command;
  * 
  * @author Dor Edelstein, Lior Mantin
  */
-public class MyView<T> extends Observable implements View<T> {
+public class MyView<T> extends Observable implements View<T> , Observer {
 	
 	/**
 	 * The CLI instance
 	 */
 	private CLI cli;
 	private HashMap<String,Command> hm;
-	private int commandNum;
 
 	@Override
 	public void start() {
 		cli = new CLI(new BufferedReader(new InputStreamReader(System.in)),new PrintWriter(System.out), hm);
+		cli.addObserver(this);
 		cli.start();
 	}
 
@@ -34,19 +35,15 @@ public class MyView<T> extends Observable implements View<T> {
 		cli.display(string);
 	}
 
-	@Override
-	public int getCommand() {
-		return commandNum;
-	}
-
-	@Override
-	public void setCommand(int numCommand) {
-		commandNum = numCommand;
-		setChanged();
-	}
 
 	public void setCommandMap(HashMap<String, Command> hm) {
 		this.hm = hm;
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		setChanged();
+		notifyObservers(arg);
 	}
 		
 	

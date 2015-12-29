@@ -71,13 +71,11 @@ public class MyModel extends Observable implements Model {
 			mazeDB.put(name, null);
 					
 			Future<Maze3d> f_maze = executor.submit(new MazeGenerator(width,height,depth));
-			while (!f_maze.isDone()) {}//busy waiting because need to think about solution
 			try {
 				mazeDB.put(name, f_maze.get());
 			} catch (InterruptedException | ExecutionException e) {
 				e.printStackTrace();
 			}
-
 
 			notifyObservers("maze "+name+" is ready");
 					
@@ -221,7 +219,6 @@ public class MyModel extends Observable implements Model {
 		}		
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void start() {
 		try {

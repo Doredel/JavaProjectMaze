@@ -19,5 +19,7 @@ public interface Command {
 	 *  need to make his mission
 	 * @return nothing
 	 */
-	public void doCommand(String[] param);
+	public void doCommand();
+	
+	public void setParams(String[] param);
 }

@@ -1,7 +1,7 @@
 package presenter;
 
 import model.Model;
-import view.MyView;
+import view.View;
 
 /**
  * class of the command to display the size of a maze in the memory
@@ -23,15 +23,14 @@ public class MazeSizeCommand<T> extends CommonCommand<T> {
 	 * @param Model m - The facade of model to talk with
 	 * @return nothing
 	 */
-	public MazeSizeCommand(MyView<T> v, Model m) {
+	public MazeSizeCommand(View<T> v, Model m) {
 		super(v, m);
 	}
 	
 	@Override
-	public void doCommand(String[] param) {
+	public void doCommand() {
 		if (param.length == 1) {
-			v.setCommand(8);
-			v.notifyObservers(param);
+			m.mazeSize(param[0]);
 		} else {
 			v.display("Invalid format \'maze size <name>\'");
 		}

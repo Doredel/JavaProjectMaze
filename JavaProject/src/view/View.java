@@ -1,5 +1,9 @@
 package view;
 
+import java.util.HashMap;
+
+import presenter.Command;
+
 /**
  * <strong>View</strong>  is a view interface for the project
  * 
@@ -26,7 +30,7 @@ public interface View<T> {
 	 * @param string - the string to be printed
 	 */
 	public void display(String string);
-	
-	public int getCommand();
-	public void setCommand(int numCommand);
+
+	public void setCommandMap(HashMap<String, Command> hm);
+
 }
