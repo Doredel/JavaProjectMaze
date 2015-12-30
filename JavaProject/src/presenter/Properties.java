@@ -3,11 +3,6 @@ package presenter;
 import java.io.Serializable;
 // missed the type of view(GUI or CLI)
 public class Properties implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -1677586283266085771L;
 	
 	/**
 	 * 

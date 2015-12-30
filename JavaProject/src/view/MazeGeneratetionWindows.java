@@ -1,4 +1,4 @@
-/*
+
 package view;
 
 import org.eclipse.swt.SWT;
@@ -9,10 +9,13 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Text;
 
+import presenter.Command;
+import presenter.Generate3DMazeCommand;
+
 /**
  * @author mantinli
  *
- *
+ */
 public class MazeGeneratetionWindows extends BasicWindow {
 
 	public MazeGeneratetionWindows(int width, int height) {
@@ -51,7 +54,7 @@ public class MazeGeneratetionWindows extends BasicWindow {
 		Text depthInfo = new Text(shell, SWT.BORDER);
 		depthInfo.setLayoutData(new GridData(SWT.FILL ,SWT.TOP ,true ,false ,1 ,1));
 		
-		/*TODO*
+		/*TODO*/
 		
 		Button generate = new Button(shell, SWT.BORDER);
 		generate.setText("generate maze!!");
@@ -61,8 +64,7 @@ public class MazeGeneratetionWindows extends BasicWindow {
 			
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				setCommand(6);
-				notifyObservers(new String[]{nameInfo.getText(),widthInfo.getText(),heightInfo.getText(),depthInfo.getText()});
+				//notifyObservers(nameInfo.getText(),widthInfo.getText(),heightInfo.getText(),depthInfo.getText());
 			}
 			
 			@Override
@@ -71,4 +73,4 @@ public class MazeGeneratetionWindows extends BasicWindow {
 		});
 	}
 
-}*/
+}

@@ -12,8 +12,6 @@ import algorithms.search.MazeManhattanDistance;
  */
 public interface Model {
 	
-	public void start();
-	
 	/**
 	 * <strong>getDir</strong>
 	 * <p>
@@ -134,6 +132,8 @@ public interface Model {
 	 * @param filename - the name of the file
 	 */
 	public void fileSize(String filename);
+	
+	public void setNumThreats(int numThreads);
 	
 	public void exit();
 }

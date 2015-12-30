@@ -50,12 +50,21 @@ public class MyModel extends Observable implements Model {
 	 * 
 	 * @param c - the controller instance
 	 */
+	@SuppressWarnings("unchecked")
 	public MyModel(){
 		mazeDB = new HashMap<String, Maze3d>();
 		solutionDB = new HashMap<String, Solution<Position>>();
 		cache = new HashMap<Maze3d, Solution<Position>>();
-		executor = Executors.newFixedThreadPool(3);
-		this.start();
+
+		try {
+			ObjectInputStream zipo = new ObjectInputStream(new GZIPInputStream(new FileInputStream("cache.zip")));
+			cache = (HashMap<Maze3d, Solution<Position>>)zipo.readObject();
+			zipo.close();
+		} catch (IOException | ClassNotFoundException e) {
+			setChanged();
+			notifyObservers("Cant load cache");
+		}
+		
 	}
 	
 	@Override
@@ -74,7 +83,7 @@ public class MyModel extends Observable implements Model {
 			try {
 				mazeDB.put(name, f_maze.get());
 			} catch (InterruptedException | ExecutionException e) {
-				e.printStackTrace();
+				e.printStackTrace();//future still null
 			}
 
 			notifyObservers("maze "+name+" is ready");
@@ -82,7 +91,6 @@ public class MyModel extends Observable implements Model {
 		}
 		else {
 			notifyObservers("The maze "+name+" is already exist");
-			return;	
 		}
 	}
 
@@ -147,12 +155,15 @@ public class MyModel extends Observable implements Model {
 		setChanged();
 		try {
 			Maze3d maze = mazeDB.get(name);
-						
-			Future<Solution<Position>> f_sol = executor.submit(new MazeSolver(maze, algorithm));
+			if (cache.containsKey(maze)) {
+				solutionDB.put(name, cache.get(maze));
+			} else {
+				Future<Solution<Position>> f_sol = executor.submit(new MazeSolver(maze, algorithm));
+				solutionDB.put(name, f_sol.get());
+				cache.put(mazeDB.get(name), f_sol.get());
+			}
 			notifyObservers("Solution for "+name+" is ready");
-			solutionDB.put(name, f_sol.get());
-			cache.put(mazeDB.get(name), f_sol.get());
-					
+			
 		}catch(NullPointerException e){
 			notifyObservers("maze doesn't exist");
 		}catch (Exception e) {
@@ -212,7 +223,8 @@ public class MyModel extends Observable implements Model {
 			zipo.writeObject(cache);
 			zipo.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			setChanged();
+			notifyObservers("Cant save cache");
 		} 
 		finally {
 			executor.shutdownNow();
@@ -220,15 +232,7 @@ public class MyModel extends Observable implements Model {
 	}
 
 	@Override
-	public void start() {
-		try {
-			ObjectInputStream zipo = new ObjectInputStream(new GZIPInputStream(new FileInputStream("cache.zip")));
-			cache = (HashMap<Maze3d, Solution<Position>>)zipo.readObject();
-			zipo.close();
-		} catch (IOException | ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+	public void setNumThreats(int numThreads) {
+		executor = Executors.newFixedThreadPool(numThreads);
 	}
 }

@@ -34,6 +34,8 @@ public class Presenter<T> implements Observer {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		
+		m.setNumThreats(properties.getNumberOfThread());
 	}
 	
 	public void CreateCommandMap(){

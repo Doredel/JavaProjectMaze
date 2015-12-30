@@ -1,12 +1,13 @@
 package view;
 
 
+import java.util.Observable;
+
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
-import algorithms.mazeGenerators.Position;
 
-public abstract class BasicWindow extends MyView<Position> implements Runnable {
+public abstract class BasicWindow extends Observable implements Runnable {
 
 	protected Display display;
 	protected Shell shell;
