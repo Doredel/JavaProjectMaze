@@ -6,20 +6,27 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Text;
 
+import algorithms.mazeGenerators.Maze3d;
+import presenter.DispalySolutionCommand;
+import presenter.Properties;
+
 public class GeneralClassWindow extends BasicWindow {
 	
-	Class object;
-	List<Field> fields ;
+	private Class object;
+	private List<Field> fields ;
 	
 	public GeneralClassWindow(int width, int height, String name, Class object) {
 		super(width, height, name);
 		this.object = object;
 		fields = new ArrayList<Field>(Arrays.asList(object.getDeclaredFields()));
+		
 	}
 
 	@Override
@@ -27,9 +34,9 @@ public class GeneralClassWindow extends BasicWindow {
 		ArrayList<Text> info = new ArrayList<Text>();
 		shell.setLayout(new GridLayout(2, false));
 		
-		Text Titel = new Text(shell, SWT.READ_ONLY|SWT.BOLD);
-		Titel.setText(object.getSimpleName());
-		Titel.setLayoutData(new GridData(SWT.FILL ,SWT.TOP ,true ,false ,2 ,1));
+		Text Title = new Text(shell, SWT.READ_ONLY|SWT.BOLD);
+		Title.setText(object.getSimpleName());
+		Title.setLayoutData(new GridData(SWT.FILL ,SWT.TOP ,true ,false ,2 ,1));
 		
 		for (int i=0; i<fields.size(); i++) {
 			Text lable = new Text(shell, SWT.READ_ONLY);
@@ -40,7 +47,8 @@ public class GeneralClassWindow extends BasicWindow {
 			info.get(i).setText("");
 			info.get(i).setLayoutData(new GridData(SWT.FILL ,SWT.TOP ,false ,false ,1 ,1));
 
-		}
+		};
+		
 		
 		Button SaveChanges = new Button(shell, SWT.BORDER|SWT.PUSH);
 		SaveChanges.setText("Save Changes");

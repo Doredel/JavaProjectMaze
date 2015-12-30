@@ -4,7 +4,10 @@ import model.MyModel;
 import presenter.Presenter;
 import presenter.Properties;
 import view.BasicWindow;
+import view.GameWindow;
 import view.GeneralClassWindow;
+import view.GenerateMaze3dWidget;
+import view.MainWindow;
 import view.MyView;
 
 public class Run {
@@ -19,7 +22,8 @@ public class Run {
 		
 		view.start();*/
 		
-		BasicWindow win = new GeneralClassWindow(500, 300, "Class",Properties.class);
+		BasicWindow win = new MainWindow(500,300,"Lior the star");
+		//BasicWindow win1 = new  GeneralClassWindow(500,300,"Lior",Properties.class);
 		win.run();
 	}
 }
