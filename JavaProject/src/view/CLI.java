@@ -27,11 +27,6 @@ public class CLI extends Observable{
 	private PrintWriter out;
 	
 	/**
-	 * The commands that are in the project
-	 */
-	private HashMap<String,Command> txtCommand;
-	
-	/**
 	 * <strong>CLI</start>
 	 * <p>
 	 * <code>public CLI(BufferedReader in, PrintWriter out, HashMap<String, Command> txtCommand)</code>
@@ -42,10 +37,9 @@ public class CLI extends Observable{
 	 * @param out - the output stream
 	 * @param txtCommand - The commands that are in the project 
 	 */
-	public CLI(BufferedReader in, PrintWriter out, HashMap<String, Command> txtCommand) {
+	public CLI(BufferedReader in, PrintWriter out) {
 		this.in = in;
 		this.out = out;
-		this.txtCommand = txtCommand;
 	}
 
 	/**
@@ -64,54 +58,17 @@ public class CLI extends Observable{
 				isractions();
  
 				String str = null;
-				ArrayList<String> param = new ArrayList<String>();
-				Command cmd = null;
+				
 				try {
 					while(!(str=(in.readLine().trim().replaceAll("\\s+", " "))).equals("exit")){
-						
-						for (String string : txtCommand.keySet()) {
-							if(str.startsWith(string+" "))
-							{
-								param.add(string);
-								param.add(str.split(string+" ", 2)[1]);
-								break;
-							}
-						}
-						
-						if(param.size() == 0){
-							display("\""+str+"\" is invalid input");
-						}
-						else{
-							if (param.get(0)== "display") {
-
-								if (param.get(1).startsWith("cross section by")) {
-									cmd = txtCommand.get("display cross section by");
-									param.add(str.split("display cross section by ", 2)[1]);
-								}
-								else if (param.get(1).startsWith("solution")) {
-									cmd = txtCommand.get("display solution");
-									param.add(str.split("display solution ", 2)[1]);
-								}
-								else {
-									cmd = txtCommand.get("display");
-									param.add(str.split("display ", 2)[1]);
-								}
-								param.remove(1);
-							}
-							else{
-								cmd = txtCommand.get(param.get(0));	
-							}
-							cmd.setParams(param.get(1).split(" "));
-							setChanged();
-							notifyObservers(cmd);
-							param.clear();
-						}
+						setChanged();
+						notifyObservers(str);
 					}
 				} catch (IOException e) {
 					display("Error while reading data");
 				}
 				setChanged();
-				notifyObservers(txtCommand.get("exit"));
+				notifyObservers("exit");
 			}
 		}).start();
 	}

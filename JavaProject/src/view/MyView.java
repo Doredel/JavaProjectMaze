@@ -25,7 +25,7 @@ public class MyView<T> extends Observable implements View<T> , Observer {
 
 	@Override
 	public void start() {
-		cli = new CLI(new BufferedReader(new InputStreamReader(System.in)),new PrintWriter(System.out), hm);
+		cli = new CLI(new BufferedReader(new InputStreamReader(System.in)),new PrintWriter(System.out));
 		cli.addObserver(this);
 		cli.start();
 	}
@@ -44,6 +44,11 @@ public class MyView<T> extends Observable implements View<T> , Observer {
 	public void update(Observable o, Object arg) {
 		setChanged();
 		notifyObservers(arg);
+	}
+
+	@Override
+	public void setInterface(String Interface) {
+		
 	}
 		
 	

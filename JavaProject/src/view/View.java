@@ -33,4 +33,5 @@ public interface View<T> {
 
 	public void setCommandMap(HashMap<String, Command> hm);
 
+	public void setInterface(String Interface);
 }

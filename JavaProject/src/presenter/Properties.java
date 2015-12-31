@@ -9,10 +9,6 @@ public class Properties implements Serializable {
 	 */
 	private int numberOfThread;
 	
-	/**
-	 * 
-	 */
-	private String algorithms;
 	
 	private String interfaceType;
 	
@@ -30,20 +26,6 @@ public class Properties implements Serializable {
 	 */
 	public void setNumberOfThread(int numberOfThread) {
 		this.numberOfThread = numberOfThread;
-	}
-
-	/**
-	 * @return the algorithms
-	 */
-	public String getAlgorithms() {
-		return algorithms;
-	}
-
-	/**
-	 * @param algorithms the algorithms to set
-	 */
-	public void setAlgorithms(String algorithms) {
-		this.algorithms = algorithms;
 	}
 
 	/**

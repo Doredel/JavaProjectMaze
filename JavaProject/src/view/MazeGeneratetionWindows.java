@@ -9,6 +9,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Text;
 
+import algorithms.mazeGenerators.Position;
 import presenter.Command;
 import presenter.Generate3DMazeCommand;
 
@@ -64,7 +65,7 @@ public class MazeGeneratetionWindows extends BasicWindow {
 			
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				//notifyObservers(nameInfo.getText(),widthInfo.getText(),heightInfo.getText(),depthInfo.getText());
+				notifyObservers();
 			}
 			
 			@Override
