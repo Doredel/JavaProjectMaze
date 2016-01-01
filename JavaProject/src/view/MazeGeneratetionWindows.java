@@ -7,8 +7,8 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.MessageBox;
-import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Text;
 
 /**
@@ -27,7 +27,30 @@ public class MazeGeneratetionWindows extends BasicWindow {
 
 	@Override
 	public void initWidgets() {
-		shell.setLayout(new GridLayout(2, false));
+		/*shell.setLayout(new GridLayout(2, false));
+		
+		// Create the bar menu
+	    Menu menuBar = new Menu(shell, SWT.BAR);
+
+	    // Create the File item's dropdown menu
+	    Menu fileMenu = new Menu(menuBar);
+
+	    // Create all the items in the bar menu
+	    MenuItem fileItem = new MenuItem(menuBar, SWT.CASCADE);
+	    fileItem.setText("File");
+	    fileItem.setMenu(fileMenu);
+
+	    // Create all the items in the File dropdown menu
+	    MenuItem newItem = new MenuItem(fileMenu, SWT.NONE);
+	    newItem.setText("New");
+	    MenuItem openItem = new MenuItem(fileMenu, SWT.NONE);
+	    openItem.setText("Open...");
+	    MenuItem saveItem = new MenuItem(fileMenu, SWT.NONE);
+	    saveItem.setText("Save");
+	    MenuItem saveAsItem = new MenuItem(fileMenu, SWT.NONE);
+	    saveAsItem.setText("Save As...");
+	    
+	    menuBar.setVisible(true);
 		
 		Text nameLabel = new Text(shell, SWT.READ_ONLY);
 		nameLabel.setText("Name:");
@@ -57,7 +80,7 @@ public class MazeGeneratetionWindows extends BasicWindow {
 		Text depthInfo = new Text(shell, SWT.BORDER);
 		depthInfo.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,true ,false ,1 ,1));
 		
-		/*TODO*/
+		///TODO
 		
 		Button generate = new Button(shell, SWT.BORDER);
 		generate.setText("generate maze!!");
@@ -69,14 +92,36 @@ public class MazeGeneratetionWindows extends BasicWindow {
 			public void widgetSelected(SelectionEvent arg0) {
 				setChanged();
 				notifyObservers("generate 3d maze "+nameInfo.getText()+" "+widthInfo.getText()+","+heightInfo.getText()+","+depthInfo.getText());
-				//shell.dispose();
-				GameWindow gw = new GameWindow(500, 300, nameInfo.getText(),display);
-				gw.run();
+				shell.dispose();
 			}
 			
 			@Override
 			public void widgetDefaultSelected(SelectionEvent arg0) {
 			}
-		});
+		});*/
+		
+		// Create the bar menu
+	    Menu menuBar = new Menu(shell, SWT.BAR);
+
+	    // Create the File item's dropdown menu
+	    Menu fileMenu = new Menu(menuBar);
+
+	    // Create all the items in the bar menu
+	    MenuItem fileItem = new MenuItem(menuBar, SWT.CASCADE);
+	    fileItem.setText("File");
+	    fileItem.setMenu(fileMenu);
+
+	    // Create all the items in the File dropdown menu
+	    MenuItem newItem = new MenuItem(fileMenu, SWT.NONE);
+	    newItem.setText("New");
+	    MenuItem openItem = new MenuItem(fileMenu, SWT.NONE);
+	    openItem.setText("Open...");
+	    MenuItem saveItem = new MenuItem(fileMenu, SWT.NONE);
+	    saveItem.setText("Save");
+	    MenuItem saveAsItem = new MenuItem(fileMenu, SWT.NONE);
+	    saveAsItem.setText("Save As...");
+
+	    shell.setMenuBar(menuBar);
+		
 	}
 }

@@ -1,16 +1,12 @@
 package view;
 
 import java.util.Observable;
+import java.util.Observer;
 
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 
-public class GUI extends Observable{
-	
-	BasicWindow[] allwindows;
-	
-	public GUI() { 
-	}
+public class GUI extends Observable implements Observer{
 	
 	public void start()
 	{
@@ -24,5 +20,9 @@ public class GUI extends Observable{
 		messageBox.open();
 	}
 
+	@Override
+	public void update(Observable o, Object arg) {
+		notifyObservers(arg);
+	}
 
 }
