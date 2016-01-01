@@ -13,10 +13,6 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Text;
 
-import algorithms.mazeGenerators.Maze3d;
-import presenter.DispalySolutionCommand;
-import presenter.Properties;
-
 public class GeneralClassWindow extends BasicWindow {
 	
 	private Class object;
@@ -53,6 +49,19 @@ public class GeneralClassWindow extends BasicWindow {
 		Button SaveChanges = new Button(shell, SWT.BORDER|SWT.PUSH);
 		SaveChanges.setText("Save Changes");
 		SaveChanges.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,false ,false ,1 ,1));
+		
+		SaveChanges.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0) {	
+			}
+		});
 	}
 
 }

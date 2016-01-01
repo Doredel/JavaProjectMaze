@@ -1,4 +1,3 @@
-
 package view;
 
 import org.eclipse.swt.SWT;
@@ -9,18 +8,14 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Text;
 
-import algorithms.mazeGenerators.Position;
-import presenter.Command;
-import presenter.Generate3DMazeCommand;
-
 /**
  * @author mantinli
  *
  */
 public class MazeGeneratetionWindows extends BasicWindow {
 
-	public MazeGeneratetionWindows(int width, int height) {
-		super(width, height, "Maze generation");
+	public MazeGeneratetionWindows(int width, int height,String title) {
+		super(width, height,title);
 	}
 
 	@Override
@@ -29,31 +24,31 @@ public class MazeGeneratetionWindows extends BasicWindow {
 		
 		Text nameLabel = new Text(shell, SWT.READ_ONLY);
 		nameLabel.setText("Name:");
-		nameLabel.setLayoutData(new GridData(SWT.FILL ,SWT.TOP ,false ,false ,1 ,1));
+		nameLabel.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,false ,false ,1 ,1));
 		
 		Text nameInfo = new Text(shell, SWT.BORDER);
-		nameInfo.setLayoutData(new GridData(SWT.FILL ,SWT.TOP ,true ,false ,1 ,1));
+		nameInfo.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,true ,false ,1 ,1));
 		
 		Text widthLabel = new Text(shell, SWT.READ_ONLY);
 		widthLabel.setText("Width:");
-		widthLabel.setLayoutData(new GridData(SWT.FILL ,SWT.TOP ,false ,false ,1 ,1));
+		widthLabel.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,false ,false ,1 ,1));
 		
 		Text widthInfo = new Text(shell, SWT.BORDER);
-		widthInfo.setLayoutData(new GridData(SWT.FILL ,SWT.TOP ,true ,false ,1 ,1));
+		widthInfo.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,true ,false ,1 ,1));
 		
 		Text heightLabel = new Text(shell, SWT.READ_ONLY);
 		heightLabel.setText("Height:");
-		heightLabel.setLayoutData(new GridData(SWT.FILL ,SWT.TOP ,false ,false ,1 ,1));
+		heightLabel.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,false ,false ,1 ,1));
 		
 		Text heightInfo = new Text(shell, SWT.BORDER);
-		heightInfo.setLayoutData(new GridData(SWT.FILL ,SWT.TOP ,true ,false ,1 ,1));
+		heightInfo.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,true ,false ,1 ,1));
 		
 		Text depthLabel = new Text(shell, SWT.READ_ONLY);
 		depthLabel.setText("Depth:");
-		depthLabel.setLayoutData(new GridData(SWT.FILL ,SWT.TOP ,false ,false ,1 ,1));
+		depthLabel.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,false ,false ,1 ,1));
 		
 		Text depthInfo = new Text(shell, SWT.BORDER);
-		depthInfo.setLayoutData(new GridData(SWT.FILL ,SWT.TOP ,true ,false ,1 ,1));
+		depthInfo.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,true ,false ,1 ,1));
 		
 		/*TODO*/
 		
@@ -65,7 +60,8 @@ public class MazeGeneratetionWindows extends BasicWindow {
 			
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				notifyObservers();
+				setChanged();
+				notifyObservers("generate 3d maze "+nameInfo.getText()+" "+widthInfo.getText()+","+heightInfo.getText()+","+depthInfo.getText());
 			}
 			
 			@Override

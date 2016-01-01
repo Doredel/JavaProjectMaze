@@ -9,7 +9,6 @@ public class Properties implements Serializable {
 	 */
 	private int numberOfThread;
 	
-	
 	private String interfaceType;
 	
 	public Properties(){}

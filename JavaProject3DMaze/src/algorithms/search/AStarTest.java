@@ -1,7 +1,5 @@
 package algorithms.search;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 import algorithms.mazeGenerators.Maze3d;
@@ -22,7 +20,6 @@ public class AStarTest {
 	
 	@Test
 	public void testSearch() {
-		
 	}
 
 }

@@ -3,11 +3,7 @@ package view;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Observable;
-
-import presenter.Command;
 
 /**
  * 
@@ -29,13 +25,12 @@ public class CLI extends Observable{
 	/**
 	 * <strong>CLI</start>
 	 * <p>
-	 * <code>public CLI(BufferedReader in, PrintWriter out, HashMap<String, Command> txtCommand)</code>
+	 * <code>public CLI(BufferedReader in, PrintWriter out)</code>
 	 * <p>
 	 * Construct a Command Line Interface
 	 * 
 	 * @param in - the input stream
 	 * @param out - the output stream
-	 * @param txtCommand - The commands that are in the project 
 	 */
 	public CLI(BufferedReader in, PrintWriter out) {
 		this.in = in;
