@@ -1,9 +1,5 @@
 package presenter;
 
-import java.beans.XMLDecoder;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
@@ -29,15 +25,10 @@ public class Presenter<T> implements Observer {
 		this.v = view;
 		CreateCommandMap();
 	
-		try {
-			XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream("Properties.xml")));
-			properties = (Properties)decoder.readObject();
-			decoder.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		properties = m.loadProperties();
 		
 		m.setNumThreats(properties.getNumberOfThread());
+		v.setView(properties.getInterfaceType());
 	}
 	
 	public void CreateCommandMap(){
@@ -103,51 +94,57 @@ public class Presenter<T> implements Observer {
 	    	
 		}
 	    if (obs == v){ 
-	    	String str = (String)arg;
-	    	Command cmd;
-	    	ArrayList<String> param = new ArrayList<String>();
+	    	if (arg instanceof String) {
+	    		String str = (String)arg;
+		    	Command cmd;
+		    	ArrayList<String> param = new ArrayList<String>();
+		    	
+		    	if(str.equals("exit")){
+		    		cmd = comnds.get("exit");
+		    		cmd.setParams(new String[]{"exit"});
+		    	}else{
+		    	
+					for (String string : comnds.keySet()) {
+						if(str.startsWith(string+" "))
+						{
+							param.add(string);
+							param.add(str.split(string+" ", 2)[1]);
+							break;
+						}
+					}
+					
+					if(param.size() == 0){
+						v.display("\""+str+"\" is invalid input");
+					}
+					else{
+						if (param.get(0)== "display") {
+		
+							if (param.get(1).startsWith("cross section by")) {
+								cmd = comnds.get("display cross section by");
+								param.add(str.split("display cross section by ", 2)[1]);
+							}
+							else if (param.get(1).startsWith("solution")) {
+								cmd = comnds.get("display solution");
+								param.add(str.split("display solution ", 2)[1]);
+							}
+							else {
+								cmd = comnds.get("display");
+								param.add(str.split("display ", 2)[1]);
+							}
+							param.remove(1);
+						}
+						else{
+							cmd = comnds.get(param.get(0));	
+						}
+						cmd.setParams(param.get(1).split(" "));
+						cmd.doCommand();
+						param.clear();
+					}
+		    	}
+			} else if(arg instanceof Properties) {
+				m.saveProperties((Properties)arg);
+			}
 	    	
-	    	if(str.equals("exit")){
-	    		cmd = comnds.get("exit");
-	    		cmd.setParams(new String[]{"exit"});
-	    	}
-	    	
-			for (String string : comnds.keySet()) {
-				if(str.startsWith(string+" "))
-				{
-					param.add(string);
-					param.add(str.split(string+" ", 2)[1]);
-					break;
-				}
-			}
-			
-			if(param.size() == 0){
-				v.display("\""+str+"\" is invalid input");
-			}
-			else{
-				if (param.get(0)== "display") {
-
-					if (param.get(1).startsWith("cross section by")) {
-						cmd = comnds.get("display cross section by");
-						param.add(str.split("display cross section by ", 2)[1]);
-					}
-					else if (param.get(1).startsWith("solution")) {
-						cmd = comnds.get("display solution");
-						param.add(str.split("display solution ", 2)[1]);
-					}
-					else {
-						cmd = comnds.get("display");
-						param.add(str.split("display ", 2)[1]);
-					}
-					param.remove(1);
-				}
-				else{
-					cmd = comnds.get(param.get(0));	
-				}
-				cmd.setParams(param.get(1).split(" "));
-				cmd.doCommand();
-				param.clear();
-			}
 		}
 	}
 }

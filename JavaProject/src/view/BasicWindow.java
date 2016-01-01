@@ -3,6 +3,8 @@ package view;
 
 import java.util.Observable;
 
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
@@ -14,7 +16,16 @@ public abstract class BasicWindow extends Observable implements Runnable {
 	
 	public BasicWindow(int width, int height, String name) {
 		display = new Display();  // our display
-		shell = new Shell(display);             // our window
+		shell = new Shell(display); // our window
+
+		shell.setSize(width,height);
+		shell.setText(name);
+
+	}
+	
+	public BasicWindow(int width, int height, String name, Display display) {
+		this.display = display;  // our display
+		shell = new Shell(display); // our window
 
 		shell.setSize(width,height);
 		shell.setText(name);
@@ -40,8 +51,10 @@ public abstract class BasicWindow extends Observable implements Runnable {
 
 		 } // shell is disposed
 
-		 display.dispose(); // dispose OS components
+		  
+		  if (display.getShells().length == 0) {
+			  display.dispose();
+		}
 
 	}
-
 }

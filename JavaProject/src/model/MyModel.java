@@ -1,7 +1,12 @@
 package model;
 
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -18,6 +23,7 @@ import java.util.zip.GZIPOutputStream;
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
 import algorithms.search.Solution;
+import presenter.Properties;
 
 
 /**
@@ -224,7 +230,7 @@ public class MyModel extends Observable implements Model {
 			zipo.close();
 		} catch (IOException e) {
 			setChanged();
-			notifyObservers("Cant save cache");
+			notifyObservers("Can't save cache");
 		} 
 		finally {
 			executor.shutdownNow();
@@ -234,5 +240,31 @@ public class MyModel extends Observable implements Model {
 	@Override
 	public void setNumThreats(int numThreads) {
 		executor = Executors.newFixedThreadPool(numThreads);
+	}
+
+	@Override
+	public void saveProperties(Properties properties) {
+		try {
+			XMLEncoder coder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream("Properties.xml")));
+			coder.writeObject(properties);
+			coder.close();
+		} catch (FileNotFoundException e) {
+			setChanged();
+			notifyObservers("can't Save Properties");
+		}
+	}
+
+	@Override
+	public Properties loadProperties() {
+		Properties properties = null;
+		try {
+			XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream("Properties.xml")));
+			properties = (Properties)decoder.readObject();
+			decoder.close();
+		} catch (FileNotFoundException e) {
+			setChanged();
+			notifyObservers("can't Load Properties");
+		}
+		return properties;
 	}
 }

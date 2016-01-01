@@ -4,6 +4,7 @@ import algorithms.search.AStar;
 import algorithms.search.BFS;
 import algorithms.search.MazeAirDistance;
 import algorithms.search.MazeManhattanDistance;
+import presenter.Properties;
 
 /**
  * <strong>Model</strong>  is a model interface for the project
@@ -134,6 +135,10 @@ public interface Model {
 	public void fileSize(String filename);
 	
 	public void setNumThreats(int numThreads);
+	
+	public void saveProperties(Properties properties);
+	
+	public Properties loadProperties();
 	
 	public void exit();
 }

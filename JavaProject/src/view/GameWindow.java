@@ -1,11 +1,16 @@
 package view;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Text;
 
@@ -21,6 +26,10 @@ public class GameWindow extends BasicWindow{
 		
 	}
 
+	public GameWindow(int width, int height, String name, Display display) {
+		super(width, height, name, display);	
+	}
+	
 	@Override
 	public void initWidgets() {
 		shell.setLayout(new GridLayout(2, false));
@@ -80,8 +89,8 @@ public class GameWindow extends BasicWindow{
 		});
 		
 		//////////////////////////////////////////////////////////////////////////////////////
-		MazeDisplayer md = new Maze2D(shell, SWT.MULTI | SWT.BORDER | SWT.WRAP | SWT.V_SCROLL);
-		md.setLayoutData(new GridData(SWT.FILL,SWT.FILL,true,true,1,2));
+		MazeDisplayer md = new Maze2D(shell,SWT.BORDER);
+		md.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,true,1,2));
 		/////////////////////////////////////////////////////////////////////////////////////
 		
 	    Group groupOption = new Group(shell, SWT.SHADOW_OUT);

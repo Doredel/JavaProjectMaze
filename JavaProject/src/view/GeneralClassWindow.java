@@ -11,27 +11,36 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
 
-public class GeneralClassWindow extends BasicWindow {
+public class GeneralClassWindow<T> extends BasicWindow {
 	
-	private Class object;
+	private Class<T> theClass;
 	private List<Field> fields ;
+	private T result;
 	
-	public GeneralClassWindow(int width, int height, String name, Class object) {
+	
+	public GeneralClassWindow(int width, int height, String name, Class<T> theClass) {
 		super(width, height, name);
-		this.object = object;
-		fields = new ArrayList<Field>(Arrays.asList(object.getDeclaredFields()));
+		this.theClass = theClass;
+		fields = new ArrayList<Field>(Arrays.asList(theClass.getDeclaredFields()));
+	}
+	
+	public GeneralClassWindow(int width, int height, String name, Display display, Class<T> theClass) {
+		super(width, height, name, display);
+		this.theClass = theClass;
+		fields = new ArrayList<Field>(Arrays.asList(theClass.getDeclaredFields()));
 		
 	}
-
+	
 	@Override
 	public void initWidgets() {
 		ArrayList<Text> info = new ArrayList<Text>();
 		shell.setLayout(new GridLayout(2, false));
 		
 		Text Title = new Text(shell, SWT.READ_ONLY|SWT.BOLD);
-		Title.setText(object.getSimpleName());
+		Title.setText(theClass.getSimpleName());
 		Title.setLayoutData(new GridData(SWT.FILL ,SWT.TOP ,true ,false ,2 ,1));
 		
 		for (int i=0; i<fields.size(); i++) {
@@ -54,8 +63,13 @@ public class GeneralClassWindow extends BasicWindow {
 			
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				// TODO Auto-generated method stub
-				
+				try {
+					result = theClass.newInstance();
+				} catch (InstantiationException | IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				shell.close();
 			}
 			
 			@Override
@@ -64,4 +78,8 @@ public class GeneralClassWindow extends BasicWindow {
 		});
 	}
 
+	public T getObject() throws InstantiationException, IllegalAccessException{
+		return result;
+	}
+	
 }

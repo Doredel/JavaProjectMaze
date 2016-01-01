@@ -15,26 +15,39 @@ import java.util.Observer;
 public class MyView<T> extends Observable implements View<T> , Observer {
 	
 	/**
-	 * The CLI instance
+	 * The GUI instance
 	 */
-	private CLI cli;
+	private GUI gui;
 
 	@Override
 	public void start() {
-		cli = new CLI(new BufferedReader(new InputStreamReader(System.in)),new PrintWriter(System.out));
-		cli.addObserver(this);
-		cli.start();
+		gui.addObserver(this);
+		gui.start();
 	}
 
+////////////////////////////////////////////
 	@Override
 	public void display(String string) {
-		cli.display(string);
+		gui.displayError(string);
 	}
-
+///////////////////////////////////////////
+	
 	@Override
 	public void update(Observable o, Object arg) {
 		setChanged();
 		notifyObservers(arg);
+	}
+
+	@Override
+	public void setView(String inter) {
+		switch (inter) {
+		case "CLI":
+			gui = new GUIAdaptor(new CLI(new BufferedReader(new InputStreamReader(System.in)),new PrintWriter(System.out)));
+			break;
+		case "GUI":
+			gui = new GUI();
+			break;
+		}
 	}
 		
 	

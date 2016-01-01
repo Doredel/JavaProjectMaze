@@ -6,6 +6,9 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 /**
@@ -16,6 +19,10 @@ public class MazeGeneratetionWindows extends BasicWindow {
 
 	public MazeGeneratetionWindows(int width, int height,String title) {
 		super(width, height,title);
+	}
+	
+	public MazeGeneratetionWindows(int width, int height,String title,Display display) {
+		super(width, height,title,display);
 	}
 
 	@Override
@@ -62,6 +69,9 @@ public class MazeGeneratetionWindows extends BasicWindow {
 			public void widgetSelected(SelectionEvent arg0) {
 				setChanged();
 				notifyObservers("generate 3d maze "+nameInfo.getText()+" "+widthInfo.getText()+","+heightInfo.getText()+","+depthInfo.getText());
+				//shell.dispose();
+				GameWindow gw = new GameWindow(500, 300, nameInfo.getText(),display);
+				gw.run();
 			}
 			
 			@Override
@@ -69,5 +79,4 @@ public class MazeGeneratetionWindows extends BasicWindow {
 			}
 		});
 	}
-
 }
