@@ -1,4 +1,4 @@
-package controller;
+package presenter;
 
 import model.Model;
 import view.View;
@@ -27,11 +27,9 @@ public class SolveCommand<T> extends CommonCommand<T> {
 	}
 	
 	@Override
-	public void doCommand(String[] param) {
+	public void doCommand() {
 		if (param.length == 2) {
-			String name = param[0];
-			String algorithm = param[1];
-			this.m.solveMaze(name,algorithm);
+			m.solveMaze(param[0], param[1]);
 		} else {
 			v.display("Invalid format \'solve <name> <algorithm>\'");
 		} 

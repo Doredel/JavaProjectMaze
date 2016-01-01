@@ -1,7 +1,8 @@
-package controller;
+package presenter;
 
 import model.Model;
 import view.View;
+
 
 /**
  * class of the command to display a cross section of a maze
@@ -27,15 +28,12 @@ public class DisplayCrossSectionCommand<T> extends CommonCommand<T> {
 	}
 	
 	@Override
-	public void doCommand(String[] param) {
+	public void doCommand() {
 		if (param.length == 4) {
-			if (param[2] != "for") {
+			if (!param[2].equals("for")) {
 				v.display("display cross section by {X,Y,Z} <index> for <name>\'");
 			} else {
-				String coordinate = param[0];
-				String index = param[1];
-				String mazeName = param[3];
-				this.m.displayCrossSection(coordinate,index,mazeName);
+				m.displayCrossSection(param[0],Integer.parseInt(param[1]), param[3]);
 			}
 		} else {
 			v.display("Invalid format \'display cross section by {X,Y,Z} <index> for <name>\'");

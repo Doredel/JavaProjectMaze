@@ -1,4 +1,5 @@
-package controller;
+package presenter;
+
 
 import view.View;
 import model.Model;
@@ -22,6 +23,8 @@ public abstract class CommonCommand<T> implements Command {
 	 */
 	protected Model m;
 	
+	protected String[] param;
+	
 	/**
 	 * <strong>CommonCommand</strong>
 	 * <p>
@@ -38,6 +41,11 @@ public abstract class CommonCommand<T> implements Command {
 	}
 	
 	@Override
-	public abstract void doCommand(String[] param);
+	public abstract void doCommand();
+	
+	@Override
+	public void setParams(String[] param) {
+		this.param = param;
+	}
 	
 }

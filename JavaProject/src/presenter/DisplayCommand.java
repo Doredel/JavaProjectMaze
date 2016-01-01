@@ -1,4 +1,4 @@
-package controller;
+package presenter;
 
 import model.Model;
 import view.View;
@@ -27,10 +27,9 @@ public class DisplayCommand<T> extends CommonCommand<T> {
 	}
 	
 	@Override
-	public void doCommand(String[] param) {
+	public void doCommand() {
 		if (param.length == 1) {
-			String name=param[0];
-			this.m.displayMaze(name);
+			m.displayMaze(param[0]);
 		}else {
 			v.display("Invalid format \'display <maze name>\'");
 		}

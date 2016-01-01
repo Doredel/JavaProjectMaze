@@ -1,4 +1,4 @@
-package controller;
+package presenter;
 
 import model.Model;
 import view.View;
@@ -28,10 +28,9 @@ public class MazeSizeCommand<T> extends CommonCommand<T> {
 	}
 	
 	@Override
-	public void doCommand(String[] param) {
+	public void doCommand() {
 		if (param.length == 1) {
-			String name = param[0];
-			this.m.mazeSize(name);
+			m.mazeSize(param[0]);
 		} else {
 			v.display("Invalid format \'maze size <name>\'");
 		}

@@ -1,4 +1,4 @@
-package controller;
+package presenter;
 
 /**
  * A interface that represent the most generic command there is in command design pattern
@@ -19,5 +19,7 @@ public interface Command {
 	 *  need to make his mission
 	 * @return nothing
 	 */
-	public void doCommand(String[] param);
+	public void doCommand();
+	
+	public void setParams(String[] param);
 }

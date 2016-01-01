@@ -1,7 +1,8 @@
-package controller;
+package presenter;
 
 import model.Model;
 import view.View;
+
 
 /**
  * class of the command to generate a maze
@@ -28,17 +29,12 @@ public class Generate3DMazeCommand<T> extends CommonCommand<T> {
 	}
 	
 	@Override
-	public void doCommand(String[] param) {
+	public void doCommand() {
 		try{
 			if (param.length == 2) {
-				String name=param[0];
 				String[] xyz=param[1].split(",");
 				if (xyz.length == 3) {
-					int x= Integer.parseInt(xyz[0]);
-					int y= Integer.parseInt(xyz[1]);
-					int z= Integer.parseInt(xyz[2]);
-					
-					m.generateMaze(name,x,y,z);
+					m.generateMaze(param[0], Integer.parseInt(xyz[0]), Integer.parseInt(xyz[1]), Integer.parseInt(xyz[2]));
 				} else {
 					v.display("Invalid format \'generate 3d maze <name> <x,y,z>\'");
 				}

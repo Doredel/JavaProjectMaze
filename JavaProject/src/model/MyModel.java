@@ -1,25 +1,37 @@
 package model;
 
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
+import java.util.Observable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 
 import algorithms.mazeGenerators.Maze3d;
-import algorithms.mazeGenerators.MyMaze3dGenerator;
 import algorithms.mazeGenerators.Position;
 import algorithms.search.Solution;
-import controller.Controller;
+import presenter.Properties;
+
 
 /**
  * <strong>MyModel</strong>  is a model class for the project
  * 
  * @author Dor Edelstein, Lior Mantin
  */
-public class MyModel implements Model {
-	/**
-	 * controller instance
-	 */
-	private Controller<Position> c;
+public class MyModel extends Observable implements Model {
 	
 	/**
 	 * the mazes database
@@ -29,8 +41,12 @@ public class MyModel implements Model {
 	/**
 	 * the solutions database
 	 */
-	private HashMap<String, Solution<Position>> solutionDB;
+	private HashMap<String, Solution<Position>> solutionDB; 
 	
+	private HashMap<Maze3d, Solution<Position>> cache;
+
+	private ExecutorService executor;
+
 	/**
 	 * <strong>MyModel</strong>
 	 * <p>
@@ -40,71 +56,85 @@ public class MyModel implements Model {
 	 * 
 	 * @param c - the controller instance
 	 */
-	public MyModel(Controller<Position> c){
-		this.c=c;
+	@SuppressWarnings("unchecked")
+	public MyModel(){
 		mazeDB = new HashMap<String, Maze3d>();
 		solutionDB = new HashMap<String, Solution<Position>>();
+		cache = new HashMap<Maze3d, Solution<Position>>();
+
+		try {
+			ObjectInputStream zipo = new ObjectInputStream(new GZIPInputStream(new FileInputStream("cache.zip")));
+			cache = (HashMap<Maze3d, Solution<Position>>)zipo.readObject();
+			zipo.close();
+		} catch (IOException | ClassNotFoundException e) {
+			setChanged();
+			notifyObservers("Cant load cache");
+		}
+		
 	}
 	
 	@Override
 	public void getDir(String path){
-		c.passForDisplay(DirFinder.FindDir(path));
+		setChanged();
+		notifyObservers(DirFinder.FindDir(path));
 	}
 
 	@Override
 	public void generateMaze(String name, int width,int height,int depth) {
-		new Thread(new Runnable() {
-			public void run() {
-				if (!(mazeDB.containsKey(name))) {
-					mazeDB.put(name, null);
+		setChanged();
+		if (!(mazeDB.containsKey(name))) {
+			mazeDB.put(name, null);
 					
-					Maze3d maze = (new MyMaze3dGenerator()).generate(width, height, depth);
-					
-					mazeDB.put(name, maze);
-					
-					c.passForDisplay("maze "+name+" is ready");	
-				}
-				else {
-					c.passForDisplay("The maze "+name+" is already exist");
-					return;
-					
-				}
-				
+			Future<Maze3d> f_maze = executor.submit(new MazeGenerator(width,height,depth));
+			try {
+				mazeDB.put(name, f_maze.get());
+			} catch (InterruptedException | ExecutionException e) {
+				e.printStackTrace();//future still null
 			}
-		}).start();	
+
+			notifyObservers("maze "+name+" is ready");
+					
+		}
+		else {
+			notifyObservers("The maze "+name+" is already exist");
+		}
 	}
 
 	@Override
 	public void displayMaze(String name) {
+		setChanged();
 		try{
 			Maze3d maze = mazeDB.get(name);
-			c.passMaze(maze);
+			notifyObservers(maze);
 		}catch(NullPointerException e){
-			c.passForDisplay("maze doesn't exist");
+			notifyObservers("maze doesn't exist");
 		}
 	}
 	
 	@Override
 	public void displaySolution(String name){
+		setChanged();
 		try{
 			Solution<Position> solution = solutionDB.get(name);
-			c.passSolution(solution);
+			notifyObservers(solution);
 		}catch(NullPointerException e){
-			c.passForDisplay("Solution doesn't exist");
+			notifyObservers("Solution doesn't exist");
 		}
+	
 	}
 	
 	@Override
 	public void saveMaze(String mazeName, String fileName) {
+		setChanged();
 		try{
 			Maze3d maze = mazeDB.get(mazeName);
 			MazeSaver.save(maze, fileName);
 			
-			c.passForDisplay(mazeName+" has been saved in "+fileName);
+			notifyObservers(mazeName+" has been saved in "+fileName);
 		} catch (IOException e) {
-			c.passForDisplay(mazeName+" can't be comprassed to a file");
+			notifyObservers(mazeName+" can't be comprassed to a file");
 		}catch(NullPointerException e){
-			c.passForDisplay("maze doesn't exist");
+			notifyObservers("maze doesn't exist");
 		}
 		
 	}
@@ -113,79 +143,128 @@ public class MyModel implements Model {
 	public void loadMaze(String mazeName, String fileName) {
 		
 		Maze3d maze;
+		setChanged();
 		try {
 			maze = new Maze3d(MazeLoader.load(fileName));
 			mazeDB.put(mazeName, maze);
 			
-			c.passForDisplay("Maze has been loaded");
+			notifyObservers("Maze has been loaded");
 		} catch(IOException e) {
-			c.passForDisplay(fileName+" can't be read");
+			notifyObservers(fileName+" can't be read");
 		}catch(SecurityException e){
-			c.passForDisplay(fileName+" can't be read because of security issue");
+			notifyObservers(fileName+" can't be read because of security issue");
 		}
-		
 	}
 
 	@Override
 	public void solveMaze(String name, String algorithm) {
-		new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				try {
-					Maze3d maze = mazeDB.get(name);
-							
-					Solution<Position> sol = MazeSolver.solve(maze, algorithm);
-					c.passForDisplay("Solution for "+name+" is ready");
-					solutionDB.put(name, sol);
-				}catch(NullPointerException e){
-						c.passForDisplay("maze doesn't exist");
-				}catch (Exception e) {
-					c.passForDisplay(e.getMessage());
-				}
+		setChanged();
+		try {
+			Maze3d maze = mazeDB.get(name);
+			if (cache.containsKey(maze)) {
+				solutionDB.put(name, cache.get(maze));
+			} else {
+				Future<Solution<Position>> f_sol = executor.submit(new MazeSolver(maze, algorithm));
+				solutionDB.put(name, f_sol.get());
+				cache.put(mazeDB.get(name), f_sol.get());
 			}
-		}).start();
+			notifyObservers("Solution for "+name+" is ready");
+			
+		}catch(NullPointerException e){
+			notifyObservers("maze doesn't exist");
+		}catch (Exception e) {
+			notifyObservers(e.getMessage());
+		}
+
 		
 	}
 
 	
 
 	@Override
-	public void displayCrossSection(String coordinate, String index, String mazeName) {
+	public void displayCrossSection(String coordinate, int index, String mazeName) {
 		
 		int[][] arr;
+		setChanged();
 		try {
 			Maze3d maze= this.mazeDB.get(mazeName);
 			arr = CrossSectionGetter.crossSection(coordinate, index, maze);
-			c.passCrossSection(arr);
+			notifyObservers(arr);
 			
 		}catch(NullPointerException e){
-			c.passForDisplay("maze doesn't exist");
+			notifyObservers("maze doesn't exist");
 		}catch(IndexOutOfBoundsException e){
-			c.passForDisplay("the index of the cross section isn't in the maze");
+			notifyObservers("the index of the cross section isn't in the maze");
 		}catch (Exception e) {
-			c.passForDisplay(e.getMessage());
-		}	
+			notifyObservers(e.getMessage());
+		}
 	}
 
 	@Override
 	public void mazeSize(String name) {
+		setChanged();
 		try{
 			Maze3d maze = this.mazeDB.get(name);
-			c.passForDisplay(MazeSizeFetcher.sizeOfMaze(maze)+"");
+			notifyObservers(MazeSizeFetcher.sizeOfMaze(maze)+"");
 		}catch(NullPointerException e){
-			c.passForDisplay("maze doesn't exist");
+			notifyObservers("maze doesn't exist");
 		}
 	}
 	
 	@Override
 	public void fileSize(String fileName){
-		
+		setChanged();
 		File f = new File(fileName);
 		if (f.exists()) {
-			c.passForDisplay("The size of "+fileName+" is "+f.length()+"B");
+			notifyObservers("The size of "+fileName+" is "+f.length()+"B");
 		}else {
-			c.passForDisplay(fileName+" isnt exist can't calculate size");
+			notifyObservers(fileName+" isnt exist can't calculate size");
 		}
+	}
+
+	@Override
+	public void exit() {
+		try {
+			ObjectOutputStream zipo = new ObjectOutputStream(new GZIPOutputStream(new FileOutputStream("cache.zip")));
+			zipo.writeObject(cache);
+			zipo.close();
+		} catch (IOException e) {
+			setChanged();
+			notifyObservers("Can't save cache");
+		} 
+		finally {
+			executor.shutdownNow();
+		}		
+	}
+
+	@Override
+	public void setNumThreats(int numThreads) {
+		executor = Executors.newFixedThreadPool(numThreads);
+	}
+
+	@Override
+	public void saveProperties(Properties properties) {
+		try {
+			XMLEncoder coder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream("Properties.xml")));
+			coder.writeObject(properties);
+			coder.close();
+		} catch (FileNotFoundException e) {
+			setChanged();
+			notifyObservers("can't Save Properties");
+		}
+	}
+
+	@Override
+	public Properties loadProperties() {
+		Properties properties = null;
+		try {
+			XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(new FileInputStream("Properties.xml")));
+			properties = (Properties)decoder.readObject();
+			decoder.close();
+		} catch (FileNotFoundException e) {
+			setChanged();
+			notifyObservers("can't Load Properties");
+		}
+		return properties;
 	}
 }

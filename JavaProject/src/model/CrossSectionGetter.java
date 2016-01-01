@@ -15,7 +15,7 @@ public class CrossSectionGetter {
 	 * @param maze The parameter of the maze name that his cross section will be shown in view.
 	 * @return nothing
 	 */
-	public static int[][] crossSection(String coordinate, String index, Maze3d maze) throws Exception {
+	public static int[][] crossSection(String coordinate, int index, Maze3d maze) throws Exception {
 		
 		int[][] arr =null;
 		
@@ -23,17 +23,17 @@ public class CrossSectionGetter {
 		
 		case "X":
 			
-			arr = maze.getCrossSectionByX(Integer.parseInt(index));
+			arr = maze.getCrossSectionByX(index);
 			break;
 			
 		case "Y":
 			
-			arr = maze.getCrossSectionByY(Integer.parseInt(index));
+			arr = maze.getCrossSectionByY(index);
 			break;
 			
 		case "Z":
 			
-			arr = maze.getCrossSectionByZ(Integer.parseInt(index));
+			arr = maze.getCrossSectionByZ(index);
 			break;
 			
 		default:

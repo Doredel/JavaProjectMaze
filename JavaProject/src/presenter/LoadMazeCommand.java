@@ -1,4 +1,4 @@
-package controller;
+package presenter;
 
 import model.Model;
 import view.View;
@@ -28,11 +28,9 @@ public class LoadMazeCommand<T> extends CommonCommand<T> {
 	}
 	
 	@Override
-	public void doCommand(String[] param) {
+	public void doCommand() {
 		if(param.length == 2){
-			String fileName= param[0];
-			String mazeName = param[1];
-			this.m.loadMaze(mazeName,fileName);
+			m.loadMaze(param[0], param[1]);
 		}else{
 			v.display("Invalid format \'load maze <File name> <Maze name>\'");
 		}

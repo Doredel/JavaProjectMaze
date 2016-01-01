@@ -1,5 +1,6 @@
 package algorithms.mazeGenerators;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -12,7 +13,7 @@ import java.util.Arrays;
  * @since 29/11/2015
  * @see Position
  */
-public class Maze3d {
+public class Maze3d implements Serializable{
 	
 	/**
 	 * The maze content
@@ -454,6 +455,11 @@ public class Maze3d {
 			str.append("\n");
 		}
 		return str.toString();
+	}
+	
+	@Override
+	public int hashCode() {
+		return Arrays.hashCode(this.toByteArray());
 	}
 	
 }

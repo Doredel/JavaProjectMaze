@@ -4,6 +4,7 @@ import algorithms.search.AStar;
 import algorithms.search.BFS;
 import algorithms.search.MazeAirDistance;
 import algorithms.search.MazeManhattanDistance;
+import presenter.Properties;
 
 /**
  * <strong>Model</strong>  is a model interface for the project
@@ -108,7 +109,7 @@ public interface Model {
 	 * @param index - the index of the cross section
 	 * @param mazeName - the name of the maze
 	 */
-	public void displayCrossSection(String coordinate, String index, String mazeName);
+	public void displayCrossSection(String coordinate, int index, String mazeName);
 	
 	/**
 	 * <strong>mazeSize</strong>
@@ -132,4 +133,12 @@ public interface Model {
 	 * @param filename - the name of the file
 	 */
 	public void fileSize(String filename);
+	
+	public void setNumThreats(int numThreads);
+	
+	public void saveProperties(Properties properties);
+	
+	public Properties loadProperties();
+	
+	public void exit();
 }

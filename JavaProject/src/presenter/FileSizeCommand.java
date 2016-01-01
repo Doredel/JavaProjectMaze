@@ -1,7 +1,8 @@
-package controller;
+package presenter;
 
 import model.Model;
 import view.View;
+
 
 /**
  * class of the command to display the size of a file
@@ -27,10 +28,9 @@ public class FileSizeCommand<T> extends CommonCommand<T> {
 	}
 
 	@Override
-	public void doCommand(String[] param) {
+	public void doCommand() {
 		if (param.length == 1) {
-			String fileName = param[0];
-			this.m.fileSize(fileName);
+			m.fileSize(param[0]);
 		} else {
 			v.display("Invalid format \'file size <name>\'");
 		}

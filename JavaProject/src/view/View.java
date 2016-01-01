@@ -26,4 +26,6 @@ public interface View<T> {
 	 * @param string - the string to be printed
 	 */
 	public void display(String string);
+	
+	public void setView(String inter);
 }
