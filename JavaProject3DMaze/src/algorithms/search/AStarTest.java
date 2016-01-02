@@ -19,6 +19,7 @@ public class AStarTest {
 		maze.setGoalPosition(new Position(1,1,2));
 		
 	}
+	
 	@Test
 	public void testSearch() {
 	}
