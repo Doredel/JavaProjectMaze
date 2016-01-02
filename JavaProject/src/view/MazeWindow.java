@@ -1,4 +1,4 @@
-package view;
+/*package view;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -83,4 +83,4 @@ public class MazeWindow extends BasicWindow{
 		win.run();
 	}
 
-}
+}*/

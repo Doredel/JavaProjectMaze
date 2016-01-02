@@ -8,6 +8,7 @@ import org.eclipse.swt.widgets.Shell;
 
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
+import algorithms.search.Solution;
 
 public class GUI extends Observable implements Observer{
 	
@@ -19,7 +20,7 @@ public class GUI extends Observable implements Observer{
 		mw.addObserver(this);
 		mw.run();
 	}
-	public void displayError(String string)
+	public void display(String string)
 	{
 		MessageBox messageBox = new MessageBox(new Shell());
 		messageBox.setMessage(string);
@@ -37,6 +38,8 @@ public class GUI extends Observable implements Observer{
 			mw.setCross((int[][])arg);
 		}else if (arg instanceof Maze3d) {
 			mw.setMaze((Maze3d)arg);
+		}else if(arg instanceof Solution<?>){
+			mw.setSolutin((Solution<?>)arg);
 		}
 		
 	}

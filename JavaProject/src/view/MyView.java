@@ -28,7 +28,7 @@ public class MyView<T> extends Observable implements View<T> , Observer {
 ////////////////////////////////////////////
 	@Override
 	public void display(String string) {
-		gui.displayError(string);
+		gui.display(string);
 	}
 ///////////////////////////////////////////
 	

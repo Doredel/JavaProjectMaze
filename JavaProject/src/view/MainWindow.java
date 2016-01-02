@@ -1,5 +1,9 @@
 package view;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
@@ -12,19 +16,24 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Text;
 
 import algorithms.mazeGenerators.Maze3d;
+import algorithms.mazeGenerators.Position;
+import algorithms.search.Solution;
 import presenter.Properties;
 
 public class MainWindow extends BasicWindow{
 
 	private String name;
 	private Maze3d maze;
-	private MazeDisplayer md;
+	private Position character;
+	private Maze2D md;
+	private Group groupSection;
 	
 	public MainWindow(int width, int height, String name) {
 		super(width, height, name);
@@ -56,17 +65,11 @@ public class MainWindow extends BasicWindow{
 			
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				GeneralClassWindow<Properties> propertiesWindow = new GeneralClassWindow<Properties>(500, 300, "properties", display,Properties.class);
+				GeneralClassWindow propertiesWindow = new GeneralClassWindow(500, 300, "properties", display,Properties.class);
 				propertiesWindow.run();
-				try {
-					Properties properties = propertiesWindow.getObject();
-					setChanged();
-					notifyObservers(properties);
-				} catch (InstantiationException e) {
-					(new MessageBox(shell)).open();
-				} catch (IllegalAccessException e) {
-					(new MessageBox(shell)).open();
-				}
+				Properties properties = (Properties) propertiesWindow.getObject();
+				setChanged();
+				notifyObservers(properties);
 			}
 			
 			@Override
@@ -101,8 +104,19 @@ public class MainWindow extends BasicWindow{
 				setChanged();
 				notifyObservers(mgw.getMaze());
 				name = mgw.getName();
+				
 				setChanged();
-				notifyObservers("display "+name);
+				notifyObservers("display "+name);	
+				character = maze.getStartPosition();
+				md.setCharacter(character);
+				md.setGoal(maze.getGoalPosition());
+				
+				setChanged();
+				notifyObservers("display cross section by X "+character.getX()+" for "+name);
+				md.setCross(0);
+				md.redraw();
+				
+				groupSection.setFocus();
 			}
 			
 			@Override
@@ -115,7 +129,7 @@ public class MainWindow extends BasicWindow{
 		md.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,true,1,4));
 		/////////////////////////////////////////////////////////////////////////////////////
 		
-		Group groupSection = new Group(shell, SWT.SHADOW_OUT);
+		groupSection = new Group(shell, SWT.SHADOW_OUT);
 		groupSection.setText("Sections:");
 		groupSection.setLayout(new GridLayout(1, false));
 		groupSection.setLayoutData(new GridData(SWT.FILL ,SWT.TOP ,false ,false ,1 ,1));
@@ -128,9 +142,8 @@ public class MainWindow extends BasicWindow{
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				setChanged();
-				notifyObservers("display cross section by X "+maze.getStartPosition().getX()+" for "+name);
-				md.setCharacterPosition(maze.getStartPosition().getY(),maze.getStartPosition().getZ());
-				md.redraw();
+				notifyObservers("display cross section by X "+character.getX()+" for "+name);
+				md.setCross(0);
 			}
 			
 			@Override
@@ -146,10 +159,8 @@ public class MainWindow extends BasicWindow{
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				setChanged();
-				notifyObservers("display cross section by Y "+maze.getStartPosition().getY()+" for "+name);
-				md.setCharacterPosition(maze.getStartPosition().getZ(),maze.getStartPosition().getX());
-				md.redraw();
-				System.out.println(maze.getStartPosition());
+				notifyObservers("display cross section by Y "+character.getY()+" for "+name);
+				md.setCross(1);
 			}
 			
 			@Override
@@ -166,9 +177,8 @@ public class MainWindow extends BasicWindow{
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				setChanged();
-				notifyObservers("display cross section by Z "+maze.getStartPosition().getZ()+" for "+name);
-				md.setCharacterPosition(maze.getStartPosition().getX(),maze.getStartPosition().getY());
-				md.redraw();
+				notifyObservers("display cross section by Z "+character.getZ()+" for "+name);
+				md.setCross(2);
 			}
 			
 			@Override
@@ -189,19 +199,33 @@ public class MainWindow extends BasicWindow{
 		Button solve = new Button(groupOption, SWT.READ_ONLY|SWT.BOLD);
 		solve.setText("SOLVE");
 		solve.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,false ,false ,1 ,1));
+		solve.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				setChanged();
+				notifyObservers("solve "+name+" BFS");
+				setChanged();
+				notifyObservers("display solution "+name);
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0) {}
+		});
+		
 		
 		Group groupPosition = new Group(shell, SWT.SHADOW_OUT);
 		groupPosition.setText("Your position:");
 		groupPosition.setLayout(new GridLayout(1, false));
 		groupPosition.setLayoutData(new GridData(SWT.FILL ,SWT.TOP ,false ,true ,1 ,1));
 		
-	    Text PosXLabel = new Text(groupPosition, SWT.READ_ONLY);
+	    Label PosXLabel = new Label(groupPosition, SWT.READ_ONLY);
 	    PosXLabel.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,false ,false ,1 ,1));
 		
-		Text PosYLabel = new Text(groupPosition, SWT.READ_ONLY);
+	    Label PosYLabel = new Label(groupPosition, SWT.READ_ONLY);
 		PosYLabel.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,false ,false ,1 ,1));
 		
-		Text PosZLabel = new Text(groupPosition, SWT.READ_ONLY);
+		Label PosZLabel = new Label(groupPosition, SWT.READ_ONLY);
 		PosZLabel.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,false ,false ,1 ,1));
 		
 		md.addKeyListener(new KeyListener() {
@@ -211,43 +235,95 @@ public class MainWindow extends BasicWindow{
 			
 			@Override
 			public void keyPressed(KeyEvent arg0) {
-				
+				ArrayList<String> pos = new ArrayList<String>(Arrays.asList(maze.getPossibleMoves(character)));
 				switch (arg0.keyCode) {
 				case SWT.PAGE_UP:
-					maze.setStartPosition(maze.getStartPosition().getUp());
+					if (pos.contains(character.getUp().toString())) {
+						character = character.getUp();
+					}else{
+						MessageBox ms = new MessageBox(shell);
+						ms.setMessage("Cant move there");
+						ms.open();
+					}
 					break;
 
 				case SWT.PAGE_DOWN:
-					maze.setStartPosition(maze.getStartPosition().getDown());
+					if (pos.contains(character.getDown().toString())) {
+						character = character.getDown();
+					}else{
+						MessageBox ms = new MessageBox(shell);
+						ms.setMessage("Cant move there");
+						ms.open();
+					}
 					break;
 					
 				case SWT.ARROW_RIGHT:
-					maze.setStartPosition(maze.getStartPosition().getRight());
+					if (pos.contains(character.getRight().toString())) {
+						character = character.getRight();
+					}else{
+						MessageBox ms = new MessageBox(shell);
+						ms.setMessage("Cant move there");
+						ms.open();
+					}
 					break;
 					
 				case SWT.ARROW_LEFT:
-					maze.setStartPosition(maze.getStartPosition().getLeft());
+					if (pos.contains(character.getLeft().toString())) {
+						character = character.getLeft();
+					}else{
+						MessageBox ms = new MessageBox(shell);
+						ms.setMessage("Cant move there");
+						ms.open();
+					}
 					break;
 					
 				case SWT.ARROW_DOWN:
-					maze.setStartPosition(maze.getStartPosition().getForward());
+					if (pos.contains(character.getForward().toString())) {
+						character = character.getForward();
+					}else{
+						MessageBox ms = new MessageBox(shell);
+						ms.setMessage("Cant move there");
+						ms.open();
+					}
 					break;
 					
 				case SWT.ARROW_UP:
-					maze.setStartPosition(maze.getStartPosition().getBackward());
+					if (pos.contains(character.getBackward().toString())) {
+						character = character.getBackward();
+					}else{
+						MessageBox ms = new MessageBox(shell);
+						ms.setMessage("Cant move there");
+						ms.open();
+					}
 					break;
 				}
+				md.setCharacter(character);
+				
+				switch (md.getCross()) {
+				case 0:
+					setChanged();
+					notifyObservers("display cross section by X "+character.getX()+" for "+name);
+					break;
+				case 1:
+					setChanged();
+					notifyObservers("display cross section by Y "+character.getY()+" for "+name);
+					break;
+				case 2:
+					setChanged();
+					notifyObservers("display cross section by Z "+character.getZ()+" for "+name);;
+					break;
+				}
+				
+				md.redraw();
 				
 				PosXLabel.setText("X: "+(maze.getStartPosition().getX()+1)+"/"+maze.getMaze3d().length);
 				PosYLabel.setText("Y: "+(maze.getStartPosition().getY()+1)+"/"+maze.getMaze3d()[0].length);
 				PosZLabel.setText("Z: "+(maze.getStartPosition().getZ()+1)+"/"+maze.getMaze3d()[0][0].length);
 				
-				setChanged();
-				notifyObservers("display cross section by Y "+maze.getStartPosition().getY()+" for "+name);
-				md.setCharacterPosition(maze.getStartPosition().getX(),maze.getStartPosition().getZ());
-				md.redraw();
 			}
 		});
+		
+		
 		
 		shell.addDisposeListener(new DisposeListener() {
 			
@@ -261,9 +337,15 @@ public class MainWindow extends BasicWindow{
 	
 	public void setCross(int[][] maze){
 		md.setMazeData(maze);
+		md.redraw();
 	}
 	
 	public void setMaze(Maze3d maze){
 		this.maze = maze;
+	}
+
+	public void setSolutin(Solution<?> solution) {
+		md.setSolution((Solution<Position>) solution);
+		md.redraw();
 	}
 }

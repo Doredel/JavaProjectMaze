@@ -317,11 +317,11 @@ public class Maze3d implements Serializable{
 		}
 		else
 		{
-			int[][] res = new int[this.maze3d.length][this.maze3d[0][y].length];
+			int[][] res = new int[this.maze3d[0][y].length][this.maze3d.length];
 	
-			for (int i = 0; i < this.maze3d.length; i++) {
-				for (int k = 0; k < this.maze3d[0][y].length; k++) {
-					res[i][k] = this.maze3d[i][y][k];
+			for (int k = 0; k < this.maze3d[0][y].length; k++){
+				 for (int i = 0; i < this.maze3d.length; i++) {
+					res[k][i] = this.maze3d[i][y][k];
 				}
 			}
 		

@@ -64,22 +64,12 @@ public class Presenter<T> implements Observer {
 	    		
 			}
 	    	else if (arg instanceof int[][]) {
-	    		
-	    		int[][] cross = (int[][])arg;
-	    		v.pass(arg);
+
+	    		v.pass((int[][])arg);
 	    		
 			}
-	    	else if (arg instanceof Solution) {
-	    		
-				Solution<T> solution = (Solution<T>)arg;
-	    		StringBuilder str = new StringBuilder();
-	    		
-	    		for (State<T> state : solution.getSolution()) {
-	    			str.append(state.getState().toString()+"->");
-	    		}
-	    		
-	    		v.display(str.toString());
-	    		
+	    	else if (arg instanceof Solution<?>) {		
+				v.pass((Solution<?>)arg);	    		
 			}
 		}
 	    if (obs == v){ 
