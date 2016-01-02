@@ -89,6 +89,7 @@ public class MyModel extends Observable implements Model {
 		notifyObservers(DirFinder.FindDir(path));
 	}
 	
+	
 	/**
 	 * <strong>generateMaze</strong>
 	 * <p>
