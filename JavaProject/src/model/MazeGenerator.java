@@ -24,6 +24,7 @@ public class MazeGenerator implements Callable<Maze3d> {
 		this.depth = depth;
 	}
 
+
 	/**
 	 * This is an override method that makes this class be callable. 
 	 */
