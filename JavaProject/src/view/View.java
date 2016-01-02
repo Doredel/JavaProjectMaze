@@ -28,4 +28,6 @@ public interface View<T> {
 	public void display(String string);
 	
 	public void setView(String inter);
+	
+	public void pass(Object arg);
 }

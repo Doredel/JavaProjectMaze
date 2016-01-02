@@ -27,4 +27,18 @@ public class GUIAdaptor extends GUI{
 	public void displayError(String string) {
 		cli.display(string);
 	} 
+	
+	public void displayCross(int[][] cross){
+		StringBuilder str = new StringBuilder();
+		
+		for (int i = 0; i < cross.length; i++) {
+			for (int j = 0; j < cross[0].length; j++) {
+				str.append(cross[i][j]+" ");
+			}
+			str.append("\n");
+		}
+		str.append("\n");
+		
+		cli.display(str.toString());
+	}
 }

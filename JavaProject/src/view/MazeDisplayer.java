@@ -21,14 +21,18 @@ public abstract class MazeDisplayer extends Canvas{
 		this.mazeData=mazeData;
 	}
 	
-	public abstract  void setCharacterPosition(int row,int col);
+	public abstract void setCharacterPosition(int row,int col);
 
 	public abstract void moveUp();
 
-	public abstract  void moveDown();
+	public abstract void moveDown();
 
-	public abstract  void moveLeft();
+	public abstract void moveLeft();
 
-	public  abstract void moveRight();
+	public abstract void moveRight();
+
+	public abstract void moveBackward();
+
+	public abstract void moveForward();
 
 }

@@ -49,6 +49,11 @@ public class MyView<T> extends Observable implements View<T> , Observer {
 			break;
 		}
 	}
+
+	@Override
+	public void pass(Object arg) {
+		gui.pass(arg);
+	}
 		
 	
 }

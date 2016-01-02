@@ -6,6 +6,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import algorithms.mazeGenerators.Maze3d;
+import algorithms.mazeGenerators.Position;
 import algorithms.search.Solution;
 import algorithms.search.State;
 import model.Model;
@@ -24,11 +25,10 @@ public class Presenter<T> implements Observer {
 		this.m = model;
 		this.v = view;
 		CreateCommandMap();
-	
-		properties = m.loadProperties();
 		
-		m.setNumThreats(properties.getNumberOfThread());
+		properties = m.loadProperties();
 		v.setView(properties.getInterfaceType());
+		m.setNumThreats(properties.getNumberOfThread());
 	}
 	
 	public void CreateCommandMap(){
@@ -60,23 +60,13 @@ public class Presenter<T> implements Observer {
 	    	}
 	    	else if (arg instanceof Maze3d) {
 	    		
-	    		v.display(((Maze3d)arg).toString());
+	    		v.pass((Maze3d)arg);
 	    		
 			}
 	    	else if (arg instanceof int[][]) {
 	    		
 	    		int[][] cross = (int[][])arg;
-	    		StringBuilder str = new StringBuilder();
-	    		
-	    		for (int i = 0; i < cross.length; i++) {
-	    			for (int j = 0; j < cross[0].length; j++) {
-	    				str.append(cross[i][j]+" ");
-	    			}
-	    			str.append("\n");
-	    		}
-	    		str.append("\n");
-	    		
-	    		v.display(str.toString());
+	    		v.pass(arg);
 	    		
 			}
 	    	else if (arg instanceof Solution) {
@@ -91,17 +81,17 @@ public class Presenter<T> implements Observer {
 	    		v.display(str.toString());
 	    		
 			}
-	    	
 		}
 	    if (obs == v){ 
 	    	if (arg instanceof String) {
 	    		String str = (String)arg;
-		    	Command cmd;
+		    	Command cmd = null;
 		    	ArrayList<String> param = new ArrayList<String>();
 		    	
 		    	if(str.equals("exit")){
 		    		cmd = comnds.get("exit");
 		    		cmd.setParams(new String[]{"exit"});
+					cmd.doCommand();
 		    	}else{
 		    	
 					for (String string : comnds.keySet()) {
@@ -133,13 +123,15 @@ public class Presenter<T> implements Observer {
 							}
 							param.remove(1);
 						}
+					
 						else{
 							cmd = comnds.get(param.get(0));	
 						}
-						cmd.setParams(param.get(1).split(" "));
-						cmd.doCommand();
-						param.clear();
 					}
+					cmd.setParams(param.get(1).split(" "));
+					cmd.doCommand();
+					param.clear();
+					
 		    	}
 			} else if(arg instanceof Properties) {
 				m.saveProperties((Properties)arg);
