@@ -12,6 +12,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 
 public class MazeWindow extends BasicWindow{
+	
 	/**
 	 * timer variable of Timer's type
 	 */
