@@ -144,7 +144,6 @@ public class MyModel extends Observable implements Model {
 			notifyObservers("maze doesn't exist");
 		}
 	}
-
 	/**
 	 * <strong>displaySolution</strong>
 	 * <p>
