@@ -1,5 +1,7 @@
 package algorithms.search;
 
+
+
 import org.junit.Test;
 
 import algorithms.mazeGenerators.Maze3d;
@@ -17,7 +19,6 @@ public class AStarTest {
 		maze.setGoalPosition(new Position(1,1,2));
 		
 	}
-	
 	@Test
 	public void testSearch() {
 	}

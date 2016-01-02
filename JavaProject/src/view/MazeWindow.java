@@ -12,14 +12,39 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 
 public class MazeWindow extends BasicWindow{
-
+	/**
+	 * timer variable of Timer's type
+	 */
 	Timer timer;
+	/**
+	 * task variable of TimerTask's type
+	 */
 	TimerTask task;
 	
+	/**
+	 * <strong>MazeWindow</strong>
+	 * <p>
+	 * <code>public MazeWindow(int width, int height, String title)</code>
+	 * <p>
+	 * Constructor of MazeWindow that initializes the BasicWindow by the parameters. 
+	 * 
+	 * @param width The width of the window
+	 * @param height The height of the window
+	 * @param title The window's title
+	 */
 	public MazeWindow(int width, int height, String title) {
 		super(width, height, title);
 	}
 	
+	/**
+	 * <strong>initWidgets</strong>
+	 * <p>
+	 * <code>public void initWidgets()</code>
+	 * <p>
+	 * Init widgets method, That sets and shows a window of a maze board 
+	 * 
+	 * @return nothing
+	 */
 	@Override
 	public void initWidgets() {
 		shell.setLayout(new GridLayout(2,false));

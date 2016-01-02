@@ -12,19 +12,54 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 /**
- * @author mantinli
+ * @author Dor Edelstein, Lior Mantin
  *
  */
 public class MazeGeneratetionWindows extends BasicWindow {
 
+	/**
+	 * <strong>MazeGeneratetionWindows</strong>
+	 * <p>
+	 * <code>public MazeGeneratetionWindows(int width, int height,String title)</code>
+	 * <p>
+	 * Constructor of MazeGeneratetionWindows that initializes the BasicWindow by the parameters. 
+	 * 
+	 * @param width The width of the window
+	 * @param height The height of the window
+	 * @param title The window's title
+	 */
 	public MazeGeneratetionWindows(int width, int height,String title) {
 		super(width, height,title);
 	}
 	
+	/**
+	 * <strong>MazeGeneratetionWindows</strong>
+	 * <p>
+	 * <code>public MazeGeneratetionWindows(int width, int height,String title,Display display)</code>
+	 * <p>
+	 * Constructor of MazeGeneratetionWindows that initializes the BasicWindow by the parameters. 
+	 * The difference from the first c'tor is in the display mode- CLI or GUI.
+	 * 
+	 * @param width The width of the window
+	 * @param height The height of the window
+	 * @param title The window's title
+	 * @param display The represent of the program- by GUI or CLI 
+	 */
 	public MazeGeneratetionWindows(int width, int height,String title,Display display) {
 		super(width, height,title,display);
 	}
 
+	/**
+	 * <strong>initWidgets</strong>
+	 * <p>
+	 * <code>public void initWidgets()</code>
+	 * <p>
+	 * Init widgets method, that initializes the window and fill it with
+	 * buttons and widgets.
+	 * This is the game window, and inside him there is the represent of the generation of the maze
+	 * by the values that the user puts in- maze name and his sizes.
+	 * @return nothing.
+	 */
 	@Override
 	public void initWidgets() {
 		shell.setLayout(new GridLayout(2, false));

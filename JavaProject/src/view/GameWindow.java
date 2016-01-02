@@ -15,21 +15,61 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Text;
 
 public class GameWindow extends BasicWindow{
-
+	/**
+	 * The x,y,z sections fields.
+	 */
 	private int x;
 	private int y;
 	private int z;
+	/**
+	 * The window name.
+	 */
 	private String name;
 	
+	/**
+	 * <strong>GameWindow</strong>
+	 * <p>
+	 * <code>public GameWindow(int width, int height, String name)</code>
+	 * <p>
+	 * Constructor of GameWindow that initializes the BasicWindow by the parameters. 
+	 * 
+	 * @param width The width of the window
+	 * @param height The height of the window
+	 * @param name The window's title
+	 */
 	public GameWindow(int width, int height, String name) {
 		super(width, height, name);
 		
 	}
 
+	/**
+	 * <strong>GameWindow</strong>
+	 * <p>
+	 * <code>public GameWindow(int width, int height, String name, Display display)</code>
+	 * <p>
+	 * Constructor of GameWindow that initializes the BasicWindow by the parameters. 
+	 * The difference from the first c'tor is in the display mode- CLI or GUI.
+	 * 
+	 * @param width The width of the window
+	 * @param height The height of the window
+	 * @param name The window's title
+	 * @param display The represent of the program- by GUI or CLI 
+	 */
 	public GameWindow(int width, int height, String name, Display display) {
 		super(width, height, name, display);	
 	}
 	
+	/**
+	 * <strong>initWidgets</strong>
+	 * <p>
+	 * <code>public void initWidgets()</code>
+	 * <p>
+	 * Init widgets method, that initializes the window and fill it with
+	 * buttons and widgets.
+	 * This is the game window, and inside him there is the represent of cross sections,
+	 * hint and solve of the maze.
+	 * @return nothing.
+	 */
 	@Override
 	public void initWidgets() {
 		shell.setLayout(new GridLayout(2, false));
