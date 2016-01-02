@@ -144,6 +144,7 @@ public class MyModel extends Observable implements Model {
 			notifyObservers("maze doesn't exist");
 		}
 	}
+	
 	/**
 	 * <strong>displaySolution</strong>
 	 * <p>
@@ -153,6 +154,7 @@ public class MyModel extends Observable implements Model {
 	 * @param name The maze name that his solution will be displayed.
 	 * @return nothing
 	 */
+	 
 	@Override
 	public void displaySolution(String name){
 		setChanged();
