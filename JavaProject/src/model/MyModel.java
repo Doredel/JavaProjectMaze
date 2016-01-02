@@ -88,6 +88,7 @@ public class MyModel extends Observable implements Model {
 		setChanged();
 		notifyObservers(DirFinder.FindDir(path));
 	}
+	
 	/**
 	 * <strong>generateMaze</strong>
 	 * <p>
@@ -102,6 +103,7 @@ public class MyModel extends Observable implements Model {
 	 * @param depth The depth size of the maze
 	 * @return nothing
 	 */
+	 
 	@Override
 	public void generateMaze(String name, int width,int height,int depth) {
 		setChanged();
