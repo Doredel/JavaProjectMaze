@@ -26,6 +26,11 @@ public class Maze2D extends MazeDisplayer{
 					   int width=getSize().x;
 					   int height=getSize().y;
 
+					   if(mazeData == null){
+						   e.gc.fillRectangle(0,0,width,height);
+						   return;
+					   }
+					   
 					   int w=width/mazeData[0].length;
 					   int h=height/mazeData.length;
 
@@ -35,7 +40,7 @@ public class Maze2D extends MazeDisplayer{
 					          int y=i*h;
 					          if(mazeData[i][j]!=0)
 					              e.gc.fillRectangle(x,y,w,h);
-					          if(i==characterY && j==characterX){
+					          else if(i==characterY && j==characterX){
 								   e.gc.setBackground(new Color(null,200,0,0));
 								   e.gc.fillOval(x,y,w,h);
 								   e.gc.setBackground(new Color(null,0,0,0));

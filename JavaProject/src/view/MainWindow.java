@@ -18,7 +18,6 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Text;
 
 import algorithms.mazeGenerators.Maze3d;
-import algorithms.mazeGenerators.Position;
 import presenter.Properties;
 
 public class MainWindow extends BasicWindow{
@@ -148,8 +147,9 @@ public class MainWindow extends BasicWindow{
 			public void widgetSelected(SelectionEvent arg0) {
 				setChanged();
 				notifyObservers("display cross section by Y "+maze.getStartPosition().getY()+" for "+name);
-				md.setCharacterPosition(maze.getStartPosition().getX(),maze.getStartPosition().getZ());
+				md.setCharacterPosition(maze.getStartPosition().getZ(),maze.getStartPosition().getX());
 				md.redraw();
+				System.out.println(maze.getStartPosition());
 			}
 			
 			@Override
@@ -175,8 +175,7 @@ public class MainWindow extends BasicWindow{
 			public void widgetDefaultSelected(SelectionEvent arg0) {
 			}
 		});
-		
-		
+
 		
 	    Group groupOption = new Group(shell, SWT.SHADOW_OUT);
 	    groupOption.setText("Options:");
@@ -239,10 +238,14 @@ public class MainWindow extends BasicWindow{
 					break;
 				}
 				
-				PosXLabel.setText("X: "+maze.getStartPosition().getX()+"/"+maze.getMaze3d().length);
-				PosYLabel.setText("Y: "+maze.getStartPosition().getY()+"/"+maze.getMaze3d()[0].length);
-				PosZLabel.setText("Z: "+maze.getStartPosition().getZ()+"/"+maze.getMaze3d()[0][0].length);
+				PosXLabel.setText("X: "+(maze.getStartPosition().getX()+1)+"/"+maze.getMaze3d().length);
+				PosYLabel.setText("Y: "+(maze.getStartPosition().getY()+1)+"/"+maze.getMaze3d()[0].length);
+				PosZLabel.setText("Z: "+(maze.getStartPosition().getZ()+1)+"/"+maze.getMaze3d()[0][0].length);
 				
+				setChanged();
+				notifyObservers("display cross section by Y "+maze.getStartPosition().getY()+" for "+name);
+				md.setCharacterPosition(maze.getStartPosition().getX(),maze.getStartPosition().getZ());
+				md.redraw();
 			}
 		});
 		

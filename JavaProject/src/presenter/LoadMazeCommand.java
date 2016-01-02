@@ -30,7 +30,7 @@ public class LoadMazeCommand<T> extends CommonCommand<T> {
 	@Override
 	public void doCommand() {
 		if(param.length == 2){
-			m.loadMaze(param[0], param[1]);
+			m.loadMaze(param[1], param[0]);
 		}else{
 			v.display("Invalid format \'load maze <File name> <Maze name>\'");
 		}

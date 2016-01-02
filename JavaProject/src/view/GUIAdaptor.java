@@ -2,6 +2,8 @@ package view;
 
 import java.util.Observer;
 
+import algorithms.mazeGenerators.Maze3d;
+
 public class GUIAdaptor extends GUI{
 
 	public CLI cli;
@@ -28,17 +30,23 @@ public class GUIAdaptor extends GUI{
 		cli.display(string);
 	} 
 	
-	public void displayCross(int[][] cross){
-		StringBuilder str = new StringBuilder();
-		
-		for (int i = 0; i < cross.length; i++) {
-			for (int j = 0; j < cross[0].length; j++) {
-				str.append(cross[i][j]+" ");
-			}
-			str.append("\n");
+	@Override
+	public void pass(Object arg) {
+		 if (arg instanceof int[][]){
+			 int[][] cross = (int[][])arg;
+			 StringBuilder str = new StringBuilder();
+				
+				for (int i = 0; i < cross.length; i++) {
+					for (int j = 0; j < cross[0].length; j++) {
+						str.append(cross[i][j]+" ");
+					}
+					str.append("\n");
+				}
+				str.append("\n");
+				
+				cli.display(str.toString());
+		}else if (arg instanceof Maze3d) {
+			cli.display(((Maze3d)arg).toString());
 		}
-		str.append("\n");
-		
-		cli.display(str.toString());
 	}
 }

@@ -26,7 +26,6 @@ public class MazeGenerator implements Callable<Maze3d> {
 	@Override
 	public Maze3d call() throws Exception {
 		Maze3d maze = (new MyMaze3dGenerator()).generate(width, height, depth);
-		System.out.println("done");
 		return maze;
 	}
 
