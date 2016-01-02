@@ -17,6 +17,7 @@ public class XMLMaker {
 
 		Properties mb = new Properties();
 		mb.setNumberOfThread(3);
+		mb.setViewInterface("CLI");
 
 		FileOutputStream fos = new FileOutputStream("Properties.xml");
 		BufferedOutputStream bos = new BufferedOutputStream(fos);
