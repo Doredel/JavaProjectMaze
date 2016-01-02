@@ -72,6 +72,7 @@ public class MyModel extends Observable implements Model {
 		}
 		
 	}
+	
 	/**
 	 * <strong>getDir</strong>
 	 * <p>
