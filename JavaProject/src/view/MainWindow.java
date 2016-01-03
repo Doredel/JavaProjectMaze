@@ -116,6 +116,7 @@ public class MainWindow extends BasicWindow{
 				md.setCross(0);
 				md.redraw();
 				
+				md.setSolution(null);
 				groupSection.setFocus();
 			}
 			
@@ -214,19 +215,22 @@ public class MainWindow extends BasicWindow{
 		});
 		
 		
-		Group groupPosition = new Group(shell, SWT.SHADOW_OUT);
+		/*Group groupPosition = new Group(shell, SWT.SHADOW_OUT);
 		groupPosition.setText("Your position:");
 		groupPosition.setLayout(new GridLayout(1, false));
 		groupPosition.setLayoutData(new GridData(SWT.FILL ,SWT.TOP ,false ,true ,1 ,1));
 		
 	    Label PosXLabel = new Label(groupPosition, SWT.READ_ONLY);
+	    PosXLabel.setText("");
 	    PosXLabel.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,false ,false ,1 ,1));
 		
 	    Label PosYLabel = new Label(groupPosition, SWT.READ_ONLY);
+	    PosYLabel.setText("");
 		PosYLabel.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,false ,false ,1 ,1));
 		
 		Label PosZLabel = new Label(groupPosition, SWT.READ_ONLY);
-		PosZLabel.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,false ,false ,1 ,1));
+		PosZLabel.setText("");
+		PosZLabel.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,false ,false ,1 ,1));*/
 		
 		md.addKeyListener(new KeyListener() {
 			
@@ -313,13 +317,7 @@ public class MainWindow extends BasicWindow{
 					notifyObservers("display cross section by Z "+character.getZ()+" for "+name);;
 					break;
 				}
-				
 				md.redraw();
-				
-				PosXLabel.setText("X: "+(maze.getStartPosition().getX()+1)+"/"+maze.getMaze3d().length);
-				PosYLabel.setText("Y: "+(maze.getStartPosition().getY()+1)+"/"+maze.getMaze3d()[0].length);
-				PosZLabel.setText("Z: "+(maze.getStartPosition().getZ()+1)+"/"+maze.getMaze3d()[0][0].length);
-				
 			}
 		});
 		

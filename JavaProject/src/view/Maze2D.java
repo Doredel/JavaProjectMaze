@@ -17,6 +17,7 @@ import algorithms.search.StateMaze3d;
 public class Maze2D extends MazeDisplayer{	
 
 	Image walls;
+	Image winScreen;
 	
 	public Position character;
 	public Position goal;
@@ -27,9 +28,9 @@ public class Maze2D extends MazeDisplayer{
 	        super(parent, style);
 	        solution = null;
 	        try {
+	        	winScreen = new Image(getDisplay(), new FileInputStream("resources/oh_no__you_won__game_over__by_nemodally.png"));
 	        	walls = new Image(getDisplay(), new FileInputStream("resources/Wall.jpg"));
 			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 	    	setBackground(new Color(null, 255, 255, 255));
@@ -50,66 +51,74 @@ public class Maze2D extends MazeDisplayer{
 					   
 					   int w=width/mazeData[0].length;
 					   int h=height/mazeData.length;
-
-					   for(int i=0;i<mazeData.length;i++)
-					      for(int j=0;j<mazeData[i].length;j++){
-					          int x=j*w;
-					          int y=i*h;
-					          if(mazeData[i][j]!=0)
-					              e.gc.drawImage(walls, 0, 0, walls.getBounds().width,  walls.getBounds().height, x, y, w, h);
-					          switch (cross) {
-							case 0:
-								if (solution != null) {
-									if (solution.getSolution().contains(new StateMaze3d(new Position(character.getX(),i,j)))) {
-										e.gc.setBackground(new Color(null,100,100,100));
-							        	  e.gc.fillRectangle(x,y,w,h);
+					   if(!character.equals(goal)){
+						   for(int i=0;i<mazeData.length;i++)
+						      for(int j=0;j<mazeData[i].length;j++){
+						          int x=j*w;
+						          int y=i*h;
+						          if(mazeData[i][j]!=0)
+						              e.gc.drawImage(walls, 0, 0, walls.getBounds().width,  walls.getBounds().height, x, y, w, h);
+						          switch (cross) {
+								case 0:
+									if (solution != null) {
+										if (solution.getSolution().contains(new StateMaze3d(new Position(character.getX(),i,j)))) {
+											e.gc.setBackground(new Color(null,150,150,150));
+								        	e.gc.fillRectangle(x,y,w,h);
+										}
 									}
-								}
-								if(i == goal.getY() && j == goal.getZ() && goal.getX() == character.getX()){
-						        	  e.gc.setBackground(new Color(null,0,255,0));
-						        	  e.gc.fillRectangle(x,y,w,h);
-						          }
-						          if(i==character.getY() && j==character.getZ()){
-									   e.gc.setBackground(new Color(null,200,0,0));
-									   e.gc.fillOval(x, y, w, h);
-	   
-						          }
-								break;
-
-							case 1:
-								if (solution != null) {
-									if (solution.getSolution().contains(new StateMaze3d(new Position(j,character.getY(),i)))) {
-										e.gc.setBackground(new Color(null,100,100,100));
+									if(i == goal.getY() && j == goal.getZ() && goal.getX() == character.getX()){
+							        	  	e.gc.setBackground(new Color(null,0,255,0));
+							        	  	e.gc.fillRectangle(x,y,w,h);
+							          }
+							          if(i==character.getY() && j==character.getZ()){
+										   e.gc.setBackground(new Color(null,200,0,0));
+										   e.gc.fillOval(x, y, w, h);
+		   
+							          }
+									break;
+	
+								case 1:
+									if (solution != null) {
+										if (solution.getSolution().contains(new StateMaze3d(new Position(j,character.getY(),i)))) {
+											e.gc.setBackground(new Color(null,150,150,150));
+								        	e.gc.fillRectangle(x,y,w,h);
+										}
+									} if(i == goal.getZ() && j == goal.getX() && goal.getY() == character.getY()){
+							        	  e.gc.setBackground(new Color(null,0,255,0));
 							        	  e.gc.fillRectangle(x,y,w,h);
-									}
-								} if(i == goal.getZ() && j == goal.getX() && goal.getY() == character.getY()){
-						        	  e.gc.setBackground(new Color(null,0,255,0));
-						        	  e.gc.fillRectangle(x,y,w,h);
-						          }
-						           if(i==character.getZ() && j==character.getX()){
-									   e.gc.setBackground(new Color(null,200,0,0));
-									   e.gc.fillOval(x, y, w, h);
-	   
-						          }
-								break;
-							case 2:
-								if (solution != null) {
-									if (solution.getSolution().contains(new StateMaze3d(new Position(i,j,character.getZ())))) {
-										e.gc.setBackground(new Color(null,100,100,100));
+							          }
+							           if(i==character.getZ() && j==character.getX()){
+										   e.gc.setBackground(new Color(null,200,0,0));
+										   e.gc.fillOval(x, y, w, h);
+		   
+							          }
+									break;
+								case 2:
+									if (solution != null) {
+										if (solution.getSolution().contains(new StateMaze3d(new Position(i,j,character.getZ())))) {
+											e.gc.setBackground(new Color(null,150,150,150));
+								        	e.gc.fillRectangle(x,y,w,h);
+										}
+									} if(i == goal.getX() && j == goal.getY() && goal.getZ() == character.getZ()){
+							        	  e.gc.setBackground(new Color(null,0,255,0));
 							        	  e.gc.fillRectangle(x,y,w,h);
-									}
-								} if(i == goal.getX() && j == goal.getY() && goal.getZ() == character.getZ()){
-						        	  e.gc.setBackground(new Color(null,0,255,0));
-						        	  e.gc.fillRectangle(x,y,w,h);
+							          }
+							           if(i==character.getX() && j==character.getY()){
+										   e.gc.setBackground(new Color(null,200,0,0));
+										   e.gc.fillOval(x, y, w, h);
+		   
+							          }
+									break;
 						          }
-						           if(i==character.getX() && j==character.getY()){
-									   e.gc.setBackground(new Color(null,200,0,0));
-									   e.gc.fillOval(x, y, w, h);
-	   
+						          if(solution != null){
+						        	  if(solution.getSolution().contains(new StateMaze3d(new Position(character.getX(),character.getY(),character.getZ())))){
+						        		  solution.getSolution().remove(new StateMaze3d(new Position(character.getX(),character.getY(),character.getZ())));
+						        	  }
 						          }
-								break;
-							}
-					          
+						      }
+					      }else{
+					    	  e.gc.drawImage(winScreen, 0, 0, winScreen.getBounds().width,  winScreen.getBounds().height, 0, 0, width, height);
+							  return;
 					      }
 					   
 					}
