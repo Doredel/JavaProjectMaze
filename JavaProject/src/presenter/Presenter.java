@@ -15,11 +15,35 @@ import view.View;
 
 public class Presenter<T> implements Observer {
 
+	/**
+	 * The model field
+	 */
 	private Model m;
+	/**
+	 * The view field
+	 */
 	private View<T> v;
+	/**
+	 * The properties of the program
+	 */
 	private Properties properties;
+	/**
+	 * The hash map of the commands list
+	 */
 	private HashMap<String,Command> comnds;
 	
+	/**
+	 * <strong>Presenter</strong>
+	 * <p>
+	 * <code>public Presenter(Model model, View<T> view)</code>
+	 * <p>
+	 * Constructor of Presenter<T> that initializes the 
+	 * model and the view facades, creates the command hash map
+	 * and loads the properties from the XML file.
+	 * 
+	 * @param model The model's Facade
+	 * @param view The view's Facade
+	 */
 	public Presenter(Model model, View<T> view) {
 		super();
 		this.m = model;
@@ -31,6 +55,14 @@ public class Presenter<T> implements Observer {
 		m.setNumThreats(properties.getNumberOfThread());
 	}
 	
+	/**
+	 * <strong>CreateCommandMap</strong>
+	 * <p>
+	 * <code>public void CreateCommandMap()</code>
+	 * <p>
+	 * The command map creator that puts each command(the string) and combines it with his unique command
+	 * @return nothing.
+	 */
 	public void CreateCommandMap(){
 		comnds = new HashMap<String,Command>();
 		
@@ -49,6 +81,21 @@ public class Presenter<T> implements Observer {
 		
 	}
 	
+	/**
+	 * <strong>update</strong>
+	 * <p>
+	 * <code>public void update(Observable obs, Object arg)</code>
+	 * <p>
+	 * The update method of the observer. This update checks if the observable
+	 * type is the model or the view, and acts in accordance with.
+	 * If the update came from the model: checks which 
+	 * display type should be send to the view
+	 * If the update came from the view: arranges and edits the command accordingly 
+	 * and then sent it to the model. After that, the command will be executed.
+	 *
+	 * @param obs The type of the facade that from him the update came from. 
+	 * @param arg The argument that will be handled.
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void update(Observable obs, Object arg) {

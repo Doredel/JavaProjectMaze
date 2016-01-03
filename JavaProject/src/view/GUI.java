@@ -15,12 +15,31 @@ public class GUI extends Observable implements Observer{
 	
 	private MainWindow mw;
 	
+	/**
+	 * <strong>start</strong>
+	 * <p>
+	 * <code>public void start</code>
+	 * <p>
+	 * The start method that runs the main window of the program.
+	 * 
+	 */
 	public void start()
 	{
 		mw = new MainWindow(700, 600, "Main window");
 		mw.addObserver(this);
 		mw.run();
 	}
+	
+	/**
+	 * <strong>displayError</strong>
+	 * <p>
+	 * <code>public void displayError(String string)</code>
+	 * <p>
+	 * Display error method that using message box to
+	 * show to the user if there is a problem in the running
+	 * of the program
+	 * 
+	 */
 	public void display(String string)
 	{
 		MessageBox messageBox = new MessageBox(new Shell());

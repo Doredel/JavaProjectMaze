@@ -10,7 +10,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Text;
 
 /**
- * @author mantinli
+ * @author Dor Edelstein, Lior Mantin
  *
  */
 public class MazeGeneratetionWindows extends BasicWindow {
@@ -18,10 +18,32 @@ public class MazeGeneratetionWindows extends BasicWindow {
 	private String request;
 	private String name;
 
+	/**
+	 * <strong>MazeGeneratetionWindows</strong>
+	 * <p>
+	 * <code>public MazeGeneratetionWindows(int width, int height,String title)</code>
+	 * <p>
+	 * Constructor of MazeGeneratetionWindows that initializes the BasicWindow by the parameters. 
+	 * 
+	 * @param width The width of the window
+	 * @param height The height of the window
+	 * @param title The window's title
+	 */
 	public MazeGeneratetionWindows(int width, int height,String title) {
 		super(width, height,title);
 	}
 	
+	/**
+	 * <strong>MazeGeneratetionWindows</strong>
+	 * <p>
+	 * <code>public MazeGeneratetionWindows(int width, int height,String title)</code>
+	 * <p>
+	 * Constructor of MazeGeneratetionWindows that initializes the BasicWindow by the parameters. 
+	 * 
+	 * @param width The width of the window
+	 * @param height The height of the window
+	 * @param title The window's title
+	 */
 	public MazeGeneratetionWindows(int width, int height,String title,Display display) {
 		super(width, height,title,display);
 	}
