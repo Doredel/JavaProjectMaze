@@ -12,7 +12,7 @@ public class ClueCommand<T> extends CommonCommand<T> {
 
 	@Override//clue <maze> <algo> <point>
 	public void doCommand() {
-		if (this.param.length == 2) {
+		if (this.param.length == 3) {
 			m.getClue(param[0],param[1],new Position(param[2]));
 		}else{
 			v.display("Invalid format \'clue <maze> <algo> <point>\'");

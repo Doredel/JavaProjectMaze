@@ -29,6 +29,7 @@ public class Maze2D extends MazeDisplayer{
 	public Maze2D(Composite parent ,int style){
 	        super(parent, style);
 	        solution = null;
+	        clue = null;
 	        try {
 	        	winScreen = new Image(getDisplay(), new FileInputStream("resources/oh_no__you_won__game_over__by_nemodally.png"));
 	        	walls = new Image(getDisplay(), new FileInputStream("resources/Wall.jpg"));
@@ -68,6 +69,12 @@ public class Maze2D extends MazeDisplayer{
 								        	e.gc.fillRectangle(x,y,w,h);
 										}
 									}
+									if (clue != null) {
+										if (clue.getState().equals(new Position(character.getX(),i,j))) {
+											e.gc.setBackground(new Color(null,150,150,150));
+								        	e.gc.fillRectangle(x,y,w,h);
+										}
+									}
 									if(i == goal.getY() && j == goal.getZ() && goal.getX() == character.getX()){
 							        	  	e.gc.setBackground(new Color(null,0,255,0));
 							        	  	e.gc.fillRectangle(x,y,w,h);
@@ -85,7 +92,14 @@ public class Maze2D extends MazeDisplayer{
 											e.gc.setBackground(new Color(null,150,150,150));
 								        	e.gc.fillRectangle(x,y,w,h);
 										}
-									} if(i == goal.getZ() && j == goal.getX() && goal.getY() == character.getY()){
+									}
+									if (clue != null) {
+										if (clue.getState().equals(new Position(j,character.getY(),i))) {
+											e.gc.setBackground(new Color(null,150,150,150));
+								        	e.gc.fillRectangle(x,y,w,h);
+										}
+									}
+									if(i == goal.getZ() && j == goal.getX() && goal.getY() == character.getY()){
 							        	  e.gc.setBackground(new Color(null,0,255,0));
 							        	  e.gc.fillRectangle(x,y,w,h);
 							          }
@@ -101,7 +115,14 @@ public class Maze2D extends MazeDisplayer{
 											e.gc.setBackground(new Color(null,150,150,150));
 								        	e.gc.fillRectangle(x,y,w,h);
 										}
-									} if(i == goal.getX() && j == goal.getY() && goal.getZ() == character.getZ()){
+									}
+									if (clue != null) {
+										if (clue.getState().equals(new Position(i,j,character.getZ()))) {
+											e.gc.setBackground(new Color(null,150,150,150));
+								        	e.gc.fillRectangle(x,y,w,h);
+										}
+									}
+									if(i == goal.getX() && j == goal.getY() && goal.getZ() == character.getZ()){
 							        	  e.gc.setBackground(new Color(null,0,255,0));
 							        	  e.gc.fillRectangle(x,y,w,h);
 							        }

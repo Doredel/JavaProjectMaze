@@ -194,6 +194,17 @@ public class MainWindow extends BasicWindow{
 		Button hint = new Button(groupOption, SWT.READ_ONLY|SWT.BOLD);
 		hint.setText("HINT");
 		hint.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,false ,false ,1,1));
+		hint.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				setChanged();
+				notifyObservers("clue "+name+" BFS "+character.toString());
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0) {}
+		});
 		
 		Button solve = new Button(groupOption, SWT.READ_ONLY|SWT.BOLD);
 		solve.setText("SOLVE");
@@ -331,7 +342,7 @@ public class MainWindow extends BasicWindow{
 	}
 
 	public void setClue(State<?> arg) {
-		md.setClue((State<?>)arg);
+		md.setClue((State<Position>)arg);
 		md.redraw();
 	}
 }

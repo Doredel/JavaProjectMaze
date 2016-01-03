@@ -201,7 +201,7 @@ public class MyModel extends Observable implements Model {
 			int index = 0;
 			for (int i = 1; i < solution.getSolution().size(); i++) {
 				State<Position> state = solution.getSolution().get(i);
-				if (dist.h(new State<Position>(position),state) < dist.h(new State<Position>(position), solution.getSolution().get(index))) {
+				if ((dist.h(new State<Position>(position),state) < dist.h(new State<Position>(position), solution.getSolution().get(index)))&&(!solution.getSolution().get(i).getState().equals(position))) {
 					index = i;
 				}
 				
