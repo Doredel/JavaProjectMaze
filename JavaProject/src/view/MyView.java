@@ -25,12 +25,10 @@ public class MyView<T> extends Observable implements View<T> , Observer {
 		gui.start();
 	}
 
-////////////////////////////////////////////
 	@Override
 	public void display(String string) {
 		gui.display(string);
 	}
-///////////////////////////////////////////
 	
 	@Override
 	public void update(Observable o, Object arg) {

@@ -9,6 +9,7 @@ import org.eclipse.swt.widgets.Shell;
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
 import algorithms.search.Solution;
+import algorithms.search.State;
 
 public class GUI extends Observable implements Observer{
 	
@@ -40,6 +41,8 @@ public class GUI extends Observable implements Observer{
 			mw.setMaze((Maze3d)arg);
 		}else if(arg instanceof Solution<?>){
 			mw.setSolutin((Solution<?>)arg);
+		}else if (arg instanceof State<?>) {
+			mw.setClue((State<?>)arg);
 		}
 		
 	}

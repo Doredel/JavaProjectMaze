@@ -22,7 +22,10 @@ import java.util.zip.GZIPOutputStream;
 
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
+import algorithms.search.Heuristic;
+import algorithms.search.MazeManhattanDistance;
 import algorithms.search.Solution;
+import algorithms.search.State;
 import presenter.Properties;
 
 
@@ -174,11 +177,42 @@ public class MyModel extends Observable implements Model {
 			notifyObservers("maze doesn't exist");
 		}catch (Exception e) {
 			notifyObservers(e.getMessage());
-		}
-
-		
+		}	
 	}
-
+	
+	@Override
+	public void getClue(String name, String algorithm, Position position) {
+		
+		setChanged();
+		try{
+			if(!solutionDB.containsKey(name))
+			{
+				Maze3d maze = mazeDB.get(name);
+				if (cache.containsKey(maze)) {
+					solutionDB.put(name, cache.get(maze));
+				} else {
+					Future<Solution<Position>> f_sol = executor.submit(new MazeSolver(maze, algorithm));
+					solutionDB.put(name, f_sol.get());
+					cache.put(mazeDB.get(name), f_sol.get());
+				}
+			}
+			Solution<Position> solution = solutionDB.get(name);
+			Heuristic<Position> dist = new MazeManhattanDistance();
+			int index = 0;
+			for (int i = 1; i < solution.getSolution().size(); i++) {
+				State<Position> state = solution.getSolution().get(i);
+				if (dist.h(new State<Position>(position),state) < dist.h(new State<Position>(position), solution.getSolution().get(index))) {
+					index = i;
+				}
+				
+			}
+			notifyObservers(solution.getSolution().get(index));
+		}catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+	}
 	
 
 	@Override
@@ -267,4 +301,6 @@ public class MyModel extends Observable implements Model {
 		}
 		return properties;
 	}
+
+
 }

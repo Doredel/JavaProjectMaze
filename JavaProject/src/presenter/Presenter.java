@@ -44,6 +44,7 @@ public class Presenter<T> implements Observer {
 		comnds.put("file size", new FileSizeCommand<T>(this.v, this.m));
 		comnds.put("solve", new SolveCommand<T>(this.v, this.m));
 		comnds.put("display solution", new DispalySolutionCommand<T>(this.v, this.m));
+		comnds.put("clue", new ClueCommand<T>(this.v, this.m));
 		comnds.put("exit", new ExitCommand<T>(this.v, this.m));	
 		
 	}
@@ -70,6 +71,9 @@ public class Presenter<T> implements Observer {
 			}
 	    	else if (arg instanceof Solution<?>) {		
 				v.pass((Solution<?>)arg);	    		
+			}
+	    	else if(arg instanceof State<?>){
+				v.pass((State<?>)arg);
 			}
 		}
 	    if (obs == v){ 

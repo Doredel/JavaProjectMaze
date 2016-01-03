@@ -11,6 +11,7 @@ import org.eclipse.swt.widgets.Composite;
 
 import algorithms.mazeGenerators.Position;
 import algorithms.search.Solution;
+import algorithms.search.State;
 import algorithms.search.StateMaze3d;
 
 
@@ -23,6 +24,7 @@ public class Maze2D extends MazeDisplayer{
 	public Position goal;
 	public Solution<Position> solution;
 	public int cross;
+	private State<Position> clue;
 	
 	public Maze2D(Composite parent ,int style){
 	        super(parent, style);
@@ -102,12 +104,12 @@ public class Maze2D extends MazeDisplayer{
 									} if(i == goal.getX() && j == goal.getY() && goal.getZ() == character.getZ()){
 							        	  e.gc.setBackground(new Color(null,0,255,0));
 							        	  e.gc.fillRectangle(x,y,w,h);
-							          }
-							           if(i==character.getX() && j==character.getY()){
-										   e.gc.setBackground(new Color(null,200,0,0));
-										   e.gc.fillOval(x, y, w, h);
+							        }
+							        if(i==character.getX() && j==character.getY()){
+							        		e.gc.setBackground(new Color(null,200,0,0));
+							        		e.gc.fillOval(x, y, w, h);
 		   
-							          }
+							        }
 									break;
 						          }
 						          if(solution != null){
@@ -145,4 +147,9 @@ public class Maze2D extends MazeDisplayer{
 	public void setSolution(Solution<Position> solution) {
 		this.solution = solution;
 	}
+
+	public void setClue(State<Position> clue) {
+		this.clue = clue;
+	}
+	
 }

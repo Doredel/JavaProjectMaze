@@ -1,5 +1,6 @@
 package model;
 
+import algorithms.mazeGenerators.Position;
 import algorithms.search.AStar;
 import algorithms.search.BFS;
 import algorithms.search.MazeAirDistance;
@@ -141,4 +142,6 @@ public interface Model {
 	public Properties loadProperties();
 	
 	public void exit();
+
+	public void getClue(String string,String algorithm, Position position);
 }

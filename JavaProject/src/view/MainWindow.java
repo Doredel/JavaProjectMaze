@@ -1,6 +1,5 @@
 package view;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -16,15 +15,14 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.MessageBox;
-import org.eclipse.swt.widgets.Text;
 
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
 import algorithms.search.Solution;
+import algorithms.search.State;
 import presenter.Properties;
 
 public class MainWindow extends BasicWindow{
@@ -215,22 +213,7 @@ public class MainWindow extends BasicWindow{
 		});
 		
 		
-		/*Group groupPosition = new Group(shell, SWT.SHADOW_OUT);
-		groupPosition.setText("Your position:");
-		groupPosition.setLayout(new GridLayout(1, false));
-		groupPosition.setLayoutData(new GridData(SWT.FILL ,SWT.TOP ,false ,true ,1 ,1));
-		
-	    Label PosXLabel = new Label(groupPosition, SWT.READ_ONLY);
-	    PosXLabel.setText("");
-	    PosXLabel.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,false ,false ,1 ,1));
-		
-	    Label PosYLabel = new Label(groupPosition, SWT.READ_ONLY);
-	    PosYLabel.setText("");
-		PosYLabel.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,false ,false ,1 ,1));
-		
-		Label PosZLabel = new Label(groupPosition, SWT.READ_ONLY);
-		PosZLabel.setText("");
-		PosZLabel.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,false ,false ,1 ,1));*/
+
 		
 		md.addKeyListener(new KeyListener() {
 			
@@ -344,6 +327,11 @@ public class MainWindow extends BasicWindow{
 
 	public void setSolutin(Solution<?> solution) {
 		md.setSolution((Solution<Position>) solution);
+		md.redraw();
+	}
+
+	public void setClue(State<?> arg) {
+		md.setClue((State<?>)arg);
 		md.redraw();
 	}
 }
