@@ -13,25 +13,32 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.swt.widgets.Shell;
 
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
 import algorithms.search.Solution;
 import algorithms.search.State;
 import presenter.Properties;
+import view.Maze3dDisplayer.Axis;
 
 public class MainWindow extends BasicWindow{
 
+	final String[] searchAlgorithms = {"BFS","AStarMazeAirDistance","AStarMazeManhattanDistance"};
+	
 	private String name;
 	private Maze3d maze;
-	private Position character;
-	private Maze2D md;
+	private Game3DCharacter character;
+	
+	private Maze3dDisplayer md;
 	private Group groupSection;
+	private Button xSect;
+	private Button ySect;
 	
 	/**
 	 * <strong>MainWindow</strong>
@@ -61,8 +68,8 @@ public class MainWindow extends BasicWindow{
 	 * @param title The window's title
 	 * @param display The represent of the program- by GUI or CLI 
 	 */
-	public MainWindow(int width, int height,String title,Display display) {
-		super(width, height,title,display);
+	public MainWindow(int width, int height,String title, Shell parent) {
+		super(width, height,title,parent);
 	}
 
 	/**
@@ -100,11 +107,13 @@ public class MainWindow extends BasicWindow{
 			
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				GeneralClassWindow propertiesWindow = new GeneralClassWindow(500, 300, "properties", display,Properties.class);
+				GeneralClassWindow propertiesWindow = new GeneralClassWindow(500, 300, "properties", shell,Properties.class);
 				propertiesWindow.run();
-				Properties properties = (Properties) propertiesWindow.getObject();
-				setChanged();
-				notifyObservers(properties);
+				if (propertiesWindow.isCreated()) {
+					Properties properties = (Properties) propertiesWindow.getObject();
+					setChanged();
+					notifyObservers(properties);
+				}
 			}
 			
 			@Override
@@ -134,25 +143,31 @@ public class MainWindow extends BasicWindow{
 			
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
-				MazeGeneratetionWindows mgw = new MazeGeneratetionWindows(500, 300, "maze generation window", display);
+				MazeGeneratetionWindows mgw = new MazeGeneratetionWindows(500, 300, "maze generation window", shell);
 				mgw.run();
-				setChanged();
-				notifyObservers(mgw.getMaze());
-				name = mgw.getName();
+				if (mgw.isChanged()) {
+					setChanged();
+					notifyObservers(mgw.getMaze());
+					name = mgw.getName();
+					
+					setChanged();
+					notifyObservers("display "+name);
+					character = new Duke3DCharacter(shell);
+					character.setPosition(maze.getStartPosition());
+					md.setCharacter(character);
+					md.setGoal(maze.getGoalPosition());
+					
+					setChanged();
+					notifyObservers("display cross section by Y "+character.getY()+" for "+name);
+					md.setCross(Axis.Y);
+					md.redraw();
+					
+					md.setSolution(null);
+					md.setClue(null);
+					groupSection.forceFocus();
+					ySect.forceFocus();
+				}
 				
-				setChanged();
-				notifyObservers("display "+name);	
-				character = maze.getStartPosition();
-				md.setCharacter(character);
-				md.setGoal(maze.getGoalPosition());
-				
-				setChanged();
-				notifyObservers("display cross section by X "+character.getX()+" for "+name);
-				md.setCross(0);
-				md.redraw();
-				
-				md.setSolution(null);
-				groupSection.setFocus();
 			}
 			
 			@Override
@@ -170,7 +185,7 @@ public class MainWindow extends BasicWindow{
 		groupSection.setLayout(new GridLayout(1, false));
 		groupSection.setLayoutData(new GridData(SWT.FILL ,SWT.TOP ,false ,false ,1 ,1));
 		
-		Button xSect= new Button(groupSection, SWT.RADIO|SWT.SELECTED);
+		xSect= new Button(groupSection, SWT.RADIO|SWT.SELECTED);
 		xSect.setText("Cross section by X");
 		xSect.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));
 		xSect.addSelectionListener(new SelectionListener() {
@@ -179,7 +194,7 @@ public class MainWindow extends BasicWindow{
 			public void widgetSelected(SelectionEvent arg0) {
 				setChanged();
 				notifyObservers("display cross section by X "+character.getX()+" for "+name);
-				md.setCross(0);
+				md.setCross(Axis.X);
 			}
 			
 			@Override
@@ -187,7 +202,7 @@ public class MainWindow extends BasicWindow{
 			}
 		});
 		
-		Button ySect= new Button(groupSection, SWT.RADIO);
+		ySect= new Button(groupSection, SWT.RADIO);
 		ySect.setText("Cross section by Y");
 		ySect.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));
 		ySect.addSelectionListener(new SelectionListener() {
@@ -196,7 +211,7 @@ public class MainWindow extends BasicWindow{
 			public void widgetSelected(SelectionEvent arg0) {
 				setChanged();
 				notifyObservers("display cross section by Y "+character.getY()+" for "+name);
-				md.setCross(1);
+				md.setCross(Axis.Y);
 			}
 			
 			@Override
@@ -214,7 +229,7 @@ public class MainWindow extends BasicWindow{
 			public void widgetSelected(SelectionEvent arg0) {
 				setChanged();
 				notifyObservers("display cross section by Z "+character.getZ()+" for "+name);
-				md.setCross(2);
+				md.setCross(Axis.Z);
 			}
 			
 			@Override
@@ -228,6 +243,11 @@ public class MainWindow extends BasicWindow{
 	    groupOption.setLayout(new GridLayout(2, true));
 	    groupOption.setLayoutData(new GridData(SWT.FILL ,SWT.TOP ,false ,false ,1 ,1));
 		
+	    Combo algorithmCombo = new Combo(groupOption, SWT.DROP_DOWN);
+	    algorithmCombo.setItems(searchAlgorithms);
+	    algorithmCombo.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,false ,false ,2,1));
+	    algorithmCombo.select(0);
+	    
 		Button hint = new Button(groupOption, SWT.READ_ONLY|SWT.BOLD);
 		hint.setText("HINT");
 		hint.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,false ,false ,1,1));
@@ -236,7 +256,8 @@ public class MainWindow extends BasicWindow{
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				setChanged();
-				notifyObservers("clue "+name+" BFS "+character.toString());
+				notifyObservers("clue "+name+" "+searchAlgorithms[algorithmCombo.getSelectionIndex()]+" "+character.getPosition().toString());
+				
 			}
 			
 			@Override
@@ -251,7 +272,7 @@ public class MainWindow extends BasicWindow{
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				setChanged();
-				notifyObservers("solve "+name+" BFS");
+				notifyObservers("solve "+name+" "+searchAlgorithms[algorithmCombo.getSelectionIndex()]);
 				setChanged();
 				notifyObservers("display solution "+name);
 			}
@@ -270,11 +291,11 @@ public class MainWindow extends BasicWindow{
 			
 			@Override
 			public void keyPressed(KeyEvent arg0) {
-				ArrayList<String> pos = new ArrayList<String>(Arrays.asList(maze.getPossibleMoves(character)));
+				ArrayList<String> pos = new ArrayList<String>(Arrays.asList(maze.getPossibleMoves(character.getPosition())));
 				switch (arg0.keyCode) {
 				case SWT.PAGE_UP:
-					if (pos.contains(character.getUp().toString())) {
-						character = character.getUp();
+					if (pos.contains(character.getPosition().getUp().toString())) {
+						character.moveUp();
 					}else{
 						MessageBox ms = new MessageBox(shell);
 						ms.setMessage("Cant move there");
@@ -283,8 +304,8 @@ public class MainWindow extends BasicWindow{
 					break;
 
 				case SWT.PAGE_DOWN:
-					if (pos.contains(character.getDown().toString())) {
-						character = character.getDown();
+					if (pos.contains(character.getPosition().getDown().toString())) {
+						character.moveDown();
 					}else{
 						MessageBox ms = new MessageBox(shell);
 						ms.setMessage("Cant move there");
@@ -293,8 +314,8 @@ public class MainWindow extends BasicWindow{
 					break;
 					
 				case SWT.ARROW_RIGHT:
-					if (pos.contains(character.getRight().toString())) {
-						character = character.getRight();
+					if (pos.contains(character.getPosition().getRight().toString())) {
+						character.moveRight();
 					}else{
 						MessageBox ms = new MessageBox(shell);
 						ms.setMessage("Cant move there");
@@ -303,8 +324,8 @@ public class MainWindow extends BasicWindow{
 					break;
 					
 				case SWT.ARROW_LEFT:
-					if (pos.contains(character.getLeft().toString())) {
-						character = character.getLeft();
+					if (pos.contains(character.getPosition().getLeft().toString())) {
+						character.moveLeft();
 					}else{
 						MessageBox ms = new MessageBox(shell);
 						ms.setMessage("Cant move there");
@@ -313,8 +334,8 @@ public class MainWindow extends BasicWindow{
 					break;
 					
 				case SWT.ARROW_DOWN:
-					if (pos.contains(character.getForward().toString())) {
-						character = character.getForward();
+					if (pos.contains(character.getPosition().getForward().toString())) {
+						character.moveForward();
 					}else{
 						MessageBox ms = new MessageBox(shell);
 						ms.setMessage("Cant move there");
@@ -323,8 +344,8 @@ public class MainWindow extends BasicWindow{
 					break;
 					
 				case SWT.ARROW_UP:
-					if (pos.contains(character.getBackward().toString())) {
-						character = character.getBackward();
+					if (pos.contains(character.getPosition().getBackward().toString())) {
+						character.moveBackward();
 					}else{
 						MessageBox ms = new MessageBox(shell);
 						ms.setMessage("Cant move there");
@@ -335,15 +356,15 @@ public class MainWindow extends BasicWindow{
 				md.setCharacter(character);
 				
 				switch (md.getCross()) {
-				case 0:
+				case X:
 					setChanged();
 					notifyObservers("display cross section by X "+character.getX()+" for "+name);
 					break;
-				case 1:
+				case Y:
 					setChanged();
 					notifyObservers("display cross section by Y "+character.getY()+" for "+name);
 					break;
-				case 2:
+				case Z:
 					setChanged();
 					notifyObservers("display cross section by Z "+character.getZ()+" for "+name);;
 					break;
@@ -373,11 +394,13 @@ public class MainWindow extends BasicWindow{
 		this.maze = maze;
 	}
 
+	@SuppressWarnings("unchecked")
 	public void setSolutin(Solution<?> solution) {
 		md.setSolution((Solution<Position>) solution);
 		md.redraw();
 	}
 
+	@SuppressWarnings("unchecked")
 	public void setClue(State<?> arg) {
 		md.setClue((State<Position>)arg);
 		md.redraw();

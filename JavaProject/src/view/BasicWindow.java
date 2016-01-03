@@ -44,16 +44,15 @@ public abstract class BasicWindow extends Observable implements Runnable {
 	 * <p>
 	 * <code>public BasicWindow(int width, int height, String name, Display display)</code>
 	 * <p>
-	 * Constructor of BasicWindow that initializes as like as the first c'tor.
-	 * The difference from the first c'tor is in the display mode- CLI or GUI.
+	 * Constructor of BasicWindow that makes a window that is a child to anthor window 
 	 * 
 	 * @param width The width of the window
 	 * @param height The height of the window
 	 * @param name The window's title
-	 * @param display The represent of the program- by GUI or CLI 
+	 * @param parent the parent of the window
 	 */
-	public BasicWindow(int width, int height, String name, Display display) {
-		this.display = display;  // our display
+	public BasicWindow(int width, int height, String name, Shell parent) {
+		this.display = parent.getDisplay();  // our display
 		shell = new Shell(display); // our window
 
 		shell.setSize(width,height);

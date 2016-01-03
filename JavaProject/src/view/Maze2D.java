@@ -10,21 +10,15 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 
 import algorithms.mazeGenerators.Position;
-import algorithms.search.Solution;
-import algorithms.search.State;
 import algorithms.search.StateMaze3d;
 
 
-public class Maze2D extends MazeDisplayer{	
+public class Maze2D extends Maze3dDisplayer{	
 
 	Image walls;
 	Image winScreen;
 	
-	public Position character;
-	public Position goal;
-	public Solution<Position> solution;
-	public int cross;
-	private State<Position> clue;
+	
 	
 	public Maze2D(Composite parent ,int style){
 	        super(parent, style);
@@ -54,7 +48,7 @@ public class Maze2D extends MazeDisplayer{
 					   
 					   int w=width/mazeData[0].length;
 					   int h=height/mazeData.length;
-					   if(!character.equals(goal)){
+					   if(!character.getPosition().equals(goal)){
 						   for(int i=0;i<mazeData.length;i++)
 						      for(int j=0;j<mazeData[i].length;j++){
 						          int x=j*w;
@@ -62,7 +56,7 @@ public class Maze2D extends MazeDisplayer{
 						          if(mazeData[i][j]!=0)
 						              e.gc.drawImage(walls, 0, 0, walls.getBounds().width,  walls.getBounds().height, x, y, w, h);
 						          switch (cross) {
-								case 0:
+								case X:
 									if (solution != null) {
 										if (solution.getSolution().contains(new StateMaze3d(new Position(character.getX(),i,j)))) {
 											e.gc.setBackground(new Color(null,150,150,150));
@@ -81,12 +75,12 @@ public class Maze2D extends MazeDisplayer{
 							          }
 							          if(i==character.getY() && j==character.getZ()){
 										   e.gc.setBackground(new Color(null,200,0,0));
-										   e.gc.fillOval(x, y, w, h);
+										   character.draw(e, x, y, w, h);
 		   
 							          }
 									break;
 	
-								case 1:
+								case Y:
 									if (solution != null) {
 										if (solution.getSolution().contains(new StateMaze3d(new Position(j,character.getY(),i)))) {
 											e.gc.setBackground(new Color(null,150,150,150));
@@ -105,11 +99,11 @@ public class Maze2D extends MazeDisplayer{
 							          }
 							           if(i==character.getZ() && j==character.getX()){
 										   e.gc.setBackground(new Color(null,200,0,0));
-										   e.gc.fillOval(x, y, w, h);
+										   character.draw(e, x, y, w, h);
 		   
 							          }
 									break;
-								case 2:
+								case Z:
 									if (solution != null) {
 										if (solution.getSolution().contains(new StateMaze3d(new Position(i,j,character.getZ())))) {
 											e.gc.setBackground(new Color(null,150,150,150));
@@ -128,14 +122,19 @@ public class Maze2D extends MazeDisplayer{
 							        }
 							        if(i==character.getX() && j==character.getY()){
 							        		e.gc.setBackground(new Color(null,200,0,0));
-							        		e.gc.fillOval(x, y, w, h);
+							        		character.draw(e, x, y, w, h);
 		   
 							        }
 									break;
 						          }
 						          if(solution != null){
-						        	  if(solution.getSolution().contains(new StateMaze3d(new Position(character.getX(),character.getY(),character.getZ())))){
-						        		  solution.getSolution().remove(new StateMaze3d(new Position(character.getX(),character.getY(),character.getZ())));
+						        	  if(solution.getSolution().contains(new StateMaze3d(character.getPosition()))){
+						        		  solution.getSolution().remove(new StateMaze3d(character.getPosition()));
+						        	  }
+						          }
+						          if(clue != null){
+						        	  if(clue.getState().equals(character.getPosition())){
+						        		  clue = null;
 						        	  }
 						          }
 						      }
@@ -148,29 +147,6 @@ public class Maze2D extends MazeDisplayer{
 			});
 	 }
 
-	public void setCharacter(Position character) {
-		this.character = character;
-	}
-
 	
-	public void setGoal(Position goal) {
-		this.goal = goal;
-	}
-	
-	public void setCross(int cross) {
-		this.cross = cross;
-	}
-	
-	public int getCross(){
-		return cross;
-	}
-
-	public void setSolution(Solution<Position> solution) {
-		this.solution = solution;
-	}
-
-	public void setClue(State<Position> clue) {
-		this.clue = clue;
-	}
 	
 }
