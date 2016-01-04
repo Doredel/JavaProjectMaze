@@ -50,7 +50,7 @@ public class CLI extends Observable{
 			
 			@Override
 			public void run() {
-				isractions();
+				instructions();
  
 				String str = null;
 				
@@ -82,7 +82,10 @@ public class CLI extends Observable{
 		out.flush();
 	}
 	
-	public void isractions(){
+	/**
+	 * prints the instructions
+	 */
+	public void instructions(){
 		out.println("======================================================");
 		out.println("Available commands:");
 		out.println("======================================================");

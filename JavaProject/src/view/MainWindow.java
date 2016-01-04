@@ -35,10 +35,21 @@ public class MainWindow extends BasicWindow{
 	private Maze3d maze;
 	private Game3DCharacter character;
 	
+	private Menu menuBar;
+	private Menu fileMenu;
+	private MenuItem fileItem;
+	private MenuItem prop;
+	private MenuItem exitItem;
+	private Button createMaze;
 	private Maze3dDisplayer md;
 	private Group groupSection;
 	private Button xSect;
 	private Button ySect;
+	private Button zSect;
+	private Group groupOption;
+	private Combo algorithmCombo;
+	private Button hint;
+	private Button solve;
 	
 	/**
 	 * <strong>MainWindow</strong>
@@ -90,18 +101,18 @@ public class MainWindow extends BasicWindow{
 		shell.setLayout(new GridLayout(2, false));
 
 	    // Create the bar menu
-	    Menu menuBar = new Menu(shell, SWT.BAR);
+		menuBar = new Menu(shell, SWT.BAR);
 
 	    // Create the File item's dropdown menu
-	    Menu fileMenu = new Menu(menuBar);
+	    fileMenu = new Menu(menuBar);
 
 	    // Create all the items in the bar menu
-	    MenuItem fileItem = new MenuItem(menuBar, SWT.CASCADE);
+	    fileItem = new MenuItem(menuBar, SWT.CASCADE);
 	    fileItem.setText("File");
 	    fileItem.setMenu(fileMenu);
 
 	    // Create all the items in the File dropdown menu
-	    MenuItem prop = new MenuItem(fileMenu, SWT.NONE);
+	    prop = new MenuItem(fileMenu, SWT.NONE);
 	    prop.setText("Open properties");
 		prop.addSelectionListener(new SelectionListener() {
 			
@@ -120,7 +131,7 @@ public class MainWindow extends BasicWindow{
 			public void widgetDefaultSelected(SelectionEvent arg0) {}
 		});
 	    
-	    MenuItem exitItem = new MenuItem(fileMenu, SWT.NONE);
+		exitItem = new MenuItem(fileMenu, SWT.NONE);
 	    exitItem.setText("Exit");
 	    exitItem.addSelectionListener(new SelectionListener() {
 			
@@ -136,7 +147,7 @@ public class MainWindow extends BasicWindow{
 
 	    shell.setMenuBar(menuBar);		
 		
-		Button createMaze= new Button(shell, SWT.BORDER);
+	    createMaze= new Button(shell, SWT.BORDER);
 		createMaze.setText("Create Maze");
 		createMaze.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));
 		createMaze.addSelectionListener(new SelectionListener() {
@@ -147,7 +158,7 @@ public class MainWindow extends BasicWindow{
 				mgw.run();
 				if (mgw.isChanged()) {
 					setChanged();
-					notifyObservers(mgw.getMaze());
+					notifyObservers(mgw.getRequest());
 					name = mgw.getName();
 					
 					setChanged();
@@ -220,7 +231,7 @@ public class MainWindow extends BasicWindow{
 		});
 		
 		
-		Button zSect= new Button(groupSection, SWT.RADIO);
+		zSect= new Button(groupSection, SWT.RADIO);
 		zSect.setText("Cross section by Z");
 		zSect.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));
 		zSect.addSelectionListener(new SelectionListener() {
@@ -238,17 +249,17 @@ public class MainWindow extends BasicWindow{
 		});
 
 		
-	    Group groupOption = new Group(shell, SWT.SHADOW_OUT);
+		groupOption = new Group(shell, SWT.SHADOW_OUT);
 	    groupOption.setText("Options:");
 	    groupOption.setLayout(new GridLayout(2, true));
 	    groupOption.setLayoutData(new GridData(SWT.FILL ,SWT.TOP ,false ,false ,1 ,1));
 		
-	    Combo algorithmCombo = new Combo(groupOption, SWT.DROP_DOWN);
+	    algorithmCombo = new Combo(groupOption, SWT.DROP_DOWN);
 	    algorithmCombo.setItems(searchAlgorithms);
 	    algorithmCombo.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,false ,false ,2,1));
 	    algorithmCombo.select(0);
 	    
-		Button hint = new Button(groupOption, SWT.READ_ONLY|SWT.BOLD);
+	    hint = new Button(groupOption, SWT.READ_ONLY|SWT.BOLD);
 		hint.setText("HINT");
 		hint.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,false ,false ,1,1));
 		hint.addSelectionListener(new SelectionListener() {
@@ -264,7 +275,7 @@ public class MainWindow extends BasicWindow{
 			public void widgetDefaultSelected(SelectionEvent arg0) {}
 		});
 		
-		Button solve = new Button(groupOption, SWT.READ_ONLY|SWT.BOLD);
+		solve= new Button(groupOption, SWT.READ_ONLY|SWT.BOLD);
 		solve.setText("SOLVE");
 		solve.setLayoutData(new GridData(SWT.FILL ,SWT.FILL ,false ,false ,1 ,1));
 		solve.addSelectionListener(new SelectionListener() {
@@ -296,6 +307,10 @@ public class MainWindow extends BasicWindow{
 				case SWT.PAGE_UP:
 					if (pos.contains(character.getPosition().getUp().toString())) {
 						character.moveUp();
+						if (md.getCross()  == Axis.Y) {
+							setChanged();
+							notifyObservers("display cross section by Y "+character.getY()+" for "+name);
+						}
 					}else{
 						MessageBox ms = new MessageBox(shell);
 						ms.setMessage("Cant move there");
@@ -306,6 +321,10 @@ public class MainWindow extends BasicWindow{
 				case SWT.PAGE_DOWN:
 					if (pos.contains(character.getPosition().getDown().toString())) {
 						character.moveDown();
+						if (md.getCross()  == Axis.Y) {
+							setChanged();
+							notifyObservers("display cross section by Y "+character.getY()+" for "+name);
+						}
 					}else{
 						MessageBox ms = new MessageBox(shell);
 						ms.setMessage("Cant move there");
@@ -316,6 +335,10 @@ public class MainWindow extends BasicWindow{
 				case SWT.ARROW_RIGHT:
 					if (pos.contains(character.getPosition().getRight().toString())) {
 						character.moveRight();
+						if (md.getCross()  == Axis.X) {
+							setChanged();
+							notifyObservers("display cross section by X "+character.getX()+" for "+name);
+						}
 					}else{
 						MessageBox ms = new MessageBox(shell);
 						ms.setMessage("Cant move there");
@@ -326,6 +349,10 @@ public class MainWindow extends BasicWindow{
 				case SWT.ARROW_LEFT:
 					if (pos.contains(character.getPosition().getLeft().toString())) {
 						character.moveLeft();
+						if (md.getCross()  == Axis.X) {
+							setChanged();
+							notifyObservers("display cross section by X "+character.getX()+" for "+name);
+						}
 					}else{
 						MessageBox ms = new MessageBox(shell);
 						ms.setMessage("Cant move there");
@@ -336,6 +363,10 @@ public class MainWindow extends BasicWindow{
 				case SWT.ARROW_DOWN:
 					if (pos.contains(character.getPosition().getForward().toString())) {
 						character.moveForward();
+						if (md.getCross()  == Axis.Z) {
+							setChanged();
+							notifyObservers("display cross section by Z "+character.getZ()+" for "+name);
+						}
 					}else{
 						MessageBox ms = new MessageBox(shell);
 						ms.setMessage("Cant move there");
@@ -346,6 +377,10 @@ public class MainWindow extends BasicWindow{
 				case SWT.ARROW_UP:
 					if (pos.contains(character.getPosition().getBackward().toString())) {
 						character.moveBackward();
+						if (md.getCross()  == Axis.Z) {
+							setChanged();
+							notifyObservers("display cross section by Z "+character.getZ()+" for "+name);
+						}
 					}else{
 						MessageBox ms = new MessageBox(shell);
 						ms.setMessage("Cant move there");
@@ -354,21 +389,6 @@ public class MainWindow extends BasicWindow{
 					break;
 				}
 				md.setCharacter(character);
-				
-				switch (md.getCross()) {
-				case X:
-					setChanged();
-					notifyObservers("display cross section by X "+character.getX()+" for "+name);
-					break;
-				case Y:
-					setChanged();
-					notifyObservers("display cross section by Y "+character.getY()+" for "+name);
-					break;
-				case Z:
-					setChanged();
-					notifyObservers("display cross section by Z "+character.getZ()+" for "+name);;
-					break;
-				}
 				md.redraw();
 			}
 		});

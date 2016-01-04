@@ -1,5 +1,8 @@
 package model;
 
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
+
 import algorithms.mazeGenerators.Position;
 import algorithms.search.AStar;
 import algorithms.search.BFS;
@@ -135,13 +138,57 @@ public interface Model {
 	 */
 	public void fileSize(String filename);
 	
+	/**
+	 * <strong>setNumThreats</strong>
+	 * <p>
+	 * <code>public void setNumThreats(int numThreads)</code>
+	 * <p>
+	 * Setting the maximum number of threads that will be availabled in program.
+	 * @return numThreads The maxium threads.
+	 */
 	public void setNumThreats(int numThreads);
 	
+	/**
+	 * <strong>saveProperties</strong>
+	 * <p>
+	 * <code>public void saveProperties(Properties properties)</code>
+	 * <p>
+	 * Saving the properties of the program in a XML file.
+	 * @param properties The properties object that contains the properties
+	 * @see XMLEncoder 
+	 */
 	public void saveProperties(Properties properties);
 	
+	/**
+	 * <strong>loadProperties</strong>
+	 * <p>
+	 * <code>public void saveProperties(Properties properties)</code>
+	 * <p>
+	 * Loading the properties of the program from the XML properties file
+	 * @return properties The properties object that contains the properties
+	 * @see XMLDecoder
+	 */
 	public Properties loadProperties();
 	
+	/**
+	 * <strong>exit</strong>
+	 * <p>
+	 * <code>public void exit()</code>
+	 * <p>
+	 * Exit method, that closes the run method and all the threads neatly. 
+	 * @return nothing
+	 */
 	public void exit();
 
-	public void getClue(String string,String algorithm, Position position);
+	/**
+	 * <strong>getClue</strong>
+	 * <p>
+	 * <code>public void getClue(String string,String algorithm, Position position)</code>
+	 * <p>
+	 * getting a clue(closest one step from the solution) to the goal
+	 * @param name - the name of the maze
+	 * @param algorithm - the algorithm to get the clue
+	 * @param position - the position to which we want to get the clue
+	 */
+	public void getClue(String name,String algorithm, Position position);
 }

@@ -3,6 +3,13 @@ package presenter;
 import model.Model;
 import view.View;
 
+/**
+ * class of the command to exit the model
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ *
+ * see CommonCommand<T>
+ */
 public class ExitCommand<T> extends CommonCommand<T> {
 
 	/**

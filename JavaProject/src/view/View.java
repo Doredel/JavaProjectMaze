@@ -27,7 +27,15 @@ public interface View<T> {
 	 */
 	public void display(String string);
 	
+	/**
+	 * setting the way of interface
+	 * @param inter
+	 */
 	public void setView(String inter);
 	
+	/**
+	 * passing object to further analysis
+	 * @param arg
+	 */
 	public void pass(Object arg);
 }

@@ -119,16 +119,22 @@ public class MazeGeneratetionWindows extends BasicWindow {
 		
 	}
 	
-	public String getMaze(){
+	/**
+	 * @return the request
+	 */
+	public String getRequest(){
 		return request;
 	}
 	
+	/**
+	 * @return the name
+	 */
 	public String getName(){
 		return name;
 	}
 
 	/**
-	 * @return the changed
+	 * @return whether the request has been created
 	 */
 	public boolean isChanged() {
 		return changed;

@@ -46,8 +46,14 @@ public class MyModel extends Observable implements Model {
 	 */
 	private HashMap<String, Solution<Position>> solutionDB; 
 	
+	/**
+	 * the cache database
+	 */
 	private HashMap<Maze3d, Solution<Position>> cache;
 
+	/**
+	 * the tread pool
+	 */
 	private ExecutorService executor;
 
 	/**
@@ -362,7 +368,7 @@ public class MyModel extends Observable implements Model {
 	 * <p>
 	 * <code>public void exit()</code>
 	 * <p>
-	 * Exit method, that closes the run method and all the threads neatly. 
+	 * Exit method, that closes the run method, all the threads neatly and saves the cache. 
 	 * @return nothing
 	 */
 	@Override
@@ -398,8 +404,9 @@ public class MyModel extends Observable implements Model {
 	 * <p>
 	 * <code>public void saveProperties(Properties properties)</code>
 	 * <p>
-	 * Saving the properties of the program in a XML file (using XMLEncoder).
-	 * @param properties The properties object that contains the properties. 
+	 * Saving the properties of the program in a XML file.
+	 * @param properties The properties object that contains the properties
+	 * @see XMLEncoder 
 	 */
 	@Override
 	public void saveProperties(Properties properties) {
@@ -418,8 +425,9 @@ public class MyModel extends Observable implements Model {
 	 * <p>
 	 * <code>public void saveProperties(Properties properties)</code>
 	 * <p>
-	 * Loading the properties of the program from the XML properties file(using XMLDecoder).
-	 * @return properties The properties object that contains the properties. 
+	 * Loading the properties of the program from the XML properties file
+	 * @return properties The properties object that contains the properties
+	 * @see XMLDecoder
 	 */
 	@Override
 	public Properties loadProperties() {

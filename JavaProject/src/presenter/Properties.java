@@ -1,16 +1,23 @@
 package presenter;
 
 import java.io.Serializable;
-// missed the type of view(GUI or CLI)
+
+
 public class Properties implements Serializable {
 	
 	/**
-	 * 
+	 * the maximum number of threads in the model
 	 */
 	private int numberOfThread;
 	
+	/**
+	 * the type of interface
+	 */
 	private String interfaceType;
 	
+	/**
+	 * Construct a properties object
+	 */
 	public Properties(){}
 
 	/**

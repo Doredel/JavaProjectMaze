@@ -81,21 +81,6 @@ public class Presenter<T> implements Observer {
 		
 	}
 	
-	/**
-	 * <strong>update</strong>
-	 * <p>
-	 * <code>public void update(Observable obs, Object arg)</code>
-	 * <p>
-	 * The update method of the observer. This update checks if the observable
-	 * type is the model or the view, and acts in accordance with.
-	 * If the update came from the model: checks which 
-	 * display type should be send to the view
-	 * If the update came from the view: arranges and edits the command accordingly 
-	 * and then sent it to the model. After that, the command will be executed.
-	 *
-	 * @param obs The type of the facade that from him the update came from. 
-	 * @param arg The argument that will be handled.
-	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void update(Observable obs, Object arg) {

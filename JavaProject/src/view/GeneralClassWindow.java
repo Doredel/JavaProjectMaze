@@ -18,8 +18,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-
+@SuppressWarnings("rawtypes")
 public class GeneralClassWindow extends BasicWindow {
+	
 	
 	private Class theClass;
 	private List<Field> fields ;
