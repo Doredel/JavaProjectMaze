@@ -10,10 +10,7 @@ import algorithms.search.State;
 public class Maze3dDisplayer extends MazeDisplayer {
 
 	public enum Axis{X,Y,Z};
-	
-	/**
-	 * 
-	 */
+
 	protected Game3DCharacter character;
 	protected Position goal;
 	protected Solution<Position> solution;

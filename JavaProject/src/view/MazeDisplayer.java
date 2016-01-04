@@ -15,7 +15,11 @@ public abstract class MazeDisplayer extends Canvas{
 		super(parent, style);
 	}
 
-	public void setMazeData(int[][] mazeData){
+	/**
+	 * @param mazeData the mazeData to set
+	 */
+	public void setMazeData(int[][] mazeData) {
 		this.mazeData = mazeData;
 	}
+
 }
