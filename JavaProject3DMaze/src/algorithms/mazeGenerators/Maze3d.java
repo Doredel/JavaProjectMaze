@@ -46,6 +46,19 @@ public class Maze3d implements Serializable{
 	/**
 	 * <strong>Maze3d</strong>
 	 * <p>
+	 * <code>public Maze3d(Maze3d maze)</code>
+	 * <p>
+	 * copy Constructor that creats a 3d maze
+	 * 
+	 * @param maze
+	 */
+	public Maze3d(Maze3d maze) {
+		this(maze.getMaze3d(),maze.getStartPosition(),maze.getGoalPosition());
+	}
+	
+	/**
+	 * <strong>Maze3d</strong>
+	 * <p>
 	 * <code>public Maze3d(byte[] compresedMaze)</code>
 	 * <p>
 	 * Constructor that converts from a compressed maze of byte array to a 3d maze
@@ -75,7 +88,23 @@ public class Maze3d implements Serializable{
 		this.setMaze3d(maze);
 	}
 	
-	
+	/**
+	 * <strong>Maze3d</strong>
+	 * <p>
+	 * <code>public Maze3d(int[][][] maze, Position start, Position goal)</code>
+	 * <p>
+	 * Constructor that creats a 3d maze
+	 * 
+	 * @param maze the 3d array
+	 * @param start the starting position
+	 * @param goal the goal position
+	 */
+	public Maze3d(int[][][] maze, Position start, Position goal) {
+		this.setMaze3d(maze);
+		this.setStartPosition(start);
+		this.setGoalPosition(goal);
+	}
+
 	/**
 	 * <strong>getMaze3d</strong>
 	 * <p>

@@ -28,6 +28,10 @@ public class Solution<T> implements Serializable{
 		this.solution = new ArrayList<State<T>>();
 	}
 	
+	public Solution(Solution<T> solution){
+		this(solution.getSolution());
+	}
+	
 	/**
 	 * <strong>Solution</strong>
 	 * <p>
@@ -38,7 +42,7 @@ public class Solution<T> implements Serializable{
 	 * @param solution - An {@link ArrayList} that contains the solution
 	 */
 	public Solution(ArrayList<State<T>> solution) {
-		this.solution = solution;
+		this.setSolution(solution);
 	}
 
 	/**
@@ -63,8 +67,9 @@ public class Solution<T> implements Serializable{
 	 * 
 	 * @param solution - An {@link ArrayList} that contains the solution
 	 */
+	@SuppressWarnings("unchecked")
 	public void setSolution(ArrayList<State<T>> solution) {
-		this.solution = solution;
+		this.solution = (ArrayList<State<T>>)solution.clone();
 	}
 
 	@Override

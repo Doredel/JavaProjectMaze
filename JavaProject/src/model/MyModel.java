@@ -149,7 +149,7 @@ public class MyModel extends Observable implements Model {
 		setChanged();
 		try{
 			Maze3d maze = mazeDB.get(name);
-			notifyObservers(maze);
+			notifyObservers(new Maze3d(maze.toByteArray()));
 		}catch(NullPointerException e){
 			notifyObservers("maze doesn't exist");
 		}
@@ -169,7 +169,7 @@ public class MyModel extends Observable implements Model {
 		setChanged();
 		try{
 			Solution<Position> solution = solutionDB.get(name);
-			notifyObservers(solution);
+			notifyObservers(new Solution<Position>(solution.getSolution()));
 		}catch(NullPointerException e){
 			notifyObservers("Solution doesn't exist");
 		}
