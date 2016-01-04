@@ -14,7 +14,7 @@ public class Spaceship3dCharacter extends Game3DCharacter {
 	public Spaceship3dCharacter(Shell parent) {
 		super(parent);
 		try {
-			player = new Image(parent.getDisplay(), new FileInputStream("resources/spaceship3d.jpg"));
+			player = new Image(parent.getDisplay(), new FileInputStream("resources/phoenix.png"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}

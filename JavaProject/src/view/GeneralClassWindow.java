@@ -27,7 +27,14 @@ public class GeneralClassWindow extends BasicWindow {
 	private Object result;
 	private boolean changed;
 	
-	
+	/**
+	 * Constructor for general dialog
+	 * 
+	 * @param width - the width of the window
+	 * @param height - the height of the window
+	 * @param name - the title of the window
+	 * @param theClass - the class that the dialog is created for
+	 */
 	public GeneralClassWindow(int width, int height, String name, Class theClass) {
 		super(width, height, name);
 		this.theClass = theClass;
@@ -35,6 +42,15 @@ public class GeneralClassWindow extends BasicWindow {
 		changed = false;
 	}
 	
+	/**
+	 * Constructor for general dialog
+	 * 
+	 * @param width - the width of the window
+	 * @param height - the height of the window
+	 * @param name - the title of the window
+	 * @param parent - the parent window
+	 * @param theClass - the class that the dialog is created for
+	 */
 	public GeneralClassWindow(int width, int height, String name, Shell parent, Class theClass) {
 		super(width, height, name, parent);
 		this.theClass = theClass;
@@ -109,14 +125,28 @@ public class GeneralClassWindow extends BasicWindow {
 		});
 	}
 
+	/**
+	 * 
+	 * @return Object - the object that has been created
+	 */
 	public Object getObject(){
 		return result;
 	}
 	
+	/**
+	 * 
+	 * @return if the object is created
+	 */
 	public boolean isCreated(){
 		return changed;
 	}
 	
+	
+	/**
+	 * 
+	 * @param string - the string
+	 * @return if the string is a number or not
+	 */
 	private boolean isNumber(String string) {
 		for (int i = 0; i < string.length(); i++) {
 			if (!Character.isDigit(string.charAt(i))) {

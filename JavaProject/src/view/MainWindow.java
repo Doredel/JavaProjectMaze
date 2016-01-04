@@ -39,6 +39,7 @@ public class MainWindow extends BasicWindow{
 	private Menu fileMenu;
 	private MenuItem fileItem;
 	private MenuItem prop;
+	private MenuItem restartItem;
 	private MenuItem exitItem;
 	private Button createMaze;
 	private Maze3dDisplayer md;
@@ -131,6 +132,19 @@ public class MainWindow extends BasicWindow{
 			public void widgetDefaultSelected(SelectionEvent arg0) {}
 		});
 	    
+		restartItem = new MenuItem(fileMenu, SWT.NONE);
+		restartItem.setText("Restart");
+		restartItem.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				restart();
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0) {}
+		});
+		
 		exitItem = new MenuItem(fileMenu, SWT.NONE);
 	    exitItem.setText("Exit");
 	    exitItem.addSelectionListener(new SelectionListener() {
@@ -163,20 +177,9 @@ public class MainWindow extends BasicWindow{
 					
 					setChanged();
 					notifyObservers("display "+name);
-					character = new Spaceship3dCharacter(shell);
-					character.setPosition(maze.getStartPosition());
-					md.setCharacter(character);
-					md.setGoal(maze.getGoalPosition());
 					
-					setChanged();
-					notifyObservers("display cross section by Y "+character.getY()+" for "+name);
-					md.setCross(Axis.Y);
-					md.redraw();
 					
-					md.setSolution(null);
-					md.setClue(null);
-					groupSection.forceFocus();
-					ySect.forceFocus();
+					restart();
 				}
 				
 			}
@@ -302,94 +305,96 @@ public class MainWindow extends BasicWindow{
 			
 			@Override
 			public void keyPressed(KeyEvent arg0) {
-				ArrayList<String> pos = new ArrayList<String>(Arrays.asList(maze.getPossibleMoves(character.getPosition())));
-				switch (arg0.keyCode) {
-				case SWT.PAGE_UP:
-					if (pos.contains(character.getPosition().getUp().toString())) {
-						character.moveUp();
-						if (md.getCross()  == Axis.Y) {
-							setChanged();
-							notifyObservers("display cross section by Y "+character.getY()+" for "+name);
+				if(md.isMovement()){
+					ArrayList<String> pos = new ArrayList<String>(Arrays.asList(maze.getPossibleMoves(character.getPosition())));
+					switch (arg0.keyCode) {
+					case SWT.PAGE_UP:
+						if (pos.contains(character.getPosition().getUp().toString())) {
+							character.moveUp();
+							if (md.getCross()  == Axis.Y) {
+								setChanged();
+								notifyObservers("display cross section by Y "+character.getY()+" for "+name);
+							}
+						}else{
+							MessageBox ms = new MessageBox(shell);
+							ms.setMessage("Cant move there");
+							ms.open();
 						}
-					}else{
-						MessageBox ms = new MessageBox(shell);
-						ms.setMessage("Cant move there");
-						ms.open();
-					}
-					break;
-
-				case SWT.PAGE_DOWN:
-					if (pos.contains(character.getPosition().getDown().toString())) {
-						character.moveDown();
-						if (md.getCross()  == Axis.Y) {
-							setChanged();
-							notifyObservers("display cross section by Y "+character.getY()+" for "+name);
+						break;
+	
+					case SWT.PAGE_DOWN:
+						if (pos.contains(character.getPosition().getDown().toString())) {
+							character.moveDown();
+							if (md.getCross()  == Axis.Y) {
+								setChanged();
+								notifyObservers("display cross section by Y "+character.getY()+" for "+name);
+							}
+						}else{
+							MessageBox ms = new MessageBox(shell);
+							ms.setMessage("Cant move there");
+							ms.open();
 						}
-					}else{
-						MessageBox ms = new MessageBox(shell);
-						ms.setMessage("Cant move there");
-						ms.open();
-					}
-					break;
-					
-				case SWT.ARROW_RIGHT:
-					if (pos.contains(character.getPosition().getRight().toString())) {
-						character.moveRight();
-						if (md.getCross()  == Axis.X) {
-							setChanged();
-							notifyObservers("display cross section by X "+character.getX()+" for "+name);
+						break;
+						
+					case SWT.ARROW_RIGHT:
+						if (pos.contains(character.getPosition().getRight().toString())) {
+							character.moveRight();
+							if (md.getCross()  == Axis.X) {
+								setChanged();
+								notifyObservers("display cross section by X "+character.getX()+" for "+name);
+							}
+						}else{
+							MessageBox ms = new MessageBox(shell);
+							ms.setMessage("Cant move there");
+							ms.open();
 						}
-					}else{
-						MessageBox ms = new MessageBox(shell);
-						ms.setMessage("Cant move there");
-						ms.open();
-					}
-					break;
-					
-				case SWT.ARROW_LEFT:
-					if (pos.contains(character.getPosition().getLeft().toString())) {
-						character.moveLeft();
-						if (md.getCross()  == Axis.X) {
-							setChanged();
-							notifyObservers("display cross section by X "+character.getX()+" for "+name);
+						break;
+						
+					case SWT.ARROW_LEFT:
+						if (pos.contains(character.getPosition().getLeft().toString())) {
+							character.moveLeft();
+							if (md.getCross()  == Axis.X) {
+								setChanged();
+								notifyObservers("display cross section by X "+character.getX()+" for "+name);
+							}
+						}else{
+							MessageBox ms = new MessageBox(shell);
+							ms.setMessage("Cant move there");
+							ms.open();
 						}
-					}else{
-						MessageBox ms = new MessageBox(shell);
-						ms.setMessage("Cant move there");
-						ms.open();
-					}
-					break;
-					
-				case SWT.ARROW_DOWN:
-					if (pos.contains(character.getPosition().getForward().toString())) {
-						character.moveForward();
-						if (md.getCross()  == Axis.Z) {
-							setChanged();
-							notifyObservers("display cross section by Z "+character.getZ()+" for "+name);
+						break;
+						
+					case SWT.ARROW_DOWN:
+						if (pos.contains(character.getPosition().getForward().toString())) {
+							character.moveForward();
+							if (md.getCross()  == Axis.Z) {
+								setChanged();
+								notifyObservers("display cross section by Z "+character.getZ()+" for "+name);
+							}
+						}else{
+							MessageBox ms = new MessageBox(shell);
+							ms.setMessage("Cant move there");
+							ms.open();
 						}
-					}else{
-						MessageBox ms = new MessageBox(shell);
-						ms.setMessage("Cant move there");
-						ms.open();
-					}
-					break;
-					
-				case SWT.ARROW_UP:
-					if (pos.contains(character.getPosition().getBackward().toString())) {
-						character.moveBackward();
-						if (md.getCross()  == Axis.Z) {
-							setChanged();
-							notifyObservers("display cross section by Z "+character.getZ()+" for "+name);
+						break;
+						
+					case SWT.ARROW_UP:
+						if (pos.contains(character.getPosition().getBackward().toString())) {
+							character.moveBackward();
+							if (md.getCross()  == Axis.Z) {
+								setChanged();
+								notifyObservers("display cross section by Z "+character.getZ()+" for "+name);
+							}
+						}else{
+							MessageBox ms = new MessageBox(shell);
+							ms.setMessage("Cant move there");
+							ms.open();
 						}
-					}else{
-						MessageBox ms = new MessageBox(shell);
-						ms.setMessage("Cant move there");
-						ms.open();
+						break;
 					}
-					break;
+					md.setCharacter(character);
+					md.redraw();
 				}
-				md.setCharacter(character);
-				md.redraw();
 			}
 		});
 		
@@ -424,5 +429,26 @@ public class MainWindow extends BasicWindow{
 	public void setClue(State<?> arg) {
 		md.setClue((State<Position>)arg);
 		md.redraw();
+	}
+	
+	/**
+	 * re start the widget to the initial conditions
+	 */
+	public void restart(){
+		character = new Spaceship3dCharacter(shell);
+		character.setPosition(maze.getStartPosition());
+		md.setCharacter(character);
+		md.setGoal(maze.getGoalPosition());
+		
+		setChanged();
+		notifyObservers("display cross section by Y "+character.getY()+" for "+name);
+		md.setCross(Axis.Y);
+		md.redraw();
+		
+		md.setSolution(null);
+		md.setClue(null);
+		md.setMovement(true);
+		groupSection.forceFocus();
+		ySect.forceFocus();
 	}
 }

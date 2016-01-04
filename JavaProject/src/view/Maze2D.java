@@ -17,16 +17,23 @@ public class Maze2D extends Maze3dDisplayer{
 
 	Image walls;
 	Image winScreen;
+	Image hint;
+	Image goalPortal;
 	
-	
-	
+	/** 
+	 * @param parent
+	 * @param style
+	 */
 	public Maze2D(Composite parent ,int style){
 	        super(parent, style);
 	        solution = null;
 	        clue = null;
+	        setMovement(true);
 	        try {
 	        	winScreen = new Image(getDisplay(), new FileInputStream("resources/oh_no__you_won__game_over__by_nemodally.png"));
 	        	walls = new Image(getDisplay(), new FileInputStream("resources/asteroids.jpg"));
+	        	hint = new Image(getDisplay(), new FileInputStream("resources/pylon.jpg"));
+	        	goalPortal = new Image(getDisplay(), new FileInputStream("resources/portal.gif"));
 			} catch (FileNotFoundException e1) {
 				e1.printStackTrace();
 			}
@@ -48,7 +55,7 @@ public class Maze2D extends Maze3dDisplayer{
 					   
 					   int w=width/mazeData[0].length;
 					   int h=height/mazeData.length;
-					   if(!character.getPosition().equals(goal)){
+					   if(!character.getPosition().equals(goal) && movement){
 						   for(int i=0;i<mazeData.length;i++)
 						      for(int j=0;j<mazeData[i].length;j++){
 						          int x=j*w;
@@ -59,22 +66,18 @@ public class Maze2D extends Maze3dDisplayer{
 								case X:
 									if (solution != null) {
 										if (solution.getSolution().contains(new StateMaze3d(new Position(character.getX(),i,j)))) {
-											e.gc.setBackground(new Color(null,150,150,150));
-								        	e.gc.fillRectangle(x,y,w,h);
+											e.gc.drawImage(hint, 0, 0, hint.getBounds().width,  hint.getBounds().height, x, y, w, h);
 										}
 									}
 									if (clue != null) {
 										if (clue.getState().equals(new Position(character.getX(),i,j))) {
-											e.gc.setBackground(new Color(null,150,150,150));
-								        	e.gc.fillRectangle(x,y,w,h);
+											e.gc.drawImage(hint, 0, 0, hint.getBounds().width,  hint.getBounds().height, x, y, w, h);
 										}
 									}
 									if(i == goal.getY() && j == goal.getZ() && goal.getX() == character.getX()){
-							        	  	e.gc.setBackground(new Color(null,0,255,0));
-							        	  	e.gc.fillRectangle(x,y,w,h);
+										e.gc.drawImage(goalPortal, 0, 0, goalPortal.getBounds().width,  goalPortal.getBounds().height, x, y, w, h);
 							          }
 							          if(i==character.getY() && j==character.getZ()){
-										   e.gc.setBackground(new Color(null,200,0,0));
 										   character.draw(e, x, y, w, h);
 		   
 							          }
@@ -83,22 +86,18 @@ public class Maze2D extends Maze3dDisplayer{
 								case Y:
 									if (solution != null) {
 										if (solution.getSolution().contains(new StateMaze3d(new Position(j,character.getY(),i)))) {
-											e.gc.setBackground(new Color(null,150,150,150));
-								        	e.gc.fillRectangle(x,y,w,h);
+											e.gc.drawImage(hint, 0, 0, hint.getBounds().width,  hint.getBounds().height, x, y, w, h);
 										}
 									}
 									if (clue != null) {
 										if (clue.getState().equals(new Position(j,character.getY(),i))) {
-											e.gc.setBackground(new Color(null,150,150,150));
-								        	e.gc.fillRectangle(x,y,w,h);
+											e.gc.drawImage(hint, 0, 0, hint.getBounds().width,  hint.getBounds().height, x, y, w, h);
 										}
 									}
 									if(i == goal.getZ() && j == goal.getX() && goal.getY() == character.getY()){
-							        	  e.gc.setBackground(new Color(null,0,255,0));
-							        	  e.gc.fillRectangle(x,y,w,h);
+										e.gc.drawImage(goalPortal, 0, 0, goalPortal.getBounds().width,  goalPortal.getBounds().height, x, y, w, h);
 							          }
 							           if(i==character.getZ() && j==character.getX()){
-										   e.gc.setBackground(new Color(null,200,0,0));
 										   character.draw(e, x, y, w, h);
 		   
 							          }
@@ -106,22 +105,18 @@ public class Maze2D extends Maze3dDisplayer{
 								case Z:
 									if (solution != null) {
 										if (solution.getSolution().contains(new StateMaze3d(new Position(i,j,character.getZ())))) {
-											e.gc.setBackground(new Color(null,150,150,150));
-								        	e.gc.fillRectangle(x,y,w,h);
+											e.gc.drawImage(hint, 0, 0, hint.getBounds().width,  hint.getBounds().height, x, y, w, h);
 										}
 									}
 									if (clue != null) {
 										if (clue.getState().equals(new Position(i,j,character.getZ()))) {
-											e.gc.setBackground(new Color(null,150,150,150));
-								        	e.gc.fillRectangle(x,y,w,h);
+											e.gc.drawImage(hint, 0, 0, hint.getBounds().width,  hint.getBounds().height, x, y, w, h);
 										}
 									}
 									if(i == goal.getX() && j == goal.getY() && goal.getZ() == character.getZ()){
-							        	  e.gc.setBackground(new Color(null,0,255,0));
-							        	  e.gc.fillRectangle(x,y,w,h);
+										e.gc.drawImage(goalPortal, 0, 0, goalPortal.getBounds().width,  goalPortal.getBounds().height, x, y, w, h);
 							        }
 							        if(i==character.getX() && j==character.getY()){
-							        		e.gc.setBackground(new Color(null,200,0,0));
 							        		character.draw(e, x, y, w, h);
 		   
 							        }
@@ -140,6 +135,7 @@ public class Maze2D extends Maze3dDisplayer{
 						      }
 					      }else{
 					    	  e.gc.drawImage(winScreen, 0, 0, winScreen.getBounds().width,  winScreen.getBounds().height, 0, 0, width, height);
+					    	  setMovement(false);
 							  return;
 					      }
 					   
