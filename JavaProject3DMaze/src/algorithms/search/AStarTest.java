@@ -8,6 +8,7 @@ import algorithms.mazeGenerators.Position;
 
 public class AStarTest {
 public Maze3d maze;
+public MazeManhattanDistance check;
 	
 	public AStarTest() {
 		maze = new Maze3d();
@@ -15,14 +16,19 @@ public Maze3d maze;
 		maze.setMaze3d(arr);
 		maze.setStartPosition(new Position(444,444,444));
 		maze.setGoalPosition(new Position(1,1,2));
-		MazeManhattanDistance check= new MazeManhattanDistance();
+		check = new MazeManhattanDistance();
 				
+		
+	}
+	
+	@Test
+	public void testSearch() {
 		double result;
 		
 		result = check.h(new State<Position>(maze.getStartPosition()),new State<Position>(maze.getGoalPosition()));
 		System.out.println("result: "+result);
 		
-		result = check.h(null, null);
+		//result = check.h(null, null);
 		System.out.println("result: "+result);
 		
 		result = check.h(new State<Position>(new Position(7,7,7)),new State<Position>(new Position(10,10,10)));
@@ -33,11 +39,6 @@ public Maze3d maze;
 		System.out.println("result: "+result);
 		Searcher<Position> searcher = new AStar<Position>(new MazeAirDistance());
 		searcher.search(new Maze3dAdaptor(maze));
-	}
-	
-	@Test
-	public void testSearch() {
-		
 	}
 
 }

@@ -163,7 +163,7 @@ public class MainWindow extends BasicWindow{
 					
 					setChanged();
 					notifyObservers("display "+name);
-					character = new Duke3DCharacter(shell);
+					character = new Spaceship3dCharacter(shell);
 					character.setPosition(maze.getStartPosition());
 					md.setCharacter(character);
 					md.setGoal(maze.getGoalPosition());

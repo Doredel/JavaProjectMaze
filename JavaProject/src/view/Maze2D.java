@@ -26,11 +26,11 @@ public class Maze2D extends Maze3dDisplayer{
 	        clue = null;
 	        try {
 	        	winScreen = new Image(getDisplay(), new FileInputStream("resources/oh_no__you_won__game_over__by_nemodally.png"));
-	        	walls = new Image(getDisplay(), new FileInputStream("resources/Wall.jpg"));
+	        	walls = new Image(getDisplay(), new FileInputStream("resources/asteroids.jpg"));
 			} catch (FileNotFoundException e1) {
 				e1.printStackTrace();
 			}
-	    	setBackground(new Color(null, 255, 255, 255));
+	    	setBackground(new Color(null, 0,0,0));
 	    	addPaintListener(new PaintListener() {
 				
 				@Override
