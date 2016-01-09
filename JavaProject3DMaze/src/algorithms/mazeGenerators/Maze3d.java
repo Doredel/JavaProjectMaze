@@ -1,5 +1,6 @@
 package algorithms.mazeGenerators;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -12,7 +13,7 @@ import java.util.Arrays;
  * @since 29/11/2015
  * @see Position
  */
-public class Maze3d {
+public class Maze3d implements Serializable{
 	
 	/**
 	 * The maze content
@@ -40,6 +41,19 @@ public class Maze3d {
 	 * @param nothing
 	 */
 	public Maze3d() {
+	}
+	
+	/**
+	 * <strong>Maze3d</strong>
+	 * <p>
+	 * <code>public Maze3d(Maze3d maze)</code>
+	 * <p>
+	 * copy Constructor that creats a 3d maze
+	 * 
+	 * @param maze
+	 */
+	public Maze3d(Maze3d maze) {
+		this(maze.getMaze3d(),maze.getStartPosition(),maze.getGoalPosition());
 	}
 	
 	/**
@@ -74,7 +88,23 @@ public class Maze3d {
 		this.setMaze3d(maze);
 	}
 	
-	
+	/**
+	 * <strong>Maze3d</strong>
+	 * <p>
+	 * <code>public Maze3d(int[][][] maze, Position start, Position goal)</code>
+	 * <p>
+	 * Constructor that creats a 3d maze
+	 * 
+	 * @param maze the 3d array
+	 * @param start the starting position
+	 * @param goal the goal position
+	 */
+	public Maze3d(int[][][] maze, Position start, Position goal) {
+		this.setMaze3d(maze);
+		this.setStartPosition(start);
+		this.setGoalPosition(goal);
+	}
+
 	/**
 	 * <strong>getMaze3d</strong>
 	 * <p>
@@ -316,11 +346,11 @@ public class Maze3d {
 		}
 		else
 		{
-			int[][] res = new int[this.maze3d.length][this.maze3d[0][y].length];
+			int[][] res = new int[this.maze3d[0][y].length][this.maze3d.length];
 	
-			for (int i = 0; i < this.maze3d.length; i++) {
-				for (int k = 0; k < this.maze3d[0][y].length; k++) {
-					res[i][k] = this.maze3d[i][y][k];
+			for (int k = 0; k < this.maze3d[0][y].length; k++){
+				 for (int i = 0; i < this.maze3d.length; i++) {
+					res[k][i] = this.maze3d[i][y][k];
 				}
 			}
 		
@@ -454,6 +484,11 @@ public class Maze3d {
 			str.append("\n");
 		}
 		return str.toString();
+	}
+	
+	@Override
+	public int hashCode() {
+		return Arrays.hashCode(this.toByteArray());
 	}
 	
 }

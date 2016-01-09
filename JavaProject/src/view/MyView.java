@@ -3,49 +3,55 @@ package view;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.util.Observable;
+import java.util.Observer;
 
-import controller.Controller;
 
 /**
  * <strong>MyView</strong>  is a view class for the project
  * 
  * @author Dor Edelstein, Lior Mantin
  */
-public class MyView<T> implements View<T> {
+public class MyView<T> extends Observable implements View<T> , Observer {
 	
 	/**
-	 * The controller instance
+	 * The GUI instance
 	 */
-	private Controller<T> c;
-	
-	/**
-	 * The CLI instance
-	 */
-	private CLI cli;
-	
-	/**
-	 * <strong>MyView</strong>
-	 * <p>
-	 * <code>public MyView(Controller<T> c)</code>
-	 * <p>
-	 * construct MyView instance
-	 * 
-	 * @param c - the controller instance
-	 */
-	public MyView(Controller<T> c){
-		this.c=c;
-		
-	}
+	private GUI gui;
 
 	@Override
 	public void start() {
-		cli = new CLI(new BufferedReader(new InputStreamReader(System.in)),new PrintWriter(System.out), c.CreateCommandMap());
-		cli.start();
+		gui.addObserver(this);
+		gui.start();
 	}
 
 	@Override
 	public void display(String string) {
-		cli.display(string);
+		gui.display(string);
 	}
-		 
+	
+	@Override
+	public void update(Observable o, Object arg) {
+		setChanged();
+		notifyObservers(arg);
+	}
+
+	@Override
+	public void setView(String inter) {
+		switch (inter) {
+		case "CLI":
+			gui = new GUIAdaptor(new CLI(new BufferedReader(new InputStreamReader(System.in)),new PrintWriter(System.out)));
+			break;
+		case "GUI":
+			gui = new GUI();
+			break;
+		}
+	}
+
+	@Override
+	public void pass(Object arg) {
+		gui.pass(arg);
+	}
+		
+	
 }

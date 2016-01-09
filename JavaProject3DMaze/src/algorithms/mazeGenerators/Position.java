@@ -1,11 +1,13 @@
 package algorithms.mazeGenerators;
 
+import java.io.Serializable;
+
 /**
  * A class that represent the (x,y,z) coordinate
  * 
  * @author Dor Edelstein
  */
-public class Position {
+public class Position implements Serializable{
 	
 	/**
 	 * The x value

@@ -1,5 +1,7 @@
 package algorithms.search;
 
+import java.io.Serializable;
+
 /**
  * A class that represent a vertex in the graph
  * 
@@ -7,7 +9,7 @@ package algorithms.search;
  *
  * @param <T> - the type that identify each state
  */
-public class State<T>{
+public class State<T> implements Serializable{
 	
 	/**
 	 * The State identifier

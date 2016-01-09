@@ -3,17 +3,14 @@ package view;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import controller.Command;
+import java.util.Observable;
 
 /**
  * 
  * @author Dor-New
  *
  */
-public class CLI{
+public class CLI extends Observable{
 	
 	/**
 	 * The input instance
@@ -26,25 +23,18 @@ public class CLI{
 	private PrintWriter out;
 	
 	/**
-	 * The commands that are in the project
-	 */
-	private HashMap<String,Command> txtCommand;
-	
-	/**
 	 * <strong>CLI</start>
 	 * <p>
-	 * <code>public CLI(BufferedReader in, PrintWriter out, HashMap<String, Command> txtCommand)</code>
+	 * <code>public CLI(BufferedReader in, PrintWriter out)</code>
 	 * <p>
 	 * Construct a Command Line Interface
 	 * 
 	 * @param in - the input stream
 	 * @param out - the output stream
-	 * @param txtCommand - The commands that are in the project 
 	 */
-	public CLI(BufferedReader in, PrintWriter out, HashMap<String, Command> txtCommand) {
+	public CLI(BufferedReader in, PrintWriter out) {
 		this.in = in;
 		this.out = out;
-		this.txtCommand = txtCommand;
 	}
 
 	/**
@@ -60,55 +50,20 @@ public class CLI{
 			
 			@Override
 			public void run() {
-				isractions();
-				
+				instructions();
+ 
 				String str = null;
-				ArrayList<String> param = new ArrayList<String>();
-				Command cmd = null;
+				
 				try {
 					while(!(str=(in.readLine().trim().replaceAll("\\s+", " "))).equals("exit")){
-						
-						for (String string : txtCommand.keySet()) {
-							if(str.startsWith(string+" "))
-							{
-								param.add(string);
-								param.add(str.split(string+" ", 2)[1]);
-								break;
-							}
-						}
-						
-						if(param.size() == 0){
-							display("\""+str+"\" is invalid input");
-						}
-						else{
-							if (param.get(0)== "display") {
-								
-								if (param.get(1).startsWith("cross section by")) {
-									cmd = txtCommand.get("display cross section by");
-									param.add(str.split("display cross section by ", 2)[1]);
-								}
-								else if (param.get(1).startsWith("solution")) {
-									cmd = txtCommand.get("display solution");
-									param.add(str.split("display solution ", 2)[1]);
-								}
-								else {
-									cmd = txtCommand.get("display");
-									param.add(str.split("display ", 2)[1]);
-								}
-								param.remove(1);
-							}
-							else{
-								cmd = txtCommand.get(param.get(0));	
-							}
-							cmd.doCommand(param.get(1).split(" "));
-							param.clear();
-						}
+						setChanged();
+						notifyObservers(str);
 					}
 				} catch (IOException e) {
 					display("Error while reading data");
 				}
-				
-				
+				setChanged();
+				notifyObservers("exit");
 			}
 		}).start();
 	}
@@ -127,7 +82,10 @@ public class CLI{
 		out.flush();
 	}
 	
-	public void isractions(){
+	/**
+	 * prints the instructions
+	 */
+	public void instructions(){
 		out.println("======================================================");
 		out.println("Available commands:");
 		out.println("======================================================");
