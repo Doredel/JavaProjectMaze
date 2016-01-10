@@ -3,6 +3,7 @@ package view;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Color;
@@ -25,7 +26,7 @@ public class Maze2D extends Maze3dDisplayer{
 	 * @param style
 	 */
 	public Maze2D(Composite parent ,int style){
-	        super(parent, style);
+	        super(parent, SWT.DOUBLE_BUFFERED);
 	        solution = null;
 	        clue = null;
 	        setMovement(true);
@@ -53,8 +54,10 @@ public class Maze2D extends Maze3dDisplayer{
 						   return;
 					   }
 					   
-					   int w=width/mazeData[0].length;
-					   int h=height/mazeData.length;
+					  
+					   int w = (width)/mazeData[0].length;
+					   int h = (height)/mazeData.length;
+					   
 					   if(!character.getPosition().equals(goal) && movement){
 						   for(int i=0;i<mazeData.length;i++)
 						      for(int j=0;j<mazeData[i].length;j++){
