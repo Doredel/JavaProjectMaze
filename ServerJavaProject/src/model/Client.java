@@ -1,17 +1,20 @@
 package model;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.nio.ByteBuffer;
 import java.util.Scanner;
 
 public class Client {
 	public static void main(String[] args) {
 		try {
 			Socket socket = new Socket("127.0.0.1", 1202);
-			BufferedReader buffer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			ObjectInputStream buffer = new ObjectInputStream(socket.getInputStream());
 			PrintWriter printer = new PrintWriter(socket.getOutputStream());
 			Scanner scanner = new Scanner(System.in);
 			String msg;
@@ -20,10 +23,12 @@ public class Client {
 				msg = scanner.nextLine();
 				printer.println(msg);
 				printer.flush();
+				
 				if (!msg.equals("exit")) {
-					msg = buffer.readLine();
+					msg = (String) buffer.readObject();
 					System.out.println(msg);
 				}
+				
 			} while (!msg.equals("exit"));
 			
 			scanner.close();
@@ -31,7 +36,7 @@ public class Client {
 			buffer.close();
 			socket.close();
 			
-		} catch (IOException e) {
+		} catch (IOException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
