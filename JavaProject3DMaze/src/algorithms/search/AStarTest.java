@@ -18,7 +18,6 @@ public MazeManhattanDistance check;
 		maze.setGoalPosition(new Position(1,1,2));
 		check = new MazeManhattanDistance();
 				
-		
 	}
 	
 	@Test
@@ -36,9 +35,10 @@ public MazeManhattanDistance check;
 		
 		AStar<Position> a = new AStar<Position>(new MazeManhattanDistance());
 		result= a.CostForState(new State<Position>(maze.getStartPosition()),new State<Position>(maze.getStartPosition().getBackward()),new State<Position>(maze.getStartPosition().getForward()));
+		
 		System.out.println("result: "+result);
 		Searcher<Position> searcher = new AStar<Position>(new MazeAirDistance());
-		searcher.search(new Maze3dAdaptor(maze));
+		searcher.search(new Maze3dAdaptor(maze));	
 	}
 
 }
