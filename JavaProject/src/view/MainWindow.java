@@ -435,6 +435,13 @@ public class MainWindow extends BasicWindow{
 	 * re start the widget to the initial conditions
 	 */
 	public void restart(){
+		
+		if (maze==null) {
+			MessageBox ms = new MessageBox(shell);
+			ms.setMessage("There is no maze to restart");
+			ms.open();
+		}
+		else {	
 		character = new Spaceship3dCharacter(shell);
 		character.setPosition(maze.getStartPosition());
 		md.setCharacter(character);
@@ -450,5 +457,6 @@ public class MainWindow extends BasicWindow{
 		md.setMovement(true);
 		groupSection.forceFocus();
 		ySect.forceFocus();
+		}
 	}
 }

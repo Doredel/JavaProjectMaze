@@ -6,7 +6,6 @@ import java.util.Observable;
 import java.util.Observer;
 
 import algorithms.mazeGenerators.Maze3d;
-import algorithms.mazeGenerators.Position;
 import algorithms.search.Solution;
 import algorithms.search.State;
 import model.Model;
@@ -81,7 +80,6 @@ public class Presenter<T> implements Observer {
 		
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public void update(Observable obs, Object arg) {
 		   
