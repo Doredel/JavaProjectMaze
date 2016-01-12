@@ -51,7 +51,6 @@ public class Presenter<T> implements Observer {
 		
 		properties = m.loadProperties();
 		v.setView(properties.getInterfaceType());
-		m.setNumThreats(properties.getNumberOfThread());
 	}
 	
 	/**

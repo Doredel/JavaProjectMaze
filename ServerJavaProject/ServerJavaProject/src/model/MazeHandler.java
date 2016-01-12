@@ -19,7 +19,7 @@ public class MazeHandler implements ClientHandler {
 			String msg;
 			
 			while (!(msg = buffer.readLine()).equals("exit")) {
-				printer.writeObject(msg);
+				printer.writeObject(null);
 			}
 			
 		} catch (IOException e) {

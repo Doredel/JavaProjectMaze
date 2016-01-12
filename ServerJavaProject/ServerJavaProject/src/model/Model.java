@@ -8,7 +8,7 @@ import algorithms.search.AStar;
 import algorithms.search.BFS;
 import algorithms.search.MazeAirDistance;
 import algorithms.search.MazeManhattanDistance;
-import presenter.Properties;
+import presenter.ServerProperties;
 
 /**
  * <strong>Model</strong>  is a model interface for the project
@@ -113,7 +113,7 @@ public interface Model {
 	 * @param index - the index of the cross section
 	 * @param mazeName - the name of the maze
 	 */
-	public void displayCrossSection(String axis, int index, String mazeName);
+	public void displayCrossSection(String coordinate, int index, String mazeName);
 	
 	/**
 	 * <strong>mazeSize</strong>
@@ -139,6 +139,16 @@ public interface Model {
 	public void fileSize(String filename);
 	
 	/**
+	 * <strong>setNumThreats</strong>
+	 * <p>
+	 * <code>public void setNumThreats(int numThreads)</code>
+	 * <p>
+	 * Setting the maximum number of threads that will be availabled in program.
+	 * @return numThreads The maxium threads.
+	 */
+	public void setNumThreats(int numThreads);
+	
+	/**
 	 * <strong>saveProperties</strong>
 	 * <p>
 	 * <code>public void saveProperties(Properties properties)</code>
@@ -147,7 +157,7 @@ public interface Model {
 	 * @param properties The properties object that contains the properties
 	 * @see XMLEncoder 
 	 */
-	public void saveProperties(Properties properties);
+	public void saveProperties(ServerProperties properties);
 	
 	/**
 	 * <strong>loadProperties</strong>
@@ -158,7 +168,7 @@ public interface Model {
 	 * @return properties The properties object that contains the properties
 	 * @see XMLDecoder
 	 */
-	public Properties loadProperties();
+	public ServerProperties loadProperties();
 	
 	/**
 	 * <strong>exit</strong>
@@ -181,4 +191,6 @@ public interface Model {
 	 * @param position - the position to which we want to get the clue
 	 */
 	public void getClue(String name,String algorithm, Position position);
+	
+	public void openServer(int port , int numThread);
 }
