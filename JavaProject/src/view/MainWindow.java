@@ -310,7 +310,22 @@ public class MainWindow extends BasicWindow{
 					switch (arg0.keyCode) {
 					case SWT.PAGE_UP:
 						if (pos.contains(character.getPosition().getUp().toString())) {
-							character.moveUp();
+							if (md.getCross()== Axis.X) {
+								character.moveBackward();
+								setChanged();
+								notifyObservers("display cross section by X "+character.getX()+" for "+name);
+							}
+							else if (md.getCross()== Axis.Y) {
+								character.moveLeft();
+								setChanged();
+								notifyObservers("display cross section by Y "+character.getY()+" for "+name);
+							}
+							else{
+								character.moveDown();
+								setChanged();
+								notifyObservers("display cross section by Z "+character.getZ()+" for "+name);
+							}
+							
 							if (md.getCross()  == Axis.Y) {
 								setChanged();
 								notifyObservers("display cross section by Y "+character.getY()+" for "+name);
@@ -351,13 +366,16 @@ public class MainWindow extends BasicWindow{
 						break;
 						
 					case SWT.ARROW_LEFT:
+						
 						if (pos.contains(character.getPosition().getLeft().toString())) {
 							character.moveLeft();
 							if (md.getCross()  == Axis.X) {
 								setChanged();
 								notifyObservers("display cross section by X "+character.getX()+" for "+name);
 							}
-						}else{
+						}
+							
+						else{
 							MessageBox ms = new MessageBox(shell);
 							ms.setMessage("Cant move there");
 							ms.open();
