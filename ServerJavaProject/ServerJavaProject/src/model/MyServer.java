@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -16,12 +17,14 @@ public class MyServer {
 	private ClientHandler clientHandler;
 	private volatile boolean stop;
 	private ExecutorService threadPool;
+	private ConcurrentHashMap<Integer, String> clients;
 	
 	public MyServer(int port,int numThreads,ClientHandler clientHandler){
 		this.port=port;
 		stop=false;
 		this.clientHandler=clientHandler;
 		threadPool = Executors.newFixedThreadPool(numThreads);
+		clients = new ConcurrentHashMap<Integer, String>();
 	}
 	
 	public void startServer(){
@@ -38,11 +41,13 @@ public class MyServer {
 						public void run() {
 							
 							try {
+								clients.put(someClient.getPort(), someClient.getLocalAddress().getHostAddress());
 								InputStream inputFromClient=someClient.getInputStream();
 								OutputStream outputToClient=someClient.getOutputStream();
 								clientHandler.handleClient(inputFromClient,outputToClient);
 								inputFromClient.close();
 								outputToClient.close();
+								clients.remove(someClient.getPort());
 								someClient.close();
 								
 							} catch (IOException e) {
