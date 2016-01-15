@@ -150,9 +150,9 @@ public class Presenter<T> implements Observer {
 						else{
 							cmd = comnds.get(param.get(0));	
 						}
+						cmd.setParams(param.get(1).split(" "));
+						cmd.doCommand();
 					}
-					cmd.setParams(param.get(1).split(" "));
-					cmd.doCommand();
 					param.clear();
 					
 		    	}

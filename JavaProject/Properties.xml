@@ -4,8 +4,5 @@
   <void property="interfaceType">
    <string>GUI</string>
   </void>
-  <void property="numberOfThread">
-   <int>7</int>
-  </void>
  </object>
 </java>

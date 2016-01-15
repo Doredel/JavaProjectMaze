@@ -82,7 +82,7 @@ public class MyModel extends Observable implements Model {
 	@Override
 	public void generateMaze(String name, int width,int height,int depth) {
 		setChanged();
-		notifyObservers((String)Client.helpFromServer("generate "+name+" "+width+" "+depth));
+		notifyObservers((String)Client.helpFromServer("generate "+name+" "+width+" "+height+" "+depth));
 	}
 
 	/**
@@ -205,7 +205,7 @@ public class MyModel extends Observable implements Model {
 	@Override
 	public void mazeSize(String name) {
 		setChanged();
-		notifyObservers(Client.helpFromServer("mazeSize "+name));
+		notifyObservers(Client.helpFromServer("sizeMaze "+name));
 	}
 	
 	/**

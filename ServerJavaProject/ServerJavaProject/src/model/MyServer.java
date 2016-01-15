@@ -84,21 +84,18 @@ public class MyServer {
 			}
 		}).start();
 	}
-	
-	public static void main(String[] args) {
-		
-		try {
-			
-			MyServer server = new MyServer(1202, 2, new MazeHandler());
-			server.open();
-			Thread.sleep(1000*60);
-			System.out.println("bye");
-			server.stopServer();
-			
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+
+	/**
+	 * @return the clientHandler
+	 */
+	public ClientHandler getClientHandler() {
+		return clientHandler;
+	}
+
+	/**
+	 * @param clientHandler the clientHandler to set
+	 */
+	public void setClientHandler(ClientHandler clientHandler) {
+		this.clientHandler = clientHandler;
 	}
 }

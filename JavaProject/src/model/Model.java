@@ -153,7 +153,7 @@ public interface Model {
 	 * <strong>loadProperties</strong>
 	 * <p>
 	 * <code>public void saveProperties(Properties properties)</code>
-	 * <p>
+	 * <p
 	 * Loading the properties of the program from the XML properties file
 	 * @return properties The properties object that contains the properties
 	 * @see XMLDecoder

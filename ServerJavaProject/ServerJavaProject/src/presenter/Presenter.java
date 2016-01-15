@@ -39,12 +39,12 @@ public class Presenter implements Observer{
 		this.v = view;
 		
 		properties = m.loadProperties();
-		m.setNumThreats(properties.getNumThreads());
 		m.openServer(properties.getPort(), properties.getNumThreads());
+		m.setNumThreatsClient(properties.getNumThreads());
 	}
 
 	@Override
 	public void update(Observable obs, Object arg) {
-		
+		//pass
 	}
 }
