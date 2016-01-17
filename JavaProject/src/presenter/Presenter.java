@@ -51,6 +51,8 @@ public class Presenter<T> implements Observer {
 		
 		properties = m.loadProperties();
 		v.setView(properties.getInterfaceType());
+		m.setPort(properties.getServerPort());
+		m.setIP(properties.getServerIP());
 	}
 	
 	/**

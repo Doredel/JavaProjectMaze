@@ -4,5 +4,11 @@
   <void property="interfaceType">
    <string>GUI</string>
   </void>
+  <void property="serverIP">
+   <string>127.0.0.1</string>
+  </void>
+  <void property="serverPort">
+   <int>1202</int>
+  </void>
  </object>
 </java>

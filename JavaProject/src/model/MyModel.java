@@ -2,30 +2,17 @@ package model;
 
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.HashMap;
-import java.util.Observable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.zip.GZIPInputStream;
-import java.util.zip.GZIPOutputStream;
 
-import algorithms.mazeGenerators.Maze3d;
+import java.util.Observable;
+
 import algorithms.mazeGenerators.Position;
-import algorithms.search.Heuristic;
-import algorithms.search.MazeManhattanDistance;
-import algorithms.search.Solution;
-import algorithms.search.State;
+
 import presenter.Properties;
 
 
@@ -36,6 +23,9 @@ import presenter.Properties;
  */
 public class MyModel extends Observable implements Model {
 
+	private String Ip;
+	private int port;
+	
 	/**
 	 * <strong>MyModel</strong>
 	 * <p>
@@ -62,7 +52,7 @@ public class MyModel extends Observable implements Model {
 	@Override
 	public void getDir(String path){
 		setChanged();
-		notifyObservers((String)Client.helpFromServer("dir "+path));
+		notifyObservers((String)Client.helpFromServer("dir "+path,Ip,port));
 	}
 
 	/**
@@ -82,7 +72,7 @@ public class MyModel extends Observable implements Model {
 	@Override
 	public void generateMaze(String name, int width,int height,int depth) {
 		setChanged();
-		notifyObservers((String)Client.helpFromServer("generate "+name+" "+width+" "+height+" "+depth));
+		notifyObservers((String)Client.helpFromServer("generate "+name+" "+width+" "+height+" "+depth,Ip,port));
 	}
 
 	/**
@@ -99,7 +89,7 @@ public class MyModel extends Observable implements Model {
 	@Override
 	public void displayMaze(String name) {
 		setChanged();
-		notifyObservers(Client.helpFromServer("maze "+name));
+		notifyObservers(Client.helpFromServer("maze "+name,Ip,port));
 	}
 	
 	/**
@@ -114,7 +104,7 @@ public class MyModel extends Observable implements Model {
 	@Override
 	public void displaySolution(String name){
 		setChanged();
-		notifyObservers(Client.helpFromServer("solution "+name));
+		notifyObservers(Client.helpFromServer("solution "+name,Ip,port));
 	
 	}
 	
@@ -131,7 +121,7 @@ public class MyModel extends Observable implements Model {
 	@Override
 	public void saveMaze(String mazeName, String fileName) {
 		setChanged();
-		notifyObservers((String)Client.helpFromServer("save "+mazeName+" "+fileName));
+		notifyObservers((String)Client.helpFromServer("save "+mazeName+" "+fileName,Ip,port));
 		
 	}
 
@@ -147,10 +137,8 @@ public class MyModel extends Observable implements Model {
 	 */
 	@Override
 	public void loadMaze(String mazeName, String fileName) {
-		
-		Maze3d maze;
 		setChanged();
-		notifyObservers((Client.helpFromServer("load "+fileName+" "+mazeName)));
+		notifyObservers((Client.helpFromServer("load "+fileName+" "+mazeName,Ip,port)));
 	}
 
 	/**
@@ -166,14 +154,14 @@ public class MyModel extends Observable implements Model {
 	@Override
 	public void solveMaze(String name, String algorithm) {
 		setChanged();
-		notifyObservers((String)Client.helpFromServer("solve "+name+" "+algorithm));	
+		notifyObservers((String)Client.helpFromServer("solve "+name+" "+algorithm,Ip,port));	
 	}
 	
 	@Override
 	public void getClue(String name, String algorithm, Position position) {
 		
 		setChanged();
-		notifyObservers(Client.helpFromServer("clue "+name+" "+algorithm+" "+position.toString()));
+		notifyObservers(Client.helpFromServer("clue "+name+" "+algorithm+" "+position.toString(),Ip,port));
 	}
 	
 	/**
@@ -190,7 +178,7 @@ public class MyModel extends Observable implements Model {
 	@Override
 	public void displayCrossSection(String axis, int index, String mazeName) {
 		setChanged();
-		notifyObservers(Client.helpFromServer("cross "+axis+" "+index+" "+mazeName));
+		notifyObservers(Client.helpFromServer("cross "+axis+" "+index+" "+mazeName,Ip,port));
 	}
 
 	/**
@@ -205,7 +193,7 @@ public class MyModel extends Observable implements Model {
 	@Override
 	public void mazeSize(String name) {
 		setChanged();
-		notifyObservers(Client.helpFromServer("sizeMaze "+name));
+		notifyObservers(Client.helpFromServer("sizeMaze "+name,Ip,port));
 	}
 	
 	/**
@@ -219,7 +207,7 @@ public class MyModel extends Observable implements Model {
 	@Override
 	public void fileSize(String fileName){
 		setChanged();
-		notifyObservers(Client.helpFromServer("fileSize "+fileName));
+		notifyObservers(Client.helpFromServer("fileSize "+fileName,Ip,port));
 	}
 
 	/**
@@ -233,7 +221,7 @@ public class MyModel extends Observable implements Model {
 	@Override
 	public void exit() {
 		setChanged();
-		notifyObservers(Client.helpFromServer("exit"));
+		notifyObservers(Client.helpFromServer("exit",Ip,port));
 	}
 
 	@Override
@@ -270,6 +258,14 @@ public class MyModel extends Observable implements Model {
 		}
 		return properties;
 	}
+	
+	@Override
+	public void setPort(int port){
+		this.port = port;
+	}
 
-
+	@Override
+	public void setIP(String ip){
+		this.Ip = ip;
+	}
 }

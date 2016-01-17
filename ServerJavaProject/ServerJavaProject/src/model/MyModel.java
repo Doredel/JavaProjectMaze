@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.Observable;
+import java.util.Observer;
 
 import presenter.ServerProperties;
 
@@ -16,7 +17,7 @@ import presenter.ServerProperties;
  * 
  * @author Dor Edelstein, Lior Mantin
  */
-public class MyModel extends Observable implements Model {
+public class MyModel extends Observable implements Model,Observer {
 
 	private MyServer server;
 	
@@ -79,6 +80,13 @@ public class MyModel extends Observable implements Model {
 	@Override
 	public void setNumThreatsClient(int numThreads) {
 		server.getClientHandler().setNumThreats(numThreads);
+	}
+
+
+	@Override
+	public void update(Observable o, Object arg) {
+		setChanged();
+		notifyObservers(arg);
 	}
 	
 	

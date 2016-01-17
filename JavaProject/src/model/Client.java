@@ -6,10 +6,10 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class Client {
-	public static Object helpFromServer(String msg){
+	public static Object helpFromServer(String msg,String IP,int port){
 		Object result = null;
 		try {
-			Socket socket = new Socket("127.0.0.1", 1202);
+			Socket socket = new Socket(IP, port);
 			ObjectInputStream buffer = new ObjectInputStream(socket.getInputStream());
 			PrintWriter printer = new PrintWriter(socket.getOutputStream());
 			
@@ -27,8 +27,7 @@ public class Client {
 			socket.close();
 			
 		} catch (IOException | ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return "Can't connect to server";
 		}
 		return result;
 		

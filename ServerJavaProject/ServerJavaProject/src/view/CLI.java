@@ -3,8 +3,9 @@ package view;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Observable;
 
-public class CLI {
+public class CLI extends Observable{
 	
 	/**
 	 * The input instance
@@ -26,14 +27,24 @@ public class CLI {
 		out.flush();
 	}
 	
-	String read(){
-		String str = null;
-		try {
-			 str = in.readLine();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return str;
+	void start(){
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				setChanged();
+				notifyObservers();
+				String str = null;
+				try {
+					while(!(str = in.readLine()).equals("exit")){
+						System.out.println("unexpected format");
+					}
+					setChanged();
+					notifyObservers("exit");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}).start();
 	}
 }

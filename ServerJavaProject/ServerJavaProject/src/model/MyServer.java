@@ -6,12 +6,13 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.util.Observable;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
-public class MyServer {
+public class MyServer extends Observable{
 	
 	private int port;
 	private ClientHandler clientHandler;
@@ -41,7 +42,8 @@ public class MyServer {
 						public void run() {
 							
 							try {
-								clients.put(someClient.getPort(), someClient.getLocalAddress().getHostAddress());
+								setChanged();
+								notifyObservers(addClient(someClient));
 								InputStream inputFromClient=someClient.getInputStream();
 								OutputStream outputToClient=someClient.getOutputStream();
 								clientHandler.handleClient(inputFromClient,outputToClient);
@@ -73,6 +75,7 @@ public class MyServer {
 	public void stopServer(){
 		stop=true;
 		threadPool.shutdownNow();
+		clientHandler.exit();
 	}
 
 	public void open(){
@@ -92,10 +95,8 @@ public class MyServer {
 		return clientHandler;
 	}
 
-	/**
-	 * @param clientHandler the clientHandler to set
-	 */
-	public void setClientHandler(ClientHandler clientHandler) {
-		this.clientHandler = clientHandler;
+	public String addClient(Socket client){
+		clients.put(client.getPort(), client.getLocalAddress().getHostAddress());
+		return "IP: "+client.getLocalAddress().getHostAddress()+":"+client.getPort()+"has connected";
 	}
 }

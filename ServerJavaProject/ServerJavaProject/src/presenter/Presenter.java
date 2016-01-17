@@ -14,7 +14,6 @@ public class Presenter implements Observer{
 	/**
 	 * The view field
 	 */
-	@SuppressWarnings("unused")
 	private View v;
 	/**
 	 * The properties of the program
@@ -39,12 +38,22 @@ public class Presenter implements Observer{
 		this.v = view;
 		
 		properties = m.loadProperties();
-		m.openServer(properties.getPort(), properties.getNumThreads());
-		m.setNumThreatsClient(properties.getNumThreads());
+
 	}
 
 	@Override
 	public void update(Observable obs, Object arg) {
-		//pass
+		if (obs == v) {
+			if(arg == null){
+				
+				m.openServer(properties.getPort(), properties.getNumThreads());
+				m.setNumThreatsClient(properties.getNumThreads());
+				
+			}else if (((String)arg).equals("exit")) {
+				m.stopServer();
+			}
+		} else {
+			v.dispaly((String)arg);
+		}
 	}
 }

@@ -181,4 +181,8 @@ public interface Model {
 	 * @param position - the position to which we want to get the clue
 	 */
 	public void getClue(String name,String algorithm, Position position);
+
+	public void setPort(int port);
+
+	public void setIP(String ip);
 }

@@ -9,4 +9,5 @@ public interface ClientHandler {
 
 	public void setNumThreats(int numThreads);
 	
+	public void exit();
 }
