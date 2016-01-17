@@ -25,6 +25,7 @@ public class MyModel extends Observable implements Model,Observer {
 	@Override
 	public void openServer(int port, int numThreads) {
 		server = new MyServer(port, numThreads, new MazeHandler());
+		server.addObserver(this);
 		server.open();
 	}
 

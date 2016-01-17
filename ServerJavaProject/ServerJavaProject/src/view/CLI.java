@@ -34,6 +34,7 @@ public class CLI extends Observable{
 			public void run() {
 				setChanged();
 				notifyObservers();
+				display("Server is on");
 				String str = null;
 				try {
 					while(!(str = in.readLine()).equals("exit")){
@@ -41,6 +42,7 @@ public class CLI extends Observable{
 					}
 					setChanged();
 					notifyObservers("exit");
+					display("server is off");
 				} catch (IOException e) {
 					e.printStackTrace();
 				}

@@ -97,6 +97,6 @@ public class MyServer extends Observable{
 
 	public String addClient(Socket client){
 		clients.put(client.getPort(), client.getLocalAddress().getHostAddress());
-		return "IP: "+client.getLocalAddress().getHostAddress()+":"+client.getPort()+"has connected";
+		return client.getLocalAddress().getHostAddress()+":"+client.getPort()+" has connected";
 	}
 }
