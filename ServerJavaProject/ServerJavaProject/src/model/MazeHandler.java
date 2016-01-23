@@ -70,7 +70,20 @@ public class MazeHandler implements ClientHandler {
 		
 	}
 	
-	 
+	/**
+	 * <strong>handleClient</strong>
+	 * <p>
+	 * public void handleClient(InputStream inFromClient, OutputStream outToClient)</code>
+	 * <p>
+	 * This method handles the client's commands. 
+	 * after reading a command from the input stream, the method will analyze the command
+	 * and call to the match method. The return value of the method will be print
+	 * to the output stream. 
+	 * 
+	 *@param inFromClient The input stream that from him will be read the commands.
+	 *@param outToClient The output stream that will get the values(like maze,solution etc.)
+	 *and print it  
+	 */ 
 	public void handleClient(InputStream inFromClient, OutputStream outToClient) {
 		
 		try {
@@ -427,7 +440,14 @@ public class MazeHandler implements ClientHandler {
 		}
 	}
 
-
+	/**
+	 * <strong>setNumThreats</strong>
+	 * <p>
+	 * <code>public void setNumThreats(int numThreads)</code>
+	 * <p>
+	 *	Setting the number of the maximum threads that can run at the same time.
+	 */
+	 
 	@Override
 	public void setNumThreats(int numThreads) {
 		executor = Executors.newFixedThreadPool(numThreads);

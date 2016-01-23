@@ -20,6 +20,19 @@ public class MyServer extends Observable{
 	private ExecutorService threadPool;
 	private ConcurrentHashMap<Integer, String> clients;
 	
+	/**
+	 * <strong>MyServer</strong>
+	 * <p>
+	 * <code>public MyServer(int port,int numThreads,ClientHandler clientHandler)</code>
+	 * <p>
+	 * Constructor of MyServer that initializes the port and the clients map,
+	 * and the number of clients that can running the application at the same time.
+	 * (AKA number of threads).
+	 * 
+	 * @param port number of port that the server talks with.
+	 * @param numThreads The number of clients that the server can handle.
+	 * @param clientHandler The client handler that connects with the server. 
+	 */
 	public MyServer(int port,int numThreads,ClientHandler clientHandler){
 		this.port=port;
 		stop=false;
@@ -28,14 +41,25 @@ public class MyServer extends Observable{
 		clients = new ConcurrentHashMap<Integer, String>();
 	}
 	
+	/**
+	 * <strong>startServer</strong>
+	 * <p>
+	 * <code>public void startServer()</code>
+	 * <p>
+	 * This method starts the server's execute.
+	 * @return nothing
+	 */
 	public void startServer(){
 		try {
+			// Initialize new socket for the server side
 			ServerSocket server = new ServerSocket(port);
 			server.setSoTimeout(5000);
 			while(!stop)
 			{
 				try {
+					// Takes a client that connected to the server and starts handle him.
 					Socket someClient=server.accept();
+					// Using the thread pool...
 					threadPool.execute(new Runnable() {
 						
 						@Override
@@ -44,6 +68,7 @@ public class MyServer extends Observable{
 							try {
 								setChanged();
 								notifyObservers(addClient(someClient));
+								// Initializes the IO stream for the handle_client's method.
 								InputStream inputFromClient=someClient.getInputStream();
 								OutputStream outputToClient=someClient.getOutputStream();
 								clientHandler.handleClient(inputFromClient,outputToClient);
@@ -72,12 +97,29 @@ public class MyServer extends Observable{
 		
 	}
 	
+	/**
+	 * <strong>stopServer</strong>
+	 * <p>
+	 * <code>public void stopServer()</code>
+	 * <p>
+	 * This method stops the server's execute.
+	 * @return nothing
+	 */
 	public void stopServer(){
+		// The volatile boolean field used in the loop of the start method
 		stop=true;
 		threadPool.shutdownNow();
 		clientHandler.exit();
 	}
 
+	/**
+	 * <strong>open</strong>
+	 * <p>
+	 * <code>public void open()</code>
+	 * <p>
+	 * This method opens a thread that runs the server's execute.
+	 * @return nothing
+	 */
 	public void open(){
 		new Thread(new Runnable() {
 			
@@ -95,6 +137,17 @@ public class MyServer extends Observable{
 		return clientHandler;
 	}
 
+	/**
+	 * <strong>addClient</strong>
+	 * <p>
+	 * <code>public String addClient(Socket client)</code>
+	 * <p>
+	 * Adding a client to the clients base by socket.
+	 * 
+	 * @param client The socket that from him all information will put to the clients hash map
+	 * @return A string of information about the connection(the local address, host address
+	 * port and confirmation).
+	 */
 	public String addClient(Socket client){
 		clients.put(client.getPort(), client.getLocalAddress().getHostAddress());
 		return client.getLocalAddress().getHostAddress()+":"+client.getPort()+" has connected";

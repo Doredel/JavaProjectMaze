@@ -78,12 +78,29 @@ public class MyModel extends Observable implements Model,Observer {
 	}
 
 
+	/**
+	 * <strong>setNumThreatsClient</strong>
+	 * <p>
+	 * <code>	public void setNumThreatsClient(int numThreads)</code>
+	 * <p>
+	 * Setting the number of clients that can use the application at the same time.
+	 * @return nothing
+	 *
+	 */
 	@Override
 	public void setNumThreatsClient(int numThreads) {
 		server.getClientHandler().setNumThreats(numThreads);
 	}
 
-
+	/**
+	 * <strong>update</strong>
+	 * <p>
+	 * <code>public void update(Observable o, Object arg)</code>
+	 * <p>
+	 * Notification to the observers about update of argument.
+	 * @param arg The argument that updated.
+	 * @return nothing
+	 */
 	@Override
 	public void update(Observable o, Object arg) {
 		setChanged();
