@@ -38,6 +38,9 @@ public class Maze2D extends Maze3dDisplayer{
 			} catch (FileNotFoundException e1) {
 				e1.printStackTrace();
 			}
+	        
+	        scale = 0;
+	        
 	    	setBackground(new Color(null, 0,0,0));
 	    	addPaintListener(new PaintListener() {
 				
@@ -54,9 +57,14 @@ public class Maze2D extends Maze3dDisplayer{
 						   return;
 					   }
 					   
-					  
-					   int w = (width)/mazeData[0].length;
-					   int h = (height)/mazeData.length;
+					   int w,h;
+					   
+					   if (scale < 0) {
+						   scale = 0;
+					   }
+					   
+					   w = (width)/mazeData[0].length;
+					   h = (height)/mazeData.length;
 					   
 					   if(!character.getPosition().equals(goal) && movement){
 						   for(int i=0;i<mazeData.length;i++)

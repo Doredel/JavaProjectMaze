@@ -8,6 +8,8 @@ import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseWheelListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
@@ -38,7 +40,7 @@ public class MainWindow extends BasicWindow{
 	private Menu menuBar;
 	private Menu fileMenu;
 	private MenuItem fileItem;
-	private MenuItem prop;
+	private MenuItem propItem;
 	private MenuItem restartItem;
 	private MenuItem exitItem;
 	private Button createMaze;
@@ -111,11 +113,11 @@ public class MainWindow extends BasicWindow{
 	    fileItem = new MenuItem(menuBar, SWT.CASCADE);
 	    fileItem.setText("File");
 	    fileItem.setMenu(fileMenu);
-
+	    
 	    // Create all the items in the File dropdown menu
-	    prop = new MenuItem(fileMenu, SWT.NONE);
-	    prop.setText("Open properties");
-		prop.addSelectionListener(new SelectionListener() {
+	    propItem = new MenuItem(fileMenu, SWT.NONE);
+	    propItem.setText("Open properties");
+	    propItem.addSelectionListener(new SelectionListener() {
 			
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
@@ -305,6 +307,17 @@ public class MainWindow extends BasicWindow{
 			
 			@Override
 			public void keyPressed(KeyEvent arg0) {
+				if(arg0.keyCode == SWT.CONTROL){
+					md.addMouseWheelListener(new MouseWheelListener() {
+						
+						@Override
+						public void mouseScrolled(MouseEvent arg0) {
+							md.setScale(md.getScale()+arg0.count/3);
+							md.redraw();
+						}
+					});
+				}
+				
 				if(md.isMovement()){
 					ArrayList<String> pos = new ArrayList<String>(Arrays.asList(maze.getPossibleMoves(character.getPosition())));
 					switch (md.getCross()) {

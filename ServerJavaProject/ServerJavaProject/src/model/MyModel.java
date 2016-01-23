@@ -36,15 +36,8 @@ public class MyModel extends Observable implements Model,Observer {
 	}
 
 
-	/**
-	 * <strong>saveProperties</strong>
-	 * <p>
-	 * <code>public void saveProperties(Properties properties)</code>
-	 * <p>
-	 * Saving the properties of the program in a XML file.
-	 * @param properties The properties object that contains the properties
-	 * @see XMLEncoder 
-	 */
+	
+	@Override
 	public void saveProperties(ServerProperties properties) {
 		try {
 			XMLEncoder coder = new XMLEncoder(new BufferedOutputStream(new FileOutputStream("ServerProperties.xml")));
@@ -55,15 +48,7 @@ public class MyModel extends Observable implements Model,Observer {
 		}
 	}
 
-	/**
-	 * <strong>loadProperties</strong>
-	 * <p>
-	 * <code>public void loadProperties(Properties properties)</code>
-	 * <p>
-	 * Loading the properties of the program from the XML properties file
-	 * @return properties The properties object that contains the properties
-	 * @see XMLDecoder
-	 */
+	
 	@Override
 	public ServerProperties loadProperties() {
 		ServerProperties properties = null;
@@ -77,30 +62,6 @@ public class MyModel extends Observable implements Model,Observer {
 		return properties;
 	}
 
-
-	/**
-	 * <strong>setNumThreatsClient</strong>
-	 * <p>
-	 * <code>	public void setNumThreatsClient(int numThreads)</code>
-	 * <p>
-	 * Setting the number of clients that can use the application at the same time.
-	 * @return nothing
-	 *
-	 */
-	@Override
-	public void setNumThreatsClient(int numThreads) {
-		server.getClientHandler().setNumThreats(numThreads);
-	}
-
-	/**
-	 * <strong>update</strong>
-	 * <p>
-	 * <code>public void update(Observable o, Object arg)</code>
-	 * <p>
-	 * Notification to the observers about update of argument.
-	 * @param arg The argument that updated.
-	 * @return nothing
-	 */
 	@Override
 	public void update(Observable o, Object arg) {
 		setChanged();

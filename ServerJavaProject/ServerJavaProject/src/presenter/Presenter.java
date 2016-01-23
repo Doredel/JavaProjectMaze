@@ -47,7 +47,6 @@ public class Presenter implements Observer{
 			if(arg == null){
 				
 				m.openServer(properties.getPort(), properties.getNumThreads());
-				m.setNumThreatsClient(properties.getNumThreads());
 				
 			}else if (((String)arg).equals("exit")) {
 				m.stopServer();

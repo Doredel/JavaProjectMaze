@@ -46,19 +46,18 @@ public class MazeHandler implements ClientHandler {
 	private ExecutorService executor;
 
 	/**
-	 * <strong>MyModel</strong>
+	 * <strong>MazeHandler</strong>
 	 * <p>
-	 * <code>public MyModel(Controller<Position> c)</code>
+	 * <code>public MazeHandler()</code>
 	 * <p>
-	 * construct MyModel instance
-	 * 
-	 * @param c - the controller instance
+	 * construct MazeHandler instance
 	 */
 	@SuppressWarnings("unchecked")
 	public MazeHandler(){
 		mazeDB = new HashMap<String, Maze3d>();
 		solutionDB = new HashMap<String, Solution<Position>>();
 		cache = new HashMap<Maze3d, Solution<Position>>();
+		executor = Executors.newFixedThreadPool(2);
 		
 		try {
 			ObjectInputStream zipo = new ObjectInputStream(new GZIPInputStream(new FileInputStream("cache.zip")));
@@ -70,20 +69,7 @@ public class MazeHandler implements ClientHandler {
 		
 	}
 	
-	/**
-	 * <strong>handleClient</strong>
-	 * <p>
-	 * public void handleClient(InputStream inFromClient, OutputStream outToClient)</code>
-	 * <p>
-	 * This method handles the client's commands. 
-	 * after reading a command from the input stream, the method will analyze the command
-	 * and call to the match method. The return value of the method will be print
-	 * to the output stream. 
-	 * 
-	 *@param inFromClient The input stream that from him will be read the commands.
-	 *@param outToClient The output stream that will get the values(like maze,solution etc.)
-	 *and print it  
-	 */ 
+
 	public void handleClient(InputStream inFromClient, OutputStream outToClient) {
 		
 		try {
@@ -426,7 +412,6 @@ public class MazeHandler implements ClientHandler {
 	 * Exit method, that closes the run method, all the threads neatly and saves the cache. 
 	 * @return nothing
 	 */
-	 
 	public void exit() {
 		try {
 			ObjectOutputStream zipo = new ObjectOutputStream(new GZIPOutputStream(new FileOutputStream("cache.zip")));
@@ -439,18 +424,4 @@ public class MazeHandler implements ClientHandler {
 			executor.shutdown();
 		}
 	}
-
-	/**
-	 * <strong>setNumThreats</strong>
-	 * <p>
-	 * <code>public void setNumThreats(int numThreads)</code>
-	 * <p>
-	 *	Setting the number of the maximum threads that can run at the same time.
-	 */
-	 
-	@Override
-	public void setNumThreats(int numThreads) {
-		executor = Executors.newFixedThreadPool(numThreads);
-	}
-
 }

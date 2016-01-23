@@ -51,15 +51,12 @@ public class MyServer extends Observable{
 	 */
 	public void startServer(){
 		try {
-			// Initialize new socket for the server side
 			ServerSocket server = new ServerSocket(port);
 			server.setSoTimeout(5000);
 			while(!stop)
 			{
 				try {
-					// Takes a client that connected to the server and starts handle him.
 					Socket someClient=server.accept();
-					// Using the thread pool...
 					threadPool.execute(new Runnable() {
 						
 						@Override
@@ -78,7 +75,6 @@ public class MyServer extends Observable{
 								someClient.close();
 								
 							} catch (IOException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 							
@@ -106,7 +102,6 @@ public class MyServer extends Observable{
 	 * @return nothing
 	 */
 	public void stopServer(){
-		// The volatile boolean field used in the loop of the start method
 		stop=true;
 		threadPool.shutdownNow();
 		clientHandler.exit();
