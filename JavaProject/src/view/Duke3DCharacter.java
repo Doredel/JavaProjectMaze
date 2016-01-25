@@ -12,8 +12,13 @@ public class Duke3DCharacter extends Game3DCharacter {
 	private Image image;
 	
 	/**
-	 *  with the image of the one and only duke
-	 * @param parent - the window in which the character is
+	 * <strong>Duke3DCharacter</strong>
+	 * <p>
+	 * <code>public Duke3DCharacter(Shell parent)</code>
+	 * <p>
+	 * Constructor of Duke 3d character drawing.
+	 * 
+	 * @param parent The window in which the character is.
 	 */
 	public Duke3DCharacter(Shell parent) {
 		super(parent);

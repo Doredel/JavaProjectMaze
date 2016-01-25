@@ -10,98 +10,158 @@ public abstract class Game3DCharacter {
 	protected Shell parent;
 
 	/**
+	 * <strong>Game3DCharacter</strong>
+	 * <code>public Game3DCharacter(Shell parent)</code>
+	 * <p>
+	 * Constructor of an abstract character drawing.
 	 * 
-	 * @param parent - the window in which the character is
+	 * @param parent The window in which the character is.
 	 */
 	public Game3DCharacter(Shell parent) {
 		this.parent = parent;
 	}
 	
 	/**
-	 * @return the position
+	 * <strong>Ball3DCharacter</strong>
+	 * <p>
+	 * <code>public Position getPosition()</code>
+	 * <p>
+	 * Gets the position of the character in maze.
+	 * @return The position
 	 */
 	public Position getPosition() {
 		return position;
 	}
-
 	/**
-	 * @param position the position to set
+	 * <strong>setPosition</strong>
+	 * <p>
+	 * <code>public void setPosition(Position position)</code>
+	 * <p>
+	 * Sets the position of the character in maze.
+	 * @return nothing.
 	 */
 	public void setPosition(Position position) {
 		this.position = position;
 	}
 
 	/**
-	 * @return the x value of the character
+	 * <strong>getX</strong>
+	 * <p>
+	 * <code>public int getX()</code>
+	 * <p>
+	 * Gets the x's axis position of the character in maze.
+	 * @return The x value of the character.
 	 */
 	public int getX(){
 		return this.position.getX();
 	}
 
 	/**
-	 * @return the y value of the character
+	 * <strong>getY</strong>
+	 * <p>
+	 * <code>public int getY()</code>
+	 * <p>
+	 * Gets the y's axis position of the character in maze.
+	 * @return The y value of the character.
 	 */
 	public int getY(){
 		return this.position.getY();
 	}
 
 	/**
-	 * @return the z value of the character
+	 * <strong>getZ</strong>
+	 * <p>
+	 * <code>public int getZ()</code>
+	 * <p>
+	 * Gets the z's axis position of the character in maze.
+	 * @return The z value of the character.
 	 */
 	public int getZ(){
 		return this.position.getZ();
 	}
 	
 	/**
-	 * moving the character up
+	 * <strong>moveUp</strong>
+	 * <p>
+	 * <code>public void moveUp()</code>
+	 * <p>
+	 * Moving up the character in maze.
+	 * @return nothing.
 	 */
 	public void moveUp() {
 		position = position.getUp();
 	}
 	
 	/**
-	 * moving the character down
+	 * <strong>moveDown</strong>
+	 * <p>
+	 * <code>public void moveDown()</code>
+	 * <p>
+	 * Moving down the character in maze.
+	 * @return nothing.
 	 */
 	public void moveDown() {
 		position = position.getDown();
 	}
 	
 	/**
-	 * moving the character left
+	 * <strong>moveLeft</strong>
+	 * <p>
+	 * <code>public void moveLeft()</code>
+	 * <p>
+	 * Moving left the character in maze.
+	 * @return nothing.
 	 */
 	public void moveLeft() {
 		position = position.getLeft();
 	}
 	
 	/**
-	 * moving the character right
+	 * <strong>moveRight</strong>
+	 * <p>
+	 * <code>public void moveRight()</code>
+	 * <p>
+	 * Moving right the character in maze.
+	 * @return nothing.
 	 */
 	public void moveRight() {
 		position = position.getRight();
 	}
 	
 	/**
-	 * moving the character forward
+	 * <strong>moveForward</strong>
+	 * <p>
+	 * <code>public void moveForward()</code>
+	 * <p>
+	 * Moving forward the character in maze.
+	 * @return nothing.
 	 */
 	public void moveForward() {
 		position = position.getForward();
 	}
 	
 	/**
-	 * moving the character backward
+	 * <strong>moveBackward</strong>
+	 * <p>
+	 * <code>public void moveBackward()</code>
+	 * <p>
+	 * Moving backward the character in maze.
+	 * @return nothing.
 	 */
 	public void moveBackward() {
 		position = position.getBackward();
 	}
 	
 	/**
-	 * drawing the character 
-	 * 
-	 * @param e - the {@link PaintEvent}
-	 * @param x - the x value in the canvas
-	 * @param y - the y value in the canvas
-	 * @param width - the width of the character
-	 * @param height - the height of the character
+	 * <strong>draw</strong>
+	 * <code>public abstract void draw(PaintEvent e,int x,int y,int width,int height)</code>
+	 * <p>
+	 * Drawing the character.
+	 * @param e The {@link PaintEvent}
+	 * @param x The x value in the canvas.
+	 * @param y The y value in the canvas.
+	 * @param width The width of the character.
+	 * @param height The height of the character.
 	 */
 	public abstract void draw(PaintEvent e,int x,int y,int width,int height);
 }

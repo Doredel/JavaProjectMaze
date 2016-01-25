@@ -10,10 +10,19 @@ import org.eclipse.swt.widgets.Shell;
 public class Spaceship3dCharacter extends Game3DCharacter {
 	
 	Image player;
-	
+	/**
+	 * <strong>Spaceship3dCharacter</strong>
+	 * <p>
+	 * <code> public Spaceship3dCharacter(Shell parent)</code>
+	 * <p>
+	 * Constructor of Spaceship 3d character drawing.
+	 * 
+	 * @param parent The window in which the character is.
+	 */
 	public Spaceship3dCharacter(Shell parent) {
 		super(parent);
 		try {
+			// Setting the player image to be a great spaceship(!)
 			player = new Image(parent.getDisplay(), new FileInputStream("resources/phoenix.png"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

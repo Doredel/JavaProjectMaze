@@ -15,7 +15,6 @@ public class Client {
 	 *  This method helps to match between the server to the client.
 	 *  By specific port and IP, the server will "help" to the commands of the client. 
 	 *  
-	 * @return nothing
 	 */
 	public static Object helpFromServer(String msg,String IP,int port){
 		Object result = null;

@@ -6,33 +6,33 @@ import java.io.Serializable;
 public class Properties implements Serializable {
 	
 	/**
-	 * the maximum number of threads in the model
+	 * The maximum number of threads in the model.
 	 */
 	private int serverPort;
 	
 	/**
-	 * the type of interface
+	 * The type of interface.
 	 */
 	private String interfaceType;
 	
 	private String serverIP;
 	
 	/**
-	 * Construct a properties object
+	 * Construct a properties object.
 	 */
 	public Properties(){}
 
 
 
 	/**
-	 * @return the interfaceType
+	 * @return The interfaceType.
 	 */
 	public String getInterfaceType() {
 		return interfaceType;
 	}
 
 	/**
-	 * @param interfaceType the interfaceType to set
+	 * @param interfaceType The interfaceType to set.
 	 */
 	public void setInterfaceType(String interfaceType) {
 		this.interfaceType = interfaceType;
@@ -41,7 +41,7 @@ public class Properties implements Serializable {
 
 
 	/**
-	 * @return the serverPort
+	 * @return The serverPort.
 	 */
 	public int getServerPort() {
 		return serverPort;

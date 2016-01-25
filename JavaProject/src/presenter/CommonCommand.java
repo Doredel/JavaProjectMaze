@@ -5,7 +5,7 @@ import view.View;
 import model.Model;
 
 /**
- * An abstract class that contains an the data members of the model and the view
+ * An abstract class that contains an the data members of the model and the view.
  * 
  * @authors Dor Edelstein, Lior Mantin
  * @see Command
@@ -14,7 +14,7 @@ import model.Model;
 public abstract class CommonCommand<T> implements Command {
 	
 	/**
-	 * The v content 
+	 * The v content
 	 */
 	protected View<T> v;
 	
@@ -30,10 +30,10 @@ public abstract class CommonCommand<T> implements Command {
 	 * <p>
 	 * <code>public CommonCommand(View<T> v,Model m)</code>
 	 * <P>
-	 * constructor that will be used to create Commands
+	 * constructor that will be used to create Commands.
 	 *  
-	 * @param v - ref to the view
-	 * @param m - ref to the model
+	 * @param v Reference to the view
+	 * @param m Reference to the model
 	 */
 	public CommonCommand(View<T> v,Model m) {
 		this.v=v;

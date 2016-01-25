@@ -29,7 +29,7 @@ public class MyServer extends Observable{
 	 * and the number of clients that can running the application at the same time.
 	 * (AKA number of threads).
 	 * 
-	 * @param port number of port that the server talks with.
+	 * @param port Number of port that the server talks with.
 	 * @param numThreads The number of clients that the server can handle.
 	 * @param clientHandler The client handler that connects with the server. 
 	 */
@@ -47,7 +47,7 @@ public class MyServer extends Observable{
 	 * <code>public void startServer()</code>
 	 * <p>
 	 * This method starts the server's execute.
-	 * @return nothing
+	 * @return nothing.
 	 */
 	public void startServer(){
 		try {
@@ -99,7 +99,7 @@ public class MyServer extends Observable{
 	 * <code>public void stopServer()</code>
 	 * <p>
 	 * This method stops the server's execute.
-	 * @return nothing
+	 * @return nothing.
 	 */
 	public void stopServer(){
 		stop=true;
@@ -113,7 +113,7 @@ public class MyServer extends Observable{
 	 * <code>public void open()</code>
 	 * <p>
 	 * This method opens a thread that runs the server's execute.
-	 * @return nothing
+	 * @return nothing.
 	 */
 	public void open(){
 		new Thread(new Runnable() {
@@ -126,7 +126,7 @@ public class MyServer extends Observable{
 	}
 
 	/**
-	 * @return the clientHandler
+	 * @return The clientHandler.
 	 */
 	public ClientHandler getClientHandler() {
 		return clientHandler;
@@ -138,7 +138,6 @@ public class MyServer extends Observable{
 	 * <code>public String addClient(Socket client)</code>
 	 * <p>
 	 * Adding a client to the clients base by socket.
-	 * 
 	 * @param client The socket that from him all information will put to the clients hash map
 	 * @return A string of information about the connection(the local address, host address
 	 * port and confirmation).

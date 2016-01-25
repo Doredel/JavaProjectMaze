@@ -50,7 +50,7 @@ public class MazeHandler implements ClientHandler {
 	 * <p>
 	 * <code>public MazeHandler()</code>
 	 * <p>
-	 * construct MazeHandler instance
+	 * Constructor MazeHandler instance.
 	 */
 	@SuppressWarnings("unchecked")
 	public MazeHandler(){

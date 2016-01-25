@@ -4,7 +4,7 @@ import model.Model;
 import view.View;
 
 /**
- * class of the command to exit the model
+ * Class of the command to exit the model.
  * 
  * @authors Dor Edelstein, Lior Mantin
  *
@@ -27,6 +27,7 @@ public class ExitCommand<T> extends CommonCommand<T> {
 	 */
 	@Override
 	public void doCommand() {
+		// sends to the model the order to exit.
 		m.exit();
 	}
 }

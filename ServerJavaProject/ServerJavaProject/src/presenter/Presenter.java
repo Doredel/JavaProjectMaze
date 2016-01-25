@@ -29,8 +29,8 @@ public class Presenter implements Observer{
 	 * model and the view facades, creates the command hash map
 	 * and loads the properties from the XML file.
 	 * 
-	 * @param model The model's Facade
-	 * @param view The view's Facade
+	 * @param model The model's Facade.
+	 * @param view The view's Facade.
 	 */
 	public Presenter(Model model, View view) {
 		super();

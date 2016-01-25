@@ -17,10 +17,10 @@ public class GUI extends Observable implements Observer{
 	/**
 	 * <strong>start</strong>
 	 * <p>
-	 * <code>public void start</code>
+	 * <code>public void start()</code>
 	 * <p>
 	 * The start method that runs the main window of the program.
-	 * 
+	 * @return nothing.
 	 */
 	public void start()
 	{
@@ -36,8 +36,9 @@ public class GUI extends Observable implements Observer{
 	 * <p>
 	 * Display error method that using message box to
 	 * show to the user if there is a problem in the running
-	 * of the program
-	 * 
+	 * of the program.
+	 * @param string The string that will be displayed.
+	 * @return nothing.
 	 */
 	public void display(String string)
 	{
@@ -51,7 +52,15 @@ public class GUI extends Observable implements Observer{
 		setChanged();
 		notifyObservers(arg);
 	}
-	
+	/**
+	 * <strong>pass</strong>
+	 * <p>
+	 * <code>public void pass(Object arg)</code>
+	 * <p>
+	 * Passing the argument by his classification and making the matching order.
+	 * @param arg The argument that will pass to the main window(by his own type).
+	 * @return nothing.
+	 */
 	public void pass(Object arg){
 		 if (arg instanceof int[][]){
 			mw.setCross((int[][])arg);

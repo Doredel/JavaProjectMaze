@@ -12,10 +12,10 @@ public class MazeSaver {
 	 * <p>
 	 * <code>public static void save(Maze3d maze, String fileName) throws IOException</code>
 	 * <p>
-	 * The save method takes the maze, compresses him and saves it in fileName
+	 * The save method takes the maze, compresses him and saves it in fileName.
 	 * 
-	 * @param fileName The content of the file that to him the maze will be compressed
-	 * @return nothing
+	 * @param fileName The content of the file that to him the maze will be compressed.
+	 * @return nothing.
 	 */
 	public static void save(Maze3d maze, String fileName) throws IOException{
 		MyCompressorOutputStream out  = new MyCompressorOutputStream(new FileOutputStream(fileName));

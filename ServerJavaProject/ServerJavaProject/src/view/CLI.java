@@ -22,10 +22,10 @@ public class CLI extends Observable{
 	 * <p>
 	 * <code>public CLI(BufferedReader in, PrintWriter out)</code>
 	 * <p>
-	 * Construct a Command Line Interface
+	 * Constructor a Command Line Interface.
 	 * 
-	 * @param in - the input stream
-	 * @param out - the output stream
+	 * @param in The input stream.
+	 * @param out The output stream.
 	 */
 	public CLI(BufferedReader in,PrintWriter out) {
 		this.out = out;
@@ -39,7 +39,7 @@ public class CLI extends Observable{
 	 * <p>
 	 * Displays a message to the input stream.
 	 * @param massage The message that will shown.
-	 * @return nothing
+	 * @return nothing.
 	 */
 	void display(String massage){
 		out.println(massage);
@@ -52,7 +52,7 @@ public class CLI extends Observable{
 	 * <code>public void start()</code>
 	 * <p>
 	 * Starts the the CLI execute.
-	 * @return nothing
+	 * @return nothing.
 	 */
 	void start(){
 		new Thread(new Runnable() {

@@ -20,8 +20,14 @@ public class MazeSolver implements Callable<Solution<Position>>{
 	
 
 	/**
-	 * @param maze
-	 * @param algorithm
+	 * <strong>MazeSolver</strong>
+	 * <p>
+	 * <code>public MazeSolver(Maze3d maze, String algorithm)</code>
+	 * <p>
+	 * The constructor of MazeSolver class, that initializes the solution way 
+	 * by the parameters of the maze and the type of the algorithm.
+	 * @param maze The maze that will be solved.
+	 * @param algorithm The type of algorithm that will solve the maze.
 	 */
 	public MazeSolver(Maze3d maze, String algorithm) {
 		super();
@@ -34,11 +40,11 @@ public class MazeSolver implements Callable<Solution<Position>>{
 	 * <p>
 	 * <code>public static Solution<Position> solve(Maze3d maze,String algorithm) throws Exception</code>
 	 * <p>
-	 * The solve method solves the maze that given as a parameter with an algorithm( parameter too)
+	 * The solve method solves the maze that given as a parameter with an algorithm( parameter too).
 	 * 
-	 * @param maze The content of the maze that will be solved
-	 * @param algorithm The type of the algorithm( like BFS)
-	 * @return Solution<Position> An object of Solution( that includes an arrayList of positions)
+	 * @param maze The content of the maze that will be solved.
+	 * @param algorithm The type of the algorithm( like BFS).
+	 * @return Solution<Position> An object of Solution( that includes an arrayList of positions).
 	 */
 	public static Solution<Position> solve(Maze3d maze,String algorithm) throws Exception{
 		

@@ -31,7 +31,7 @@ public class GUIAdaptor extends GUI{
 	 * <code>public void start()</code>
 	 * <p>
 	 * Start method that runs the start of cli from the GUI adaptor.
-	 * @return nothing
+	 * @return nothing.
 	 */
 	@Override
 	public void start() {
@@ -46,7 +46,7 @@ public class GUIAdaptor extends GUI{
 	 * Adding observer method that adds a certain observer to the cli 
 	 * from the GUI adaptor.
 	 * @param o The observer variable that will be added to the observers of cli.
-	 * @return nothing
+	 * @return nothing.
 	 */
 	public void addObserver(Observer o){
 		cli.addObserver(o);
@@ -59,8 +59,8 @@ public class GUIAdaptor extends GUI{
 	 * <code>public void display(String string)</code>
 	 * <p>
 	 * Display error method that calling to the cli's display and shows the message.
-	 * @param string The notice/type that may be found in program
-	 * @return nothing
+	 * @param string The notice/type that may be found in program.
+	 * @return nothing.
 	 */
 	@Override
 	public void display(String string) {

@@ -61,9 +61,9 @@ public class MainWindow extends BasicWindow{
 	 * <p>
 	 * Constructor of MainWindow that initializes the BasicWindow by the parameters. 
 	 * 
-	 * @param width The width of the window
-	 * @param height The height of the window
-	 * @param name The window's title
+	 * @param width The width of the window.
+	 * @param height The height of the window.
+	 * @param name The window's title.
 	 */
 	public MainWindow(int width, int height, String name) {
 		super(width, height, name);
@@ -77,10 +77,10 @@ public class MainWindow extends BasicWindow{
 	 * Constructor of MainWindow that initializes the BasicWindow by the parameters. 
 	 * The difference from the first c'tor is in the display mode- CLI or GUI.
 	 * 
-	 * @param width The width of the window
-	 * @param height The height of the window
-	 * @param title The window's title
-	 * @param display The represent of the program- by GUI or CLI 
+	 * @param width The width of the window.
+	 * @param height The height of the window.
+	 * @param title The window's title.
+	 * @param display The represent of the program- by GUI or CLI. 
 	 */
 	public MainWindow(int width, int height,String title, Shell parent) {
 		super(width, height,title,parent);
@@ -103,18 +103,18 @@ public class MainWindow extends BasicWindow{
 	public void initWidgets() {
 		shell.setLayout(new GridLayout(2, false));
 
-	    // Create the bar menu
+	    // Creates the bar menu
 		menuBar = new Menu(shell, SWT.BAR);
 
-	    // Create the File item's dropdown menu
+	    // Creates the File item's dropdown menu
 	    fileMenu = new Menu(menuBar);
 
-	    // Create all the items in the bar menu
+	    // Creates all the items in the bar menu
 	    fileItem = new MenuItem(menuBar, SWT.CASCADE);
 	    fileItem.setText("File");
 	    fileItem.setMenu(fileMenu);
 	    
-	    // Create all the items in the File dropdown menu
+	    // Creates all the items in the File dropdown menu
 	    propItem = new MenuItem(fileMenu, SWT.NONE);
 	    propItem.setText("Open properties");
 	    propItem.addSelectionListener(new SelectionListener() {
@@ -631,7 +631,12 @@ public class MainWindow extends BasicWindow{
 	}
 	
 	/**
-	 * re start the widget to the initial conditions
+	 * <strong>restart</strong>
+	 * <p>
+	 * <code>public void restart()</code>
+	 * <p>
+	 * Restart method that making a new maze board.
+	 * @return nothing.
 	 */
 	public void restart(){
 		

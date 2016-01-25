@@ -27,9 +27,9 @@ public class MazeGeneratetionWindows extends BasicWindow {
 	 * <p>
 	 * Constructor of MazeGeneratetionWindows that initializes the BasicWindow by the parameters. 
 	 * 
-	 * @param width The width of the window
-	 * @param height The height of the window
-	 * @param title The window's title
+	 * @param width The width of the window.
+	 * @param height The height of the window.
+	 * @param title The window's title.
 	 */
 	public MazeGeneratetionWindows(int width, int height,String title) {
 		super(width, height,title);
@@ -43,9 +43,9 @@ public class MazeGeneratetionWindows extends BasicWindow {
 	 * <p>
 	 * Constructor of MazeGeneratetionWindows that initializes the BasicWindow by the parameters. 
 	 * 
-	 * @param width The width of the window
-	 * @param height The height of the window
-	 * @param title The window's title
+	 * @param width The width of the window.
+	 * @param height The height of the window.
+	 * @param title The window's title.
 	 */
 	public MazeGeneratetionWindows(int width, int height,String title, Shell parent) {
 		super(width, height,title,parent);
@@ -120,14 +120,23 @@ public class MazeGeneratetionWindows extends BasicWindow {
 	}
 	
 	/**
-	 * @return the request
+	 * <strong>getRequest</strong>
+	 * <p>
+	 * <code>public String getRequest()</code>
+	 * <p>
+	 * Getting the request.
+	 * @return The request.
 	 */
 	public String getRequest(){
 		return request;
 	}
-	
 	/**
-	 * @return the name
+	 * <strong>getName</strong>
+	 * <p>
+	 * <code>public String getName()</code>
+	 * <p>
+	 * Getting the name of maze.
+	 * @return The name.
 	 */
 	public String getName(){
 		return name;

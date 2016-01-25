@@ -9,7 +9,7 @@ public interface View {
 	 * <p>
 	 * Displays a message to the input stream.
 	 * @param massage The message that will shown.
-	 * @return nothing
+	 * @return nothing.
 	 */
 	public void dispaly(String massage);
 	
@@ -19,7 +19,7 @@ public interface View {
 	 * <code>public void start()</code>
 	 * <p>
 	 * Starts the the CLI execute.
-	 * @return nothing
+	 * @return nothing.
 	 */
 	public void start();
 }

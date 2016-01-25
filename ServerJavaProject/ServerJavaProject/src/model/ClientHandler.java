@@ -17,7 +17,8 @@ public interface ClientHandler {
 	 * 
 	 *@param inFromClient The input stream that from him will be read the commands.
 	 *@param outToClient The output stream that will get the values(like maze,solution etc.)
-	 *and print it  
+	 *and prints it. 
+	 *@return nothing.	 
 	 */ 
 	public void handleClient(InputStream inFromClient, OutputStream outToClient);
 	

@@ -10,11 +10,15 @@ public class MazeGenerator implements Callable<Maze3d> {
 	int width, height, depth;
 	
 	/**
+	 * <strong>MazeGenerator</strong>
+	 * <p>
+	 * <code>public MazeGenerator(int width, int height, int depth)</code>
+	 * <p>
 	 * The constructor of MazeGenerator class, that initializes a maze by
 	 * the parameters of width, height and depth.
-	 * @param width
-	 * @param height
-	 * @param depth
+	 * @param width The width of the maze.
+	 * @param height The height of the maze.
+	 * @param depth The depth of the maze.
 	 */
 	public MazeGenerator(int width, int height, int depth) {
 		super();
@@ -23,9 +27,6 @@ public class MazeGenerator implements Callable<Maze3d> {
 		this.depth = depth;
 	}
 
-	/**
-	 * This is an override method that makes this class be callable. 
-	 */
 	@Override
 	public Maze3d call() throws Exception {
 		Maze3d maze = (new MyMaze3dGenerator()).generate(width, height, depth);

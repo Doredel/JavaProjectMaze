@@ -29,11 +29,10 @@ public class MyModel extends Observable implements Model {
 	/**
 	 * <strong>MyModel</strong>
 	 * <p>
-	 * <code>public MyModel(Controller<Position> c)</code>
+	 * <code>public MyModel()</code>
 	 * <p>
 	 * construct MyModel instance
 	 * 
-	 * @param c - the controller instance
 	 */
 	public MyModel(){
 		

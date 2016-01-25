@@ -15,19 +15,19 @@ import view.View;
 public class Presenter<T> implements Observer {
 
 	/**
-	 * The model field
+	 * The model field.
 	 */
 	private Model m;
 	/**
-	 * The view field
+	 * The view field.
 	 */
 	private View<T> v;
 	/**
-	 * The properties of the program
+	 * The properties of the program.
 	 */
 	private Properties properties;
 	/**
-	 * The hash map of the commands list
+	 * The hash map of the commands list.
 	 */
 	private HashMap<String,Command> comnds;
 	
@@ -40,8 +40,8 @@ public class Presenter<T> implements Observer {
 	 * model and the view facades, creates the command hash map
 	 * and loads the properties from the XML file.
 	 * 
-	 * @param model The model's Facade
-	 * @param view The view's Facade
+	 * @param model The model's Facade.
+	 * @param view The view's Facade.
 	 */
 	public Presenter(Model model, View<T> view) {
 		super();
@@ -50,6 +50,7 @@ public class Presenter<T> implements Observer {
 		CreateCommandMap();
 		
 		properties = m.loadProperties();
+		// Setting the properties for connection and view
 		v.setView(properties.getInterfaceType());
 		m.setPort(properties.getServerPort());
 		m.setIP(properties.getServerIP());
@@ -60,7 +61,7 @@ public class Presenter<T> implements Observer {
 	 * <p>
 	 * <code>public void CreateCommandMap()</code>
 	 * <p>
-	 * The command map creator that puts each command(the string) and combines it with his unique command
+	 * The command map creator that puts each command(the string) and combines it with his unique command.
 	 * @return nothing.
 	 */
 	public void CreateCommandMap(){

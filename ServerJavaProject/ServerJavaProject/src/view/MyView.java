@@ -17,7 +17,7 @@ public class MyView extends Observable implements View,Observer{
 	 * <p>
 	 * Constructor of MyView that initializes the CLI field
 	 * (the input stream will be the system.in). 
-	 * @return nothing
+	 * @return nothing.
 	 */
 	public MyView(){
 		cli = new CLI(new BufferedReader(new  InputStreamReader(System.in)), new PrintWriter(System.out));

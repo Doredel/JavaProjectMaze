@@ -28,12 +28,14 @@ public class GeneralClassWindow extends BasicWindow {
 	private boolean changed;
 	
 	/**
-	 * Constructor for general dialog
-	 * 
-	 * @param width - the width of the window
-	 * @param height - the height of the window
-	 * @param name - the title of the window
-	 * @param theClass - the class that the dialog is created for
+	 * * <strong>GeneralClassWindow</strong>
+	 * <code>public GeneralClassWindow(int width, int height, String name, Class theClass)</code>
+	 * <p>
+	 * Constructor for general dialog.
+	 * @param width The width of the window.
+	 * @param height The height of the window.
+	 * @param name The title of the window.
+	 * @param theClass The class that the dialog is created for.
 	 */
 	public GeneralClassWindow(int width, int height, String name, Class theClass) {
 		super(width, height, name);
@@ -43,13 +45,15 @@ public class GeneralClassWindow extends BasicWindow {
 	}
 	
 	/**
-	 * Constructor for general dialog
-	 * 
-	 * @param width - the width of the window
-	 * @param height - the height of the window
-	 * @param name - the title of the window
-	 * @param parent - the parent window
-	 * @param theClass - the class that the dialog is created for
+	 * <strong>GeneralClassWindow</strong>
+	 * <code>public GeneralClassWindow(int width, int height, String name, Shell parent, Class theClass)</code>
+	 * <p>
+	 * Constructor for general dialog.
+	 * @param width The width of the window.
+	 * @param height The height of the window.
+	 * @param name The title of the window.
+	 * @param parent The parent window.
+	 * @param theClass The class that the dialog is created for.
 	 */
 	public GeneralClassWindow(int width, int height, String name, Shell parent, Class theClass) {
 		super(width, height, name, parent);

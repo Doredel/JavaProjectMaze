@@ -5,7 +5,7 @@ import view.View;
 
 
 /**
- * class of the command to generate a maze
+ * Class of the command to generate a maze.
  * 
  * @authors Dor Edelstein, Lior Mantin
  *
@@ -18,11 +18,11 @@ public class Generate3DMazeCommand<T> extends CommonCommand<T> {
 	 * <p>
 	 * <code>public Generate3DMazeCommand(View<T> v, Model m)</code>
 	 * <p>
-	 * Constructor of Generate3DMazeCommand<T> that initialize the facades of view and model 
+	 * Constructor of Generate3DMazeCommand<T> that initialize the facades of view and model. 
 	 * 
-	 * @param View<T> v - The facade of view to talk with
-	 * @param Model m - The facade of model to talk with
-	 * @return nothing
+	 * @param View<T> v The facade of view to talk with.
+	 * @param Model m The facade of model to talk with.
+	 * @return nothing.
 	 */
 	public Generate3DMazeCommand(View<T> v, Model m) {
 		super(v, m);
@@ -30,6 +30,8 @@ public class Generate3DMazeCommand<T> extends CommonCommand<T> {
 	
 	@Override
 	public void doCommand() {
+		// sends to the model the order to generate a maze(by params).
+		// Try&Catch to the indexes type.
 		try{
 			if (param.length == 2) {
 				String[] xyz=param[1].split(",");

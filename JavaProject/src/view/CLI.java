@@ -7,18 +7,18 @@ import java.util.Observable;
 
 /**
  * 
- * @author Dor-New
+ * @author Dor Edelstein, Lior Mantin 
  *
  */
 public class CLI extends Observable{
 	
 	/**
-	 * The input instance
+	 * The input instance.
 	 */
 	private BufferedReader in;
 	
 	/**
-	 * The output instance
+	 * The output instance.
 	 */
 	private PrintWriter out;
 	
@@ -27,10 +27,10 @@ public class CLI extends Observable{
 	 * <p>
 	 * <code>public CLI(BufferedReader in, PrintWriter out)</code>
 	 * <p>
-	 * Construct a Command Line Interface
+	 * Construct a Command Line Interface.
 	 * 
-	 * @param in - the input stream
-	 * @param out - the output stream
+	 * @param in The input stream.
+	 * @param out The output stream.
 	 */
 	public CLI(BufferedReader in, PrintWriter out) {
 		this.in = in;
@@ -42,7 +42,7 @@ public class CLI extends Observable{
 	 * <p>
 	 * <code>public void start()</code>
 	 * <p>
-	 * The main function starts the running of the program
+	 * The main function starts the running of the program.
 	 * 
 	 */
 	public void start(){
@@ -73,9 +73,9 @@ public class CLI extends Observable{
 	 * <p>
 	 * <code>public void display(String string)</code>
 	 * <p>
-	 * The function which prints into the OutputStream
+	 * The function which prints into the OutputStream.
 	 * 
-	 * @param str - the string to be printed
+	 * @param str The string to be printed.
 	 */
 	public void display(String str){
 		out.println(str);
@@ -83,7 +83,7 @@ public class CLI extends Observable{
 	}
 	
 	/**
-	 * prints the instructions
+	 * prints the instructions.
 	 */
 	public void instructions(){
 		out.println("======================================================");

@@ -14,8 +14,8 @@ public class MazeLoader {
 	 * <p>
 	 * The load method takes the compressed maze from a file and returns it decompressed.
 	 * 
-	 * @param fileName The content of the file that from him the information about the compressed maze is taken
-	 * @return byte[] An array of byte that includes the full and decompressed maze
+	 * @param fileName The content of the file that from him the information about the compressed maze is taken.
+	 * @return byte[] An array of byte that includes the full and decompressed maze.
 	 */
 	public static byte[] load(String fileName) throws IOException, SecurityException{
 		ArrayList<Byte> content = new ArrayList<Byte>();
@@ -39,10 +39,10 @@ public class MazeLoader {
 	 * <p>
 	 * <code>private static byte[] arrayListToArray(ArrayList<Byte> content)</code>
 	 * <p>
-	 * The arrayListToArray method helps to convert from arrayList of byte to a simple array
+	 * The arrayListToArray method helps to convert from arrayList of byte to a simple array.
 	 * 
-	 * @param content The content of an arrayList That will be converted to an array
-	 * @return byte[] An array of byte that has been converted from arrayList to a simple array
+	 * @param content The content of an arrayList That will be converted to an array.
+	 * @return byte[] An array of byte that has been converted from arrayList to a simple array.
 	 */
 	private static byte[] arrayListToArray(ArrayList<Byte> content){
 		byte[] mazeInByte = new byte[content.size()];

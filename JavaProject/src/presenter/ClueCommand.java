@@ -5,7 +5,7 @@ import model.Model;
 import view.View;
 
 /**
- * class of the command to get a clue
+ * Class of the command to get a clue.
  * 
  * @authors Dor Edelstein, Lior Mantin
  *
@@ -25,6 +25,7 @@ public class ClueCommand<T> extends CommonCommand<T> {
 
 	@Override
 	public void doCommand() {
+		// sends to the model the order to get a clue(by params).
 		if (this.param.length == 3) {
 			m.getClue(param[0],param[1],new Position(param[2]));
 		}else{

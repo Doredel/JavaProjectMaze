@@ -10,11 +10,11 @@ import org.eclipse.swt.widgets.Shell;
 public abstract class BasicWindow extends Observable implements Runnable {
 
 	/**
-	 * The display field
+	 * The display field.
 	 */
 	protected Display display;
 	/**
-	 * The shell field
+	 * The shell field.
 	 */
 	protected Shell shell;
 	
@@ -26,9 +26,9 @@ public abstract class BasicWindow extends Observable implements Runnable {
 	 * Constructor of BasicWindow that initializes
 	 * the shell and the display fields, the size of the window
 	 * and his name.
-	 * @param width The width of the window
-	 * @param height The height of the window
-	 * @param name The window's title
+	 * @param width The width of the window.
+	 * @param height The height of the window.
+	 * @param name The window's title.
 	 */
 	public BasicWindow(int width, int height, String name) {
 		display = new Display();  // our display
@@ -44,12 +44,12 @@ public abstract class BasicWindow extends Observable implements Runnable {
 	 * <p>
 	 * <code>public BasicWindow(int width, int height, String name, Display display)</code>
 	 * <p>
-	 * Constructor of BasicWindow that makes a window that is a child to anthor window 
+	 * Constructor of BasicWindow that makes a window that is a child to anthor window. 
 	 * 
-	 * @param width The width of the window
-	 * @param height The height of the window
-	 * @param name The window's title
-	 * @param parent the parent of the window
+	 * @param width The width of the window.
+	 * @param height The height of the window.
+	 * @param name The window's title.
+	 * @param parent the parent of the window.
 	 */
 	public BasicWindow(int width, int height, String name, Shell parent) {
 		this.display = parent.getDisplay();  // our display
@@ -65,7 +65,7 @@ public abstract class BasicWindow extends Observable implements Runnable {
 	 * <p>
 	 * <code>public abstract void initWidgets()</code>
 	 * <p>
-	 * Init widgets method, The basic method of running a shell&display.
+	 * Initializes widgets method, The basic method of running a shell&display.
 	 * @return nothing.
 	 */
 	public abstract void initWidgets(); 

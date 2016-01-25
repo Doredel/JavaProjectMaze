@@ -8,7 +8,7 @@ public class CrossSectionGetter {
 	 * <p>
 	 * <code>public static int[][] crossSection(String coordinate, String index, Maze3d maze) throws Exception</code>
 	 * <p>
-	 * The cross section method that uses the getCrossSectionBy from the Maze3d class
+	 * The cross section method that uses the getCrossSectionBy from the Maze3d class.
 	 * 
 	 * @param coordinate The parameter of the coordinate that will cut by him the maze.
 	 * @param index The parameter of the index that rules which index in the axis to cut
