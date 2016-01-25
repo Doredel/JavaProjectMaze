@@ -30,6 +30,7 @@ public class Maze2D extends Maze3dDisplayer{
 	        solution = null;
 	        clue = null;
 	        setMovement(true);
+	        setCross(Axis.Y);
 	        try {
 	        	winScreen = new Image(getDisplay(), new FileInputStream("resources/oh_no__you_won__game_over__by_nemodally.png"));
 	        	walls = new Image(getDisplay(), new FileInputStream("resources/asteroids.jpg"));
@@ -57,82 +58,100 @@ public class Maze2D extends Maze3dDisplayer{
 						   return;
 					   }
 					   
-					   int w,h;
+					   int w,h,x=0,y=0;
 					   
 					   if (scale < 0) {
 						   scale = 0;
 					   }
 					   
-					   w = (width)/mazeData[0].length;
-					   h = (height)/mazeData.length;
+					   w = ((width)/mazeData[0].length)*(1+scale);
+					   h = ((height)/mazeData.length)*(1+scale);
 					   
 					   if(!character.getPosition().equals(goal) && movement){
-						   for(int i=0;i<mazeData.length;i++)
+						   for(int i=0;i<mazeData.length;i++){
 						      for(int j=0;j<mazeData[i].length;j++){
-						          int x=j*w;
-						          int y=i*h;
-						          if(mazeData[i][j]!=0)
-						              e.gc.drawImage(walls, 0, 0, walls.getBounds().width,  walls.getBounds().height, x, y, w, h);
+						    	  x=j*w;
+							      y=i*h;
 						          switch (cross) {
-								case X:
-									if (solution != null) {
-										if (solution.getSolution().contains(new StateMaze3d(new Position(character.getX(),i,j)))) {
-											e.gc.drawImage(hint, 0, 0, hint.getBounds().width,  hint.getBounds().height, x, y, w, h);
+									case X:
+										x=j*w;
+								        y=i*h;
+										if (solution != null) {
+											if (solution.getSolution().contains(new StateMaze3d(new Position(character.getX(),i,j)))) {
+												e.gc.drawImage(hint, 0, 0, hint.getBounds().width,  hint.getBounds().height, x, y, w, h);
+											}
 										}
-									}
-									if (clue != null) {
-										if (clue.getState().equals(new Position(character.getX(),i,j))) {
-											e.gc.drawImage(hint, 0, 0, hint.getBounds().width,  hint.getBounds().height, x, y, w, h);
+										if (clue != null) {
+											if (clue.getState().equals(new Position(character.getX(),i,j))) {
+												e.gc.drawImage(hint, 0, 0, hint.getBounds().width,  hint.getBounds().height, x, y, w, h);
+											}
 										}
-									}
-									if(i == goal.getY() && j == goal.getZ() && goal.getX() == character.getX()){
-										e.gc.drawImage(goalPortal, 0, 0, goalPortal.getBounds().width,  goalPortal.getBounds().height, x, y, w, h);
+										if(i == goal.getY() && j == goal.getZ() && goal.getX() == character.getX()){
+											e.gc.drawImage(goalPortal, 0, 0, goalPortal.getBounds().width,  goalPortal.getBounds().height, x, y, w, h);
+								          }
+								          if(i==character.getY() && j==character.getZ()){
+											   character.draw(e, x, y, w, h);
+			   
+								          }
+										break;
+		
+									case Y:
+										if(scale >0){
+											if(-1*character.getX()*w+width/2 < 0)
+											{
+												x=(j-character.getX())*w+width/2-w/2;
+											}
+											if(-1*character.getZ()*w+height/2 < 0)
+											{
+												y=(i-character.getZ())*h+height/2-h/2;
+											}
+											if (w*(mazeData[i].length-character.getX())<width/2) {
+												x=(j-mazeData[i].length)*w+width;
+											}
+											if ((mazeData.length-character.getZ())*h< height/2) {
+												y=(i-mazeData.length)*h+height;
+											}
+										}
+										if (solution != null) {
+											if (solution.getSolution().contains(new StateMaze3d(new Position(j,character.getY(),i)))) {
+												e.gc.drawImage(hint, 0, 0, hint.getBounds().width,  hint.getBounds().height, x, y, w, h);
+											}
+										}
+										if (clue != null) {
+											if (clue.getState().equals(new Position(j,character.getY(),i))) {
+												e.gc.drawImage(hint, 0, 0, hint.getBounds().width,  hint.getBounds().height, x, y, w, h);
+											}
+										}
+										if(i == goal.getZ() && j == goal.getX() && goal.getY() == character.getY()){
+											e.gc.drawImage(goalPortal, 0, 0, goalPortal.getBounds().width,  goalPortal.getBounds().height, x, y, w, h);
+								          }
+								           if(i==character.getZ() && j==character.getX()){
+											   character.draw(e, x, y, w, h);
+			   
+								          }
+										break;
+									case Z:
+										x=j*w;
+								        y=i*h;
+										if (solution != null) {
+											if (solution.getSolution().contains(new StateMaze3d(new Position(i,j,character.getZ())))) {
+												e.gc.drawImage(hint, 0, 0, hint.getBounds().width,  hint.getBounds().height, x, y, w, h);
+											}
+										}
+										if (clue != null) {
+											if (clue.getState().equals(new Position(i,j,character.getZ()))) {
+												e.gc.drawImage(hint, 0, 0, hint.getBounds().width,  hint.getBounds().height, x, y, w, h);
+											}
+										}
+										if(i == goal.getX() && j == goal.getY() && goal.getZ() == character.getZ()){
+											e.gc.drawImage(goalPortal, 0, 0, goalPortal.getBounds().width,  goalPortal.getBounds().height, x, y, w, h);
+								        }
+								        if(i==character.getX() && j==character.getY()){
+								        		character.draw(e, x, y, w, h);
+			   
+								        }
+										break;
 							          }
-							          if(i==character.getY() && j==character.getZ()){
-										   character.draw(e, x, y, w, h);
-		   
-							          }
-									break;
-	
-								case Y:
-									if (solution != null) {
-										if (solution.getSolution().contains(new StateMaze3d(new Position(j,character.getY(),i)))) {
-											e.gc.drawImage(hint, 0, 0, hint.getBounds().width,  hint.getBounds().height, x, y, w, h);
-										}
-									}
-									if (clue != null) {
-										if (clue.getState().equals(new Position(j,character.getY(),i))) {
-											e.gc.drawImage(hint, 0, 0, hint.getBounds().width,  hint.getBounds().height, x, y, w, h);
-										}
-									}
-									if(i == goal.getZ() && j == goal.getX() && goal.getY() == character.getY()){
-										e.gc.drawImage(goalPortal, 0, 0, goalPortal.getBounds().width,  goalPortal.getBounds().height, x, y, w, h);
-							          }
-							           if(i==character.getZ() && j==character.getX()){
-										   character.draw(e, x, y, w, h);
-		   
-							          }
-									break;
-								case Z:
-									if (solution != null) {
-										if (solution.getSolution().contains(new StateMaze3d(new Position(i,j,character.getZ())))) {
-											e.gc.drawImage(hint, 0, 0, hint.getBounds().width,  hint.getBounds().height, x, y, w, h);
-										}
-									}
-									if (clue != null) {
-										if (clue.getState().equals(new Position(i,j,character.getZ()))) {
-											e.gc.drawImage(hint, 0, 0, hint.getBounds().width,  hint.getBounds().height, x, y, w, h);
-										}
-									}
-									if(i == goal.getX() && j == goal.getY() && goal.getZ() == character.getZ()){
-										e.gc.drawImage(goalPortal, 0, 0, goalPortal.getBounds().width,  goalPortal.getBounds().height, x, y, w, h);
-							        }
-							        if(i==character.getX() && j==character.getY()){
-							        		character.draw(e, x, y, w, h);
-		   
-							        }
-									break;
-						          }
 						          if(solution != null){
 						        	  if(solution.getSolution().contains(new StateMaze3d(character.getPosition()))){
 						        		  solution.getSolution().remove(new StateMaze3d(character.getPosition()));
@@ -143,7 +162,10 @@ public class Maze2D extends Maze3dDisplayer{
 						        		  clue = null;
 						        	  }
 						          }
+						          if(mazeData[i][j]!=0)
+						              e.gc.drawImage(walls, 0, 0, walls.getBounds().width,  walls.getBounds().height, x, y, w, h);
 						      }
+						   }
 					      }else{
 					    	  e.gc.drawImage(winScreen, 0, 0, winScreen.getBounds().width,  winScreen.getBounds().height, 0, 0, width, height);
 					    	  setMovement(false);
