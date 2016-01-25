@@ -74,8 +74,22 @@ public class Maze2D extends Maze3dDisplayer{
 							      y=i*h;
 						          switch (cross) {
 									case X:
-										x=j*w;
-								        y=i*h;
+										if(scale >0){
+											if(-1*character.getZ()*w+width/2 < 0)
+											{
+												x=(j-character.getZ())*w+width/2-w/2;
+											}
+											if(-1*character.getY()*w+height/2 < 0)
+											{
+												y=(i-character.getY())*h+height/2-h/2;
+											}
+											if (w*(mazeData[i].length-character.getZ())<width/2) {
+												x=(j-mazeData[i].length)*w+width;
+											}
+											if ((mazeData.length-character.getY())*h< height/2) {
+												y=(i-mazeData.length)*h+height;
+											}
+										}
 										if (solution != null) {
 											if (solution.getSolution().contains(new StateMaze3d(new Position(character.getX(),i,j)))) {
 												e.gc.drawImage(hint, 0, 0, hint.getBounds().width,  hint.getBounds().height, x, y, w, h);
@@ -131,8 +145,22 @@ public class Maze2D extends Maze3dDisplayer{
 								          }
 										break;
 									case Z:
-										x=j*w;
-								        y=i*h;
+										if(scale >0){
+											if(-1*character.getY()*w+width/2 < 0)
+											{
+												x=(j-character.getY())*w+width/2-w/2;
+											}
+											if(-1*character.getX()*w+height/2 < 0)
+											{
+												y=(i-character.getX())*h+height/2-h/2;
+											}
+											if (w*(mazeData[i].length-character.getY())<width/2) {
+												x=(j-mazeData[i].length)*w+width;
+											}
+											if ((mazeData.length-character.getX())*h< height/2) {
+												y=(i-mazeData.length)*h+height;
+											}
+										}
 										if (solution != null) {
 											if (solution.getSolution().contains(new StateMaze3d(new Position(i,j,character.getZ())))) {
 												e.gc.drawImage(hint, 0, 0, hint.getBounds().width,  hint.getBounds().height, x, y, w, h);
