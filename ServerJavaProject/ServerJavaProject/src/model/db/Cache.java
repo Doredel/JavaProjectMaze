@@ -8,6 +8,12 @@ public class Cache {
 	private Blob maze;
 	private Blob solution;
 	
+	public Cache() {}
+	
+	public Cache(String name){
+		this.name = name;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -34,7 +40,11 @@ public class Cache {
 	
 	@Override
 	public boolean equals(Object obj) {
-		return this.name.equals(obj);
+		return this.name.equals(((Cache)obj).getName());
+	}
+	
+	public boolean equals(Cache obj) {
+		return this.name.equals(obj.getName());
 	}
 	
 	

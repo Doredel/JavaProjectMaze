@@ -6,6 +6,9 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
+
+import javax.persistence.Tuple;
 
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
@@ -21,6 +24,7 @@ import algorithms.mazeGenerators.MyMaze3dGenerator;
 import algorithms.mazeGenerators.Position;
 import algorithms.search.BFS;
 import algorithms.search.Solution;
+import javassist.compiler.ast.Pair;
 
 public class Main {
 	@SuppressWarnings("unchecked")
@@ -44,26 +48,22 @@ public class Main {
 		 sessionFactory.close();*/
 	
 		
-		Cache cache;
 		Blob blob;
 		
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 
 		Query query = session.createQuery("from Cache");
-
+		
 		List<Cache> list = query.list();
-		Iterator<Cache> it=list.iterator();
 		try {
-			while (it.hasNext()){
-				cache=it.next();
+			for (Cache cache : list) {
 				blob = cache.getMaze();
 				System.out.println("name: "+cache.getName());
 				System.out.println("\n"+new Maze3d(blob.getBytes(1, (int) blob.length())).toString());
 				blob = cache.getSolution();
 				
 				System.out.println(new Solution<Position>((Solution<Position>)SerializationHelper.deserialize(blob.getBytes(1, (int) blob.length()))).toString());
-				
 			}
 		} catch (SerializationException | SQLException e) {
 			// TODO Auto-generated catch block

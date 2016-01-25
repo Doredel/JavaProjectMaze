@@ -24,6 +24,7 @@ import algorithms.search.Heuristic;
 import algorithms.search.MazeManhattanDistance;
 import algorithms.search.Solution;
 import algorithms.search.State;
+import model.db.DBManager;
 
 public class MazeHandler implements ClientHandler {
 	
@@ -52,20 +53,13 @@ public class MazeHandler implements ClientHandler {
 	 * <p>
 	 * Constructor MazeHandler instance.
 	 */
-	@SuppressWarnings("unchecked")
 	public MazeHandler(){
 		mazeDB = new HashMap<String, Maze3d>();
 		solutionDB = new HashMap<String, Solution<Position>>();
 		cache = new HashMap<Maze3d, Solution<Position>>();
 		executor = Executors.newFixedThreadPool(2);
 		
-		try {
-			ObjectInputStream zipo = new ObjectInputStream(new GZIPInputStream(new FileInputStream("cache.zip")));
-			cache = (HashMap<Maze3d, Solution<Position>>)zipo.readObject();
-			zipo.close();
-		} catch (IOException | ClassNotFoundException e) {
-			System.out.println("Cant load cache");
-		}
+		DBManager.populate(mazeDB, solutionDB, cache);
 		
 	}
 	
@@ -413,15 +407,7 @@ public class MazeHandler implements ClientHandler {
 	 * @return nothing
 	 */
 	public void exit() {
-		try {
-			ObjectOutputStream zipo = new ObjectOutputStream(new GZIPOutputStream(new FileOutputStream("cache.zip")));
-			zipo.writeObject(cache);
-			zipo.close();
-		} catch (IOException e) {
-			System.out.println("Can't save cache");
-		} 
-		finally {
-			executor.shutdown();
-		}
+		DBManager.saveAllCache(mazeDB, cache);
+		executor.shutdown();
 	}
 }
