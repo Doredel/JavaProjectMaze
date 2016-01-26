@@ -20,7 +20,7 @@ import algorithms.search.Solution;
 public class DBManager {
 
 	@SuppressWarnings("unchecked")
-	public static boolean populate(HashMap<String, Maze3d> mazeDB,HashMap<String, Solution<Position>> solutionDB,HashMap<Maze3d, Solution<Position>> cacheDB)
+	public static void populate(HashMap<String, Maze3d> mazeDB,HashMap<String, Solution<Position>> solutionDB,HashMap<Maze3d, Solution<Position>> cacheDB)
 	{
 		String name;
 		Maze3d maze;
@@ -47,9 +47,7 @@ public class DBManager {
 				cacheDB.put(maze, solution);
 				solutionDB.put(name, solution);
 			}
-			return true;
 		} catch (SerializationException | SQLException e) {
-			return false;
 		}
 		finally{
 			session.close();
@@ -68,7 +66,7 @@ public class DBManager {
 		List<Cache> list = query.list();
 
 		for (String name : mazeDB.keySet()) {
-			if(!list.contains(new Cache(name))){
+			if(!list.contains(new Cache(name))&& cacheDB.containsKey(mazeDB.get(name))){
 				save(name,mazeDB.get(name),cacheDB.get(mazeDB.get(name)));
 			}
 		}
