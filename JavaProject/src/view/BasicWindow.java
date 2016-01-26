@@ -6,7 +6,14 @@ import java.util.Observable;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
-
+/**
+ * Class of the basic window to build and run a window.
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ *
+ * see Observable
+ * see Runnable
+ */
 public abstract class BasicWindow extends Observable implements Runnable {
 
 	/**

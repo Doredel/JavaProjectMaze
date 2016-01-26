@@ -1,7 +1,12 @@
 package model;
 
 import java.io.File;
-
+/**
+ * Class of the dir finder that gives us a direction to a path.
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ *
+ */
 public class DirFinder {
 	/**
 	 * <strong>FindDir</strong>

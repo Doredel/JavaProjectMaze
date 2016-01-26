@@ -18,6 +18,13 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
+/**
+ * Class of the General class window to display a type of a generic window.
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ *
+ * see BasicWindow  
+ */
 @SuppressWarnings("rawtypes")
 public class GeneralClassWindow extends BasicWindow {
 	

@@ -2,6 +2,13 @@ package model;
 
 import algorithms.mazeGenerators.Maze3d;
 
+/**
+ * Class of the Maze size that gives us the size of a specific maze
+ * in memory.
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ *
+ */
 public class MazeSizeFetcher {
 	/**
 	 * <strong>sizeOfMaze</strong>

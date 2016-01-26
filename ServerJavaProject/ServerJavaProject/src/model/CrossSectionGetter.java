@@ -2,6 +2,13 @@ package model;
 
 import algorithms.mazeGenerators.Maze3d;
 
+/**
+ * Class of the Cross section getter that gives us a cross section of 
+ * a maze by axis and index.
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ *
+ */
 public class CrossSectionGetter {
 	/**
 	 * <strong>crossSection</strong>

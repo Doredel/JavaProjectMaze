@@ -5,6 +5,12 @@ import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+/**
+ * <strong>Client</strong>  is a client class, that responsible to the client side
+ * of the project and connection to the server.
+ * 
+ * @author Dor Edelstein, Lior Mantin
+ */
 public class Client {
 	
 	/**

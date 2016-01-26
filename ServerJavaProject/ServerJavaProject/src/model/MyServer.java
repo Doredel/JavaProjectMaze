@@ -11,7 +11,13 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-
+/**
+ * Class of my server that responsible to the server side and connection
+ * to the clients.
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ * @see Observable
+ */
 public class MyServer extends Observable{
 	
 	private int port;

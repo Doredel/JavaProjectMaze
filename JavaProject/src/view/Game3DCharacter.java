@@ -5,6 +5,13 @@ import org.eclipse.swt.widgets.Shell;
 
 import algorithms.mazeGenerators.Position;
 
+/**
+ * Class of the game 3D character to create a type of a generic character.
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ *
+ * see BasicWindow  
+ */
 public abstract class Game3DCharacter {
 	protected Position position;
 	protected Shell parent;

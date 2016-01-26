@@ -8,7 +8,7 @@ import model.Model;
  * 
  * @authors Dor Edelstein, Lior Mantin
  *
- * see CommonCommand<T>
+ * @see CommonCommand<T>
  */
 public class DirCommand<T> extends CommonCommand<T> {
 	/**

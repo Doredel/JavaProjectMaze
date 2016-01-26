@@ -1,7 +1,15 @@
 package presenter;
 
 import java.io.Serializable;
-
+/**
+ * Class of the several properties and settings of the system,
+ * like number of clients that can be handled, the interface type
+ * and the port number
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ *
+ * @see Serializable
+ */
 public class ServerProperties implements Serializable {
 
 	/**

@@ -1,5 +1,10 @@
 package view;
 
+/**
+ * <strong>View</strong>  Is a view interface for the project.
+ * 
+ * @author Dor Edelstein, Lior Mantin
+ */
 public interface View {
 	
 	/**

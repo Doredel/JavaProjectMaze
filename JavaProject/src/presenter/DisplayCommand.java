@@ -8,7 +8,7 @@ import view.View;
  * 
  * @authors Dor Edelstein, Lior Mantin
  *
- * see CommonCommand<T>
+ * @see CommonCommand<T>
  */
 public class DisplayCommand<T> extends CommonCommand<T> {
 	/**

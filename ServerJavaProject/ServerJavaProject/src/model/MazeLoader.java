@@ -5,7 +5,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import io.MyDecompressorInputStream;
-
+/**
+ * Class of the maze loader that loads a maze from memory by 
+ * decompression.
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ *
+ */
 public class MazeLoader {
 	/**
 	 * <strong>FindloadDir</strong>

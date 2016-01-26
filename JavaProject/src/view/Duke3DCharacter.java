@@ -7,6 +7,13 @@ import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Shell;
 
+/**
+ * Class of DUKE 3d character to create DUKE as a character.
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ *
+ * @see Game3DCharacter
+ */
 public class Duke3DCharacter extends Game3DCharacter {
 
 	private Image image;

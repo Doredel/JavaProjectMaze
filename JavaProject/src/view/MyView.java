@@ -8,9 +8,12 @@ import java.util.Observer;
 
 
 /**
- * <strong>MyView</strong>  is a view class for the project
+ * <strong>MyView</strong>  is a view class for the client side(GUI).
  * 
  * @author Dor Edelstein, Lior Mantin
+ * @see Observable
+ * @see View
+ * @see Observer
  */
 public class MyView<T> extends Observable implements View<T> , Observer {
 	

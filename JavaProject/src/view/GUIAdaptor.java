@@ -6,6 +6,14 @@ import algorithms.mazeGenerators.Maze3d;
 import algorithms.search.Solution;
 import algorithms.search.State;
 
+
+/**
+ * Class of the GUI adaptor between CLI to GUI.
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ *
+ * see GUI
+ */
 public class GUIAdaptor extends GUI{
 
 	public CLI cli;

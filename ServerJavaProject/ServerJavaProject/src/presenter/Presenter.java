@@ -6,6 +6,14 @@ import java.util.Observer;
 import model.Model;
 import view.View;
 
+/**
+ * Class of the presenter that connects between the model and the view
+ * and responsible to notify and update each facade.(Server side...)
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ *
+ * @see Observer
+ */
 public class Presenter implements Observer{
 	/**
 	 * The model field

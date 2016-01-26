@@ -18,6 +18,8 @@ import java.util.concurrent.Future;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
+import com.mysql.fabric.xmlrpc.Client;
+
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
 import algorithms.search.Heuristic;
@@ -26,6 +28,14 @@ import algorithms.search.Solution;
 import algorithms.search.State;
 import model.db.DBManager;
 
+/**
+ * Class of the maze handler that holds all information 
+ * about the maze.
+ * a maze by axis and index.
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ * @see ClientHandler
+ */
 public class MazeHandler implements ClientHandler {
 	
 	

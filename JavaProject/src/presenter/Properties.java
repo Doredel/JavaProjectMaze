@@ -2,7 +2,14 @@ package presenter;
 
 import java.io.Serializable;
 
-
+/**
+ * Class of the several properties and settings of the system,
+ * like server port number and IP, the interface type.
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ *
+ * @see Serializable
+ */
 public class Properties implements Serializable {
 	
 	/**

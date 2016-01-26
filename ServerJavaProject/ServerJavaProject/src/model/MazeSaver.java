@@ -6,6 +6,13 @@ import java.io.IOException;
 import algorithms.mazeGenerators.Maze3d;
 import io.MyCompressorOutputStream;
 
+
+/**
+ * Class of the maze saver that saves us a maze.
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ *
+ */
 public class MazeSaver {
 	/**
 	 * <strong>save</strong>

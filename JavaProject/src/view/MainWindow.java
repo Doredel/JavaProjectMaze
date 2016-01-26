@@ -29,6 +29,14 @@ import algorithms.search.State;
 import presenter.Properties;
 import view.Maze3dDisplayer.Axis;
 
+/**
+ * Class of the main window to the menu of the game.
+ * Responsible to the settings before starting a game like generating a maze.
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ *
+ * see BasicWindow
+ */
 public class MainWindow extends BasicWindow{
 
 	final String[] searchAlgorithms = {"BFS","AStarMazeAirDistance","AStarMazeManhattanDistance"};

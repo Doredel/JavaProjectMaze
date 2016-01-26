@@ -7,6 +7,14 @@ import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Shell;
 
+
+/**
+ * Class of the spaceship 3d character to create a spaceship as a character.
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ *
+ * @see Game3DCharacter
+ */
 public class Spaceship3dCharacter extends Game3DCharacter {
 	
 	Image player;

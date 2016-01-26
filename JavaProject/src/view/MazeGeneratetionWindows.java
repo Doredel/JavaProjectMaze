@@ -11,8 +11,12 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 /**
- * @author Dor Edelstein, Lior Mantin
+ * Class of the Maze generatetion Windows that creates a window by a
+ * simple request.
+ * 
+ * @authors Dor Edelstein, Lior Mantin
  *
+ * @see BasicWindow
  */
 public class MazeGeneratetionWindows extends BasicWindow {
 

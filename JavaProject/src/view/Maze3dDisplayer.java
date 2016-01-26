@@ -7,6 +7,14 @@ import algorithms.mazeGenerators.Position;
 import algorithms.search.Solution;
 import algorithms.search.State;
 
+
+/**
+ * Class of the maze displayer that displays a maze and character inside.
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ *
+ * @see MazeDisplayer
+ */
 public class Maze3dDisplayer extends MazeDisplayer {
 
 	public enum Axis{X,Y,Z};

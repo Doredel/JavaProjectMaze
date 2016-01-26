@@ -5,6 +5,14 @@ import java.util.concurrent.Callable;
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.MyMaze3dGenerator;
 
+
+/**
+ * Class of the maze generator that generates a maze
+ * by given sizes.
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ * @see Callable
+ */
 public class MazeGenerator implements Callable<Maze3d> {
 
 	int width, height, depth;

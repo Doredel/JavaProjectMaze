@@ -6,6 +6,14 @@ import java.io.PrintWriter;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * <strong>MyView</strong>  is a view class for the server side(CLI).
+ * 
+ * @author Dor Edelstein, Lior Mantin
+ * @see Observable
+ * @see View
+ * @see Observer
+ */
 public class MyView extends Observable implements View,Observer{
 
 	private CLI cli;

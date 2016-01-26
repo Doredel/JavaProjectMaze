@@ -2,7 +2,13 @@ package view;
 
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.widgets.Shell;
-
+/**
+ * Class of the ball 3d character to create a ball as a character.
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ *
+ * @see Game3DCharacter
+ */
 public class Ball3DCharacter extends Game3DCharacter {
 	/**
 	 * <strong>Ball3DCharacter</strong>

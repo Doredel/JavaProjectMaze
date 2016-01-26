@@ -11,7 +11,12 @@ import algorithms.search.MazeAirDistance;
 import algorithms.search.MazeManhattanDistance;
 import algorithms.search.Searcher;
 import algorithms.search.Solution;
-
+/**
+ * Class of the maze solver that solve a maze by some algorithm.
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ * @see Callable
+ */
 public class MazeSolver implements Callable<Solution<Position>>{
 	
 	

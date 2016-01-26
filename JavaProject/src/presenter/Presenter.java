@@ -11,7 +11,14 @@ import algorithms.search.State;
 import model.Model;
 import view.View;
 
-
+/**
+ * Class of the presenter that connects between the model and the view
+ * and responsible to notify and update each facade.(Client side...)
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ *
+ * @see Observer
+ */
 public class Presenter<T> implements Observer {
 
 	/**

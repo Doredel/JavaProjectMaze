@@ -5,6 +5,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Observable;
 
+/**
+ * Class of the CLI that responsible to the talking to the server by
+ * command line.
+ * @author Dor Edelstein, Lior Mantin 
+ * @see Observable
+ */
 public class CLI extends Observable{
 	
 	/**

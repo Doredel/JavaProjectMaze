@@ -9,7 +9,7 @@ import view.View;
  * 
  * @authors Dor Edelstein, Lior Mantin
  *
- * see CommonCommand<T>
+ * @see CommonCommand<T>
  */
 public class Generate3DMazeCommand<T> extends CommonCommand<T> {
 	

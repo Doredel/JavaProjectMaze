@@ -9,7 +9,14 @@ import org.eclipse.swt.widgets.Shell;
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.search.Solution;
 import algorithms.search.State;
-
+/**
+ * Class of the GUI that builds the options of the GUI.
+ * 
+ * @authors Dor Edelstein, Lior Mantin
+ *
+ * @see Observable
+ * @see Observer
+ */
 public class GUI extends Observable implements Observer{
 	
 	private MainWindow mw;
