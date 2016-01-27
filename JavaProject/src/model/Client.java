@@ -20,7 +20,9 @@ public class Client {
 	 * <p>
 	 *  This method helps to match between the server to the client.
 	 *  By specific port and IP, the server will "help" to the commands of the client. 
-	 *  
+	 *  @param msg The message that we want to send to the server.
+	 *  @param IP The IP number of the new socket.
+	 *  @param port The port number of the new socket.
 	 */
 	public static Object helpFromServer(String msg,String IP,int port){
 		Object result = null;
