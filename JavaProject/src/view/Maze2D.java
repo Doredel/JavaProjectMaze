@@ -64,8 +64,8 @@ public class Maze2D extends Maze3dDisplayer{
 						   scale = 0;
 					   }
 					   
-					   w = ((width)/mazeData[0].length)*(1+scale);
-					   h = ((height)/mazeData.length)*(1+scale);
+					   w = (int) (((width)/mazeData[0].length)*(1+scale));
+					   h = (int) (((height)/mazeData.length)*(1+scale));
 					   
 					   if(!character.getPosition().equals(goal) && movement){
 						   for(int i=0;i<mazeData.length;i++){

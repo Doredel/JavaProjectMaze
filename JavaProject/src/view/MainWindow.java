@@ -188,7 +188,7 @@ public class MainWindow extends BasicWindow{
 					setChanged();
 					notifyObservers("display "+name);
 					
-					
+					enable(true);
 					restart();
 				}
 				
@@ -304,10 +304,7 @@ public class MainWindow extends BasicWindow{
 			@Override
 			public void widgetDefaultSelected(SelectionEvent arg0) {}
 		});
-		
-		
 
-		
 		md.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -315,12 +312,12 @@ public class MainWindow extends BasicWindow{
 			
 			@Override
 			public void keyPressed(KeyEvent arg0) {
-				if(arg0.keyCode == SWT.CONTROL){
+				if(arg0.keyCode == SWT.CONTROL ){
 					md.addMouseWheelListener(new MouseWheelListener() {
 						
 						@Override
 						public void mouseScrolled(MouseEvent arg0) {
-							md.setScale(md.getScale()+arg0.count/3);
+							md.setScale(md.getScale()+(arg0.count/3)/10.0);
 							md.redraw();
 						}
 					});
@@ -606,7 +603,7 @@ public class MainWindow extends BasicWindow{
 		});
 		
 		
-		
+		enable(false);
 		shell.addDisposeListener(new DisposeListener() {
 			
 			@Override
@@ -670,5 +667,15 @@ public class MainWindow extends BasicWindow{
 			groupSection.forceFocus();
 			ySect.forceFocus();
 		}
+	}
+	
+	public void enable(boolean enabled){
+		restartItem.setEnabled(enabled);
+		xSect.setEnabled(enabled);
+		ySect.setEnabled(enabled);
+		zSect.setEnabled(enabled);
+		algorithmCombo.setEnabled(enabled);
+		hint.setEnabled(enabled);
+		solve.setEnabled(enabled);
 	}
 }

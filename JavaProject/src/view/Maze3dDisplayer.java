@@ -25,7 +25,7 @@ public class Maze3dDisplayer extends MazeDisplayer {
 	protected Axis cross;
 	protected State<Position> clue;
 	protected boolean movement;
-	protected int scale;
+	protected double scale;
 	
 	/**
 	 * <strong>Maze3dDisplayer</strong>
@@ -192,25 +192,25 @@ public class Maze3dDisplayer extends MazeDisplayer {
 	/**
 	 * <strong>getScale</strong>
 	 * <p>
-	 * <code>public int getScale()</code>
+	 * <code>public double getScale()</code>
 	 * <p>
 	 * Gets the scale. 
 	 * @return A scale.
 	 */
-	public int getScale() {
+	public double getScale() {
 		return scale;
 	}
 
 	/**
 	 * <strong>setScale</strong>
 	 * <p>
-	 * <code>public void setScale(int scale)</code>
+	 * <code>public void setScale(double scale)</code>
 	 * <p>
 	 * Sets the scale.
 	 * @param scale Setting the scale. 
 	 * @return nothing.
 	 */
-	public void setScale(int scale) {
+	public void setScale(double scale) {
 		this.scale = scale;
 	}
 	
