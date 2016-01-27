@@ -68,10 +68,10 @@ public class CLI extends Observable{
 				setChanged();
 				notifyObservers();
 				display("Server is on");
-				String str = null;
 				try {
+					String str = null;
 					while(!(str = in.readLine()).equals("exit")){
-						System.out.println("unexpected format");
+						System.out.println(str + "is in unexpected format");
 					}
 					setChanged();
 					notifyObservers("exit");
