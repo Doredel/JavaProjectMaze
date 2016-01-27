@@ -14,11 +14,11 @@ public class DatabaseConfig {
 		Statement stmt = null;
 
 		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "1234");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost", "root", "1234");
 			stmt = connection.createStatement();
 		    stmt.executeUpdate("CREATE DATABASE MAZE3D;");
 		    
-		    connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/maze3d", "root", "1234");
+		    connection = DriverManager.getConnection("jdbc:mysql://localhost/maze3d", "root", "1234");
 			stmt = connection.createStatement();
 		    stmt.executeUpdate("CREATE TABLE MAZECACHE(NAME varchar(20),MAZE blob,SOLUTION blob);");
 		
