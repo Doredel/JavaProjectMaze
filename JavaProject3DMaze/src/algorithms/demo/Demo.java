@@ -11,11 +11,11 @@ import io.MyCompressorOutputStream;
 import io.MyDecompressorInputStream;
 
 /**
- * The Program Generate a 3d maze using DFS iterative algorithm
+ * The Program Generates a 3d maze using DFS iterative algorithm
  * and solves the maze using <b>BFS</b>,<b>A* with Manhattan Distance </b>
  * and with <b>A* with Air Distance</b>
  * 
- * @author Dor Edelstein
+ * @author Dor Edelstein, Lior Mantin
  * @since 29/11/2015
  */
 

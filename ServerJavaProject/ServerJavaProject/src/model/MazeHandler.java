@@ -299,7 +299,19 @@ public class MazeHandler implements ClientHandler {
 		}	
 	}
 	
-	 
+	/**
+	 * <strong>getClue</strong>
+	 * <p>
+	 * <code>public Object getClue(String name, String algorithm, Position position)</code>
+	 * <p>
+	 * This method gives to the player/character a hint(next step to do) to 
+	 * get closer to the goal position.
+	 * @param name The maze3d name that need a hint to his player.
+	 * @param algorithm Which algorithm find the distance between the current
+	 * position to the closest hint.
+	 * @param position The current position of the player.
+	 * @return The closest position from the final solution to the player.
+	 */
 	public Object getClue(String name, String algorithm, Position position) {
 		
 		try{
@@ -384,12 +396,12 @@ public class MazeHandler implements ClientHandler {
 	}
 	
 	/**
-	 * <strong>exit</strong>
+	 * <strong>fileSize</strong>
 	 * <p>
-	 * <code>public void exit()</code>
+	 * <code>public Object fileSize(String fileName)</code>
 	 * <p>
-	 * Exit method, that closes the run method and all the threads neatly. 
-	 * @return nothing
+	 * This method displays the real size a saved file in Bytes. 
+	 * @return An object that actually is a message\notice.
 	 */
 	 
 	public Object fileSize(String fileName){
