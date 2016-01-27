@@ -305,6 +305,17 @@ public class MainWindow extends BasicWindow{
 			public void widgetDefaultSelected(SelectionEvent arg0) {}
 		});
 
+		md.addMouseWheelListener(new MouseWheelListener(){
+
+			@Override
+			public void mouseScrolled(MouseEvent arg0) {
+				if((arg0.stateMask & SWT.CTRL)!=0){ 
+					md.setScale(md.getScale()+(arg0.count/3)/10.0);
+					md.redraw();
+				}	
+			}
+		});
+		
 		md.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -312,17 +323,6 @@ public class MainWindow extends BasicWindow{
 			
 			@Override
 			public void keyPressed(KeyEvent arg0) {
-				if(arg0.keyCode == SWT.CONTROL ){
-					md.addMouseWheelListener(new MouseWheelListener() {
-						
-						@Override
-						public void mouseScrolled(MouseEvent arg0) {
-							md.setScale(md.getScale()+(arg0.count/3)/10.0);
-							md.redraw();
-						}
-					});
-				}
-				
 				if(md.isMovement()){
 					ArrayList<String> pos = new ArrayList<String>(Arrays.asList(maze.getPossibleMoves(character.getPosition())));
 					switch (md.getCross()) {
