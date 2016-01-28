@@ -122,7 +122,9 @@ public class MazeHandler implements ClientHandler {
 					
 				}
 			}
-			
+			printer.flush();
+			printer.close();
+			buffer.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -192,6 +192,8 @@ public class MainWindow extends BasicWindow{
 					setChanged();
 					notifyObservers("display "+name);
 					
+					shell.setText(name);
+					
 					enable(true);
 					restart();
 				}
@@ -211,6 +213,7 @@ public class MainWindow extends BasicWindow{
 			public void focusLost(FocusEvent arg0) {
 				if(!md.isMovement()){
 					enable(false);
+					restartItem.setEnabled(true);
 				}
 			}
 			
@@ -232,6 +235,8 @@ public class MainWindow extends BasicWindow{
 					
 					setChanged();
 					notifyObservers("display "+name);
+
+					shell.setText(name);
 					
 					enable(true);
 					restart();

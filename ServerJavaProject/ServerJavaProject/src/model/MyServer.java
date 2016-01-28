@@ -70,14 +70,15 @@ public class MyServer extends Observable{
 							
 							try {
 								setChanged();
-								notifyObservers(addClient(someClient));
+								notifyObservers(someClient.getLocalAddress().getHostAddress()+":"+someClient.getPort()+" has connected");
 								// Initializes the IO stream for the handle_client's method.
 								InputStream inputFromClient=someClient.getInputStream();
 								OutputStream outputToClient=someClient.getOutputStream();
 								clientHandler.handleClient(inputFromClient,outputToClient);
 								inputFromClient.close();
 								outputToClient.close();
-								clients.remove(someClient.getPort());
+								setChanged();
+								notifyObservers(someClient.getLocalAddress().getHostAddress()+":"+someClient.getPort()+" has disconnected");
 								someClient.close();
 								
 							} catch (IOException e) {
@@ -136,20 +137,5 @@ public class MyServer extends Observable{
 	 */
 	public ClientHandler getClientHandler() {
 		return clientHandler;
-	}
-
-	/**
-	 * <strong>addClient</strong>
-	 * <p>
-	 * <code>public String addClient(Socket client)</code>
-	 * <p>
-	 * Adding a client to the clients base by socket.
-	 * @param client The socket that from him all information will put to the clients hash map
-	 * @return A string of information about the connection(the local address, host address
-	 * port and confirmation).
-	 */
-	public String addClient(Socket client){
-		clients.put(client.getPort(), client.getLocalAddress().getHostAddress());
-		return client.getLocalAddress().getHostAddress()+":"+client.getPort()+" has connected";
 	}
 }
