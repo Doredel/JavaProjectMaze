@@ -20,6 +20,7 @@ public class Maze2D extends Maze3dDisplayer{
 	Image winScreen;
 	Image hint;
 	Image goalPortal;
+	Image startScreen;
 	
 	/** 
 	 * @param parent
@@ -32,7 +33,8 @@ public class Maze2D extends Maze3dDisplayer{
 	        setMovement(true);
 	        setCross(Axis.Y);
 	        try {
-	        	winScreen = new Image(getDisplay(), new FileInputStream("resources/oh_no__you_won__game_over__by_nemodally.png"));
+	        	winScreen = new Image(getDisplay(), new FileInputStream("resources/images.jpg"));
+	        	startScreen = new Image(getDisplay(), new FileInputStream("resources/space.jpeg"));
 	        	walls = new Image(getDisplay(), new FileInputStream("resources/asteroids.jpg"));
 	        	hint = new Image(getDisplay(), new FileInputStream("resources/pylon.jpg"));
 	        	goalPortal = new Image(getDisplay(), new FileInputStream("resources/portal.gif"));
@@ -54,7 +56,7 @@ public class Maze2D extends Maze3dDisplayer{
 					   int height=getSize().y;
 
 					   if(mazeData == null){
-						   e.gc.fillRectangle(0,0,width,height);
+						   e.gc.drawImage(startScreen, 0, 0, startScreen.getBounds().width,  startScreen.getBounds().height, 0, 0, width, height);
 						   return;
 					   }
 					   

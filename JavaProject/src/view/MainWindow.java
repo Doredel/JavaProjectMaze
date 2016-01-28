@@ -6,6 +6,8 @@ import java.util.Arrays;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.MouseEvent;
@@ -52,6 +54,7 @@ public class MainWindow extends BasicWindow{
 	private MenuItem restartItem;
 	private MenuItem exitItem;
 	private Button createMaze;
+	private Button openMaze;
 	private Maze3dDisplayer md;
 	private Group groupSection;
 	private Button xSect;
@@ -171,7 +174,8 @@ public class MainWindow extends BasicWindow{
 
 	    shell.setMenuBar(menuBar);		
 		
-	    createMaze= new Button(shell, SWT.BORDER);
+
+		createMaze= new Button(shell, SWT.BORDER);
 		createMaze.setText("Create Maze");
 		createMaze.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));
 		createMaze.addSelectionListener(new SelectionListener() {
@@ -198,11 +202,47 @@ public class MainWindow extends BasicWindow{
 			public void widgetDefaultSelected(SelectionEvent arg0) {
 			}
 		});
-
-		//////////////////////////////////////////////////////////////////////////////////////
+		
 		md = new Maze2D(shell,SWT.BORDER | SWT.FOCUSED);
 		md.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,true,1,4));
-		/////////////////////////////////////////////////////////////////////////////////////
+		md.addFocusListener(new FocusListener() {
+			
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				if(!md.isMovement()){
+					enable(false);
+				}
+			}
+			
+			@Override
+			public void focusGained(FocusEvent arg0) {}
+		});
+		
+		openMaze= new Button(shell, SWT.BORDER);
+	    openMaze.setText("Open Maze");
+	    openMaze.setLayoutData(new GridData(SWT.FILL,SWT.TOP,false,false,1,1));
+	    openMaze.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				MazeOpenWindows mow = new MazeOpenWindows(500, 300, "maze Open window", shell);
+				mow.run();
+				if (mow.isChanged()) {
+					name = mow.getName();
+					
+					setChanged();
+					notifyObservers("display "+name);
+					
+					enable(true);
+					restart();
+				}
+				
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0) {
+			}
+		});
 		
 		groupSection = new Group(shell, SWT.SHADOW_OUT);
 		groupSection.setText("Sections:");

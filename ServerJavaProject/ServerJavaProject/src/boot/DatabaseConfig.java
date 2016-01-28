@@ -33,7 +33,7 @@ public class DatabaseConfig {
 		    //creating the table in the maze3d database
 		    connection = DriverManager.getConnection("jdbc:mysql://localhost/maze3d", username, password);
 			stmt = connection.createStatement();
-		    stmt.executeUpdate("CREATE TABLE MAZECACHE(NAME varchar(20),MAZE blob,SOLUTION blob);");
+		    stmt.executeUpdate("CREATE TABLE MAZECACHE(NAME varchar(20),MAZE blob,SOLUTION blob ,PRIMARY KEY (NAME));");
 		
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

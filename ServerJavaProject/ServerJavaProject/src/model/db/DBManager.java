@@ -70,10 +70,6 @@ public class DBManager {
 				save(name,mazeDB.get(name),cacheDB.get(mazeDB.get(name)));
 			}
 		}
-		 
-
-		System.out.println("done");
-
 		
 		session.close();
 		sessionFactory.close();
