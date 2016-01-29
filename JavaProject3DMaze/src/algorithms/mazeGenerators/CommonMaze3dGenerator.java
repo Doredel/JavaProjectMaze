@@ -22,10 +22,6 @@ public abstract class CommonMaze3dGenerator implements Maze3dGenerator {
 	}
 	
 	/**
-	 * <strong>initMaze</strong>
-	 * <p>
-	 * <code>protected void initMaze(Maze3d maze3d)</code>
-	 * <p>
 	 * The function initiate the maze values with 1
 	 * 
 	 * @param maze3d -  the maze

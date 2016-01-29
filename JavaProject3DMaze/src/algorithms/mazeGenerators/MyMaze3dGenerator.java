@@ -14,10 +14,6 @@ import java.util.Stack;
 public class MyMaze3dGenerator extends CommonMaze3dGenerator {
 	
 	/**
-	 * <strong>generate</strong>
-	 * <p>
-	 * <code>public Maze3d generate(int width, int height, int depth)</code>
-	 * <p>
 	 * The function generate a {@link Maze3d} using DFS algorithms 
 	 * <br><br>
 	 * <b>The algorithm</b>
@@ -34,7 +30,6 @@ public class MyMaze3dGenerator extends CommonMaze3dGenerator {
 	 * Push neighbor on stack;<br>
 	 * end<br>
 	 * end<br>
-
 	 * @param width - the width of the maze (for x values)
 	 * @param height - the height of the maze (for y values)
 	 * @param depth - the depth of the maze (for z values)
@@ -95,10 +90,6 @@ public class MyMaze3dGenerator extends CommonMaze3dGenerator {
 	}
 	
 	/**
-	 * <strong>unvisitedNeighbor</strong>
-	 * <p>
-	 * <code>private static Position unvisitedNeighbor(Maze3d maze3d, Position p)</code>
-	 * <p>
 	 * The function generate a random unvisited neighbor to <i>p</i>
 	 * 
 	 * @param maze3d - the maze
@@ -148,10 +139,6 @@ public class MyMaze3dGenerator extends CommonMaze3dGenerator {
 	}
 
 	/**
-	 * <strong>change</strong>
-	 * <p>
-	 * <code>private static void change(Maze3d maze)</code>
-	 * <p>
 	 * change all the visited walls(marked by the val 2) to be a normal wall(a value of 1)
 	 * 
 	 * @param maze - the maze

@@ -50,10 +50,6 @@ public class MazeHandler implements ClientHandler {
 	private ExecutorService executor;
 
 	/**
-	 * <strong>MazeHandler</strong>
-	 * <p>
-	 * <code>public MazeHandler()</code>
-	 * <p>
 	 * Constructor MazeHandler instance.
 	 */
 	public MazeHandler(){
@@ -66,7 +62,7 @@ public class MazeHandler implements ClientHandler {
 		
 	}
 	
-
+	@Override
 	public void handleClient(InputStream inFromClient, OutputStream outToClient) {
 		
 		try {
@@ -132,10 +128,6 @@ public class MazeHandler implements ClientHandler {
 	}
 
 	/**
-	 * <strong>getDir</strong>
-	 * <p>
-	 * <code>public Object getDir(String path)</code>
-	 * <p>
 	 * Get dir method, that find the dir of a certain path
 	 * 
 	 * @param path The dir that will be found by the method.
@@ -146,10 +138,6 @@ public class MazeHandler implements ClientHandler {
 	}
 
 	/**
-	 * <strong>generateMaze</strong>
-	 * <p>
-	 * <code>public Object generateMaze(String name, int width,int height,int depth)</code>
-	 * <p>
 	 * Generate maze method, that generates a maze by the parameters 
 	 * of maze name and his sizes.
 	 * 
@@ -178,10 +166,6 @@ public class MazeHandler implements ClientHandler {
 	}
 
 	/**
-	 * <strong>displayMaze</strong>
-	 * <p>
-	 * <code>public Object displayMaze(String name)</code>
-	 * <p>
 	 * Display maze method, that displays the maze by his unique key-
 	 * his name 
 	 * 
@@ -199,10 +183,6 @@ public class MazeHandler implements ClientHandler {
 	}
 	
 	/**
-	 * <strong>displaySolution</strong>
-	 * <p>
-	 * <code>public Object displaySolution(String name)</code>
-	 * <p>
 	 * Display solution method, that displays the maze's solution
 	 * @param name The maze name that his solution will be displayed.
 	 * @return Object - the solution or a control massage
@@ -219,10 +199,6 @@ public class MazeHandler implements ClientHandler {
 	}
 	
 	/**
-	 * <strong>saveMaze</strong>
-	 * <p>
-	 * <code>public Object saveMaze(String mazeName, String fileName)</code>
-	 * <p>
 	 * Save maze method, that saves a compressed maze to a certain file.
 	 * @param mazeName The maze name that will be compressed to the file
 	 * @param fileName The file name that will save the information of the compressed maze 
@@ -244,10 +220,6 @@ public class MazeHandler implements ClientHandler {
 	}
 
 	/**
-	 * <strong>loadMaze</strong>
-	 * <p>
-	 * <code>public Object loadMaze(String mazeName, String fileName)</code>
-	 * <p>
 	 * Load maze method, that loads from a file and decompresses the maze inside the file.
 	 * @param mazeName The maze name that the maze inside the file will get
 	 * @param fileName The file name that from him the maze will be loaded(and decompressed).
@@ -270,10 +242,6 @@ public class MazeHandler implements ClientHandler {
 	}
 
 	/**
-	 * <strong>solveMaze</strong>
-	 * <p>
-	 * <code>public Object solveMaze(String name, String algorithm)</code>
-	 * <p>
 	 * Solve maze method, that solve the maze by the algorithm he will get
 	 * @param name The maze name that will be solved.
 	 * @param algorithm the algorithm that will solve the maze(like BFS).
@@ -300,10 +268,6 @@ public class MazeHandler implements ClientHandler {
 	}
 	
 	/**
-	 * <strong>getClue</strong>
-	 * <p>
-	 * <code>public Object getClue(String name, String algorithm, Position position)</code>
-	 * <p>
 	 * This method gives to the player/character a hint(next step to do) to 
 	 * get closer to the goal position.
 	 * @param name The maze3d name that need a hint to his player.
@@ -346,10 +310,6 @@ public class MazeHandler implements ClientHandler {
 	}
 	
 	/**
-	 * <strong>displayCrossSection</strong>
-	 * <p>
-	 * <code>public void displayCrossSection(String coordinate, int index, String mazeName)</code>
-	 * <p>
 	 * Display cross section method, that shows the maze by a certain section
 	 * @param coordinate The coordinate's section
 	 * @param index The The number on the axis cuts
@@ -375,10 +335,6 @@ public class MazeHandler implements ClientHandler {
 	}
 
 	/**
-	 * <strong>mazeSize</strong>
-	 * <p>
-	 * <code>public Object mazeSize(String name)</code>
-	 * <p>
 	 * Maze size method, that displays the maze size in memory.
 	 * @param name The maze name that his size in memory will be displayed.
 	 * @return 
@@ -396,10 +352,6 @@ public class MazeHandler implements ClientHandler {
 	}
 	
 	/**
-	 * <strong>fileSize</strong>
-	 * <p>
-	 * <code>public Object fileSize(String fileName)</code>
-	 * <p>
 	 * This method displays the real size a saved file in Bytes 
 	 * @return Object - the state if the fileSize
 	 */
@@ -414,10 +366,6 @@ public class MazeHandler implements ClientHandler {
 	}
 
 	/**
-	 * <strong>exit</strong>
-	 * <p>
-	 * <code>public void exit()</code>
-	 * <p>
 	 * Exit method, that closes the run method, all the threads neatly and saves the cache. 
 	 * @return nothing
 	 */

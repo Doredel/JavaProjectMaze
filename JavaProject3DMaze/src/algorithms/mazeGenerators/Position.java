@@ -25,10 +25,6 @@ public class Position implements Serializable{
 	private int z;
 	
 	/**
-	 * <strong>Position</strong>
-	 * <p>
-	 * <code>public Position()</code>
-	 * <p>
 	 * Construct a {@link Position} with the value (0,0,0)
 	 * 
 	 * @param nothing
@@ -40,10 +36,6 @@ public class Position implements Serializable{
 	}
 	
 	/**
-	 * <strong>Position</strong>
-	 * <p>
-	 * <code>public Position(int x, int y, int z)</code>
-	 * <p>
 	 * Construct a {@link Position} with the value (x,y,z)
 	 * 
 	 * @param x - the x value of the {@link Position}
@@ -57,10 +49,6 @@ public class Position implements Serializable{
 	}
 
 	/**
-	 * <strong>Position</strong>
-	 * <p>
-	 * <code>public Position(String str)</code>
-	 * <p>
 	 * Construct a {@link Position} with the value of the {@link String}<br>
 	 * <b>Note: </b>the {@link String} must be this form: <i>"{x,y,z}"</i>
 	 * 
@@ -77,10 +65,6 @@ public class Position implements Serializable{
 	}
 	
 	/**
-	 * <strong>getX</strong>
-	 * <p>
-	 * <code>public int getX()</code>
-	 * <p>
 	 * Return the x value of the {@link Position}
 	 * 
 	 * @param nothing
@@ -91,10 +75,6 @@ public class Position implements Serializable{
 	}
 
 	/**
-	 * <strong>setX</strong>
-	 * <p>
-	 * <code>public void setX(int x)</code>
-	 * <p>
 	 * Sets the x value of the {@link Position}
 	 * 
 	 * @param x - the wanted x value
@@ -105,10 +85,6 @@ public class Position implements Serializable{
 	}
 
 	/**
-	 * <strong>getY</strong>
-	 * <p>
-	 * <code>public int getY()</code>
-	 * <p>
 	 * Return the y value of the {@link Position}
 	 * 
 	 * @param nothing
@@ -119,10 +95,6 @@ public class Position implements Serializable{
 	}
 
 	/**
-	 * <strong>setY</strong>
-	 * <p>
-	 * <code>public void setY(int y)</code>
-	 * <p>
 	 * Sets the y value of the {@link Position}
 	 * 
 	 * @param y - the wanted y value
@@ -133,10 +105,6 @@ public class Position implements Serializable{
 	}
 
 	/**
-	 * <strong>getZ</strong>
-	 * <p>
-	 * <code>public int getZ()</code>
-	 * <p>
 	 * Return the z value of the {@link Position}
 	 * 
 	 * @param nothing
@@ -147,10 +115,6 @@ public class Position implements Serializable{
 	}
 
 	/**
-	 * <strong>setZ</strong>
-	 * <p>
-	 * <code>public void setZ(int z)</code>
-	 * <p>
 	 * Sets the z value of the {@link Position}
 	 * 
 	 * @param z - the wanted z value
@@ -161,10 +125,6 @@ public class Position implements Serializable{
 	}
 
 	/**
-	 * <strong>getUp</strong>
-	 * <p>
-	 * <code>public Position getUp()</code>
-	 * <p>
 	 * Return the {@link Position} above the current Position
 	 * 
 	 * @param nothing
@@ -175,10 +135,6 @@ public class Position implements Serializable{
 	}
 	
 	/**
-	 * <strong>getDown</strong>
-	 * <p>
-	 * <code>public Position getDown()</code>
-	 * <p>
 	 * Return the {@link Position} bellow the current Position
 	 * 
 	 * @param nothing
@@ -189,10 +145,6 @@ public class Position implements Serializable{
 	}
 	
 	/**
-	 * <strong>getLeft</strong>
-	 * <p>
-	 * <code>public Position getLeft()</code>
-	 * <p>
 	 * Return the {@link Position} to the left of the current Position
 	 * 
 	 * @param nothing
@@ -203,10 +155,6 @@ public class Position implements Serializable{
 	}
 	
 	/**
-	 * <strong>getRight</strong>
-	 * <p>
-	 * <code>public Position getRight()</code>
-	 * <p>
 	 * Return the {@link Position} to the right of the current Position
 	 * 
 	 * @param nothing
@@ -217,10 +165,6 @@ public class Position implements Serializable{
 	}
 	
 	/**
-	 * <strong>getForward</strong>
-	 * <p>
-	 * <code>public Position getForward()</code>
-	 * <p>
 	 * Return the {@link Position} in front of the current Position
 	 * 
 	 * @param nothing
@@ -231,10 +175,6 @@ public class Position implements Serializable{
 	}
 	
 	/**
-	 * <strong>getBackward</strong>
-	 * <p>
-	 * <code>public Position getBackward()</code>
-	 * <p>
 	 * Return the {@link Position} behind the current Position
 	 * 
 	 * @param nothing
@@ -250,10 +190,6 @@ public class Position implements Serializable{
 	}
 	
 	/**
-	 * <strong>equals</strong>
-	 * <p>
-	 * <code>public boolean equals(Position p)</code>
-	 * <p>
 	 * Return whether the {@link Position}s are the same
 	 * 
 	 * @param p - the Position to compare

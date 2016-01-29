@@ -21,10 +21,6 @@ public class Maze3dAdaptor implements Searchable<Position>{
 	private Maze3d maze;
 	
 	/**
-	 * <strong>Maze3dAdaptor</strong>
-	 * <p>
-	 * <code>public Maze3dAdaptor(Maze3d maze) </code>
-	 * <p>
 	 * Contract an adaptor from {@link Maze3d} to {@link Searchable}
 	 * 
 	 * @param maze - The maze to adapt
@@ -34,10 +30,7 @@ public class Maze3dAdaptor implements Searchable<Position>{
 	}
 	
 	/**
-	 * <strong>getInitialState</strong>
-	 * <p>
-	 * <code>public State&lt;Position&gt; getInitialState()<code>
-	 * <p>
+
 	 * 	Returns the state of the start position of the maze
 	 *  		returning a {@link StateMaze3d}
 	 * 
@@ -51,10 +44,6 @@ public class Maze3dAdaptor implements Searchable<Position>{
 	}
 
 	/**
-	 * <strong>getGoalState</strong>
-	 * <p>
-	 * <code>public State&lt;Position&gt; getGoalState()<code>
-	 * <p>
 	 * 	Returns the state of the end position of the maze
 	 *  		returning a {@link StateMaze3d}
 	 * 
@@ -68,10 +57,6 @@ public class Maze3dAdaptor implements Searchable<Position>{
 	}
 
 	/**
-	 * <strong>getAllStates</strong>
-	 * <p>
-	 * <code>public ArrayList&lt;State&lt;Position&gt;&gt; getAllStates(State&lt;Position&gt; s)</code>
-	 * <p>
 	 * Given a state in maze the function calculate all the possible moves from the state
 	 * 
 	 * @param s - a state to witch the function calculate all the possible adjacent states 

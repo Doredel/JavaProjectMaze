@@ -21,10 +21,6 @@ public abstract class CommonSearcher<T> implements Searcher<T> {
 	private int evaluatedNodes;
 	
 	/**
-	 * <strong>CommonSearcher</strong>
-	 * <p>
-	 * <cod>public CommonSearcher()</code>
-	 * <p>
 	 * construct a CommonSearcher<br>
 	 * because <i>commonSearcher</i> is an abstract class can only be used by inherited classes
 	 */
@@ -34,10 +30,6 @@ public abstract class CommonSearcher<T> implements Searcher<T> {
 	}
 	
 	/**
-	 * <strong>popOpenList</strong>
-	 * <p>
-	 * <cod>protected State<T> popOpenList()</code>
-	 * <p>
 	 * Return the State with the highest priority from the queue and removes it
 	 * 
 	 * @param nothing
@@ -50,10 +42,6 @@ public abstract class CommonSearcher<T> implements Searcher<T> {
 	}
 	
 	/**
-	 * <strong>addToOpenList</strong>
-	 * <p>
-	 * <cod>protected void addToOpenList(State<T> s)</code>
-	 * <p>
 	 * Add a state to the priority queue
 	 * 
 	 * @param s - The state that will be add the priority queue
@@ -72,10 +60,6 @@ public abstract class CommonSearcher<T> implements Searcher<T> {
 	}
 
 	/**
-	 * <strong>backTrace</strong>
-	 * <p>
-	 * <code>protected Solution&ltT&gt backTrace(State&ltT&gt end, State&ltT&gt start)</code>
-	 * <p>
 	 * Backtracking from the end to the start to discover what are the states in the solution
 	 * 
 	 * @param end - End State

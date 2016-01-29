@@ -14,10 +14,6 @@ import view.View;
  */
 public class SaveMazeCommand<T> extends CommonCommand<T> {
 	/**
-	 * <strong>SaveMazeCommand</strong>
-	 * <p>
-	 * <code>public SaveMazeCommand(View<T> v, Model m)</code>
-	 * <p>
 	 * Constructor of SaveMazeCommand<T> that initialize the facades of view and model. 
 	 * 
 	 * @param View<T> v The facade of view to talk with.

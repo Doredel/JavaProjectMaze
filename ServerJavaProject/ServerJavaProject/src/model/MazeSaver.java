@@ -15,10 +15,6 @@ import io.MyCompressorOutputStream;
  */
 public class MazeSaver {
 	/**
-	 * <strong>save</strong>
-	 * <p>
-	 * <code>public static void save(Maze3d maze, String fileName) throws IOException</code>
-	 * <p>
 	 * The save method takes the maze, compresses him and saves it in fileName.
 	 * 
 	 * @param fileName The content of the file that to him the maze will be compressed.

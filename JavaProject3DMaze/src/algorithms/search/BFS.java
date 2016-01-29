@@ -65,10 +65,6 @@ public class BFS<T> extends CommonSearcher<T> {
 	}
 	
 	/**
-	 * <strong>CostForState</strong>
-	 * <p>
-	 * <code>protected double CostForState(State&ltT&gt n, State&ltT&gt state,State&ltT&gt goal)</code>
-	 * <p>
 	 * Calculate the cost for <b><i>state</i></b> with information about <i>n</i> and <i>goal</i>
 	 * 
 	 * @param n - current state
@@ -81,10 +77,6 @@ public class BFS<T> extends CommonSearcher<T> {
 	}
 	
 	/**
-	 * <strong>prioritySelector</strong>
-	 * <p>
-	 * <code>protected Comparator&ltState&ltT&gt&gt prioritySelector(State&ltT&gt goal)</code>
-	 * <p>
 	 * Return the way of ordering in the priority queue
 	 * @param goal - the goal State
 	 * @return {@link Comparator} of {@link State} that require for ordering the queue

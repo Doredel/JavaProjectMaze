@@ -3,10 +3,6 @@ package algorithms.mazeGenerators;
 public interface Maze3dGenerator {
 	
 	/**
-	 * <strong>generate</strong>
-	 * <p>
-	 * <code>public Maze3d generate(int width, int height, int depth)</code>
-	 * <p>
 	 * The function generate a {@link Maze3d} using different algorithms 
 	 * @param width - the width of the maze (for x values)
 	 * @param height - the height of the maze (for y values)
@@ -16,10 +12,6 @@ public interface Maze3dGenerator {
 	public Maze3d generate(int width, int height, int depth);
 	
 	/**
-	 * <strong>measureAlgorithmTime</strong>
-	 * <p>
-	 * <code>public String measureAlgorithmTime(int width, int height, int depth)</code>
-	 * <p>
 	 * The function calculate how long it takes to generate a {@link Maze3d}
 	 * @param width - the width of the maze (for x values)
 	 * @param height - the height of the maze (for y values)

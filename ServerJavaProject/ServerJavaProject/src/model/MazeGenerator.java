@@ -18,10 +18,6 @@ public class MazeGenerator implements Callable<Maze3d> {
 	int width, height, depth;
 	
 	/**
-	 * <strong>MazeGenerator</strong>
-	 * <p>
-	 * <code>public MazeGenerator(int width, int height, int depth)</code>
-	 * <p>
 	 * The constructor of MazeGenerator class, that initializes a maze by
 	 * the parameters of width, height and depth.
 	 * @param width The width of the maze.

@@ -26,10 +26,6 @@ public abstract class BasicWindow extends Observable implements Runnable {
 	protected Shell shell;
 	
 	/**
-	 * <strong>BasicWindow</strong>
-	 * <p>
-	 * <code>public BasicWindow(int width, int height, String name)</code>
-	 * <p>
 	 * Constructor of BasicWindow that initializes
 	 * the shell and the display fields, the size of the window
 	 * and his name.
@@ -47,10 +43,6 @@ public abstract class BasicWindow extends Observable implements Runnable {
 	}
 	
 	/**
-	 * <strong>BasicWindow</strong>
-	 * <p>
-	 * <code>public BasicWindow(int width, int height, String name, Display display)</code>
-	 * <p>
 	 * Constructor of BasicWindow that makes a window that is a child to anthor window. 
 	 * 
 	 * @param width The width of the window.
@@ -68,10 +60,6 @@ public abstract class BasicWindow extends Observable implements Runnable {
 	}
 	
 	/**
-	 * <strong>initWidgets</strong>
-	 * <p>
-	 * <code>public abstract void initWidgets()</code>
-	 * <p>
 	 * Initializes widgets method, The basic method of running a shell&display.
 	 * @return nothing.
 	 */

@@ -14,15 +14,11 @@ import java.net.Socket;
 public class Client {
 	
 	/**
-	 * <strong>helpFromServer</strong>
-	 * <p>
-	 * <code>public static Object helpFromServer(String msg,String IP,int port)</code>
-	 * <p>
-	 *  This method helps to match between the server to the client.
-	 *  By specific port and IP, the server will "help" to the commands of the client. 
-	 *  @param msg The message that we want to send to the server.
-	 *  @param IP The IP number of the new socket.
-	 *  @param port The port number of the new socket.
+	 *  This method comunicates with the server by specific port and IP
+	 *	the methods follows a protocol
+	 *  @param msg The message that we want to send to the server
+	 *  @param IP The IP 
+	 *  @param port The port 
 	 */
 	public static Object helpFromServer(String msg,String IP,int port){
 		Object result = null;

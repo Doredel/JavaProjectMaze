@@ -22,10 +22,6 @@ import io.MyDecompressorInputStream;
 public class Demo {
 	
 	/**
-	 * <strong>run</strong>
-	 * <p>
-	 * <code>public static void run()</code>
-	 * <p>
 	 * The method makes use of the maze generation algorithm and all
 	 * the solving algorithms
 	 * 
@@ -92,10 +88,6 @@ public class Demo {
 	}
 	
 	/**
-	 * <strong>main</strong>
-	 * <p>
-	 * <code>public static void main(String[] args)</code>
-	 * <p>
 	 * The main method make use of the run method witch execute the program
 	 * 
 	 * @param args unused

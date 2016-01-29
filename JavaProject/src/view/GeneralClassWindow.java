@@ -34,10 +34,7 @@ public class GeneralClassWindow extends BasicWindow {
 	private Object result;
 	private boolean changed;
 	
-	/**
-	 * * <strong>GeneralClassWindow</strong>
-	 * <code>public GeneralClassWindow(int width, int height, String name, Class theClass)</code>
-	 * <p>
+	/*
 	 * Constructor for general dialog.
 	 * @param width The width of the window.
 	 * @param height The height of the window.
@@ -52,9 +49,6 @@ public class GeneralClassWindow extends BasicWindow {
 	}
 	
 	/**
-	 * <strong>GeneralClassWindow</strong>
-	 * <code>public GeneralClassWindow(int width, int height, String name, Shell parent, Class theClass)</code>
-	 * <p>
 	 * Constructor for general dialog.
 	 * @param width The width of the window.
 	 * @param height The height of the window.

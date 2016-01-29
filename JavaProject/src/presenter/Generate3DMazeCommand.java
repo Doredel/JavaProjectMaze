@@ -14,10 +14,6 @@ import view.View;
 public class Generate3DMazeCommand<T> extends CommonCommand<T> {
 	
 	/**
-	 * <strong>Generate3DMazeCommand</strong>
-	 * <p>
-	 * <code>public Generate3DMazeCommand(View<T> v, Model m)</code>
-	 * <p>
 	 * Constructor of Generate3DMazeCommand<T> that initialize the facades of view and model. 
 	 * 
 	 * @param View<T> v The facade of view to talk with.

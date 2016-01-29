@@ -12,10 +12,6 @@ import model.Model;
  */
 public class DirCommand<T> extends CommonCommand<T> {
 	/**
-	 * <strong>DirCommand</strong>
-	 * <p>
-	 * <code>public DirCommand(View<T> v, Model m)</code>
-	 * <p>
 	 * Constructor of DirCommand<T> that initialize the facades of view and model. 
 	 * 
 	 * @param View<T> v The facade of view to talk with.

@@ -26,10 +26,6 @@ public abstract class CommonCommand<T> implements Command {
 	protected String[] param;
 	
 	/**
-	 * <strong>CommonCommand</strong>
-	 * <p>
-	 * <code>public CommonCommand(View<T> v,Model m)</code>
-	 * <P>
 	 * constructor that will be used to create Commands.
 	 *  
 	 * @param v Reference to the view

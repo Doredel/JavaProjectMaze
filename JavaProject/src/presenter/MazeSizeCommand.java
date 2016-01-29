@@ -13,10 +13,6 @@ import view.View;
 public class MazeSizeCommand<T> extends CommonCommand<T> {
 	
 	/**
-	 * <strong>MazeSizeCommand</strong>
-	 * <p>
-	 * <code>public MazeSizeCommand(View<T> v, Model m)</code>
-	 * <p>
 	 * Constructor of MazeSizeCommand<T> that initialize the facades of view and model. 
 	 * 
 	 * @param View<T> v The facade of view to talk with.

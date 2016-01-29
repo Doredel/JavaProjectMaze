@@ -39,10 +39,6 @@ public class Presenter<T> implements Observer {
 	private HashMap<String,Command> comnds;
 	
 	/**
-	 * <strong>Presenter</strong>
-	 * <p>
-	 * <code>public Presenter(Model model, View<T> view)</code>
-	 * <p>
 	 * Constructor of Presenter<T> that initializes the 
 	 * model and the view facades, creates the command hash map
 	 * and loads the properties from the XML file.
@@ -64,10 +60,6 @@ public class Presenter<T> implements Observer {
 	}
 	
 	/**
-	 * <strong>CreateCommandMap</strong>
-	 * <p>
-	 * <code>public void CreateCommandMap()</code>
-	 * <p>
 	 * The command map creator that puts each command(the string) and combines it with his unique command.
 	 * @return nothing.
 	 */

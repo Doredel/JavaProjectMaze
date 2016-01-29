@@ -11,10 +11,6 @@ import algorithms.mazeGenerators.Maze3d;
  */
 public class MazeSizeFetcher {
 	/**
-	 * <strong>sizeOfMaze</strong>
-	 * <p>
-	 * <code>public static int sizeOfMaze(Maze3d maze)</code>
-	 * <p>
 	 * The sizeOfMaze method gives the size on memory of any maze that saved.
 	 * 
 	 * @param maze The content of the maze that will be sized.

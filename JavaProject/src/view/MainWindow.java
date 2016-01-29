@@ -66,11 +66,7 @@ public class MainWindow extends BasicWindow{
 	private Button solve;
 	
 	/**
-	 * <strong>MainWindow</strong>
-	 * <p>
-	 * <code>public MainWindow(int width, int height, String name)</code>
-	 * <p>
-	 * Constructor of MainWindow that initializes the BasicWindow by the parameters. 
+	 * Constructor of MainWindow that initializes the BasicWindow by the parameters
 	 * 
 	 * @param width The width of the window.
 	 * @param height The height of the window.
@@ -81,27 +77,18 @@ public class MainWindow extends BasicWindow{
 	}
 	
 	/**
-	 * <strong>MainWindow</strong>
-	 * <p>
-	 * <code>public MainWindow(int width, int height,String title,Display display)</code>
-	 * <p>
-	 * Constructor of MainWindow that initializes the BasicWindow by the parameters. 
-	 * The difference from the first c'tor is in the display mode- CLI or GUI.
+	 * Constructor of MainWindow that initializes the BasicWindow by the parameters
 	 * 
 	 * @param width The width of the window.
 	 * @param height The height of the window.
 	 * @param title The window's title.
-	 * @param display The represent of the program- by GUI or CLI. 
+	 * @param display the display that we are using
 	 */
 	public MainWindow(int width, int height,String title, Shell parent) {
 		super(width, height,title,parent);
 	}
 
 	/**
-	 * <strong>initWidgets</strong>
-	 * <p>
-	 * <code>public void initWidgets()</code>
-	 * <p>
 	 * Init widgets method, that initializes the window and fill it with
 	 * buttons and widgets.
 	 * This is the main window, and inside him there is the represent of the
@@ -681,11 +668,7 @@ public class MainWindow extends BasicWindow{
 	}
 	
 	/**
-	 * <strong>restart</strong>
-	 * <p>
-	 * <code>public void restart()</code>
-	 * <p>
-	 * Restart method that making a new maze board.
+	 * restarting the maze (delete in the solution and setting the charecter in the start)
 	 * @return nothing.
 	 */
 	public void restart(){
@@ -714,6 +697,10 @@ public class MainWindow extends BasicWindow{
 		}
 	}
 	
+	/**
+	*	enable/disable some buttoms and radio buttons
+	*	@param enabled - to enable or disable
+	*/
 	public void enable(boolean enabled){
 		restartItem.setEnabled(enabled);
 		xSect.setEnabled(enabled);

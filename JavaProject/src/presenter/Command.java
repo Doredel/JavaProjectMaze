@@ -9,10 +9,6 @@ package presenter;
 public interface Command {
 	
 	/**
-	 * <strong>doCommand</strong>
-	 * <p>
-	 * <code>public void doCommand(String[] param)</code>
-	 * <p>
 	 * The function doCommand is using different algorithms 
 	 * 
 	 * @param param - The content of the parameters that the command will
@@ -21,10 +17,6 @@ public interface Command {
 	 */
 	public void doCommand();
 	/**
-	 * <strong>setParams</strong>
-	 * <p>
-	 * <code>public void setParams(String[] param)</code>
-	 * <p>
 	 * Setting the parameters clearly to the model.
 	 * 
 	 * @param param - The content of the parameters that the command will

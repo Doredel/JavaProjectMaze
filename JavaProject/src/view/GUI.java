@@ -22,10 +22,6 @@ public class GUI extends Observable implements Observer{
 	private MainWindow mw;
 	
 	/**
-	 * <strong>start</strong>
-	 * <p>
-	 * <code>public void start()</code>
-	 * <p>
 	 * The start method that runs the main window of the program.
 	 * @return nothing.
 	 */
@@ -37,13 +33,7 @@ public class GUI extends Observable implements Observer{
 	}
 	
 	/**
-	 * <strong>displayError</strong>
-	 * <p>
-	 * <code>public void displayError(String string)</code>
-	 * <p>
-	 * Display error method that using message box to
-	 * show to the user if there is a problem in the running
-	 * of the program.
+	 * Display method that using message box to display a simple string
 	 * @param string The string that will be displayed.
 	 * @return nothing.
 	 */
@@ -60,12 +50,8 @@ public class GUI extends Observable implements Observer{
 		notifyObservers(arg);
 	}
 	/**
-	 * <strong>pass</strong>
-	 * <p>
-	 * <code>public void pass(Object arg)</code>
-	 * <p>
-	 * Passing the argument by his classification and making the matching order.
-	 * @param arg The argument that will pass to the main window(by his own type).
+	 * Passing the argument to the gui interface
+	 * @param arg The argument that will pass to the main window
 	 * @return nothing.
 	 */
 	public void pass(Object arg){

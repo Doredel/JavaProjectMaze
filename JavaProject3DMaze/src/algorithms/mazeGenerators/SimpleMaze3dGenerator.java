@@ -5,10 +5,6 @@ import java.util.Random;
 public class SimpleMaze3dGenerator extends CommonMaze3dGenerator {
 
 	/**
-	 * <strong>generate</strong>
-	 * <p>
-	 * <code>public Maze3d generate(int width, int height, int depth)</code>
-	 * <p>
 	 * The function generate a {@link Maze3d} using naive algorithms 
 	 * @param width - the width of the maze (for x values)
 	 * @param height - the height of the maze (for y values)

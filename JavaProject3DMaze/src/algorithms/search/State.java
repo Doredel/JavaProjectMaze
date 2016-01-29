@@ -27,10 +27,6 @@ public class State<T> implements Serializable{
 	private State<T> cameFrom;
 	
 	/**
-	 * <strong>State</strong>
-	 * <p>
-	 * <code>public State()</code>
-	 * <p>
 	 * construct a State
 	 */
 	public State() {
@@ -40,10 +36,6 @@ public class State<T> implements Serializable{
 	}
 	
 	/**
-	 * <strong>State</strong>
-	 * <p>
-	 * <code>public State(T state)</code>
-	 * <p>
 	 * construct a State
 	 * 
 	 * @param state - the state identifier
@@ -55,10 +47,6 @@ public class State<T> implements Serializable{
 	}
 
 	/**
-	 * <strong>getState</strong>
-	 * <p>
-	 * <code>public T getState()</code>
-	 * <p>
 	 * Returns the State identifier
 	 * 
 	 * @return <b>T</b> - the State identifier 
@@ -68,10 +56,6 @@ public class State<T> implements Serializable{
 	}
 
 	/**
-	 * <strong>setState</strong>
-	 * <p>
-	 * <code>public void setState(T state)</code>
-	 * <p>
 	 * Sets the State identifier
 	 * 
 	 * @param state - the state identifier
@@ -82,10 +66,6 @@ public class State<T> implements Serializable{
 
 
 	/**
-	 * <strong>getCost</strong>
-	 * <p>
-	 * <code>public double getCost()</code>
-	 * <p>
 	 * Returns the State cost
 	 * 
 	 * @return <b>double</b> - the State cost 
@@ -96,10 +76,6 @@ public class State<T> implements Serializable{
 
 
 	/**
-	 * <strong>setCost</strong>
-	 * <p>
-	 * <code>public void setCost(double cost)</code>
-	 * <p>
 	 * Sets the State cost
 	 * 
 	 * @param cost - the state cost
@@ -110,10 +86,6 @@ public class State<T> implements Serializable{
 
 
 	/**
-	 * <strong>getCameFrom</strong>
-	 * <p>
-	 * <code>public State&ltT&gt getCameFrom()</code>
-	 * <p>
 	 * Returns the State parent
 	 * 
 	 * @return <b>State&ltT&gt</b> - the State parent 
@@ -124,10 +96,6 @@ public class State<T> implements Serializable{
 
 
 	/**
-	 * <strong>setCameFrom</strong>
-	 * <p>
-	 * <code>public void setCameFrom(State&ltT&gt cameFrom)</code>
-	 * <p>
 	 * Sets the State parent
 	 * 
 	 * @param cameFrom - the state parent
@@ -137,10 +105,6 @@ public class State<T> implements Serializable{
 	}
 	
 	/**
-	 * <strong>equals</strong>
-	 * <p>
-	 * <code>public boolean equals(State&ltT&gt s)</code>
-	 * <p>
 	 * Return whether the states are the same
 	 * 
 	 * @param s - the state

@@ -17,10 +17,6 @@ public class MyCompressorOutputStream extends OutputStream {
 	 */
 	private OutputStream out;
 	/**
-	 * <strong>MyCompressorOutputStream</strong>
-	 * <p>
-	 * <code>public MyCompressorOutputStream(OutputStream out)</code>
-	 * <p>
 	 * Constructor of <b>MyCompressorOutputStream</b> that gets an OutputStream variable
 	 * and initialize the out data member
 	 * 

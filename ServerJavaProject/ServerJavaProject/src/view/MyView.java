@@ -19,10 +19,6 @@ public class MyView extends Observable implements View,Observer{
 	private CLI cli;
 	
 	/**
-	 * <strong>MyView</strong>
-	 * <p>
-	 * <code>public MyView()</code>
-	 * <p>
 	 * Constructor of MyView that initializes the CLI field
 	 * (the input stream will be the system.in). 
 	 * @return nothing.

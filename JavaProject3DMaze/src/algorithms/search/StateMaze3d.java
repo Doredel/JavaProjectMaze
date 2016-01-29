@@ -13,10 +13,6 @@ import algorithms.mazeGenerators.Position;
 public class StateMaze3d extends State<Position> {
 	
 	/**
-	 * <strong>State</strong>
-	 * <p>
-	 * <code>public State()</code>
-	 * <p>
 	 * construct a State of the maze
 	 * 
 	 * @param point - a {@link Position} that identify the state
@@ -26,10 +22,6 @@ public class StateMaze3d extends State<Position> {
 	}
 
 	/**
-	 * <strong>equals</strong>
-	 * <p>
-	 * <code>public boolean equals(StateMaze3d s)</code>
-	 * <p>
 	 * Return whether the states are the same
 	 * 
 	 * @param s - the state
@@ -40,10 +32,6 @@ public class StateMaze3d extends State<Position> {
 	}
 	
 	/**
-	 * <strong>equals</strong>
-	 * <p>
-	 * <code>public boolean equals(State&ltPosition&gt s)</code>
-	 * <p>
 	 * Return whether the states are the same
 	 * 
 	 * @param s - the state

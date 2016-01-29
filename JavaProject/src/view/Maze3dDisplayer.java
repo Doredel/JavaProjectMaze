@@ -28,11 +28,7 @@ public class Maze3dDisplayer extends MazeDisplayer {
 	protected double scale;
 	
 	/**
-	 * <strong>Maze3dDisplayer</strong>
-	 * <p>
-	 * <code>public Maze3dDisplayer(Composite parent, int style)</code>
-	 * <p>
-	 * Constructor that creates the 3d maze widget.
+	 * Constructor that creates the 3d maze widget
 	 * 
 	 * @param parent The parent shell.
 	 * @param style Style of the widget.
@@ -42,35 +38,23 @@ public class Maze3dDisplayer extends MazeDisplayer {
 	}
 
 	/**
-	 * <strong>getCharacter</strong>
-	 * <p>
-	 * <code>public Game3DCharacter getCharacter()</code>
-	 * <p>
-	 * Gets the character object. 
-	 * @return  A character object.
+	 * returns the character 
+	 * @return the character 
 	 */
 	public Game3DCharacter getCharacter() {
 		return character;
 	}
 	/**
-	 * <strong>setCharacter</strong>
-	 * <p>
-	 * <code>public Game3DCharacter setCharacter()</code>
-	 * <p>
-	 * Sets the character object. 
-	 * @param character The character will set with.
-	 * @return nothing.
+	 * Sets the character
+	 * @param character - the character
+	 * @return nothing
 	 */
 	public void setCharacter(Game3DCharacter character) {
 		this.character = character;
 	}
 
 	/**
-	 * <strong>getGoal</strong>
-	 * <p>
-	 * <code>public Position getGoal()</code>
-	 * <p>
-	 * Gets the target of the maze. 
+	 * Gets the goal position of the maze. 
 	 * @return The goal position of the maze.
 	 */
 	public Position getGoal() {
@@ -78,11 +62,8 @@ public class Maze3dDisplayer extends MazeDisplayer {
 	}
 	
 	/**
-	 * <strong>setGoal</strong>
-	 * <p>
-	 * <code>public void setGoal(Position goal)</code>
-	 * <p>
-	 * Sets the target of the maze.
+
+	 * Sets the goal position of the maze.
 	 * @param goal The goal position will set with. 
 	 * @return nothing.
 	 */
@@ -91,10 +72,6 @@ public class Maze3dDisplayer extends MazeDisplayer {
 	}
 
 	/**
-	 * <strong>getSolution</strong>
-	 * <p>
-	 * <code>public Solution<Position> getSolution()</code>
-	 * <p>
 	 * Gets the solution of the maze. 
 	 * @return The solution of the maze.
 	 */
@@ -103,12 +80,9 @@ public class Maze3dDisplayer extends MazeDisplayer {
 	}
 
 	/**
-	 * <strong>setSolution</strong>
-	 * <p>
-	 * <code>public void setSolution(Solution<Position> solution)</code>
-	 * <p>
+
 	 * Sets the solution of the maze.
-	 * @param solution The solution way will set with. 
+	 * @param solution - The solution of the maze
 	 * @return nothing.
 	 */
 	public void setSolution(Solution<Position> solution) {
@@ -116,11 +90,7 @@ public class Maze3dDisplayer extends MazeDisplayer {
 	}
 
 	/**
-	 * <strong>getCross</strong>
-	 * <p>
-	 * <code>public Axis getCross()</code>
-	 * <p>
-	 * Gets the cross section of the maze. 
+	 * returns the axis of the cross section of the maze. 
 	 * @return The axis of the maze.
 	 */
 	public Axis getCross() {
@@ -128,23 +98,16 @@ public class Maze3dDisplayer extends MazeDisplayer {
 	}
 
 	/**
-	 * <strong>setCross</strong>
-	 * <p>
-	 * <code>public void setCross(Axis cross)</code>
-	 * <p>
-	 * Sets the cross section of the maze.
-	 * @param cross The x/y/z axis will set with. 
-	 * @return nothing.
+	 * Sets the axis of the cross section of the maze. 
+	 * @param cross The x/y/z axis will set with 
+	 * @return nothing
+	 * @see Axis
 	 */
 	public void setCross(Axis cross) {
 		this.cross = cross;
 	}
 	/**
-	 * <strong>getClue</strong>
-	 * <p>
-	 * <code>public State<Position> getClue()</code>
-	 * <p>
-	 * Gets the clue to the player. 
+	 * Gets the current clue 
 	 * @return The clue by position.
 	 */
 	public State<Position> getClue() {
@@ -152,12 +115,8 @@ public class Maze3dDisplayer extends MazeDisplayer {
 	}
 
 	/**
-	 * <strong>setClue</strong>
-	 * <p>
-	 * <code>public void setClue(State<Position> clue)</code>
-	 * <p>
-	 * Sets the position of the clue to the player.
-	 * @param clue The hint to the player. 
+	 * Sets the position of the clue
+	 * @param clue - the clue 
 	 * @return nothing.
 	 */
 	public void setClue(State<Position> clue) {
@@ -165,24 +124,16 @@ public class Maze3dDisplayer extends MazeDisplayer {
 	}
 
 	/**
-	 * <strong>isMovement</strong>
-	 * <p>
-	 * <code>public boolean isMovement()</code>
-	 * <p>
-	 * Checking if the player is in movement.
-	 * @return True- if movement. else-False.
+	 * Checking if the player can move
+	 * @return whether the player can move
 	 */
 	public boolean isMovement() {
 		return movement;
 	}
 
 	/**
-	 * <strong>setMovement</strong>
-	 * <p>
-	 * <code>public void setMovement(boolean movement)</code>
-	 * <p>
-	 * Sets the movement(true or false)of the player.
-	 * @param movement Boolean type. 
+	 * disable or enable the movement of the player
+	 * @param movement - if the player can move 
 	 * @return nothing.
 	 */
 	public void setMovement(boolean movement) {
@@ -190,24 +141,16 @@ public class Maze3dDisplayer extends MazeDisplayer {
 	}
 
 	/**
-	 * <strong>getScale</strong>
-	 * <p>
-	 * <code>public double getScale()</code>
-	 * <p>
-	 * Gets the scale. 
-	 * @return A scale.
+	 * gets the percent that the maze is scaled by 
+	 * @return the percent that the maze is scaled by
 	 */
 	public double getScale() {
 		return scale;
 	}
 
 	/**
-	 * <strong>setScale</strong>
-	 * <p>
-	 * <code>public void setScale(double scale)</code>
-	 * <p>
-	 * Sets the scale.
-	 * @param scale Setting the scale. 
+	 * sets the percent that the maze is scaled by
+	 * @param scale the scaled value 
 	 * @return nothing.
 	 */
 	public void setScale(double scale) {

@@ -12,10 +12,6 @@ import view.View;
  */
 public class DisplayCommand<T> extends CommonCommand<T> {
 	/**
-	 * <strong>DispalySolutionCommand</strong>
-	 * <p>
-	 * <code>public DispalySolutionCommand(View<T> v, Model m)</code>
-	 * <p>
 	 * Constructor of DispalySolutionCommand<T> that initialize the facades of view and Model. 
 	 * 
 	 * @param View<T> v The facade of view to talk with.

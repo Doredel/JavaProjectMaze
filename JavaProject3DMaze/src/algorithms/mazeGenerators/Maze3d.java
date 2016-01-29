@@ -32,10 +32,6 @@ public class Maze3d implements Serializable{
 	
 	
 	/**
-	 * <strong>Maze3d</strong>
-	 * <p>
-	 * <code>public Maze3d()</code>
-	 * <p>
 	 * Constructor that creats a 3d maze
 	 * 
 	 * @param nothing
@@ -44,10 +40,6 @@ public class Maze3d implements Serializable{
 	}
 	
 	/**
-	 * <strong>Maze3d</strong>
-	 * <p>
-	 * <code>public Maze3d(Maze3d maze)</code>
-	 * <p>
 	 * copy Constructor that creats a 3d maze
 	 * 
 	 * @param maze
@@ -57,10 +49,6 @@ public class Maze3d implements Serializable{
 	}
 	
 	/**
-	 * <strong>Maze3d</strong>
-	 * <p>
-	 * <code>public Maze3d(byte[] compresedMaze)</code>
-	 * <p>
 	 * Constructor that converts from a compressed maze of byte array to a 3d maze
 	 * 
 	 * @param byte[] compresedMaze - The content of the compressed maze
@@ -89,10 +77,6 @@ public class Maze3d implements Serializable{
 	}
 	
 	/**
-	 * <strong>Maze3d</strong>
-	 * <p>
-	 * <code>public Maze3d(int[][][] maze, Position start, Position goal)</code>
-	 * <p>
 	 * Constructor that creats a 3d maze
 	 * 
 	 * @param maze the 3d array
@@ -106,10 +90,6 @@ public class Maze3d implements Serializable{
 	}
 
 	/**
-	 * <strong>getMaze3d</strong>
-	 * <p>
-	 * <code>public int[][][] getMaze3d()</code>
-	 * <p>
 	 * Returns the content of the maze without the start and end point
 	 * 
 	 * @param nothing
@@ -120,10 +100,6 @@ public class Maze3d implements Serializable{
 	}
 	
 	/**
-	 * <strong>setMaze3d</strong>
-	 * <p>
-	 * <code>public void setMaze3d(int[][][] maze3d)</code>
-	 * <p>
 	 * Sets the content of the maze without setting the start and end point
 	 * 
 	 * @param maze3d - The content of the maze without the start and end point
@@ -134,10 +110,6 @@ public class Maze3d implements Serializable{
 	}
 	
 	/**
-	 * <strong>getStartPosition</strong>
-	 * <p>
-	 * <code>public Position getStartPosition()</code>
-	 * <p>
 	 * Returns the start point of the maze
 	 *  
 	 * @param nothing
@@ -148,10 +120,6 @@ public class Maze3d implements Serializable{
 	}
 	
 	/**
-	 * <strong>setStartPosition</strong>
-	 * <p>
-	 * <code>public void setStartPosition(Position startPosition)</code>
-	 * <p>
 	 * Sets the start point of the maze
 	 * 
 	 * @param startPosition - The position of the wanted start point
@@ -162,10 +130,6 @@ public class Maze3d implements Serializable{
 	}
 	
 	/**
-	 * <strong>getGoalPosition</strong>
-	 * <p>
-	 * <code>public Position getGoalPosition()</code>
-	 * <p>
 	 * Returns the end point of the maze
 	 *  
 	 * @param nothing
@@ -176,10 +140,6 @@ public class Maze3d implements Serializable{
 	}
 	
 	/**
-	 * <strong>setGoalPosition</strong>
-	 * <p>
-	 * <code>public void setGoalPosition(Position goalPosition)</code>
-	 * <p>
 	 * Sets the end point of the maze
 	 * 
 	 * @param goalPosition - The position of the wanted end point
@@ -190,10 +150,6 @@ public class Maze3d implements Serializable{
 	}
 	
 	/**
-	 * <strong>getValue</strong>
-	 * <p>
-	 * <code>public int getValue(Position p)</code>
-	 * <p>
 	 * Returns the value of a point
 	 *  
 	 * @param p - the point 
@@ -204,10 +160,6 @@ public class Maze3d implements Serializable{
 	}
 	
 	/**
-	 * <strong>getValue</strong>
-	 * <p>
-	 * <code>public int getValue(int x,int y,int z)</code>
-	 * <p>
 	 * Returns the value of the point (x,y,z)
 	 *  
 	 * @param x - the x value of the point
@@ -220,10 +172,6 @@ public class Maze3d implements Serializable{
 	}
 	
 	/**
-	 * <strong>setValue</strong>
-	 * <p>
-	 * <code>public void setValue(Position p,int val)</code>
-	 * <p>
 	 * Sets the value of the point to val
 	 * 
 	 * @param p - the point 
@@ -235,10 +183,6 @@ public class Maze3d implements Serializable{
 	}
 	
 	/**
-	 * <strong>setValue</strong>
-	 * <p>
-	 * <code>public void setValue(int x,int y,int z,int val)</code>
-	 * <p>
 	 * Sets the value of the point (x,y,z) to val
 	 * 
 	 * @param x - the x value of the point
@@ -252,10 +196,6 @@ public class Maze3d implements Serializable{
 	}
 	
 	/**
-	 * <strong>getPossibleMoves</strong>
-	 * <p>
-	 * <code>public String[] getPossibleMoves(Position p)</code>
-	 * <p>
 	 * Given a point in maze the function calculate all the possible moves from the point
 	 * 
 	 * @param p -  a point to witch the function calculate all the adjacent point
@@ -299,10 +239,6 @@ public class Maze3d implements Serializable{
 	}
 	
 	/**
-	 * <strong>getCrossSectionByX</strong>
-	 * <P>
-	 * <code>public int[][] getCrossSectionByX(int x)</code>
-	 * <p>
 	 * Returns a cross section of the maze with the value of x
 	 * 
 	 * @param x - the x value of the cross section
@@ -329,10 +265,6 @@ public class Maze3d implements Serializable{
 	}
 	
 	/**
-	 * <strong>getCrossSectionByY</strong>
-	 * <P>
-	 * <code>public int[][] getCrossSectionByY(int y)</code>
-	 * <p>
 	 * Returns a cross section of the maze with the value of y
 	 * 
 	 * @param y - the y value of the cross section
@@ -359,10 +291,6 @@ public class Maze3d implements Serializable{
 	}
 	
 	/**
-	 * <strong>getCrossSectionByZ</strong>
-	 * <P>
-	 * <code>public int[][] getCrossSectionByZ(int z)</code>
-	 * <p>
 	 * Returns a cross section of the maze with the value of z
 	 * 
 	 * @param z - the z value of the cross section
@@ -389,10 +317,6 @@ public class Maze3d implements Serializable{
 	}
 	
 	/**
-	 * <strong>print</strong>
-	 * <p>
-	 * <code>public void print()</code>
-	 * <p>
 	 * Prints the maze where each level is a different y
 	 * @param nothing
 	 * @return nothing
@@ -414,10 +338,6 @@ public class Maze3d implements Serializable{
 	}
 	
 	/**
-	 * <strong>toByteArray</strong>
-	 * <p>
-	 * <code>public byte[] toByteArray()</code>
-	 * <p>
 	 * A method that convert from maze to byte array
 	 * 
 	 * @return <b>byte[]</b> - the maze and its content represented as array of bytes
@@ -455,10 +375,6 @@ public class Maze3d implements Serializable{
 	}
 	
 	/**
-	 * <strong>equals</strong>
-	 * <p>
-	 * <code>public boolean equals(Maze3d maze)</code>
-	 * <p>
 	 * Compare 2 mazes and returns whether they are the same
 	 * 
 	 * @param maze

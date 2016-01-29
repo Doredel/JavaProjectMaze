@@ -13,10 +13,6 @@ import java.util.ArrayList;
 public interface Searchable<T> {
 
 	/**
-	 * <strong>getInitialState</strong>
-	 * <p>
-	 * <code>public State&lt;T&gt; getInitialState()<code>
-	 * <p>
 	 * 	Returns the starting state 
 	 * 
 	 *  @param nothing
@@ -25,10 +21,6 @@ public interface Searchable<T> {
 	State<T> getInitialState();
 	
 	/**
-	 * <strong>getGoalState</strong>
-	 * <p>
-	 * <code>public State&lt;T&gt; getGoalState()<code>
-	 * <p>
 	 * 	Returns the goal state 
 	 * 
 	 *  @param nothing
@@ -37,10 +29,6 @@ public interface Searchable<T> {
 	State<T> getGoalState();
 	
 	/**
-	 * <strong>getAllStates</strong>
-	 * <p>
-	 * <code>public ArrayList&lt;State&lt;T&gt;&gt; getAllStates(State&lt;T&gt; s)</code>
-	 * <p>
 	 * Given a state in problem the function calculate all the possible states from the state
 	 * 
 	 * @param s - a state to witch the function calculate all the possible adjacent states 

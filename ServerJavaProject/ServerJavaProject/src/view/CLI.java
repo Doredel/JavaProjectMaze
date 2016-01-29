@@ -24,10 +24,6 @@ public class CLI extends Observable{
 	private PrintWriter out;
 	
 	/**
-	 * <strong>CLI</start>
-	 * <p>
-	 * <code>public CLI(BufferedReader in, PrintWriter out)</code>
-	 * <p>
 	 * Constructor a Command Line Interface.
 	 * 
 	 * @param in The input stream.
@@ -39,11 +35,7 @@ public class CLI extends Observable{
 	}
 	
 	/**
-	 * <strong>dispaly</strong>
-	 * <p>
-	 * <code>public void dispaly(String massage)</code>
-	 * <p>
-	 * Displays a message to the input stream.
+	 * Displays a message to the output stream.
 	 * @param massage The message that will shown.
 	 * @return nothing.
 	 */
@@ -53,11 +45,8 @@ public class CLI extends Observable{
 	}
 	
 	/**
-	 * <strong>start</strong>
-	 * <p>
-	 * <code>public void start()</code>
-	 * <p>
-	 * Starts the the CLI execute.
+	 * Starts the the CLI execute
+	 *<b>Note :<b>this method expects only one string "exit" everything else wont work
 	 * @return nothing.
 	 */
 	void start(){

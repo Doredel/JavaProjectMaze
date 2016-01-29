@@ -28,10 +28,6 @@ public class Maze2D extends Maze3dDisplayer{
 	private Image startScreen;
 	
 	/**
-	 * <strong>Maze2D</strong>
-	 * <p>
-	 * <code>public Maze2D(Composite parent ,int style)</code>
-	 * <p>
 	 * return an instance of the widget
 	 *
 	 * @param parent - the parent window

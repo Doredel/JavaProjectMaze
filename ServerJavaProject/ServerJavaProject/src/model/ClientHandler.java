@@ -6,10 +6,6 @@ import java.io.OutputStream;
 public interface ClientHandler {
 	
 	/**
-	 * <strong>handleClient</strong>
-	 * <p>
-	 * public void handleClient(InputStream inFromClient, OutputStream outToClient)</code>
-	 * <p>
 	 * This method handles the client's commands. 
 	 * after reading a command from the input stream, the method will analyze the command
 	 * and call to the match method. The return value of the method will be print
@@ -23,10 +19,6 @@ public interface ClientHandler {
 	public void handleClient(InputStream inFromClient, OutputStream outToClient);
 	
 	/**
-	 * <strong>exit</strong>
-	 * <p>
-	 * <code>public void exit()</code>
-	 * <p>
 	 * Exit method, that closes the run method, all the threads neatly and saves the cache. 
 	 * 
 	 * @return nothing

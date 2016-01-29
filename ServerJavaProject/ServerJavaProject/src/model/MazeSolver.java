@@ -25,10 +25,6 @@ public class MazeSolver implements Callable<Solution<Position>>{
 	
 
 	/**
-	 * <strong>MazeSolver</strong>
-	 * <p>
-	 * <code>public MazeSolver(Maze3d maze, String algorithm)</code>
-	 * <p>
 	 * The constructor of MazeSolver class, that initializes the solution way 
 	 * by the parameters of the maze and the type of the algorithm.
 	 * @param maze The maze that will be solved.
@@ -41,10 +37,6 @@ public class MazeSolver implements Callable<Solution<Position>>{
 	}
 
 	/**
-	 * <strong>solve</strong>
-	 * <p>
-	 * <code>public static Solution<Position> solve(Maze3d maze,String algorithm) throws Exception</code>
-	 * <p>
 	 * The solve method solves the maze that given as a parameter with an algorithm( parameter too).
 	 * 
 	 * @param maze The content of the maze that will be solved.

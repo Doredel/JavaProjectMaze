@@ -24,11 +24,7 @@ public class MazeOpenWindows extends BasicWindow {
 	private boolean changed;
 
 	/**
-	 * <strong>MazeGeneratetionWindows</strong>
-	 * <p>
-	 * <code>public MazeGeneratetionWindows(int width, int height,String title)</code>
-	 * <p>
-	 * Constructor of MazeGeneratetionWindows that initializes the BasicWindow by the parameters. 
+	 * Constructor of MazeOpenWindows that initializes the BasicWindow by the parameters. 
 	 * 
 	 * @param width The width of the window.
 	 * @param height The height of the window.
@@ -40,11 +36,7 @@ public class MazeOpenWindows extends BasicWindow {
 	}
 	
 	/**
-	 * <strong>MazeGeneratetionWindows</strong>
-	 * <p>
-	 * <code>public MazeGeneratetionWindows(int width, int height,String title)</code>
-	 * <p>
-	 * Constructor of MazeGeneratetionWindows that initializes the BasicWindow by the parameters. 
+	 * Constructor of MazeOpenWindows that initializes the BasicWindow by the parameters. 
 	 * 
 	 * @param width The width of the window.
 	 * @param height The height of the window.
@@ -101,12 +93,8 @@ public class MazeOpenWindows extends BasicWindow {
 	}
 
 	/**
-	 * <strong>getName</strong>
-	 * <p>
-	 * <code>public String getName()</code>
-	 * <p>
-	 * Getting the name of maze.
-	 * @return The name.
+	 * Getting the name of maze
+	 * @return The name
 	 */
 	public String getName(){
 		return name;

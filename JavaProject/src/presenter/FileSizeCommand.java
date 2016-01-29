@@ -13,10 +13,6 @@ import view.View;
  */
 public class FileSizeCommand<T> extends CommonCommand<T> {
 	/**
-	 * <strong>FileSizeCommand</strong>
-	 * <p>
-	 * <code>FileSizeCommand(View<T> v, Model m)</code>
-	 * <p>
 	 * Constructor of DispalySolutionCommand<T> that initialize the facades of view and model. 
 	 * 
 	 * @param View<T> v The facade of view to talk with.

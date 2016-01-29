@@ -24,10 +24,6 @@ public class CLI extends Observable{
 	private PrintWriter out;
 	
 	/**
-	 * <strong>CLI</start>
-	 * <p>
-	 * <code>public CLI(BufferedReader in, PrintWriter out)</code>
-	 * <p>
 	 * Construct a Command Line Interface.
 	 * 
 	 * @param in The input stream.
@@ -39,10 +35,6 @@ public class CLI extends Observable{
 	}
 
 	/**
-	 * <strong>start</start>
-	 * <p>
-	 * <code>public void start()</code>
-	 * <p>
 	 * The main function starts the running of the program.
 	 * 
 	 */
@@ -70,10 +62,6 @@ public class CLI extends Observable{
 	}
 	
 	/**
-	 * <strong>display</start>
-	 * <p>
-	 * <code>public void display(String string)</code>
-	 * <p>
 	 * The function which prints into the OutputStream.
 	 * 
 	 * @param str The string to be printed.

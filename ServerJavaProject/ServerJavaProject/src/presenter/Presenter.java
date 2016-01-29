@@ -29,11 +29,7 @@ public class Presenter implements Observer{
 	private ServerProperties properties;
 
 	/**
-	 * <strong>Presenter</strong>
-	 * <p>
-	 * <code>public Presenter(Model model, View<T> view)</code>
-	 * <p>
-	 * Constructor of Presenter<T> that initializes the 
+	 * Constructor of Presenter that initializes the 
 	 * model and the view facades, creates the command hash map
 	 * and loads the properties from the XML file.
 	 * 

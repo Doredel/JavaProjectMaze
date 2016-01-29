@@ -19,10 +19,6 @@ public class MyDecompressorInputStream extends InputStream {
 	private InputStream in;
 	
 	/**
-	 * <strong>MyDecompressorInputStream</strong>
-	 * <p>
-	 * <code>public MyDecompressorInputStream(InputStream in)</code>
-	 * <p>
 	 * Constructor of <b>MyDecompressorInputStream</b> that gets an InputStream variable and initialize the in content
 	 * 
 	 * @param InputStream in 

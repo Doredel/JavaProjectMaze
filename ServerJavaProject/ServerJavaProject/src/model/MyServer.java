@@ -25,11 +25,7 @@ public class MyServer extends Observable{
 	private ExecutorService threadPool;
 	
 	/**
-	 * <strong>MyServer</strong>
-	 * <p>
-	 * <code>public MyServer(int port,int numThreads,ClientHandler clientHandler)</code>
-	 * <p>
-	 * Constructor of MyServer that initializes the port and the clients map,
+	 * Constructor of MyServer that initializes the port,
 	 * and the number of clients that can running the application at the same time.
 	 * (AKA number of threads).
 	 * 
@@ -45,10 +41,6 @@ public class MyServer extends Observable{
 	}
 	
 	/**
-	 * <strong>startServer</strong>
-	 * <p>
-	 * <code>public void startServer()</code>
-	 * <p>
 	 * This method starts the server's execute.
 	 * @return nothing.
 	 */
@@ -98,11 +90,7 @@ public class MyServer extends Observable{
 	}
 	
 	/**
-	 * <strong>stopServer</strong>
-	 * <p>
-	 * <code>public void stopServer()</code>
-	 * <p>
-	 * This method stops the server's execute.
+	 * This method stops the server from reciving more clients
 	 * @return nothing.
 	 */
 	public void stopServer(){
@@ -112,10 +100,6 @@ public class MyServer extends Observable{
 	}
 
 	/**
-	 * <strong>open</strong>
-	 * <p>
-	 * <code>public void open()</code>
-	 * <p>
 	 * This method opens a thread that runs the server's execute.
 	 * @return nothing.
 	 */

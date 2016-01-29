@@ -14,10 +14,6 @@ public class AStar<T> extends BFS<T> {
 	private Heuristic<T> heuristic;
 
 	/**
-	 * <strong>AStar</strong>
-	 * <p>
-	 * <code>public AStar(Heuristic<T> heuristic)</code>
-	 * <p>
 	 * construct a A* Solver<br>
 	 * 
 	 * @param heuristic - the object that holds the h function that predicts witch states are better then others 

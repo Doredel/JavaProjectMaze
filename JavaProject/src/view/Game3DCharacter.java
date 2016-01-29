@@ -10,16 +10,12 @@ import algorithms.mazeGenerators.Position;
  * 
  * @authors Dor Edelstein, Lior Mantin
  *
- * see BasicWindow  
  */
 public abstract class Game3DCharacter {
 	protected Position position;
 	protected Shell parent;
 
 	/**
-	 * <strong>Game3DCharacter</strong>
-	 * <code>public Game3DCharacter(Shell parent)</code>
-	 * <p>
 	 * Constructor of an abstract character drawing.
 	 * 
 	 * @param parent The window in which the character is.
@@ -29,10 +25,6 @@ public abstract class Game3DCharacter {
 	}
 	
 	/**
-	 * <strong>Ball3DCharacter</strong>
-	 * <p>
-	 * <code>public Position getPosition()</code>
-	 * <p>
 	 * Gets the position of the character in maze.
 	 * @return The position
 	 */
@@ -40,10 +32,6 @@ public abstract class Game3DCharacter {
 		return position;
 	}
 	/**
-	 * <strong>setPosition</strong>
-	 * <p>
-	 * <code>public void setPosition(Position position)</code>
-	 * <p>
 	 * Sets the position of the character in maze.
 	 * @return nothing.
 	 */
@@ -52,10 +40,6 @@ public abstract class Game3DCharacter {
 	}
 
 	/**
-	 * <strong>getX</strong>
-	 * <p>
-	 * <code>public int getX()</code>
-	 * <p>
 	 * Gets the x's axis position of the character in maze.
 	 * @return The x value of the character.
 	 */
@@ -64,10 +48,6 @@ public abstract class Game3DCharacter {
 	}
 
 	/**
-	 * <strong>getY</strong>
-	 * <p>
-	 * <code>public int getY()</code>
-	 * <p>
 	 * Gets the y's axis position of the character in maze.
 	 * @return The y value of the character.
 	 */
@@ -76,10 +56,6 @@ public abstract class Game3DCharacter {
 	}
 
 	/**
-	 * <strong>getZ</strong>
-	 * <p>
-	 * <code>public int getZ()</code>
-	 * <p>
 	 * Gets the z's axis position of the character in maze.
 	 * @return The z value of the character.
 	 */
@@ -88,11 +64,7 @@ public abstract class Game3DCharacter {
 	}
 	
 	/**
-	 * <strong>moveUp</strong>
-	 * <p>
-	 * <code>public void moveUp()</code>
-	 * <p>
-	 * Moving up the character in maze.
+	 * Moves the character up
 	 * @return nothing.
 	 */
 	public void moveUp() {
@@ -100,11 +72,7 @@ public abstract class Game3DCharacter {
 	}
 	
 	/**
-	 * <strong>moveDown</strong>
-	 * <p>
-	 * <code>public void moveDown()</code>
-	 * <p>
-	 * Moving down the character in maze.
+	 * Moves the character down
 	 * @return nothing.
 	 */
 	public void moveDown() {
@@ -112,11 +80,7 @@ public abstract class Game3DCharacter {
 	}
 	
 	/**
-	 * <strong>moveLeft</strong>
-	 * <p>
-	 * <code>public void moveLeft()</code>
-	 * <p>
-	 * Moving left the character in maze.
+	 * Moves the character left
 	 * @return nothing.
 	 */
 	public void moveLeft() {
@@ -124,11 +88,7 @@ public abstract class Game3DCharacter {
 	}
 	
 	/**
-	 * <strong>moveRight</strong>
-	 * <p>
-	 * <code>public void moveRight()</code>
-	 * <p>
-	 * Moving right the character in maze.
+	 * Moves the character right
 	 * @return nothing.
 	 */
 	public void moveRight() {
@@ -136,11 +96,7 @@ public abstract class Game3DCharacter {
 	}
 	
 	/**
-	 * <strong>moveForward</strong>
-	 * <p>
-	 * <code>public void moveForward()</code>
-	 * <p>
-	 * Moving forward the character in maze.
+	 * Moves the character forwards
 	 * @return nothing.
 	 */
 	public void moveForward() {
@@ -148,10 +104,7 @@ public abstract class Game3DCharacter {
 	}
 	
 	/**
-	 * <strong>moveBackward</strong>
-	 * <p>
-	 * <code>public void moveBackward()</code>
-	 * <p>
+	 * Moves the character backwards
 	 * Moving backward the character in maze.
 	 * @return nothing.
 	 */
@@ -160,9 +113,6 @@ public abstract class Game3DCharacter {
 	}
 	
 	/**
-	 * <strong>draw</strong>
-	 * <code>public abstract void draw(PaintEvent e,int x,int y,int width,int height)</code>
-	 * <p>
 	 * Drawing the character.
 	 * @param e The {@link PaintEvent}
 	 * @param x The x value in the canvas.

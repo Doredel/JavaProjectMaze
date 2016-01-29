@@ -14,10 +14,6 @@ import io.MyDecompressorInputStream;
  */
 public class MazeLoader {
 	/**
-	 * <strong>FindloadDir</strong>
-	 * <p>
-	 * <code>public static byte[] load(String fileName) throws IOException</code>
-	 * <p>
 	 * The load method takes the compressed maze from a file and returns it decompressed.
 	 * 
 	 * @param fileName The content of the file that from him the information about the compressed maze is taken.
@@ -41,10 +37,6 @@ public class MazeLoader {
 			
 	}
 	/**
-	 * <strong>arrayListToArray</strong>
-	 * <p>
-	 * <code>private static byte[] arrayListToArray(ArrayList<Byte> content)</code>
-	 * <p>
 	 * The arrayListToArray method helps to convert from arrayList of byte to a simple array.
 	 * 
 	 * @param content The content of an arrayList That will be converted to an array.
