@@ -87,7 +87,7 @@ public interface Model {
 	 * Calculating The maze size in bytes
 	 * 
 	 * @param name The name of the maze
-	 *
+	 */
 	public void mazeSize(String name);
 	
 	/**
