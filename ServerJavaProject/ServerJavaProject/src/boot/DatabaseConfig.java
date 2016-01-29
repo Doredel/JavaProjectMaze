@@ -1,5 +1,7 @@
 package boot;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -20,7 +22,7 @@ public class DatabaseConfig {
 		Statement stmt = null;
 		
 		Configuration config = new Configuration();
-		config.configure();
+		config.configure(new File("hibernate.cfg.xml"));
 		String username = config.getProperty("connection.username");
 		String password = config.getProperty("connection.password");
 
@@ -38,7 +40,6 @@ public class DatabaseConfig {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		
 		System.out.println("Creation compleated");
 	}
 }

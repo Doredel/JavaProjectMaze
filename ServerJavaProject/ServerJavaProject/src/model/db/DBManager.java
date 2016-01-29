@@ -1,5 +1,6 @@
 package model.db;
 
+import java.io.File;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.List;
@@ -32,7 +33,7 @@ public class DBManager {
 		Solution<Position> solution;
 		Blob blob;
 		
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
+		SessionFactory sessionFactory = new Configuration().configure(new File("hibernate.cfg.xml")).buildSessionFactory();
 		Session session = sessionFactory.openSession();
 
 		Query query = session.createQuery("from Cache");
@@ -64,7 +65,7 @@ public class DBManager {
 	@SuppressWarnings("unchecked")
 	public static void saveAllCache(ConcurrentHashMap<String, Maze3d> mazeDB,ConcurrentHashMap<Maze3d, Solution<Position>> cacheDB){
 		 
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory(); 
+		SessionFactory sessionFactory = new Configuration().configure(new File("hibernate.cfg.xml")).buildSessionFactory(); 
 		Session session = sessionFactory.openSession();
 		
 		Query query = session.createQuery("from Cache");
@@ -83,7 +84,7 @@ public class DBManager {
 	public static void save(String name,Maze3d maze,Solution<Position> solution){
 		Cache cache = new Cache();
 		 
-		 SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory(); 
+		 SessionFactory sessionFactory = new Configuration().configure(new File("hibernate.cfg.xml")).buildSessionFactory(); 
 		 Session session = sessionFactory.openSession();
 		 CacheManager manager = new CacheManager(session);
 
