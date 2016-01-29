@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -35,17 +35,17 @@ public class MazeHandler implements ClientHandler {
 	/**
 	 * the mazes database
 	 */
-	private HashMap<String, Maze3d> mazeDB;
+	private ConcurrentHashMap<String, Maze3d> mazeDB;
 	
 	/**
 	 * the solutions database
 	 */
-	private HashMap<String, Solution<Position>> solutionDB; 
+	private ConcurrentHashMap<String, Solution<Position>> solutionDB; 
 	
 	/**
 	 * the cache database
 	 */
-	private HashMap<Maze3d, Solution<Position>> cache;
+	private ConcurrentHashMap<Maze3d, Solution<Position>> cache;
 
 	private ExecutorService executor;
 
@@ -57,9 +57,9 @@ public class MazeHandler implements ClientHandler {
 	 * Constructor MazeHandler instance.
 	 */
 	public MazeHandler(){
-		mazeDB = new HashMap<String, Maze3d>();
-		solutionDB = new HashMap<String, Solution<Position>>();
-		cache = new HashMap<Maze3d, Solution<Position>>();
+		mazeDB = new ConcurrentHashMap<String, Maze3d>();
+		solutionDB = new ConcurrentHashMap<String, Solution<Position>>();
+		cache = new ConcurrentHashMap<Maze3d, Solution<Position>>();
 		executor = Executors.newFixedThreadPool(2);
 		
 		DBManager.populate(mazeDB, solutionDB, cache);
@@ -162,8 +162,6 @@ public class MazeHandler implements ClientHandler {
 	 
 	public Object generateMaze(String name, int width,int height,int depth) {
 		if (!(mazeDB.containsKey(name))) {
-			mazeDB.put(name, null);
-					
 			Future<Maze3d> f_maze = executor.submit(new MazeGenerator(width,height,depth));
 			try {
 				mazeDB.put(name, f_maze.get());

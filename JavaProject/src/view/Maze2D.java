@@ -13,18 +13,29 @@ import org.eclipse.swt.widgets.Composite;
 import algorithms.mazeGenerators.Position;
 import algorithms.search.StateMaze3d;
 
-
+/**
+ * a widget that can display 3d maze in 2d
+ * 
+ * @author Dor Edelstein, Lior Mantin
+ *
+ */
 public class Maze2D extends Maze3dDisplayer{	
 
-	Image walls;
-	Image winScreen;
-	Image hint;
-	Image goalPortal;
-	Image startScreen;
+	private Image walls;
+	private Image winScreen;
+	private Image hint;
+	private Image goalPortal;
+	private Image startScreen;
 	
-	/** 
-	 * @param parent
-	 * @param style
+	/**
+	 * <strong>Maze2D</strong>
+	 * <p>
+	 * <code>public Maze2D(Composite parent ,int style)</code>
+	 * <p>
+	 * return an instance of the widget
+	 *
+	 * @param parent - the parent window
+	 * @param style - the style of the window
 	 */
 	public Maze2D(Composite parent ,int style){
 	        super(parent, SWT.DOUBLE_BUFFERED);
@@ -33,8 +44,8 @@ public class Maze2D extends Maze3dDisplayer{
 	        setMovement(true);
 	        setCross(Axis.Y);
 	        try {
-	        	winScreen = new Image(getDisplay(), new FileInputStream("resources/images.jpg"));
-	        	startScreen = new Image(getDisplay(), new FileInputStream("resources/space.jpeg"));
+	        	winScreen = new Image(getDisplay(), new FileInputStream("resources/WinScreen.jpg"));
+	        	startScreen = new Image(getDisplay(), new FileInputStream("resources/StartScreen.jpeg"));
 	        	walls = new Image(getDisplay(), new FileInputStream("resources/asteroids.jpg"));
 	        	hint = new Image(getDisplay(), new FileInputStream("resources/pylon.jpg"));
 	        	goalPortal = new Image(getDisplay(), new FileInputStream("resources/portal.gif"));

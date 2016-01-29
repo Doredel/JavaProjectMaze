@@ -2,8 +2,8 @@ package model.db;
 
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
@@ -17,10 +17,15 @@ import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
 import algorithms.search.Solution;
 
+/**
+ * class that Manage the database
+ * @author Dor Edelstein, Lior Mantin
+ *
+ */
 public class DBManager {
 
 	@SuppressWarnings("unchecked")
-	public static void populate(HashMap<String, Maze3d> mazeDB,HashMap<String, Solution<Position>> solutionDB,HashMap<Maze3d, Solution<Position>> cacheDB)
+	public static void populate(ConcurrentHashMap<String, Maze3d> mazeDB,ConcurrentHashMap<String, Solution<Position>> solutionDB,ConcurrentHashMap<Maze3d, Solution<Position>> cacheDB)
 	{
 		String name;
 		Maze3d maze;
@@ -57,7 +62,7 @@ public class DBManager {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static void saveAllCache(HashMap<String, Maze3d> mazeDB,HashMap<Maze3d, Solution<Position>> cacheDB){
+	public static void saveAllCache(ConcurrentHashMap<String, Maze3d> mazeDB,ConcurrentHashMap<Maze3d, Solution<Position>> cacheDB){
 		 
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory(); 
 		Session session = sessionFactory.openSession();

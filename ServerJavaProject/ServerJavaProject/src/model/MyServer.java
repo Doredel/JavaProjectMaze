@@ -7,7 +7,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.util.Observable;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -24,7 +23,6 @@ public class MyServer extends Observable{
 	private ClientHandler clientHandler;
 	private volatile boolean stop;
 	private ExecutorService threadPool;
-	private ConcurrentHashMap<Integer, String> clients;
 	
 	/**
 	 * <strong>MyServer</strong>
@@ -44,7 +42,6 @@ public class MyServer extends Observable{
 		stop=false;
 		this.clientHandler=clientHandler;
 		threadPool = Executors.newFixedThreadPool(numThreads);
-		clients = new ConcurrentHashMap<Integer, String>();
 	}
 	
 	/**
