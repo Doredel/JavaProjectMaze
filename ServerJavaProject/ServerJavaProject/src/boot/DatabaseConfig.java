@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -20,7 +21,7 @@ public class DatabaseConfig {
 	{
 		Connection connection;
 		Statement stmt = null;
-		
+		boolean exits = false;
 		Configuration config = new Configuration();
 		config.configure(new File("hibernate.cfg.xml"));
 		String username = config.getProperty("connection.username");
@@ -29,13 +30,39 @@ public class DatabaseConfig {
 		try {
 			//creating the Database
 			connection = DriverManager.getConnection("jdbc:mysql://localhost", username, password);
-			stmt = connection.createStatement();
-		    stmt.executeUpdate("CREATE DATABASE MAZE3D;");
+			ResultSet resultSet = connection.getMetaData().getCatalogs();
+
+		    while (resultSet.next()) {
+
+		    	String databaseName = resultSet.getString(1);
+		    	if(databaseName.equals("maze3d")){
+		    		exits = true;
+		        }
+		    }
+		    resultSet.close();
+			if(!exits){
+				stmt = connection.createStatement();
+	    	    stmt.executeUpdate("CREATE DATABASE MAZE3D;");
+			}
 		    
 		    //creating the table in the maze3d database
 		    connection = DriverManager.getConnection("jdbc:mysql://localhost/maze3d", username, password);
-			stmt = connection.createStatement();
-		    stmt.executeUpdate("CREATE TABLE MAZECACHE(NAME varchar(20),MAZE blob,SOLUTION blob ,PRIMARY KEY (NAME));");
+		    resultSet = connection.getMetaData().getTables(null, null, "%", null);
+		    exits = false;
+		    
+		    while (resultSet.next()) {
+
+		    	String tableName = resultSet.getString(3);
+		    	if(tableName.equals("mazecache")){
+		    		exits = true;
+		        }
+		    }
+		    resultSet.close();
+			if(!exits){
+				stmt = connection.createStatement();
+			    stmt.executeUpdate("CREATE TABLE MAZECACHE(NAME varchar(20),MAZE blob,SOLUTION blob ,PRIMARY KEY (NAME));");
+			}
+		    
 		
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
